@@ -1,0 +1,17 @@
+.gradient-text {
+  background: linear-gradient(to right, #FFC300, #FF5733);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gradient-icon path {
+  stroke: url(#gradient);
+}
+
+.gradient-icon stop:first-child {
+  stop-color: #ff00ff; /* Start color */
+}
+
+.gradient-icon stop:last-child {
+  stop-color: #00ffff; /* End color */
+}

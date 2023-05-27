@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "title": "iPhone 13 Pro Max Case",
+      "image_url": "https://i.imgur.com/3456789.jpg",
+      "price": 29.99,
+      "description": "This durable case protects your iPhone 13 Pro Max from drops and scratches. It is made of high-quality materials and features a slim design that won't add bulk to your phone.",
+      "type": "phone case"
+    },
+    {
+      "title": "Samsung Galaxy S22 Ultra Screen Protector",
+      "image_url": "https://i.imgur.com/0123456.jpg",
+      "price": 19.99,
+      "description": "This tempered glass screen protector protects your Samsung Galaxy S22 Ultra from scratches and cracks. It is ultra-thin and has a oleophobic coating that resists fingerprints and smudges.",
+      "type": "screen protector"
+    },
+    {
+      "title": "Apple Watch Series 7 Charger",
+      "image_url": "https://i.imgur.com/7890123.jpg",
+      "price": 29.99,
+      "description": "This fast charger quickly charges your Apple Watch Series 7. It is also compatible with previous models of the Apple Watch.",
+      "type": "charger"
+    },
+    {
+      "title": "Wireless Charging Stand",
+      "image_url": "https://i.imgur.com/4567890.jpg",
+      "price": 39.99,
+      "description": "This wireless charging stand allows you to charge your phone or other compatible devices wirelessly. It is easy to use and has a sleek design.",
+      "type": "charger"
+    },
+    {
+      "title": "Bluetooth Headphones",
+      "image_url": "https://i.imgur.com/9012345.jpg",
+      "price": 59.99,
+      "description": "These Bluetooth headphones provide clear sound and a comfortable fit. They are also water-resistant, so you can use them while working out or running.",
+      "type": "headphones"
+    },
+    {
+      "title": "Portable Speaker",
+      "image_url": "https://i.imgur.com/0123456.jpg",
+      "price": 39.99,
+      "description": "This portable speaker delivers powerful sound and has a long battery life. It is also water-resistant, so you can take it with you to the beach or pool.",
+      "type": "speaker"
+    },
+    {
+      "title": "USB-C Cable",
+      "image_url": "https://i.imgur.com/7890123.jpg",
+      "price": 9.99,
+      "description": "This durable USB-C cable is long enough to reach from your phone to your charger. It is also fast-charging compatible, so you can charge your phone quickly.",
+      "type": "cable"
+    },
+    {
+      "title": "Power Bank",
+      "image_url": "https://i.imgur.com/4567890.jpg",
+      "price": 29.99,
+      "description": "This power bank provides extra battery life for your phone or other devices. It is also compact and lightweight, so you can easily take it with you on the go.",
+      "type": "power bank"
+    },
+    {
+      "title": "Car Charger",
+      "image_url": "https://i.imgur.com/9012345.jpg",
+      "price": 19.99,
+      "description": "This car charger allows you to charge your phone while you are driving. It is also fast-charging compatible, so you can charge your phone quickly.",
+      "type": "charger"
+    }
+  ]
+}
