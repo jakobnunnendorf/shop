@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from 'react';
 import {ComponentFrame} from './LoginComponent/ComponentFrame';
 import './globals.css';
 
