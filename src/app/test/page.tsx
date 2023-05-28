@@ -48,7 +48,7 @@ export default function Page() {
                 <div className='grid grid-cols-3 py-12 gap-8'>
                     {products.map((product, index) => (
                         <div key={index} className='text-center flex flex-col items-center space-y-3'>
-                            <img src={product.image} alt="test" className='w-48'/>
+                        <Image src={`/cases/iphone_${product.id}.jpeg`} width={40} height={40} alt="test" className='w-48'/>
                         <h2 className='text-xl'>{product.title}</h2>
                         <p className='text-xl'>{product.price}€</p>
                         </div>
