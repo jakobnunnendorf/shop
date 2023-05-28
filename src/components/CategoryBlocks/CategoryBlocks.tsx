@@ -40,17 +40,15 @@ const categories = {
     },
 }
 
-
-
 export function CategoryBlocks() {
     return (
-        <div className='text-center'>
-            <h2 className='text-3xl mb-8'>Kategorien</h2>
-        <div className="grid w-full grid-cols-3">
-            {Object.values(categories).map((category, index) => (
-                <CategoryBlock key={index} categoryData={category} />
-            ))}
-        </div>
+        <div className="text-center">
+            <h2 className="mb-8 text-3xl">Kategorien</h2>
+            <div className="grid w-full grid-cols-3">
+                {Object.values(categories).map((category, index) => (
+                    <CategoryBlock key={index} categoryData={category} />
+                ))}
+            </div>
         </div>
     )
 }

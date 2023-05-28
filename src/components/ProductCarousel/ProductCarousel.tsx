@@ -1,4 +1,4 @@
-import { ProductContainer } from './ProductContainer';
+import { ProductContainer } from "./ProductContainer"
 const inventory = {
     product1: {
         name: "Product 1",
@@ -21,7 +21,7 @@ const inventory = {
         description: "This is a great product",
         availability: 50,
     },
-} 
+}
 
 export function ProductCarousel() {
     return (
@@ -32,7 +32,7 @@ export function ProductCarousel() {
                     <ProductContainer key={index} productData={product} active={true} />
                 ))}
             </div>
-            <button className='border-2 border-black rounded-xl p-2'>Add to cart</button>
+            <button className="rounded-xl border-2 border-black p-2">Add to cart</button>
         </div>
     )
 }
