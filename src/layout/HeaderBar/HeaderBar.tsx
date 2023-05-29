@@ -1,13 +1,13 @@
 import Image from "next/image"
-import { FiMenu, FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
+import { FiSearch, FiShoppingCart } from "react-icons/fi"
 
 export function HeaderBar() {
     return (
-        <header className="fixed w-full">
+        <header className="sticky top-0 z-50 w-full h-24">
             <div className="navbar bg-teal-50">
                 <div className="flex-1">
-                    <a className="btn-ghost btn text-xl normal-case">
-                        <Image src={"/p2d_logo.png"} width={50} height={50} alt="" />
+                    <a href="/" className="btn-ghost btn text-xl normal-case">
+                        <Image src="/p2d_logo.png" width={50} height={50} alt="" />
                     </a>
                 </div>
                 <div className="flex-none">
@@ -38,7 +38,7 @@ export function HeaderBar() {
                     <div className="dropdown-end dropdown">
                         <label tabIndex={0} className="btn-ghost btn-circle avatar btn">
                             <div className="w-10 rounded-full">
-                                <img src="/assets/img/users/user-2.jpg" />
+                                <Image src="/assets/img/users/user-2.jpg" width={15} height={15} alt="" />
                             </div>
                         </label>
                         <ul
@@ -46,16 +46,16 @@ export function HeaderBar() {
                             className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
                         >
                             <li>
-                                <a className="justify-between">
+                                <button className="justify-between">
                                     Profile
                                     <span className="badge">New</span>
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a>Settings</a>
+                                <a href="/home">Settings</a>
                             </li>
                             <li>
-                                <a>Logout</a>
+                                <a href="/home">Logout</a>
                             </li>
                         </ul>
                     </div>
