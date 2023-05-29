@@ -3,7 +3,7 @@ import { FiMenu, FiSearch, FiShoppingCart, FiUser } from "react-icons/fi"
 
 export function HeaderBar() {
     return (
-        <header>
+        <header className='fixed w-full'>
             <div className="navbar bg-teal-50">
                 <div className="flex-1">
                     <a className="btn-ghost btn text-xl normal-case">
