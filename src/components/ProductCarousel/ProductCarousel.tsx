@@ -32,7 +32,7 @@ export function ProductCarousel() {
                     <ProductContainer key={index} productData={product} active={true} />
                 ))}
             </div>
-            <button className="rounded-xl border-2 border-black p-2">Add to cart</button>
+            <button className="btn-accent text-black">Add to cart</button>
         </div>
     )
 }

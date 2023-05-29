@@ -37,12 +37,18 @@ export default function Page() {
         <div>
             {fetchError && <p>{fetchError}</p>}
             {products && (
-                <div className='grid grid-cols-3 py-12 gap-8'>
+                <div className="grid grid-cols-3 gap-8 py-12">
                     {products.map((product, index) => (
-                        <div key={index} className='text-center flex flex-col items-center space-y-3'>
-                        <Image src={`/cases/iphone_${product.id}.jpeg`} width={40} height={40} alt="test" className='w-48'/>
-                        <h2 className='text-xl'>{product.title}</h2>
-                        <p className='text-xl'>{product.price}€</p>
+                        <div key={index} className="flex flex-col items-center space-y-3 text-center">
+                            <Image
+                                src={`/cases/iphone_${product.id}.jpeg`}
+                                width={40}
+                                height={40}
+                                alt="test"
+                                className="w-48"
+                            />
+                            <h2 className="text-xl">{product.title}</h2>
+                            <p className="text-xl">{product.price}€</p>
                         </div>
                     ))}
                 </div>
