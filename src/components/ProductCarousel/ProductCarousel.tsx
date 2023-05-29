@@ -1,41 +1,38 @@
-import { ProductContainer } from "./ProductContainer"
-const inventory = {
-    product1: {
-        name: "iPhone 14 Pro Leder Case - Waldgrün",
-        price: 69,
-        image: "/cases/iphone_3c7f37af-623e-4c38-bd80-5d1f66c76e69.jpg",
-        description: "This is a great product",
-        availability: 24,
-    },
-    product2: {
-        name: "iPhone 14 Pro Leder Case - Mitternacht",
-        price: 69,
-        image: "/cases/iphone_085d2bba-a94d-4fae-931d-6ed7d574f551.jpeg",
-        description: "This is a great product",
-        availability: 37,
-    },
-    product3: {
-        name: "iPhone 14 Pro Leder Case - Umbra",
-        price: 69,
-        image: "/cases/iphone_1984c306-3546-40d9-97ef-dbb8ce227b25.jpeg",
-        description: "This is a great product",
-        availability: 50,
-    },
-}
+// src/components/ProductCarousel/ProductCarousel.tsx
 
-export function ProductCarousel() {
-    const activeItem=0
+"use client"
+import { useEffect, useState } from "react"
+import { ProductContainer, ProductContainerProps } from "./ProductContainer"
+import { supabase } from "../../app/api/supabase"
+import { FiShoppingCart } from 'react-icons/fi'
+
+export function ProductCarousel({heading}:{heading:string}) {
+    const [products, setProducts] = useState<ProductContainerProps[]>([])
+    const [activeItem, setActiveItem] = useState(0)
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data, error } = await supabase.from("products").select("*")
+            if (error) {
+                console.log("Error fetching products: ", error)
+            } else {
+                setProducts(data as ProductContainerProps[])
+            }
+        }
+
+        fetchProducts()
+    }, [])
+
     return (
-        <div className="carousel-center carousel rounded-box max-w-md space-x-4 p-4">
-                    {Object.values(inventory).map((product, index) => (
-                        <div className="carousel-item" key={1}>
-                            <ProductContainer
-                                key={index}
-                                productData={product}
-                                active={index === activeItem ? true : false}
-                            />
-                        </div>
-                    ))}
+        <div className="flex flex-col items-center bg-white">
+            <h2 className="m-8 mt-32 text-4xl font-bold text-teal-900 hover:underline">{heading}</h2>
+            <div className="carousel-center carousel rounded-box max-w-md space-x-4 p-4">
+                {products.map((product, index) => (
+                    <div className="carousel-item" key={product.id}>
+                        <ProductContainer productData={product} active={index === activeItem} />
+                    </div>
+                ))}
+            </div>
+                <button className="btn-accent btn shadow-xl mt-16 space-x-4"><span>Jetzt Kaufen</span><FiShoppingCart/></button>
         </div>
     )
 }
