@@ -4,14 +4,6 @@ import Image from "next/image"
 import { useEffect, useState } from "react"
 import supabase from "src/api/supabaseClient"
 
-interface Smoothie {
-    id: number
-    created_at: string
-    title: string
-    method: string
-    rating: number
-    image: string
-}
 interface Product {
     id: number
     created_at: string
