@@ -1,7 +1,8 @@
 import Image from "next/image"
 
-interface ProductContainerProps {
-    name: string
+export interface ProductContainerProps {
+    id: string
+    title: string
     price: number
     image: string
     description: string
@@ -12,18 +13,12 @@ export function ProductContainer({ productData, active }: { productData: Product
     return (
         <div className={`card w-48 bg-base-100 shadow-xl`}>
             <figure>
-                <Image src={productData.image} alt={productData.name} width={140} height={30} />
+                <img src={productData.image} alt={productData.title} />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">{productData.name}</h2>
-                <div className="flex w-full justify-around">
-                    <p>{productData.availability} übrig</p>
-                    <p>{productData.price},00€</p>
-                </div>
-                <div className="card-actions flex justify-center">
-                    <button className="btn btn-primary">
-                        Jetzt Kaufen
-                    </button>
+                <div className="flex w-full flex-col justify-around">
+                    <p>{productData.title}</p>
+                    <p className="font-bold">{productData.price}€</p>
                 </div>
             </div>
         </div>
