@@ -1,8 +1,8 @@
-import { ProductContainer } from './ProductContainer';
+import { ProductContainer } from "./ProductContainer"
 
 export default {
     component: ProductContainer,
-};
+}
 
 const test = {
     id: "842662a4-6d61-45ed-aad4-6295ca991c05",
