@@ -3,7 +3,7 @@ import { FiSearch, FiShoppingCart } from "react-icons/fi"
 
 export default function HeaderBar() {
     return (
-        <header className="sticky top-0 z-50 w-full h-24">
+        <header className="sticky top-0 z-50 h-24 w-full">
             <div className="navbar bg-teal-50">
                 <div className="flex-1">
                     <a href="/" className="btn-ghost btn text-xl normal-case">

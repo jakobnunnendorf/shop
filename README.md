@@ -34,31 +34,31 @@ With this template, you get all the awesomeness you need:
 
 ## Table of Contents
 
-- [Next.js Enterprise Boilerplate](#nextjs-enterprise-boilerplate)
-  - [📚 Features](#-features)
-  - [Table of Contents](#table-of-contents)
-  - [🎯 Getting Started](#-getting-started)
-  - [🚀 Deployment](#-deployment)
-  - [📃 Scripts Overview](#-scripts-overview)
-  - [🔗 Coupling Graph](#-coupling-graph)
-  - [🧪 Testing](#-testing)
-    - [Running Tests](#running-tests)
-    - [Acceptance Tests](#acceptance-tests)
-    - [Smoke Testing](#smoke-testing)
-  - [🎨 Styling and Design System](#-styling-and-design-system)
-    - [CVA - A New Approach to Variants](#cva---a-new-approach-to-variants)
-  - [💾 State Management](#-state-management)
-    - [Zustand](#zustand)
-    - [Jotai](#jotai)
-    - [Recoil](#recoil)
-  - [🤖 ChatGPT Code Review](#-chatgpt-code-review)
-  - [💻 Environment Variables handling](#-environment-variables-handling)
-  - [Conventional commit message format](#conventional-commit-message-format)
-    - [Examples](#examples)
-    - [Footer](#footer)
-  - [🤝 Contribution](#-contribution)
-  - [📜 License](#-license)
-  - [Contributors](#contributors)
+-   [Next.js Enterprise Boilerplate](#nextjs-enterprise-boilerplate)
+    -   [📚 Features](#-features)
+    -   [Table of Contents](#table-of-contents)
+    -   [🎯 Getting Started](#-getting-started)
+    -   [🚀 Deployment](#-deployment)
+    -   [📃 Scripts Overview](#-scripts-overview)
+    -   [🔗 Coupling Graph](#-coupling-graph)
+    -   [🧪 Testing](#-testing)
+        -   [Running Tests](#running-tests)
+        -   [Acceptance Tests](#acceptance-tests)
+        -   [Smoke Testing](#smoke-testing)
+    -   [🎨 Styling and Design System](#-styling-and-design-system)
+        -   [CVA - A New Approach to Variants](#cva---a-new-approach-to-variants)
+    -   [💾 State Management](#-state-management)
+        -   [Zustand](#zustand)
+        -   [Jotai](#jotai)
+        -   [Recoil](#recoil)
+    -   [🤖 ChatGPT Code Review](#-chatgpt-code-review)
+    -   [💻 Environment Variables handling](#-environment-variables-handling)
+    -   [Conventional commit message format](#conventional-commit-message-format)
+        -   [Examples](#examples)
+        -   [Footer](#footer)
+    -   [🤝 Contribution](#-contribution)
+    -   [📜 License](#-license)
+    -   [Contributors](#contributors)
 
 ## 🎯 Getting Started
 
@@ -256,43 +256,42 @@ If the required environment variables are not set, you'll get an error message:
 
 A conventional commit message follows this rule: `<type>(<scope>): <subject>`
 
-- `<type>`: This represents the nature of the changes. It's required and can be one of the following:
-  - `feat`: a new feature
-  - `fix`: a bug fix
-  - `docs`: changes in documentation
-  - `style`: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-  - `refactor`: a code change that neither fixes a bug nor adds a feature
-  - `perf`: a code change that improves performance
-  - `test`: adding missing tests or correcting existing tests
-  - `chore`: changes to the build process or auxiliary tools and libraries such as documentation generation
+-   `<type>`: This represents the nature of the changes. It's required and can be one of the following:
 
-- `<scope>`: This is optional and usually refers to the part of the codebase affected by the change (for example, "user-auth", "server", "user-dashboard").
+    -   `feat`: a new feature
+    -   `fix`: a bug fix
+    -   `docs`: changes in documentation
+    -   `style`: changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+    -   `refactor`: a code change that neither fixes a bug nor adds a feature
+    -   `perf`: a code change that improves performance
+    -   `test`: adding missing tests or correcting existing tests
+    -   `chore`: changes to the build process or auxiliary tools and libraries such as documentation generation
 
-- `<subject>`: A brief description of the change in the present, imperative short tense (for example, "add" rather than "added", "change" rather than "changed").
+-   `<scope>`: This is optional and usually refers to the part of the codebase affected by the change (for example, "user-auth", "server", "user-dashboard").
+
+-   `<subject>`: A brief description of the change in the present, imperative short tense (for example, "add" rather than "added", "change" rather than "changed").
 
 ### Examples
 
 Here are a few examples of conventional commit messages:
 
-- `feat(user-auth): add login functionality`
-- `fix(server): fix typo in API endpoint`
-- `docs(readme): add project setup instructions`
-- `style: adjust indentations for better readability`
-- `refactor(user-dashboard): refactor code for reusability`
-- `perf(server): optimize database queries`
-- `test(user-auth): add tests for login`
-- `chore: update version of project dependencies`
+-   `feat(user-auth): add login functionality`
+-   `fix(server): fix typo in API endpoint`
+-   `docs(readme): add project setup instructions`
+-   `style: adjust indentations for better readability`
+-   `refactor(user-dashboard): refactor code for reusability`
+-   `perf(server): optimize database queries`
+-   `test(user-auth): add tests for login`
+-   `chore: update version of project dependencies`
 
 ### Footer
 
 The footer is optional and can contain information about breaking changes and is also the place to reference GitHub issues, Jira tasks, and other PRs.
 
-- `BREAKING CHANGE:` a statement about the breaking change
-- `Fixes #123, Closes #456:` reference to related issues or PRs
+-   `BREAKING CHANGE:` a statement about the breaking change
+-   `Fixes #123, Closes #456:` reference to related issues or PRs
 
 For example:
-
-
 
 ## 🤝 Contribution
 

@@ -13,10 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="en">
             <body>
-            <HeaderBar />
+                <HeaderBar />
                 {children}
-            <FooterSection />
-            <BottomNav />
+                <FooterSection />
+                <BottomNav />
             </body>
         </html>
     )
