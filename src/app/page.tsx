@@ -1,13 +1,23 @@
-import { ComponentFrame } from "./LoginComponent/ComponentFrame"
-import "./globals.css"
-
+import Image from "next/image"
+import React from "react"
+import { CategoryBlocks } from "src/components/CategoryBlocks/CategoryBlocks"
+import { ProductCarousel } from "src/components/ProductCarousel/ProductCarousel"
+// `app/dashboard/page.tsx` is the UI for the `/dashboard` URL
 export default function Page() {
     return (
-        <div className="flex h-fit min-h-screen flex-col items-center justify-around bg-gray-100 py-2">
-            <main className="flex w-full flex-1 flex-col items-center justify-center px-5 text-center sm:px-20">
-                <h1 className="my-20 text-4xl font-bold text-gray-700 md:text-6xl">Hier entsteht eine Website</h1>
-                <ComponentFrame />
-            </main>
+        <div className="flex h-fit w-full flex-col justify-around space-y-32 py-48">
+            <div className="flex flex-col items-center space-y-4 text-teal-900">
+                <Image src="/p2d_logo.png" width={140} height={140} alt="" className="mb-8" />
+                <h1 className="text-center text-4xl font-bold">Willkommen bei Phone2Door</h1>
+                <h2 className="text-center text-xl font-bold">
+                    Wir liefern Handyhüllen und Zubehör bequem an ihre Haustür
+                </h2>
+            </div>
+            <ProductCarousel heading="Bestseller" />
+            <CategoryBlocks />
+            <ProductCarousel heading="Handy Hüllen" />
+            <ProductCarousel heading="Panzergläser" />
+            <ProductCarousel heading="Ladekabel" />
         </div>
     )
 }

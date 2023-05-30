@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { FiSearch, FiShoppingCart } from "react-icons/fi"
 
-export function HeaderBar() {
+export default function HeaderBar() {
     return (
         <header className="sticky top-0 z-50 w-full h-24">
             <div className="navbar bg-teal-50">
