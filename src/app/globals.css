@@ -29,14 +29,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
-.wire-frame {
-  width: 100%;
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
