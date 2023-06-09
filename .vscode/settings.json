@@ -7,5 +7,9 @@
     ]
   ],
   "css.lint.unknownAtRules": "ignore",
-  "files.exclude": {}
+  "files.exclude": {
+    "src/*.DS_Store": true,
+    "src/*.DS_Store.*": true,
+    "src/*app.*": true
+  }
 }
