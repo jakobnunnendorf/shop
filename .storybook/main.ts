@@ -18,5 +18,6 @@ const config: StorybookConfig = {
             propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
         },
     },
+    staticDirs: ["../public"],
 }
 export default config

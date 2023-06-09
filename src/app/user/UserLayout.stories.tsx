@@ -1,7 +1,7 @@
-import RootLayout from "./layout"
+import UserLayout from "./layout"
 
 export default {
-    component: RootLayout,
+    component: UserLayout,
 }
 
 export const Default = {

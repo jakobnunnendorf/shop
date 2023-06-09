@@ -1,7 +1,7 @@
-import RootLayout from "./layout"
+import Header from "./Header"
 
 export default {
-    component: RootLayout,
+    component: Header,
 }
 
 export const Default = {

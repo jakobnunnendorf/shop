@@ -1,7 +1,7 @@
-import RootLayout from "./layout"
+import HilfePage from "./page"
 
 export default {
-    component: RootLayout,
+    component: HilfePage,
 }
 
 export const Default = {

@@ -1,7 +1,7 @@
-import RootLayout from "./layout"
+import CartLayout from "./layout"
 
 export default {
-    component: RootLayout,
+    component: CartLayout,
 }
 
 export const Default = {

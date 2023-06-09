@@ -1,7 +1,7 @@
-import RootLayout from "./layout"
+import ShopPage from "./page"
 
 export default {
-    component: RootLayout,
+    component: ShopPage,
 }
 
 export const Default = {
