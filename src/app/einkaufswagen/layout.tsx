@@ -3,7 +3,7 @@ export const metadata = {
     description: "description_string",
 }
 
-export default function ShopLayout({ children }: { children: React.ReactNode }) {
+export default function CartLayout({ children }: { children: React.ReactNode }) {
     return (
         <section>
             <>{children}</>
