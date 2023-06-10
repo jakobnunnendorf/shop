@@ -32,6 +32,3 @@ yarn-error.log*
 /playwright-report/
 /playwright/.cache/
 
-.vscode/
-.vscode/settings.json
-.gitignore

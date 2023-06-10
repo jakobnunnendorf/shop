@@ -8,7 +8,7 @@ export const metadata = {
     description: "Hüllen, Panzergläser, screen protector, ladekabel und Zubehör für dein Handy",
 }
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    return (
+    const rootLayoutContent = (
         <html lang="en">
             <body>
                 {" "}
@@ -17,4 +17,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </body>
         </html>
     )
+    return rootLayoutContent
 }
