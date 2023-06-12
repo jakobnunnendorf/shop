@@ -1,14 +1,12 @@
-import Link from "next/link"
-
 export default function AdminDashboard() {
     const AdminDashboardContent = (
-        <div className="flex w-full flex-col items-center space-y-8">
-            <h1 className="w-full text-center text-4xl">Admin Dashboard</h1>
-            <div className="grid w-fit grid-cols-2 grid-rows-2 gap-8">
-                <div className="flex h-48 w-80 items-center justify-center rounded-3xl border-2">Kunden</div>
-                <div className="flex h-48 w-80 items-center justify-center rounded-3xl border-2">Produkte</div>
-                <div className="flex h-48 w-80 items-center justify-center rounded-3xl border-2">Bestellungen</div>
-                <div className="flex h-48 w-80 items-center justify-center rounded-3xl border-2">Einstellungen</div>
+        <div className="flex flex-col items-center w-full space-y-8">
+            <h1 className="w-full text-4xl text-center">Admin Dashboard</h1>
+            <div className="grid grid-cols-2 grid-rows-2 gap-8 w-fit">
+                <div className="flex items-center justify-center h-48 border-2 w-80 rounded-3xl">Kunden</div>
+                <div className="flex items-center justify-center h-48 border-2 w-80 rounded-3xl">Produkte</div>
+                <div className="flex items-center justify-center h-48 border-2 w-80 rounded-3xl">Bestellungen</div>
+                <div className="flex items-center justify-center h-48 border-2 w-80 rounded-3xl">Einstellungen</div>
             </div>
         </div>
     )
