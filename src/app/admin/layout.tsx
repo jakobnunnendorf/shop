@@ -13,7 +13,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { route: "/admin/bestellungen", title: "Bestellungen", key: "bestellungen" },
     ]
     const navigationMenu = (
-        <ul className=" flex h-48 flex-col justify-around">
+        <ul className="flex flex-col justify-around h-48 ">
             {linkedPages.map((page) => (
                 <Link href={page.route} key={page.route}>
                     <li>{page.title}</li>
@@ -22,9 +22,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </ul>
     )
     const AdminLayout = (
-        <section className=" w-42 fixed h-screen space-y-2 bg-slate-400 px-1 py-4">
-            <h2 className=" mb-4 text-center text-xl font-bold text-white">Admin Panel</h2>
-            {navigationMenu}
+        <section className="flex">
+            <aside className="h-screen p-4 space-y-2 w-44 bg-slate-400">
+                <h2 className="mb-4 text-xl font-bold text-center text-white ">Admin Panel</h2>
+                {navigationMenu}
+            </aside>
+            <section className="w-full py-8 px-16">{children}</section>
         </section>
     )
     return AdminLayout
