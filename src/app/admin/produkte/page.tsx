@@ -29,10 +29,10 @@ export default async function ProductManagementPage() {
         <section className="space-y-4">
             <h1 className="text-3xl text-center">Produkte verwalten</h1>
             <div className="grid grid-cols-4 gap-4 p-4 border-2 min-w-32 rounded-3xl xl:grid-cols-5">
+                <Push2DB />
                 {products.map((product) => {
                     return <ProductCard product={product} role={iUserRole.admin} key={product.id} />
                 })}
-            <Push2DB />
             </div>
         </section>
     )
