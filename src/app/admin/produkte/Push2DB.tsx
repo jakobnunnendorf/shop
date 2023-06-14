@@ -40,21 +40,25 @@ export default function Push2DB() {
         }
     }
 
-    const handleFileInputChange = () => {
-        const file = fileInputRef.current?.files?.[0]
-        if (file) {
-            uploadFile(file, "test")
-        }
-    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
+        const image_uuid = uuidv4()
+        
+        const file = fileInputRef.current?.files?.[0]
+        if (file) {
+            uploadFile(file, `image_${formData.get("title")}_${image_uuid}`)
+        }
+
+        const { data: urlResponse } = supabase.storage.from("productImageBucket").getPublicUrl("test")
+        const image_url = urlResponse.publicUrl
+
         const newProduct: iProduct = {
-            id: uuidv4(),
+            id: image_uuid,
             created_at: new Date(),
             title: formData.get("title") as string,
-            imageURL: "",
+            imageURL: image_url,
             description: formData.get("description") as string,
             price: parseFloat(formData.get("price") as string),
             stock: parseInt(formData.get("stock") as string),
@@ -68,14 +72,14 @@ export default function Push2DB() {
                 depth: parseInt(formData.get("depth") as string),
             },
         }
-        setProduct(newProduct)
 
-        const file = fileInputRef.current?.files?.[0]
-        if (file) {
-            uploadFile(file, `test2`)
-        }
+    const { data, error } = await supabase
+    .from('products')
+    .insert([
+        newProduct,
+    ])
+    
     }
-    const { data: testURL } = supabase.storage.from("productImageBucket").getPublicUrl("test")
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -113,7 +117,6 @@ export default function Push2DB() {
                     <div className="grid col-span-2 row-span-4 space-y-2 border-2 place-items-center rounded-3xl">
                         <input
                             ref={fileInputRef}
-                            onChange={handleFileInputChange}
                             name="imageURL"
                             type="file"
                             id="fileInput"
@@ -223,7 +226,6 @@ export default function Push2DB() {
             >
                 {active ? productForm : buttonCard}
             </article>
-            {<div className="absolute bottom-0 left-0 bg-white">{JSON.stringify(testURL)}</div>}
         </>
     )
 
