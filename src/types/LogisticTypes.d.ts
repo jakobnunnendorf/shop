@@ -1,7 +1,6 @@
 import { UUID } from 'crypto'
-import { iProduct } from './ProductTypes'
 
-export enum OrderStatus {
+enum OrderStatus {
     New = "Received",
     Processing = "Processing",
     Shipped = "Shipped",
@@ -12,7 +11,7 @@ export enum OrderStatus {
     Failed = "Failed",
 }
 
-export interface iAdress{
+interface iAdress{
     street: string,
     houseNumber: number,
     zipCode: number,
@@ -20,7 +19,7 @@ export interface iAdress{
     country: string,
 }
 
-export interface iOrder {
+interface iOrder {
     orderID: UUID
     orderDate: Date
     userID: UUID

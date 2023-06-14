@@ -1,84 +1,28 @@
 "use client"
 
+import { addProduct_to_database, extract_product_from_form } from '@lib/helperFunctions'
 import React, { useEffect, useRef, useState } from "react"
 import { FiPlus, FiUploadCloud } from "react-icons/fi"
-import { v4 as uuidv4 } from "uuid"
-import { iProduct } from "src/types/ProductTypes"
-import supabase from "utils/supabase"
 
 export default function Push2DB() {
-    const ProductCardRef = useRef<HTMLDivElement>(null)
+
+    const [compatible_brands_state, changeBrands] = useState<string[]>([])
+    const [compatible_models_state, changeModels] = useState<string[]>([])
+    
+    const ProductCardRef = useRef<HTMLDivElement>(null) // for click outside
     const [active, setActive] = useState<boolean>(false)
-    const [product, setProduct] = useState<iProduct>({
-        id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-        created_at: new Date(),
-        title: "Example Product",
-        imageURL: "https://example.com/product.jpg",
-        description: "This is an example product.",
-        price: 9.99,
-        stock: 10,
-        category: "Example Category",
-        compatibleBrands: [],
-        compatibleModels: [],
-        reviews: null,
-        dimensions: {
-            width: 10,
-            height: 20,
-            depth: 5,
-        },
-    })
-    const [stringifyForm, setStringifyForm] = useState<string | null>(null)
-
+    
     const fileInputRef = useRef<HTMLInputElement>(null)
-
-    async function uploadFile(file: File, pathName: string) {
-        const { data, error } = await supabase.storage.from("productImageBucket").upload(pathName, file)
-        if (error) {
-            // Handle error
-        } else {
-            // Handle success
-        }
-    }
-
-
+    
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const formData = new FormData(event.currentTarget)
-        const image_uuid = uuidv4()
         
-        const file = fileInputRef.current?.files?.[0]
-        if (file) {
-            uploadFile(file, `image_${formData.get("title")}_${image_uuid}`)
-        }
+        const formData = new FormData(event.currentTarget)
+        const product_from_form: iProduct = extract_product_from_form(formData, compatible_brands_state, compatible_models_state)
 
-        const { data: urlResponse } = supabase.storage.from("productImageBucket").getPublicUrl("test")
-        const image_url = urlResponse.publicUrl
-
-        const newProduct: iProduct = {
-            id: image_uuid,
-            created_at: new Date(),
-            title: formData.get("title") as string,
-            imageURL: image_url,
-            description: formData.get("description") as string,
-            price: parseFloat(formData.get("price") as string),
-            stock: parseInt(formData.get("stock") as string),
-            category: formData.get("category") as string,
-            compatibleBrands: [],
-            compatibleModels: [],
-            reviews: null,
-            dimensions: {
-                width: parseInt(formData.get("width") as string),
-                height: parseInt(formData.get("height") as string),
-                depth: parseInt(formData.get("depth") as string),
-            },
-        }
-
-    const { data, error } = await supabase
-    .from('products')
-    .insert([
-        newProduct,
-    ])
+        const image_from_file_input = fileInputRef.current?.files?.[0]
     
+        addProduct_to_database(product_from_form, image_from_file_input)
     }
 
     useEffect(() => {
@@ -136,11 +80,20 @@ export default function Push2DB() {
                         </span>
                         <div className="flex flex-wrap w-full h-24 border-2 border-dotted rounded-3xl">
                             <input
-                                type="text"
                                 placeholder="6) + Marke"
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter") {
+                                        set_brands_compatible_with_product([
+                                            ...brands_compatible_with_product,
+                                            event.currentTarget.value,
+                                        ])
+                                        event.currentTarget.value = ""
+                                    }
+                                }}
+                                type="text"
                                 className="w-24 text-center border-2 border-green-200 rounded-full h-fit"
                             />
-                            {product.compatibleBrands.map((brand) => (
+                            {brands_compatible_with_product.map((brand) => (
                                 <div
                                     className="px-2 mx-1 text-xs text-center text-gray-400 border-2 rounded-full h-fit w-fit"
                                     key={brand}
@@ -151,16 +104,25 @@ export default function Push2DB() {
                         </div>
                         <div className="flex flex-wrap w-full h-24 border-2 border-dotted rounded-3xl">
                             <input
-                                type="text"
                                 placeholder="7) + Modell"
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter") {
+                                        set_models_compatible_with_product([
+                                            ...models_compatible_with_product,
+                                            event.currentTarget.value,
+                                        ])
+                                        event.currentTarget.value = ""
+                                    }
+                                }}
+                                type="text"
                                 className="w-24 text-center border-2 border-green-200 rounded-full h-fit"
                             />
-                            {product.compatibleBrands.map((brand) => (
+                            {models_compatible_with_product.map((model) => (
                                 <div
                                     className="px-2 mx-1 text-xs text-center text-gray-400 border-2 rounded-full h-fit w-fit"
-                                    key={brand}
+                                    key={model}
                                 >
-                                    {brand}
+                                    {model}
                                 </div>
                             ))}
                         </div>

@@ -1,10 +1,8 @@
-import { iReview } from "./UserTypes"
-
-export interface iProduct {
+interface iProduct {
     id: string
     created_at: Date
     title: string
-    imageURL: any
+    imageURL: string
     description: string | null
     price: number
     stock: number

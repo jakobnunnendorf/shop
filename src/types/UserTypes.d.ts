@@ -1,8 +1,6 @@
 import { UUID } from "crypto"
-import { iAdress, iOrder } from "./LogisticTypes"
-import { iProduct } from "./ProductTypes"
 
-export interface iReview {
+interface iReview {
     reviewID: UUID
     rating: number
     createdAt: Date
@@ -11,7 +9,7 @@ export interface iReview {
     productID: UUID
 }
 
-export interface iUserDetails {
+interface iUserDetails {
     avatar: null | string
     orders: iOrder[] | null
     bewertungen: iReview | null
@@ -27,12 +25,21 @@ export interface iUserDetails {
     settings: iSettings
 }
 
-export interface iSettings {
+interface iSettings {
     darkMode: boolean
 }
 
-export enum iUserRole {
+enum iUserRole {
     admin = "admin",
     customer = "customer",
     guest = "guest",
+}
+
+interface iProductReview {
+    reviewID: string
+    rating: number
+    createdAt: Date
+    comment: string
+    userID: string
+    productID: string
 }
