@@ -1,17 +1,16 @@
-import { UUID } from "crypto"
 import { iReview } from "./UserTypes"
 
 export interface iProduct {
-    id: UUID
+    id: string
     created_at: Date
     title: string
-    imageURL: string
+    imageURL: any
     description: string | null
     price: number
     stock: number
     category: string
-    compatibleBrands: Array<string> | null
-    compatibleModels: Array<string> | null
+    compatibleBrands: Array<string>
+    compatibleModels: Array<string>
     reviews: null | Array<iReview>
     dimensions: {
         width: null | number
