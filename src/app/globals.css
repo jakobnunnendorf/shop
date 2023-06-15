@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.rborder{
-  border: 1px solid red
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.rborder {
+    border: 1px solid red;
 }
