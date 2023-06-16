@@ -30,7 +30,8 @@
         "**/*.mjs",
         ".next/types/**/*.ts",
         "src/api/supabase.js",
-        "utils/supabase.ts"
+        "utils/supabase.ts",
+        "src/types/*/.d.ts"
     ],
     "exclude": ["node_modules"]
 }
