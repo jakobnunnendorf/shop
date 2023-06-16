@@ -24,7 +24,9 @@
         "coupling-graph": "npx madge --extensions js,jsx,ts,tsx,css,md,mdx ./ --exclude '.next|tailwind.config.js|reset.d.ts|prettier.config.js|postcss.config.js|playwright.config.ts|next.config.js|next-env.d.ts|instrumentation.ts|e2e/|README.md|.storybook/|.eslintrc.js' --image graph.svg"
     },
     "dependencies": {
-        "@supabase/supabase-js": "^2.23.0",
+        "@supabase/auth-ui-react": "^0.4.2",
+        "@supabase/auth-ui-shared": "^0.1.6",
+        "@supabase/supabase-js": "^2.25.0",
         "@t3-oss/env-nextjs": "^0.3.0",
         "@vercel/otel": "^0.3.0",
         "class-variance-authority": "^0.6.0",
