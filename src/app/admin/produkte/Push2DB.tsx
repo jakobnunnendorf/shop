@@ -1,8 +1,8 @@
 "use client"
 
-import { addProduct_to_database, extract_product_from_form } from '@lib/helperFunctions'
 import React, { useEffect, useRef, useState } from "react"
 import { FiPlus, FiUploadCloud } from "react-icons/fi"
+import { addProduct_to_database, extract_product_from_form } from '@lib/helperFunctions'
 
 export default function Push2DB() {
 
@@ -83,17 +83,14 @@ export default function Push2DB() {
                                 placeholder="6) + Marke"
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        set_brands_compatible_with_product([
-                                            ...brands_compatible_with_product,
-                                            event.currentTarget.value,
-                                        ])
+                                        changeBrands([...compatible_brands_state, event.currentTarget.value])
                                         event.currentTarget.value = ""
                                     }
                                 }}
                                 type="text"
                                 className="w-24 text-center border-2 border-green-200 rounded-full h-fit"
                             />
-                            {brands_compatible_with_product.map((brand) => (
+                            {compatible_brands_state.map((brand) => (
                                 <div
                                     className="px-2 mx-1 text-xs text-center text-gray-400 border-2 rounded-full h-fit w-fit"
                                     key={brand}
@@ -107,17 +104,14 @@ export default function Push2DB() {
                                 placeholder="7) + Modell"
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        set_models_compatible_with_product([
-                                            ...models_compatible_with_product,
-                                            event.currentTarget.value,
-                                        ])
+                                        changeModels([...compatible_brands_state, event.currentTarget.value])
                                         event.currentTarget.value = ""
                                     }
                                 }}
                                 type="text"
                                 className="w-24 text-center border-2 border-green-200 rounded-full h-fit"
                             />
-                            {models_compatible_with_product.map((model) => (
+                            {compatible_models_state.map((model) => (
                                 <div
                                     className="px-2 mx-1 text-xs text-center text-gray-400 border-2 rounded-full h-fit w-fit"
                                     key={model}
