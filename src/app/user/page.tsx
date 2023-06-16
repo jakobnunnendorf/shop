@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useEffect, useState } from 'react';
 import supabase from 'utils/supabase';
@@ -27,4 +27,3 @@ export default function UserPage() {
         return <div>Logged in!</div>;
     }
 }
-
