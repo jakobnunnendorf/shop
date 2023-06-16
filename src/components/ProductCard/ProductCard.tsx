@@ -3,10 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 
 import { FiShoppingCart } from "react-icons/fi"
-import { iProduct } from "src/types/ProductTypes"
-import { iUserRole } from "src/types/UserTypes"
-
-export default function ProductCard({ product }: { product: iProduct; role: iUserRole }) {
+export default function ProductCard({ product }: { product: iProduct; }) {
     const [active, setActive] = useState(false)
     const ProductCardRef = useRef<HTMLDivElement>(null)
 
@@ -26,16 +23,16 @@ export default function ProductCard({ product }: { product: iProduct; role: iUse
         <div>
             <img src={product.imageURL} className="cursor-pointer" alt={product.title} />
             <article className="p-2 ">
-                <h2 className="m-2 line-clamp-2 cursor-pointer text-center">{product.title}</h2>
+                <h2 className="m-2 text-center cursor-pointer line-clamp-2">{product.title}</h2>
                 <div className="flex items-center justify-around ">
                     <p className="text-center">{product.price.toFixed(2)}€</p>
                     <div className="flex flex-col items-center">
-                        <button className="rounded-full border-2 p-2">
+                        <button className="p-2 border-2 rounded-full">
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className="my-2 px-4 text-end text-xs text-slate-500">{product.stock} übrig</p>
+                <p className="px-4 my-2 text-xs text-end text-slate-500">{product.stock} übrig</p>
             </article>
         </div>
     )
@@ -43,16 +40,16 @@ export default function ProductCard({ product }: { product: iProduct; role: iUse
         <div>
             <img src={product.imageURL} className="cursor-pointer" alt={product.title} />
             <article className="p-2 ">
-                <h2 className="m-2 line-clamp-2 cursor-pointer text-center">{product.title}</h2>
+                <h2 className="m-2 text-center cursor-pointer line-clamp-2">{product.title}</h2>
                 <div className="flex items-center justify-around ">
                     <p className="text-center">{product.price.toFixed(2)}€</p>
                     <div className="flex flex-col items-center">
-                        <button className="rounded-full border-2 p-2">
+                        <button className="p-2 border-2 rounded-full">
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className="my-2 px-4 text-end text-xs text-slate-500">{product.stock} übrig</p>
+                <p className="px-4 my-2 text-xs text-end text-slate-500">{product.stock} übrig</p>
             </article>
         </div>
     )
