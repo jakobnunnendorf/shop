@@ -1,7 +1,7 @@
 import "./globals.css"
 import React from "react"
 
-import ContextProvider from './context-provider'
+import ContextProvider from './globalState/context-provider'
 import Header from "./Header/Header"
 
 export const metadata = {

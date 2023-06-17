@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent,useContext, useState } from 'react';
 
 export default function Login({ supabaseClient }: { supabaseClient: any }) {
     const [login_not_registration, toggle_login_not_registration] =
@@ -11,6 +11,7 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
         password: '',
         confirmPassword: '',
     });
+    console.log(registrationInfo);
 
     const updateInfo = (key: string, newValue: string) => {
         setRegistrationInfo((prevState) => ({
@@ -24,13 +25,40 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
         updateInfo(name, value);
     };
 
+    // create a handle registration function
+    const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const { data, error } = await supabaseClient.auth.signUp({
+            email: registrationInfo.email,
+            password: registrationInfo.password,
+        });
+        console.log(data, error);
+        console.log(JSON.stringify(data));
+        console.log(JSON.stringify(error));
+    };
+
+    const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+            email: registrationInfo.email,
+            password: registrationInfo.password,
+        });
+        console.log(data, error);
+        console.log(JSON.stringify(data));
+        console.log(JSON.stringify(error));
+    };
+
     const left_heading = (
         <h2 className='row-span-1 text-2xl font-bold text-center'>
             Deine Infos
         </h2>
     );
     const form_wrapper = (
-        <form className='grid w-4/5 grid-cols-12 grid-rows-5 row-span-5 gap-4 '>
+        <form
+            onSubmit={login_not_registration ? handleLogin : handleRegistration}
+            className='grid w-4/5 grid-cols-12 grid-rows-5 row-span-5 gap-4 '
+        >
             <input
                 type='text'
                 placeholder='Vorname'
@@ -183,6 +211,5 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
             {main_content_wrapper}
         </section>
     );
-
     return page_container;
 }
