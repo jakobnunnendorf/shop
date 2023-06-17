@@ -1,13 +1,30 @@
 'use client'
 
-import { useContext } from 'react'
-import { UserContext } from 'src/app/context-provider'
-import Login from './login/Login'
+import { useEffect, useState } from 'react';
+import supabase from 'utils/supabase';
+import Login from './login/Login';
 
 export default function UserPage() {
-  const [userContext, setUserContext] = useContext(UserContext)
-  const isUserNull = userContext ? 'already logged in' : <Login/>
-  const wrapper = <section className=''>{isUserNull}</section>
-  return wrapper
+    const [session, setSession] = useState<any>(null);
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setSession(session);
+        });
+
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+    if (!session) {
+        return <Login supabaseClient={supabase} />;
+    } else {
+        return <div>Logged in!</div>;
+    }
 }
 

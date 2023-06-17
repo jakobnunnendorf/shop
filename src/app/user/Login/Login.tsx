@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function Login() {
+export default function Login({ supabaseClient }: { supabaseClient: any}) {
     const [login_not_registration, toggle_login_not_registration] =
         useState(false);
     const [registrationInfo, setRegistrationInfo] = useState({
