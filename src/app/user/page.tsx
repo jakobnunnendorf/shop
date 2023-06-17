@@ -27,3 +27,4 @@ export default function UserPage() {
         return <div>Logged in!</div>;
     }
 }
+

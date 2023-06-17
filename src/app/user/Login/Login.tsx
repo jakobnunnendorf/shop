@@ -112,7 +112,6 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
             </div>
         </form>
     );
-
     const right_header = (
         <h2 className='row-span-1 text-2xl font-bold text-center text-white '>
             {login_not_registration
@@ -149,7 +148,6 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
             </div>
         </div>
     );
-
     const left_container = (
         <div className='grid grid-rows-6 py-8 justify-items-center lg:order-1'>
             {left_heading}
@@ -162,7 +160,6 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
             {right_content_wrapper}
         </div>
     );
-
     const heading_above_main_content = (
         <h1 className='mb-8 text-2xl text-center '>
             <span className='text-3xl'>
