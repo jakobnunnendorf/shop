@@ -29,12 +29,6 @@ interface iSettings {
     darkMode: boolean
 }
 
-enum iUserRole {
-    admin = "admin",
-    customer = "customer",
-    guest = "guest",
-}
-
 interface iProductReview {
     reviewID: string
     rating: number
