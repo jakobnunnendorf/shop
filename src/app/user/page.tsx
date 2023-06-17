@@ -2,7 +2,7 @@
 
 import { useContext } from 'react'
 import { UserContext } from 'src/app/context-provider'
-import Login from './Login/Login'
+import Login from './login/Login'
 
 export default function UserPage() {
   const [userContext, setUserContext] = useContext(UserContext)
