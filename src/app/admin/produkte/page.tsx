@@ -1,21 +1,11 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { PostgrestResponse } from '@supabase/postgrest-js';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import supabase from '@utils/supabase';
 import ProductCard from 'src/components/ProductCard/ProductCard';
 import Push2DB from './Push2DB';
 
 export const revalidate = 0;
 
 export default async function ProductManagementPage() {
-    const supabase = createServerComponentClient({ cookies });
-    const {
-        data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session || session.user.role !== 'admin_p2d') {
-        redirect('/');
-    }
     const { data: products }: PostgrestResponse<iProduct> = await supabase
         .from('products')
         .select();
