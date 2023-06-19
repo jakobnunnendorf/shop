@@ -1,21 +1,21 @@
-import "./globals.css"
-import React from "react"
+import './globals.css';
 
-import ContextProvider from './globalState/context-provider'
-import Header from "./Header/Header"
-
-export const metadata = {
-    title: "Phone2Door.com",
-    description: "Hüllen, Panzergläser, screen protector, ladekabel und Zubehör für dein Handy",
-}
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+import { SessionContextProvider } from '@globalState/SessionContext';
+import Header from './Header/Header';
+export default function RootLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     const rootLayoutContent = (
-        <html lang="en">
+        <html lang='en'>
             <body>
-            <Header />
-                <ContextProvider>{children}</ContextProvider>
+                <SessionContextProvider>
+                    <Header/>
+                    {children}
+                </SessionContextProvider>
             </body>
         </html>
-    )
-    return rootLayoutContent
+    );
+    return rootLayoutContent;
 }

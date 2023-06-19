@@ -19,6 +19,7 @@
         "baseUrl": ".",
         "paths": {
             "@utils/*": ["utils/*"],
+            "@globalState/*": ["src/globalState/*"],
             "@lib/*": ["src/lib/*"],
             "@components/*": ["src/components/*"],
             "@app/*": ["src/app/*"]
