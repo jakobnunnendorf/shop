@@ -1,6 +1,10 @@
-import React, { FormEvent,useContext, useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React, { FormEvent, useContext, useState } from 'react';
 
-export default function Login({ supabaseClient }: { supabaseClient: any }) {
+export default function Login() {
+
+    const supabase = createClientComponentClient()
+    
     const [login_not_registration, toggle_login_not_registration] =
         useState(false);
     const [registrationInfo, setRegistrationInfo] = useState({
@@ -28,19 +32,20 @@ export default function Login({ supabaseClient }: { supabaseClient: any }) {
     // create a handle registration function
     const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { data, error } = await supabaseClient.auth.signUp({
+        supabase.auth.signUp({
             email: registrationInfo.email,
             password: registrationInfo.password,
-        });
-        console.log(data, error);
-        console.log(JSON.stringify(data));
-        console.log(JSON.stringify(error));
-    };
+            options: {
+                emailRedirectTo: `http://localhost:3000/auth/callback`
+            }
+        })
+        
+    }
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
