@@ -1,9 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FiShoppingCart } from "react-icons/fi"
+import AdminLink from './AdminLink';
 import NavMenu from "./NavMenu/NavMenu"
 import UserNavMenu from "./UserNavMenu/UserNavMenu"
-import AdminLink from './AdminLink';
 
 export default function Header() {
     return (
