@@ -1,35 +1,78 @@
 import Link from "next/link"
+import {
+    FiCompass,
+    FiPackage,
+    FiSettings,
+    FiSmartphone,
+    FiUser,
+} from 'react-icons/fi';
 
 export const metadata = {
-    title: "title_string",
-    description: "description_string",
-}
+    title: 'title_string',
+    description: 'description_string',
+};
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+    children,
+}: {
+    children: React.ReactNode;
+}) {
     const linkedPages = [
-        { route: "/admin", title: "Dashboard", key: "admin" },
-        { route: "/admin/produkte", title: "Produkte", key: "produkte" },
-        { route: "/admin/kunden", title: "Kunden", key: "kunden" },
-        { route: "/admin/bestellungen", title: "Bestellungen", key: "bestellungen" },
-        { route: "/admin/settings", title: "Settings", key: "settings" },
-    ]
+        {
+            route: '/admin',
+            title: 'Dashboard',
+            key: 'admin',
+            icon: <FiCompass className='text-slate-500' size={30} />,
+        },
+        {
+            route: '/admin/produkte',
+            title: 'Produkte',
+            key: 'produkte',
+            icon: <FiSmartphone className='text-slate-500' size={30} />,
+        },
+        {
+            route: '/admin/kunden',
+            title: 'Kunden',
+            key: 'kunden',
+            icon: <FiUser className='text-slate-500' size={30} />,
+        },
+        {
+            route: '/admin/bestellungen',
+            title: 'Bestellungen',
+            key: 'bestellungen',
+            icon: <FiPackage className='text-slate-500' size={30} />,
+        },
+        {
+            route: '/admin/settings',
+            title: 'Settings',
+            key: 'settings',
+            icon: <FiSettings className='text-slate-500' size={30} />,
+        },
+    ];
     const navigationMenu = (
-        <ul className="flex flex-col justify-around h-48 ">
+        <ul className='mt-8 flex h-fit w-full flex-col items-center justify-around space-y-8 lg:items-start'>
             {linkedPages.map((page) => (
                 <Link href={page.route} key={page.route}>
-                    <li>{page.title}</li>
+                    <li className='flex items-center space-x-2 '>
+                        <span className=''>{page.icon}</span>
+                        <span className='hidden text-xl lg:inline'>
+                            {page.title}
+                        </span>
+                    </li>
                 </Link>
             ))}
         </ul>
-    )
+    );
     const AdminLayout = (
-        <section className="flex">
-            <aside className="h-screen w-44 space-y-2 bg-slate-400 p-4">
-                <h2 className="mb-4 text-center text-xl font-bold text-white ">Admin Panel</h2>
+        <section className='flex'>
+            <aside className='h-screen w-12 space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
+                <h2 className='mb-8 hidden text-center text-xl font-bold text-slate-400 lg:block'>
+                    Admin Panel
+                </h2>
                 {navigationMenu}
             </aside>
-            <section className="w-full px-16 py-8">{children}</section>
+            <section className='w-full px-2 py-8 lg:px-16'>{children}</section>
         </section>
-    )
-    return AdminLayout
+    );
+    return AdminLayout;
 }

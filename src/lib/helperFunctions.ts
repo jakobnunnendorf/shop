@@ -36,7 +36,7 @@ export async function addProduct_to_database(newProduct: iProduct, imageFile?: F
     return data
 }
 
-export function extract_product_from_form(formDataObject: FormData, brand_array: string[], model_array: string[]) {
+export function extract_product_from_form(formDataObject: FormData, model_array: string[]) {
     const product: iProduct = {
         id: "",
         created_at: new Date(),
@@ -46,7 +46,6 @@ export function extract_product_from_form(formDataObject: FormData, brand_array:
         price: parseFloat(formDataObject.get("price") as string),
         stock: parseInt(formDataObject.get("stock") as string),
         category: formDataObject.get("category") as string,
-        compatibleBrands: brand_array,
         compatibleModels: model_array,
         reviews: [],
         dimensions: {
