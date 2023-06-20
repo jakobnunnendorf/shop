@@ -2,6 +2,7 @@ import './globals.css';
 
 import { SessionContextProvider } from '@globalState/SessionContext';
 import Header from './Header/Header';
+import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
 export default function RootLayout({
     children,
 }: {
@@ -11,7 +12,9 @@ export default function RootLayout({
         <html lang='en'>
             <body>
                 <SessionContextProvider>
-                    <Header/>
+                    <MobileMenuStateContextProvider>
+                        <Header />
+                    </MobileMenuStateContextProvider>
                     {children}
                 </SessionContextProvider>
             </body>

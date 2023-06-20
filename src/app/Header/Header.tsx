@@ -1,18 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
-import { FiMenu, FiShoppingCart, FiUser } from 'react-icons/fi';
+import { FiShoppingCart } from 'react-icons/fi';
+import MobileMenuBurger from './MobileMenuBurger';
+import SideMenu from './SideMenu';
+import UserHeaderLink from './UserHeaderLink';
 
 export default function Header() {
     const upper_row = (
-        <section className='top-0 h-16 w-full border-b py-2 shadow-sm lg:shadow-none'>
-            <div className='grid h-full w-full grid-cols-12'>
-                <div className='col-span-3 h-full pl-4 pr-8 xl:px-12'>
-                    <FiMenu
-                        fontSize='3em'
-                        className='align-self-end lg:hidden'
-                    />
-                    <nav className='hidden h-full w-full items-center lg:flex'>
-                        <ul className='flex w-full justify-between font-bold'>
+        <section className='top-0 w-full h-16 py-2 border-b shadow-sm lg:shadow-none'>
+            <div className='grid w-full h-full grid-cols-12'>
+                <div className='h-full col-span-3 pl-4 pr-8 xl:px-12'>
+                    <MobileMenuBurger />
+                    <nav className='items-center hidden w-full h-full lg:flex'>
+                        <ul className='flex justify-between w-full font-bold'>
                             <Link href='/'>
                                 <li>Home</li>
                             </Link>
@@ -26,8 +26,8 @@ export default function Header() {
                     </nav>
                 </div>
 
-                <div className='col-span-6 flex h-full overflow-hidden rounded-3xl border p-2'>
-                    <div className='relative h-full w-24'>
+                <div className='flex h-full col-span-6 p-2 overflow-hidden border rounded-3xl'>
+                    <div className='relative w-24 h-full'>
                         <Link href='/' className=''>
                             <Image
                                 src='/p2d_logo.png'
@@ -40,28 +40,26 @@ export default function Header() {
                     <input
                         type='text'
                         placeholder='Suche...'
-                        className='h-full w-full border-l text-center'
+                        className='w-full h-full text-center border-l'
                     />
                 </div>
 
-                <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
+                <nav className='flex justify-around h-full col-span-3 lg:justify-end lg:space-x-8 lg:pr-8'>
                     <Link
                         href='/einkaufswagen'
-                        className='flex h-full items-center'
+                        className='flex items-center h-full'
                     >
                         <FiShoppingCart size={32} />
                     </Link>
 
-                    <Link href='/user' className='flex h-full items-center '>
-                        <FiUser size={32} />
-                    </Link>
+                    <UserHeaderLink />
                 </nav>
             </div>
         </section>
     );
     const lower_row = (
-        <nav className='hidden h-8 w-full border-b shadow-lg lg:block'>
-            <ul className='flex h-full w-full items-center justify-around text-sm'>
+        <nav className='hidden w-full h-8 border-b shadow-lg lg:block'>
+            <ul className='flex items-center justify-around w-full h-full text-sm'>
                 <Link href='shop'>
                     <li>Handyhüllen</li>
                 </Link>
@@ -84,9 +82,10 @@ export default function Header() {
         </nav>
     );
     const wrapper = (
-        <header>
+        <header className='fixed h-screen'>
             {upper_row}
             {lower_row}
+            <SideMenu />
         </header>
     );
     return wrapper;
