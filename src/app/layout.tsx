@@ -1,8 +1,8 @@
 import './globals.css';
 
+import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import Header from './Header/Header';
-import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
 export default function RootLayout({
     children,
 }: {

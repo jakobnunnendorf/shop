@@ -2,14 +2,14 @@
 
 import { createContext, useState } from 'react';
 
-export const MobileMenuStateContext = createContext<any>(null);
+export const MobileMenuStateContext = createContext<{ value: boolean, setValue: React.Dispatch<React.SetStateAction<boolean>> }>({ value: false, setValue: () => {return} });
 
 export function MobileMenuStateContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [currentMobileMenuState, setCurrentMobileMenuState] = useState(null);
+    const [currentMobileMenuState, setCurrentMobileMenuState] = useState(false);
     return (
         <div>
             <MobileMenuStateContext.Provider
