@@ -15,7 +15,7 @@ export default function SideMenu() {
         <aside
             className={`${
                 menuOpen ? 'block' : 'hidden'
-            } h-screen w-[66vw] bg-sandy-beige-5 px-4 py-16 text-coastal-blue-9 backdrop-blur-xl`}
+            } h-screen w-[66vw] bg-sandy-beige-3 px-4 py-16 text-coastal-blue-9 backdrop-blur-3xl`}
         >
             <nav className=' h-[70vh]'>
                 <ul className='flex h-full flex-col justify-around pr-4 text-3xl font-bold'>

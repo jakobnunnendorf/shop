@@ -7,12 +7,12 @@ import UserHeaderLink from './UserHeaderLink';
 
 export default function Header() {
     const upper_row = (
-        <section className='top-0 w-full h-16 py-2 border-b shadow-sm lg:shadow-none'>
-            <div className='grid w-full h-full grid-cols-12'>
-                <div className='h-full col-span-3 pl-4 pr-8 xl:px-12'>
+        <section className='top-0 h-16 w-full border-b bg-sandy-beige-4 py-2 shadow-sm backdrop-blur-3xl lg:shadow-none'>
+            <div className='grid h-full w-full grid-cols-12'>
+                <div className='col-span-3 h-full pl-4 pr-8 xl:px-12'>
                     <MobileMenuBurger />
-                    <nav className='items-center hidden w-full h-full lg:flex'>
-                        <ul className='flex justify-between w-full font-bold'>
+                    <nav className='hidden h-full w-full items-center lg:flex'>
+                        <ul className='flex w-full justify-between font-bold'>
                             <Link href='/'>
                                 <li>Home</li>
                             </Link>
@@ -26,8 +26,8 @@ export default function Header() {
                     </nav>
                 </div>
 
-                <div className='flex h-full col-span-6 p-2 overflow-hidden border rounded-3xl'>
-                    <div className='relative w-24 h-full'>
+                <div className='col-span-6 flex h-full overflow-hidden rounded-3xl border border-coastal-blue-3 px-2'>
+                    <div className='relative h-12 w-24'>
                         <Link href='/' className=''>
                             <Image
                                 src='/p2d_logo.png'
@@ -40,16 +40,19 @@ export default function Header() {
                     <input
                         type='text'
                         placeholder='Suche...'
-                        className='w-full h-full text-center border-l'
+                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10'
                     />
                 </div>
 
-                <nav className='flex justify-around h-full col-span-3 lg:justify-end lg:space-x-8 lg:pr-8'>
+                <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
                     <Link
                         href='/einkaufswagen'
-                        className='flex items-center h-full'
+                        className='flex h-full items-center'
                     >
-                        <FiShoppingCart size={32} />
+                        <FiShoppingCart
+                            size={32}
+                            className='text-coastal-blue-10'
+                        />
                     </Link>
 
                     <UserHeaderLink />

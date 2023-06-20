@@ -11,9 +11,15 @@ export default function MobileMenuBurger() {
     return (
         <div className='' onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? (
-                <FiX fontSize='3em' className='align-self-end lg:hidden' />
+                <FiX
+                    fontSize='3em'
+                    className='align-self-end text-coastal-blue-10 lg:hidden'
+                />
             ) : (
-                <FiMenu fontSize='3em' className='align-self-end lg:hidden' />
+                <FiMenu
+                    fontSize='3em'
+                    className='align-self-end text-coastal-blue-10 lg:hidden '
+                />
             )}
         </div>
     );

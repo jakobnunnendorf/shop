@@ -12,9 +12,11 @@ export default function UserHeaderLink() {
             href='/user'
             className='flex h-full flex-col items-center justify-center overflow-visible '
         >
-            <FiUser size={32} />
+            <FiUser size={32} className='text-coastal-blue-10' />
             {!currentSession && (
-                <p className='whitespace-nowrap text-center text-xs'>sign in</p>
+                <p className='whitespace-nowrap text-center text-xs text-coastal-blue-10 '>
+                    sign in
+                </p>
             )}
         </Link>
     );
