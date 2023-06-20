@@ -40,7 +40,7 @@ export default function Header() {
                     <input
                         type='text'
                         placeholder='Suche...'
-                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10'
+                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10 outline-none'
                     />
                 </div>
 
@@ -85,7 +85,7 @@ export default function Header() {
         </nav>
     );
     const wrapper = (
-        <header className='fixed h-screen'>
+        <header className='fixed h-screen w-full'>
             {upper_row}
             {lower_row}
             <SideMenu />
