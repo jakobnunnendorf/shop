@@ -3,8 +3,12 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
+import { useContext } from 'react';
+import { SessionContext } from '@globalState/SessionContext';
 
 export default function Login() {
+    const { setValue: setSession } = useContext(SessionContext);
+
     const router = useRouter();
     const supabase = createClientComponentClient();
 
@@ -51,6 +55,7 @@ export default function Login() {
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
+        setSession(data);
         router.push('/user');
     };
 
@@ -211,7 +216,7 @@ export default function Login() {
         </div>
     );
     const page_container = (
-        <section className='flex min-h-screen w-full flex-col items-center justify-center py-24 lg:h-screen xl:h-screen 2xl:h-screen'>
+        <section className='flex min-h-screen w-full flex-col items-center justify-center lg:h-fit lg:min-h-0 lg:pt-8'>
             {heading_above_main_content}
             {main_content_wrapper}
         </section>

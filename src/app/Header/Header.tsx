@@ -61,8 +61,8 @@ export default function Header() {
         </section>
     );
     const lower_row = (
-        <nav className='hidden w-full h-8 border-b shadow-lg lg:block'>
-            <ul className='flex items-center justify-around w-full h-full text-sm'>
+        <nav className='hidden h-8 w-full border-b bg-sandy-beige-1 shadow-lg backdrop-blur-3xl lg:block'>
+            <ul className='flex h-full w-full items-center justify-around text-sm'>
                 <Link href='shop'>
                     <li>Handyhüllen</li>
                 </Link>
@@ -85,7 +85,7 @@ export default function Header() {
         </nav>
     );
     const wrapper = (
-        <header className='fixed h-fit w-full'>
+        <header className='fixed z-50 h-fit w-full'>
             {upper_row}
             {lower_row}
             <SideMenu />
