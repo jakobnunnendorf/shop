@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Login from './login/Login';
+import Account from './profile/Profile';
 
 export default async function UserPage() {
     const supabase = createServerComponentClient({ cookies });
@@ -8,10 +9,20 @@ export default async function UserPage() {
     const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
+    // refresh page on auth change
+    supabase.auth.onAuthStateChange((_, session) => {
+        if (!session) {
+            window.location.reload();
+        }
+    });
 
     if (!currentSession) {
         return <Login />;
     } else {
-        return <pre>{JSON.stringify(currentSession, null, 2)}</pre>;
+        return (
+            <div>
+                <Account session={currentSession} />
+            </div>
+        );
     }
 }

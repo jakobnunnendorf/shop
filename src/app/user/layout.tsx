@@ -23,11 +23,17 @@ export default async function UserLayout({
     const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
-    const { data: userInfo } = await supabase
+    const user = currentSession?.user;
+    const {
+        data: profileData,
+        error: profileFetchError,
+        status: profileFetchStatus,
+    } = await supabase
         .from('profiles')
-        .select('*')
-        .eq('id', currentSession?.user?.id);
-    const userRole = userInfo ? userInfo[0].role : null;
+        .select()
+        .eq('profile_id', user?.id)
+        .single();
+    const userRole = profileData?.role;
 
     const linkedPages = [
         {
@@ -79,17 +85,56 @@ export default async function UserLayout({
             ))}
         </ul>
     );
+    const mobileMenu = (
+        <nav className='fixed bottom-0 grid h-28 w-full list-none grid-flow-col rounded-t-3xl bg-slate-700 py-4 text-xs font-bold text-white lg:hidden'>
+            <Link href='/user'>
+                <li className='flex flex-col items-center space-y-2'>
+                    <FiUser className='text-slate-300' size={30} />
+                    <div>Profil</div>
+                </li>
+            </Link>
+            <Link href='/user/bestellungen'>
+                <li className='flex flex-col items-center space-y-2'>
+                    <FiPackage className='text-slate-300' size={30} />
+                    <div>Bestellungen</div>
+                </li>
+            </Link>
+            {userRole === 'admin' && (
+                <Link href='/admin'>
+                    <li className='flex flex-col items-center space-y-2'>
+                        <FiCompass className='text-slate-300' size={30} />
+                        <div>Admin</div>
+                    </li>
+                </Link>
+            )}
+            <Link href='/user/wunschliste'>
+                <li className='flex flex-col items-center space-y-2'>
+                    <FiHeart className='text-slate-300' size={30} />
+                    <div>Wunschliste</div>
+                </li>
+            </Link>
+            <Link href='/user/einstellungen'>
+                <li className='flex flex-col items-center space-y-2'>
+                    <FiSettings className='text-slate-300' size={30} />
+                    <div>Einstellungen</div>
+                </li>
+            </Link>
+        </nav>
+    );
     const AdminLayout = (
-        <section className='flex '>
+        <section className='flex flex-col lg:flex-row'>
             {currentSession && (
-                <aside className='w-12 h-screen bg-slate-100 lg:w-fit lg:px-6 lg:py-12'>
+                <aside className='hidden h-screen w-12 bg-slate-100 lg:block lg:w-fit lg:px-6 lg:py-12'>
                     <h2 className='text-2xl font-bold text-coastal-blue-10'>
                         Mein Account
                     </h2>
                     {navigationMenu}
                 </aside>
             )}
-            <section className='w-full px-2 py-8 lg:px-16'>{children}</section>
+            <section className='w-full px-2 py-8 pb-44 lg:px-16 lg:pb-8'>
+                {children}
+            </section>
+            {mobileMenu}
         </section>
     );
     return AdminLayout;
