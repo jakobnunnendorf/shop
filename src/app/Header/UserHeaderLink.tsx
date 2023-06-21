@@ -1,12 +1,14 @@
-'use client';
-
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
-import React, { useContext } from 'react';
+import React from 'react';
 import { FiUser } from 'react-icons/fi';
-import { SessionContext } from '@globalState/SessionContext';
 
-export default function UserHeaderLink() {
-    const { value: currentSession } = useContext(SessionContext);
+export default async function UserHeaderLink() {
+    const supabase = createServerComponentClient({ cookies });
+    const {
+        data: { session: currentSession },
+    } = await supabase.auth.getSession();
     return (
         <Link
             href='/user'
