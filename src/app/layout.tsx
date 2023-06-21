@@ -15,7 +15,7 @@ export default function RootLayout({
                     <MobileMenuStateContextProvider>
                         <Header />
                     </MobileMenuStateContextProvider>
-                    <main className='relative top-16 lg:top-24'>
+                    <main className='relative top-16 w-full lg:top-24'>
                         {children}
                     </main>
                 </SessionContextProvider>

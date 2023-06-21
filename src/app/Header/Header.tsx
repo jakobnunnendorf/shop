@@ -85,7 +85,7 @@ export default function Header() {
         </nav>
     );
     const wrapper = (
-        <header className='fixed z-50 h-fit w-full'>
+        <header className='max-w-screen fixed z-50 h-fit w-full'>
             {upper_row}
             {lower_row}
             <SideMenu />
