@@ -40,8 +40,8 @@ export default function Login() {
     const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { data, error } = await supabase.auth.signUp({
-            email: 'someone@email.com',
-            password: 'epGWDSBGegPmFcGRVhPZ',
+            email: registrationInfo.email,
+            password: registrationInfo.password,
         });
         console.log(JSON.stringify(data, null, 2));
         console.log(JSON.stringify(error, null, 2));
