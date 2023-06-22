@@ -3,6 +3,8 @@ import './globals.css';
 import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import Header from './Header/Header';
+
+export const dynamic = 'force-dynamic';
 export default function RootLayout({
     children,
 }: {

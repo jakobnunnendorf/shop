@@ -9,6 +9,8 @@ import {
     FiUser,
 } from 'react-icons/fi';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
     title: 'title_string',
     description: 'description_string',
