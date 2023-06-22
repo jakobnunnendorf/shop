@@ -43,7 +43,7 @@ export default function Login() {
             email: registrationInfo.email,
             password: registrationInfo.password,
             options: {
-                emailRedirectTo: `http://localhost:3000/auth/callback`,
+                emailRedirectTo: `http://phone2door.com/auth/callback`,
             },
         });
     };
@@ -51,7 +51,7 @@ export default function Login() {
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
