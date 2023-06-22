@@ -39,11 +39,12 @@ export default function Login() {
     // create a handle registration function
     const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        supabase.auth.signUp({
-            email: registrationInfo.email,
-            password: registrationInfo.password,
-            
+        const { data, error } = await supabase.auth.signUp({
+            email: 'someone@email.com',
+            password: 'epGWDSBGegPmFcGRVhPZ',
         });
+        console.log(JSON.stringify(data, null, 2));
+        console.log(JSON.stringify(error, null, 2));
     };
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
@@ -58,19 +59,19 @@ export default function Login() {
     };
 
     const left_heading = (
-        <h2 className='row-span-1 text-2xl font-bold text-center'>
+        <h2 className='row-span-1 text-center text-2xl font-bold'>
             Deine Infos
         </h2>
     );
     const form_wrapper = (
         <form
             onSubmit={login_not_registration ? handleLogin : handleRegistration}
-            className='grid w-4/5 grid-cols-12 grid-rows-5 row-span-5 gap-4 '
+            className='row-span-5 grid w-4/5 grid-cols-12 grid-rows-5 gap-4 '
         >
             <input
                 type='text'
                 placeholder='Vorname'
-                className='col-span-6 row-start-1 px-4 rounded-3xl'
+                className='col-span-6 row-start-1 rounded-3xl px-4'
                 name='name'
                 value={registrationInfo.name}
                 onChange={handleInputChange}
@@ -78,7 +79,7 @@ export default function Login() {
             <input
                 type='text'
                 placeholder='Nachname'
-                className='col-span-7 col-start-7 row-start-1 px-4 rounded-3xl'
+                className='col-span-7 col-start-7 row-start-1 rounded-3xl px-4'
                 name='lastName'
                 value={registrationInfo.lastName}
                 onChange={handleInputChange}
@@ -86,7 +87,7 @@ export default function Login() {
             <input
                 type='text'
                 placeholder='E-Mail'
-                className='col-span-7 row-start-2 px-4 rounded-3xl'
+                className='col-span-7 row-start-2 rounded-3xl px-4'
                 name='email'
                 value={registrationInfo.email}
                 onChange={handleInputChange}
@@ -94,7 +95,7 @@ export default function Login() {
             <input
                 type='text'
                 placeholder='Telefon'
-                className='col-span-6 row-start-2 px-4 rounded-3xl'
+                className='col-span-6 row-start-2 rounded-3xl px-4'
                 name='phone'
                 value={registrationInfo.phone}
                 onChange={handleInputChange}
@@ -102,7 +103,7 @@ export default function Login() {
             <input
                 type='text'
                 placeholder='Passwort'
-                className='col-span-6 row-start-3 px-4 rounded-3xl'
+                className='col-span-6 row-start-3 rounded-3xl px-4'
                 name='password'
                 value={registrationInfo.password}
                 onChange={handleInputChange}
@@ -122,10 +123,10 @@ export default function Login() {
                 value={registrationInfo.confirmPassword}
                 onChange={handleInputChange}
             />
-            <div className='flex flex-col items-center col-span-12 col-start-2 row-span-2 '>
+            <div className='col-span-12 col-start-2 row-span-2 flex flex-col items-center '>
                 <button
                     type='submit'
-                    className='w-2/3 h-12 font-bold bg-green-300 rounded-3xl'
+                    className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
                 >
                     {login_not_registration
                         ? 'Jetzt einloggen'
@@ -133,7 +134,7 @@ export default function Login() {
                 </button>
                 <button
                     type='button'
-                    className='mt-2 underline outline-none text-slate-500'
+                    className='mt-2 text-slate-500 underline outline-none'
                     onClick={() =>
                         toggle_login_not_registration(!login_not_registration)
                     }
@@ -149,21 +150,21 @@ export default function Login() {
         </form>
     );
     const right_header = (
-        <h2 className='row-span-1 text-2xl font-bold text-center text-white '>
+        <h2 className='row-span-1 text-center text-2xl font-bold text-white '>
             {login_not_registration
                 ? 'Einfach anmelden'
                 : 'Noch keinen Account?'}
         </h2>
     );
     const right_content_wrapper = (
-        <div className='w-4/5 row-span-5 '>
-            <div className='font-bold text-center text-white '>
+        <div className='row-span-5 w-4/5 '>
+            <div className='text-center font-bold text-white '>
                 {login_not_registration ? `Anmelden` : 'Registrieren'} und
                 zurücklehnen. <br />
                 Wir haben alles,
                 <br /> was dein Handy braucht.
             </div>
-            <div className='flex flex-col row-span-4 py-8'>
+            <div className='row-span-4 flex flex-col py-8'>
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>
@@ -185,19 +186,19 @@ export default function Login() {
         </div>
     );
     const left_container = (
-        <div className='grid grid-rows-6 py-8 justify-items-center lg:order-1'>
+        <div className='grid grid-rows-6 justify-items-center py-8 lg:order-1'>
             {left_heading}
             {form_wrapper}
         </div>
     );
     const right_container = (
-        <div className='grid grid-rows-6 py-8 bg-green-600 justify-items-center lg:order-2'>
+        <div className='grid grid-rows-6 justify-items-center bg-green-600 py-8 lg:order-2'>
             {right_header}
             {right_content_wrapper}
         </div>
     );
     const heading_above_main_content = (
-        <h1 className='mb-8 text-2xl text-center '>
+        <h1 className='mb-8 text-center text-2xl '>
             <span className='text-3xl'>
                 Hallo{' '}
                 {registrationInfo.name.length > 0
@@ -214,7 +215,7 @@ export default function Login() {
         </div>
     );
     const page_container = (
-        <section className='flex flex-col items-center justify-center w-full min-h-screen lg:h-fit lg:min-h-0 lg:pt-8'>
+        <section className='flex min-h-screen w-full flex-col items-center justify-center lg:h-fit lg:min-h-0 lg:pt-8'>
             {heading_above_main_content}
             {main_content_wrapper}
         </section>
