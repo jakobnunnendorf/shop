@@ -36,7 +36,6 @@ export default async function UserLayout({
         .eq('profile_id', user?.id)
         .single();
     const userRole = profileData?.role;
-
     const linkedPages = [
         {
             route: '/user',
@@ -64,7 +63,7 @@ export default async function UserLayout({
         },
     ];
     const navigationMenu = (
-        <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
+        <ul className='mt-8 flex h-fit w-full flex-col items-center justify-around space-y-8 lg:items-start'>
             {userRole === 'admin' && (
                 <Link href='/admin'>
                     <li className='flex items-center space-x-2 '>
