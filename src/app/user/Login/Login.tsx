@@ -42,9 +42,7 @@ export default function Login() {
         supabase.auth.signUp({
             email: registrationInfo.email,
             password: registrationInfo.password,
-            options: {
-                emailRedirectTo: `http://phone2door.com/auth/callback`,
-            },
+            
         });
     };
 
