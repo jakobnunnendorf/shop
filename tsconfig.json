@@ -38,7 +38,9 @@
         ".next/types/**/*.ts",
         "src/api/supabase.js",
         "utils/supabase.ts",
-        "src/types/*.d.ts"
-, "src/middleware.js"    ],
+        "src/types/*.d.ts",
+        "src/middleware.js",
+        "src/app/Header/Header.tsx"
+    ],
     "exclude": ["node_modules"]
 }

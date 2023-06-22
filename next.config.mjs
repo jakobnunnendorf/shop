@@ -6,7 +6,7 @@ import withPlugins from "next-compose-plugins"
  */
 const config = withPlugins([[withBundleAnalyzer({ enabled: false })]], {
     reactStrictMode: true,
-    experimental: { instrumentationHook: true },
+    experimental: { instrumentationHook: true, serverActions: true, },
     rewrites() {
         return [
             { source: "/healthz", destination: "/api/health" },
