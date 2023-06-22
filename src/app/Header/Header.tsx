@@ -54,7 +54,6 @@ export default function Header() {
                             className='text-coastal-blue-10'
                         />
                     </Link>
-
                     <UserHeaderLink />
                 </nav>
             </div>

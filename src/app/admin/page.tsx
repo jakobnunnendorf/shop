@@ -10,9 +10,11 @@ export default async function AdminDashboard() {
     } = await supabase.auth.getSession();
     const { data: userRole, error } = await supabase
         .from('profiles')
-        .select('role');
+        .select('role')
+        .eq('profile_id', session?.user.id)
+        .single();
 
-    if (!session || userRole[0].role !== 'admin') {
+    if (!session || userRole?.role !== 'admin') {
         redirect('/');
     }
 
