@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from 'next/link';
 import {
     FiCompass,
     FiPackage,
@@ -6,6 +6,8 @@ import {
     FiSmartphone,
     FiUser,
 } from 'react-icons/fi';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata = {
     title: 'title_string',
