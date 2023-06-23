@@ -5,9 +5,12 @@ import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
 import { useContext } from 'react';
 import { SessionContext } from '@globalState/SessionContext';
+import { UserContext } from '@globalState/UserContext';
 
 export default function Login() {
     const { setValue: setSession } = useContext(SessionContext);
+    const { value: userContextValue, setValue: setUserContextValue } =
+        useContext(UserContext);
 
     const router = useRouter();
     const supabase = createClientComponentClient();
@@ -15,7 +18,7 @@ export default function Login() {
     const [login_not_registration, toggle_login_not_registration] =
         useState(false);
     const [registrationInfo, setRegistrationInfo] = useState({
-        name: '',
+        firstName: '',
         lastName: '',
         email: '',
         phone: '',
@@ -40,6 +43,7 @@ export default function Login() {
     // create a handle registration function
     const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         const { data: userSignupData, error: userSignupError } =
             await supabase.auth.signUp({
                 email: registrationInfo.email,
@@ -47,7 +51,7 @@ export default function Login() {
             });
         const id_of_new_user = userSignupData?.user?.id;
         const profile_data = {
-            firstName: registrationInfo.name,
+            firstName: registrationInfo.firstName,
             lastName: registrationInfo.lastName,
             phone: registrationInfo.phone,
         };
@@ -56,15 +60,21 @@ export default function Login() {
             .update(profile_data)
             .eq('profile_id', id_of_new_user);
         if (!userSignupError && !addedProfileError) {
+            console.log(
+                `registrationInfo: ${JSON.stringify(registrationInfo)}`
+            );
+            setUserContextValue(registrationInfo);
+            console.log(`userContext: ${JSON.stringify(userContextValue)}`);
             router.push('/user/signup-success');
-            setLoading(true);
         } else {
             alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
+            setLoading(false);
         }
     };
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
         const { data } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
@@ -99,8 +109,8 @@ export default function Login() {
                         type='text'
                         placeholder='Vorname'
                         className='col-span-6 row-start-1 px-4 rounded-3xl'
-                        name='name'
-                        value={registrationInfo.name}
+                        name='firstName'
+                        value={registrationInfo.firstName}
                         onChange={handleInputChange}
                     />
                 )}
@@ -212,7 +222,7 @@ export default function Login() {
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>
-                    &quot;Vorname&quot;: {JSON.stringify(registrationInfo.name)}
+                    &quot;Vorname&quot;: {JSON.stringify(registrationInfo.firstName)}
                 </p>
                 <p className=''>
                     &quot;Nachname&quot;:{' '}
@@ -245,8 +255,8 @@ export default function Login() {
         <h1 className='mb-8 text-2xl text-center '>
             <span className='text-3xl'>
                 Hallo{' '}
-                {registrationInfo.name.length > 0
-                    ? registrationInfo.name
+                {registrationInfo.firstName.length > 0
+                    ? registrationInfo.firstName
                     : '__________'}
             </span>
             ,<br></br> willkommen bei Phone2Door!
