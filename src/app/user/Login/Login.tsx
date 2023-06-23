@@ -59,96 +59,125 @@ export default function Login() {
     };
 
     const left_heading = (
-        <h2 className='row-span-1 text-center text-2xl font-bold'>
+        <h2
+            className={`${
+                login_not_registration ? 'row-start-2' : 'row-start-1'
+            } row-span-1 text-center text-2xl font-bold`}
+        >
             Deine Infos
         </h2>
     );
-    const form_wrapper = (
-        <form
-            onSubmit={login_not_registration ? handleLogin : handleRegistration}
-            className='row-span-5 grid w-4/5 grid-cols-12 grid-rows-5 gap-4 '
-        >
-            <input
-                type='text'
-                placeholder='Vorname'
-                className='col-span-6 row-start-1 rounded-3xl px-4'
-                name='name'
-                value={registrationInfo.name}
-                onChange={handleInputChange}
-            />
-            <input
-                type='text'
-                placeholder='Nachname'
-                className='col-span-7 col-start-7 row-start-1 rounded-3xl px-4'
-                name='lastName'
-                value={registrationInfo.lastName}
-                onChange={handleInputChange}
-            />
-            <input
-                type='text'
-                placeholder='E-Mail'
-                className='col-span-7 row-start-2 rounded-3xl px-4'
-                name='email'
-                value={registrationInfo.email}
-                onChange={handleInputChange}
-            />
-            <input
-                type='text'
-                placeholder='Telefon'
-                className='col-span-6 row-start-2 rounded-3xl px-4'
-                name='phone'
-                value={registrationInfo.phone}
-                onChange={handleInputChange}
-            />
-            <input
-                type='text'
-                placeholder='Passwort'
-                className='col-span-6 row-start-3 rounded-3xl px-4'
-                name='password'
-                value={registrationInfo.password}
-                onChange={handleInputChange}
-            />
-            <input
-                type='text'
-                placeholder='wiederholen'
-                className={`${
-                    registrationInfo.confirmPassword.length > 0
-                        ? registrationInfo.password ===
-                          registrationInfo.confirmPassword
-                            ? 'border-2 border-green-300'
-                            : 'border-2 border-red-300'
-                        : ''
-                } col-span-7 row-start-3 rounded-3xl px-4 outline-none`}
-                name='confirmPassword'
-                value={registrationInfo.confirmPassword}
-                onChange={handleInputChange}
-            />
-            <div className='col-span-12 col-start-2 row-span-2 flex flex-col items-center '>
-                <button
-                    type='submit'
-                    className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
-                >
-                    {login_not_registration
-                        ? 'Jetzt einloggen'
-                        : 'Jetzt Registrieren'}
-                </button>
-                <button
-                    type='button'
-                    className='mt-2 text-slate-500 underline outline-none'
-                    onClick={() =>
-                        toggle_login_not_registration(!login_not_registration)
-                    }
-                >
-                    Ich habe{' '}
-                    {login_not_registration ? 'noch keinen' : 'schon einen'}{' '}
-                    Account: <br />
-                    {login_not_registration
-                        ? 'jetzt registrieren'
-                        : 'zum login'}
-                </button>
-            </div>
-        </form>
-    );
+    const form_wrapper = //form
+        (
+            <form
+                onSubmit={
+                    login_not_registration ? handleLogin : handleRegistration
+                }
+                className={` ${
+                    login_not_registration
+                        ? 'row-span-3 row-start-3 grid-rows-3'
+                        : 'row-span-5 grid-rows-5'
+                } grid w-4/5 grid-cols-12 gap-4`}
+            >
+                {login_not_registration ? null : (
+                    <input // first name
+                        type='text'
+                        placeholder='Vorname'
+                        className='col-span-6 row-start-1 rounded-3xl px-4'
+                        name='name'
+                        value={registrationInfo.name}
+                        onChange={handleInputChange}
+                    />
+                )}
+                {login_not_registration ? null : (
+                    <input // last name
+                        type='text'
+                        placeholder='Nachname'
+                        className='col-span-7 col-start-7 row-start-1 rounded-3xl px-4'
+                        name='lastName'
+                        value={registrationInfo.lastName}
+                        onChange={handleInputChange}
+                    />
+                )}
+                <input // email
+                    type='text'
+                    placeholder='E-Mail'
+                    className={`${
+                        login_not_registration
+                            ? 'col-span-6'
+                            : 'col-span-7 row-start-2 '
+                    }  rounded-3xl px-4`}
+                    name='email'
+                    value={registrationInfo.email}
+                    onChange={handleInputChange}
+                />
+                {login_not_registration ? null : (
+                    <input // phone
+                        type='text'
+                        placeholder='Telefon'
+                        className='col-span-6 row-start-2 rounded-3xl px-4'
+                        name='phone'
+                        value={registrationInfo.phone}
+                        onChange={handleInputChange}
+                    />
+                )}
+                <input // password
+                    type='text'
+                    placeholder='Passwort'
+                    className={`col-span-6 ${
+                        login_not_registration
+                            ? 'col-span-6 row-start-1'
+                            : 'row-start-3 '
+                    }  rounded-3xl px-4`}
+                    name='password'
+                    value={registrationInfo.password}
+                    onChange={handleInputChange}
+                />
+                {login_not_registration ? null : (
+                    <input
+                        type='text'
+                        placeholder='wiederholen'
+                        className={`${
+                            registrationInfo.confirmPassword.length > 0
+                                ? registrationInfo.password ===
+                                  registrationInfo.confirmPassword
+                                    ? 'border-2 border-green-300'
+                                    : 'border-2 border-red-300'
+                                : ''
+                        } col-span-7 row-start-3 rounded-3xl px-4 outline-none`}
+                        name='confirmPassword'
+                        value={registrationInfo.confirmPassword}
+                        onChange={handleInputChange}
+                    />
+                )}
+                <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center '>
+                    <button
+                        type='submit'
+                        className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
+                    >
+                        {login_not_registration
+                            ? 'Jetzt einloggen'
+                            : 'Jetzt Registrieren'}
+                    </button>
+                    <button
+                        type='button'
+                        className='mt-2 text-slate-500 underline outline-none'
+                        onClick={() =>
+                            toggle_login_not_registration(
+                                !login_not_registration
+                            )
+                        }
+                    >
+                        Ich habe{' '}
+                        {login_not_registration ? 'noch keinen' : 'schon einen'}{' '}
+                        Account: <br />
+                        {login_not_registration
+                            ? 'jetzt registrieren'
+                            : 'zum login'}
+                    </button>
+                </div>
+            </form>
+        );
     const right_header = (
         <h2 className='row-span-1 text-center text-2xl font-bold text-white '>
             {login_not_registration
@@ -157,14 +186,14 @@ export default function Login() {
         </h2>
     );
     const right_content_wrapper = (
-        <div className='row-span-5 w-4/5 '>
+        <div className={`row-span-3 w-4/5 lg:row-span-5`}>
             <div className='text-center font-bold text-white '>
-                {login_not_registration ? `Anmelden` : 'Registrieren'} und
-                zurücklehnen. <br />
-                Wir haben alles,
-                <br /> was dein Handy braucht.
+                {login_not_registration ? `` : 'Registrieren'} und zurücklehnen.{' '}
+                <br />
+                Wir haben alles, was dein Handy braucht.
             </div>
-            <div className='row-span-4 flex flex-col py-8'>
+
+            <div className='row-span-4 hidden py-8 lg:flex lg:flex-col'>
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>
@@ -186,13 +215,13 @@ export default function Login() {
         </div>
     );
     const left_container = (
-        <div className='grid grid-rows-6 justify-items-center py-8 lg:order-1'>
+        <div className='grid grid-rows-6 justify-items-center py-4 lg:order-1 lg:py-8'>
             {left_heading}
             {form_wrapper}
         </div>
     );
     const right_container = (
-        <div className='grid grid-rows-6 justify-items-center bg-green-600 py-8 lg:order-2'>
+        <div className='grid grid-rows-3 justify-items-center bg-green-600 py-8 lg:order-2 lg:grid-rows-6'>
             {right_header}
             {right_content_wrapper}
         </div>
