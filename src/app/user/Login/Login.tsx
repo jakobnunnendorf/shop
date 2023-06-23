@@ -75,11 +75,17 @@ export default function Login() {
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
-        const { data } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
-        setSession(data);
+        if (!error) {
+            setSession(data);
+            setLoading(false);
+        } else {
+            alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
+            setLoading(false);
+        }
         router.refresh();
     };
 
