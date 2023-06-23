@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
 import { useContext } from 'react';
 import { SessionContext } from '@globalState/SessionContext';
+import RegistrationThankYou from '../signup-success/page';
 
 export default function Login() {
     const { setValue: setSession } = useContext(SessionContext);
@@ -22,7 +23,8 @@ export default function Login() {
         password: '',
         confirmPassword: '',
     });
-    console.log(registrationInfo);
+    // console.log(registrationInfo);
+    const [loading, setLoading] = useState(true);
 
     const updateInfo = (key: string, newValue: string) => {
         setRegistrationInfo((prevState) => ({
@@ -39,21 +41,56 @@ export default function Login() {
     // create a handle registration function
     const handleRegistration = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const { data, error } = await supabase.auth.signUp({
-            email: registrationInfo.email,
-            password: registrationInfo.password,
-        });
-        console.log(JSON.stringify(data, null, 2));
-        console.log(JSON.stringify(error, null, 2));
+        const { data: userSignupData, error: userSignupError } =
+            await supabase.auth.signUp({
+                email: registrationInfo.email,
+                password: registrationInfo.password,
+            });
+        const id_of_new_user = userSignupData?.user?.id;
+        const profile_data = {
+            firstName: registrationInfo.name,
+            lastName: registrationInfo.lastName,
+            phone: registrationInfo.phone,
+        };
+        console.log(
+            `user id: ${JSON.stringify(userSignupData?.user?.id, null, 2)}`
+        );
+        const { data: addedProfileData, error: addedProfileError } =
+            await supabase
+                .from('profiles')
+                .update(profile_data)
+                .eq('profile_id', id_of_new_user);
+        console.log(
+            `userSignupData id: ${JSON.stringify(userSignupData, null, 2)}`
+        );
+        console.log(
+            `userSignupError id: ${JSON.stringify(userSignupError, null, 2)}`
+        );
+        console.log(
+            `addedProfileData id: ${JSON.stringify(addedProfileData, null, 2)}`
+        );
+        console.log(
+            `addedProfileError id: ${JSON.stringify(
+                addedProfileError,
+                null,
+                2
+            )}`
+        );
+        if (!userSignupError && !addedProfileError) {
+            router.push('/user/signup-success');
+        } else {
+            alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
+        }
     };
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const { data } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
+        console.log(`data: ${JSON.stringify(error, null, 2)}`);
         setSession(data);
         router.refresh();
     };
@@ -104,7 +141,7 @@ export default function Login() {
                     placeholder='E-Mail'
                     className={`${
                         login_not_registration
-                            ? 'col-span-6'
+                            ? 'col-span-6 row-start-1'
                             : 'col-span-7 row-start-2 '
                     }  rounded-3xl px-4`}
                     name='email'
@@ -243,11 +280,21 @@ export default function Login() {
             {left_container}
         </div>
     );
+    const loadingSpinner = (
+        <div className=' flex h-[75vh] w-full flex-col items-center justify-center'>
+            <img src='/loading.gif' alt='' />
+            <h2 className='text-3xl font-bold text-coastal-blue-9'>
+                Einen Moment...
+            </h2>
+        </div>
+    );
     const page_container = (
         <section className='flex min-h-screen w-full flex-col items-center justify-center lg:h-fit lg:min-h-0 lg:pt-8'>
-            {heading_above_main_content}
-            {main_content_wrapper}
+            {loading && loadingSpinner}
+            {!loading && heading_above_main_content}
+            {!loading && main_content_wrapper}
         </section>
     );
+
     return page_container;
 }
