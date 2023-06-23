@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
 import { useContext } from 'react';
 import { SessionContext } from '@globalState/SessionContext';
-import RegistrationThankYou from '../signup-success/page';
 
 export default function Login() {
     const { setValue: setSession } = useContext(SessionContext);
@@ -23,8 +22,8 @@ export default function Login() {
         password: '',
         confirmPassword: '',
     });
-    // console.log(registrationInfo);
-    const [loading, setLoading] = useState(true);
+
+    const [loading, setLoading] = useState(false);
 
     const updateInfo = (key: string, newValue: string) => {
         setRegistrationInfo((prevState) => ({
@@ -52,32 +51,13 @@ export default function Login() {
             lastName: registrationInfo.lastName,
             phone: registrationInfo.phone,
         };
-        console.log(
-            `user id: ${JSON.stringify(userSignupData?.user?.id, null, 2)}`
-        );
-        const { data: addedProfileData, error: addedProfileError } =
-            await supabase
-                .from('profiles')
-                .update(profile_data)
-                .eq('profile_id', id_of_new_user);
-        console.log(
-            `userSignupData id: ${JSON.stringify(userSignupData, null, 2)}`
-        );
-        console.log(
-            `userSignupError id: ${JSON.stringify(userSignupError, null, 2)}`
-        );
-        console.log(
-            `addedProfileData id: ${JSON.stringify(addedProfileData, null, 2)}`
-        );
-        console.log(
-            `addedProfileError id: ${JSON.stringify(
-                addedProfileError,
-                null,
-                2
-            )}`
-        );
+        const { error: addedProfileError } = await supabase
+            .from('profiles')
+            .update(profile_data)
+            .eq('profile_id', id_of_new_user);
         if (!userSignupError && !addedProfileError) {
             router.push('/user/signup-success');
+            setLoading(true);
         } else {
             alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
         }
@@ -85,12 +65,10 @@ export default function Login() {
 
     const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { data } = await supabase.auth.signInWithPassword({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
-        console.log(`data: ${JSON.stringify(error, null, 2)}`);
         setSession(data);
         router.refresh();
     };
@@ -120,7 +98,7 @@ export default function Login() {
                     <input // first name
                         type='text'
                         placeholder='Vorname'
-                        className='col-span-6 row-start-1 rounded-3xl px-4'
+                        className='col-span-6 row-start-1 px-4 rounded-3xl'
                         name='name'
                         value={registrationInfo.name}
                         onChange={handleInputChange}
@@ -130,7 +108,7 @@ export default function Login() {
                     <input // last name
                         type='text'
                         placeholder='Nachname'
-                        className='col-span-7 col-start-7 row-start-1 rounded-3xl px-4'
+                        className='col-span-7 col-start-7 row-start-1 px-4 rounded-3xl'
                         name='lastName'
                         value={registrationInfo.lastName}
                         onChange={handleInputChange}
@@ -152,7 +130,7 @@ export default function Login() {
                     <input // phone
                         type='text'
                         placeholder='Telefon'
-                        className='col-span-6 row-start-2 rounded-3xl px-4'
+                        className='col-span-6 row-start-2 px-4 rounded-3xl'
                         name='phone'
                         value={registrationInfo.phone}
                         onChange={handleInputChange}
@@ -187,10 +165,10 @@ export default function Login() {
                         onChange={handleInputChange}
                     />
                 )}
-                <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center '>
+                <div className='flex flex-col items-center col-span-12 col-start-1 row-span-2 '>
                     <button
                         type='submit'
-                        className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
+                        className='w-2/3 h-12 font-bold bg-green-300 rounded-3xl'
                     >
                         {login_not_registration
                             ? 'Jetzt einloggen'
@@ -198,7 +176,7 @@ export default function Login() {
                     </button>
                     <button
                         type='button'
-                        className='mt-2 text-slate-500 underline outline-none'
+                        className='mt-2 underline outline-none text-slate-500'
                         onClick={() =>
                             toggle_login_not_registration(
                                 !login_not_registration
@@ -216,7 +194,7 @@ export default function Login() {
             </form>
         );
     const right_header = (
-        <h2 className='row-span-1 text-center text-2xl font-bold text-white '>
+        <h2 className='row-span-1 text-2xl font-bold text-center text-white '>
             {login_not_registration
                 ? 'Einfach anmelden'
                 : 'Noch keinen Account?'}
@@ -224,13 +202,13 @@ export default function Login() {
     );
     const right_content_wrapper = (
         <div className={`row-span-3 w-4/5 lg:row-span-5`}>
-            <div className='text-center font-bold text-white '>
+            <div className='font-bold text-center text-white '>
                 {login_not_registration ? `` : 'Registrieren'} und zurücklehnen.{' '}
                 <br />
                 Wir haben alles, was dein Handy braucht.
             </div>
 
-            <div className='row-span-4 hidden py-8 lg:flex lg:flex-col'>
+            <div className='hidden row-span-4 py-8 lg:flex lg:flex-col'>
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>
@@ -252,19 +230,19 @@ export default function Login() {
         </div>
     );
     const left_container = (
-        <div className='grid grid-rows-6 justify-items-center py-4 lg:order-1 lg:py-8'>
+        <div className='grid grid-rows-6 py-4 justify-items-center lg:order-1 lg:py-8'>
             {left_heading}
             {form_wrapper}
         </div>
     );
     const right_container = (
-        <div className='grid grid-rows-3 justify-items-center bg-green-600 py-8 lg:order-2 lg:grid-rows-6'>
+        <div className='grid grid-rows-3 py-8 bg-green-600 justify-items-center lg:order-2 lg:grid-rows-6'>
             {right_header}
             {right_content_wrapper}
         </div>
     );
     const heading_above_main_content = (
-        <h1 className='mb-8 text-center text-2xl '>
+        <h1 className='mb-8 text-2xl text-center '>
             <span className='text-3xl'>
                 Hallo{' '}
                 {registrationInfo.name.length > 0
@@ -289,7 +267,7 @@ export default function Login() {
         </div>
     );
     const page_container = (
-        <section className='flex min-h-screen w-full flex-col items-center justify-center lg:h-fit lg:min-h-0 lg:pt-8'>
+        <section className='flex flex-col items-center justify-center w-full min-h-screen lg:h-fit lg:min-h-0 lg:pt-8'>
             {loading && loadingSpinner}
             {!loading && heading_above_main_content}
             {!loading && main_content_wrapper}
