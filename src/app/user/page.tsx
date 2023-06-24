@@ -1,7 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Login from './Login/Login';
-import Account from './profile/Profile';
+import Profile from './profile/Profile';
 
 export default async function UserPage() {
     const supabase = createServerComponentClient({ cookies });
@@ -14,8 +14,8 @@ export default async function UserPage() {
         return <Login />;
     } else {
         return (
-            <div>
-                <Account session={currentSession} />
+            <div className=''>
+                <Profile session={currentSession} />
             </div>
         );
     }

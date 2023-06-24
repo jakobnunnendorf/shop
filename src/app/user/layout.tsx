@@ -119,8 +119,8 @@ export default async function UserLayout({
         </nav>
     );
     const userLayout = (
-        <section className=' flex w-full flex-col '>
-            <UserContextProvider>
+        <UserContextProvider>
+            <section className='flex w-full '>
                 {currentSession && (
                     <aside className='hidden h-screen w-12 bg-slate-100 lg:block lg:w-fit lg:px-6 lg:py-12'>
                         <h2 className='text-2xl font-bold text-coastal-blue-10'>
@@ -129,12 +129,12 @@ export default async function UserLayout({
                         {navigationMenu}
                     </aside>
                 )}
-                <section className='w-full px-2 py-8 pb-44 lg:px-16 lg:pb-8'>
+                <section className='w-full px-2 py-8  pb-44 lg:px-16 lg:pb-8'>
                     {children}
                 </section>
                 {currentSession && mobileMenu}
-            </UserContextProvider>
-        </section>
+            </section>
+        </UserContextProvider>
     );
     return userLayout;
 }
