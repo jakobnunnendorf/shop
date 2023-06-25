@@ -1,0 +1,84 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+export default async function UserInfoPanel() {
+    const supabase = createServerComponentClient({ cookies });
+
+    const { data: profile, error: profileFetchError } = await supabase
+        .from('profiles')
+        .select('*')
+        .single();
+    const fetchAdressData = async () => {
+        const { data: addressData, error: addressFetchError } = await supabase
+            .from('addresses')
+            .select('*');
+
+        if (addressFetchError || profileFetchError) {
+            // print errors if they exist
+            console.log('profileFetchError: ');
+            console.log(JSON.stringify(profileFetchError, null, 2));
+            console.log('addressFetchError: ');
+            console.log(JSON.stringify(addressFetchError, null, 2));
+        }
+
+        const [deliveryAddress, billingAddress] = addressData
+            ? addressData
+            : [];
+        const deliveryAdress_string = addressData
+            ? `${deliveryAddress.street} ${deliveryAddress.house_number}, ${deliveryAddress.zip_code} ${deliveryAddress.city}`
+            : '';
+        const billingAdress_string = addressData
+            ? `${billingAddress.street} ${billingAddress.house_number}, ${billingAddress.zip_code} ${billingAddress.city}`
+            : '';
+
+        return {
+            deliveryAdress_string,
+            billingAdress_string,
+        };
+    };
+    const { deliveryAdress_string, billingAdress_string } =
+        await fetchAdressData();
+
+    const information_grid = (
+        <section className='relative grid h-full w-full grid-cols-12 gap-8 rounded-3xl border p-8 text-xl lg:w-fit'>
+            <div className='col-span-6 '>
+                <span className='font-bold'>Vorname: </span>
+                <br />
+                {profile?.firstName}
+            </div>
+            <div className='col-span-6 '>
+                <span className='font-bold'>
+                    Nachname: <br />
+                </span>
+                {profile?.lastName}
+            </div>
+            <div className='col-span-12 lg:col-span-6 '>
+                <span className='font-bold'>
+                    Email: <br />
+                </span>
+                {profile?.email}
+            </div>
+            <div className='col-span-6 '>
+                <span className='font-bold'>
+                    Telefon: <br />
+                </span>
+                {profile?.phone}
+            </div>
+            <div className='col-span-12 '>
+                <span className='font-bold'>Lieferadresse:</span>
+                <br /> {deliveryAdress_string}
+            </div>
+            <div className='col-span-12 '>
+                <span className='font-bold'>Rechnungsadresse:</span>
+                <br />{' '}
+                {deliveryAdress_string
+                    ? billingAdress_string === deliveryAdress_string
+                        ? 'Identisch mit Lieferadresse'
+                        : billingAdress_string
+                    : ''}
+            </div>
+        </section>
+    );
+
+    return information_grid;
+}
