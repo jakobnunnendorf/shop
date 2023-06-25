@@ -81,10 +81,8 @@ export default function Login() {
         });
         if (!error) {
             setSession(data);
-            setLoading(false);
         } else {
             alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
-            setLoading(false);
         }
         router.refresh();
     };
