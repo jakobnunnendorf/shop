@@ -1,6 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Login from './Login/Login';
+import Greeting from './profile/Greeting';
+import UserInfoPanel from './profile/UserInfoPanel';
 import Profile from './profile/Profile';
 
 export default async function UserPage() {
@@ -15,7 +17,10 @@ export default async function UserPage() {
     } else {
         return (
             <div className=''>
-                <Profile session={currentSession} />
+                <Profile
+                    Greeting={<Greeting />}
+                    UserInfoPanel={<UserInfoPanel />}
+                />
             </div>
         );
     }
