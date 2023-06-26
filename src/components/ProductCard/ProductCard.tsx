@@ -27,18 +27,18 @@ export default function ProductCard({ product }: { product: iProduct; }) {
                 alt={product.title}
             />
             <article className='p-2 '>
-                <h2 className='m-2 line-clamp-2 cursor-pointer text-center'>
+                <h2 className='m-2 text-center cursor-pointer line-clamp-2'>
                     {product.title}
                 </h2>
                 <div className='flex items-center justify-around '>
-                    <p className='text-center'>{product.price.toFixed(2)}€</p>
+                    <p className='text-center'>{product.price}</p>
                     <div className='flex flex-col items-center'>
-                        <button className='rounded-full border-2 p-2'>
+                        <button className='p-2 border-2 rounded-full'>
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className='my-2 px-4 text-end text-xs text-slate-500'>
+                <p className='px-4 my-2 text-xs text-end text-slate-500'>
                     {product.stock} übrig
                 </p>
             </article>
@@ -52,18 +52,18 @@ export default function ProductCard({ product }: { product: iProduct; }) {
                 alt={product.title}
             />
             <article className='p-2 '>
-                <h2 className='line-clamp-2 cursor-pointer text-center lg:m-2'>
+                <h2 className='text-center cursor-pointer line-clamp-2 lg:m-2'>
                     {product.title}
                 </h2>
                 <div className='flex items-center justify-around '>
-                    <p className='text-center'>{product.price.toFixed(2)}€</p>
+                    <p className='text-center'>{product.price}</p>
                     <div className='flex flex-col items-center'>
-                        <button className='rounded-full border-2 p-2'>
+                        <button className='p-2 border-2 rounded-full'>
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className='my-2 hidden px-4 text-end text-xs text-slate-500 lg:block'>
+                <p className='hidden px-4 my-2 text-xs text-end text-slate-500 lg:block'>
                     {product.stock} übrig
                 </p>
             </article>

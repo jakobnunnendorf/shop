@@ -20,39 +20,51 @@ export async function uploadFile_to_supabase_storage(
 
 
 export async function addProduct_to_database(newProduct: iProduct, imageFile?: File) {
-    newProduct.id = uuidv4()
-    const filePath = `image_${newProduct.title}_${newProduct.id}`
+    console.log('addProduct_to_database');
+    newProduct.id = uuidv4();
+    const filePath = `image_${newProduct.title}_${newProduct.id}`;
     if (imageFile) {
-        await uploadFile_to_supabase_storage("productImageBucket", filePath, imageFile)
-        const { data: urlResponse } = await supabase.storage.from("productImageBucket").getPublicUrl(filePath)
-        const image_url = urlResponse.publicUrl
-        newProduct.imageURL = image_url
+        console.log('image exists');
+        const { data: storageData, error: storageError } =
+            await supabase.storage
+                .from('productImageBucket')
+                .upload(filePath, imageFile);
+        console.log(JSON.stringify(storageData, null, 2));
+        console.log(JSON.stringify(storageError, null, 2));
+        const { data: urlResponse } = await supabase.storage
+            .from('productImageBucket')
+            .getPublicUrl(filePath);
+        const image_url = urlResponse.publicUrl;
+        newProduct.imageURL = image_url;
+    } else {
+        console.log('no image file');
     }
-    const { data, error } = await supabase.from("products").insert([newProduct as iProduct])
+    const { data, error } = await supabase
+        .from('products')
+        .insert([newProduct as iProduct]);
     if (error) {
-        console.log(error)
+        console.log(JSON.stringify(error, null, 2));
     }
-
     return data
 }
 
 export function extract_product_from_form(formDataObject: FormData, model_array: string[]) {
     const product: iProduct = {
-        id: "",
+        id: '',
         created_at: new Date(),
-        title: formDataObject.get("title") as string,
-        imageURL: "",
-        description: formDataObject.get("description") as string,
-        price: parseFloat(formDataObject.get("price") as string),
-        stock: parseInt(formDataObject.get("stock") as string),
-        category: formDataObject.get("category") as string,
+        title: formDataObject.get('title') as string,
+        imageURL: '',
+        description: formDataObject.get('description') as string,
+        price: formDataObject.get('price') as string,
+        stock: parseInt(formDataObject.get('stock') as string),
+        category: formDataObject.get('category') as string,
         compatibleModels: model_array,
         reviews: [],
         dimensions: {
-            width: parseInt(formDataObject.get("width") as string),
-            height: parseInt(formDataObject.get("height") as string),
-            depth: parseInt(formDataObject.get("depth") as string),
+            width: parseInt(formDataObject.get('width') as string),
+            height: parseInt(formDataObject.get('height') as string),
+            depth: parseInt(formDataObject.get('depth') as string),
         },
-    }
+    };
     return product
 }

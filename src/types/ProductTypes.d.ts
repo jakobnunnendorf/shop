@@ -4,7 +4,7 @@ interface iProduct {
     title: string;
     imageURL: string;
     description: string | null;
-    price: number;
+    price: string;
     stock: number;
     category: string;
     compatibleModels: Array<string>;
