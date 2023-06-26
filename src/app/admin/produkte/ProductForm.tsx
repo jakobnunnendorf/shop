@@ -29,24 +29,23 @@ export default function ProductForm({ setActive }: { setActive: any }) {
         changeModels([]);
         setActive(false);
         router.refresh();
-        // revalidatePath('/admin/produkte');
     };
 
     const primary_characteristics = (
-        <div className='col-span-3 overflow-hidden rounded-3xl border-2 border-dotted bg-white text-center lg:order-3 lg:col-span-2 lg:row-span-2 lg:p-4'>
+        <div className='col-span-3 overflow-hidden text-center bg-white border-2 border-dotted rounded-3xl lg:order-3 lg:col-span-2 lg:row-span-2 lg:p-4'>
             <span className='grid w-full grid-cols-4 lg:gap-4 '>
                 <input
                     name='title'
                     type='text'
                     placeholder='2) Titel eingeben'
-                    className='col-span-2 h-12 rounded-3xl border-2 border-dotted px-2 text-center'
+                    className='h-12 col-span-2 px-2 text-center border-2 border-dotted rounded-3xl'
                     required
                 />
                 <input
                     name='price'
                     type='text'
                     placeholder='3) Preis'
-                    className='h-12 rounded-3xl border-2 border-dotted text-center'
+                    className='h-12 text-center border-2 border-dotted rounded-3xl'
                     required
                     pattern='^\d{1,2},\d{1,2} €$'
                 />
@@ -54,7 +53,7 @@ export default function ProductForm({ setActive }: { setActive: any }) {
                     name='stock'
                     type='number'
                     placeholder='4) Zahl'
-                    className='h-12 rounded-3xl border-2 border-dotted px-2 text-center'
+                    className='h-12 px-2 text-center border-2 border-dotted rounded-3xl'
                     required
                 />
             </span>
@@ -62,14 +61,14 @@ export default function ProductForm({ setActive }: { setActive: any }) {
                 name='description'
                 id=''
                 placeholder='4) Beschreibung'
-                className='w-full rounded-3xl border-2 border-dotted text-center'
+                className='w-full text-center border-2 border-dotted rounded-3xl'
             ></textarea>
         </div>
     );
 
     const secondary_characteristics = (
-        <div className='justify-items-centert-1 order-3 col-span-3 row-span-1 flex h-full flex-col justify-start space-y-8 overflow-hidden rounded-3xl border-2 border-dotted bg-white px-4 pt-8 text-center lg:order-2 lg:col-span-1 lg:row-span-6'>
-            <div className='flex h-fit w-full flex-wrap rounded-3xl border-2 border-dotted lg:h-24'>
+        <div className='flex flex-col justify-start order-3 h-full col-span-3 row-span-1 px-4 pt-8 space-y-8 overflow-hidden text-center bg-white border-2 border-dotted justify-items-centert-1 rounded-3xl lg:order-2 lg:col-span-1 lg:row-span-6'>
+            <div className='flex flex-wrap w-full border-2 border-dotted h-fit rounded-3xl lg:h-24'>
                 <input
                     placeholder='7) + Modell'
                     onKeyDown={(event) => {
@@ -84,18 +83,18 @@ export default function ProductForm({ setActive }: { setActive: any }) {
                         }
                     }}
                     type='text'
-                    className='h-fit w-24 rounded-full border-2 border-green-200 text-center'
+                    className='w-24 text-center border-2 border-green-200 rounded-full h-fit'
                 />
                 {compatible_models_state.map((model) => (
                     <div
-                        className='mx-1 h-fit w-fit rounded-full border-2 px-2 text-center text-xs text-gray-400'
+                        className='px-2 mx-1 text-xs text-center text-gray-400 border-2 rounded-full h-fit w-fit'
                         key={model}
                     >
                         {model}
                     </div>
                 ))}
             </div>
-            <span className='w-fit space-x-2 rounded-3xl border-2 border-dotted px-2 text-gray-400'>
+            <span className='px-2 space-x-2 text-gray-400 border-2 border-dotted w-fit rounded-3xl'>
                 5) Kategorie:
                 <select
                     name='category'
@@ -107,6 +106,7 @@ export default function ProductForm({ setActive }: { setActive: any }) {
                     <option value='screen protector'>Panzerglas</option>
                     <option value='charging cable'>Ladekabel</option>
                     <option value='charging adapter'>Ladestecker</option>
+                    <option value='tablet case'>Tablet-Tasche</option>
                     <option value='phone'>Handyhalterung</option>
                 </select>
             </span>
@@ -114,7 +114,7 @@ export default function ProductForm({ setActive }: { setActive: any }) {
     );
 
     const image_input_field = (
-        <div className='col-span-3 row-span-3 grid place-items-center space-y-2 rounded-3xl border-2 lg:col-span-2 lg:row-span-4'>
+        <div className='grid col-span-3 row-span-3 space-y-2 border-2 place-items-center rounded-3xl lg:col-span-2 lg:row-span-4'>
             <input
                 ref={fileInputRef}
                 onChange={(event) => {
@@ -129,11 +129,11 @@ export default function ProductForm({ setActive }: { setActive: any }) {
     );
 
     const headerRow = (
-        <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
+        <div className='flex items-center justify-between h-20 px-12 mt-2 lg:mt-4'>
             <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
             <button
                 type='submit'
-                className='flex items-center space-x-2 rounded-xl border-2 border-green-400 px-2 py-1'
+                className='flex items-center px-2 py-1 space-x-2 border-2 border-green-400 rounded-xl'
             >
                 <div className='text-green-800'>
                     <span className='hidden lg:inline'>Hochladen</span>
@@ -146,7 +146,7 @@ export default function ProductForm({ setActive }: { setActive: any }) {
     const product_form = (
         <form
             onSubmit={handleSubmit}
-            className='flex h-full flex-col space-y-4 '
+            className='flex flex-col h-full space-y-4 '
         >
             {headerRow}
             <div className='grid flex-grow grid-cols-3 grid-rows-6 '>

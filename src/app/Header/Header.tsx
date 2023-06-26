@@ -7,27 +7,27 @@ import UserHeaderLink from './UserHeaderLink';
 
 export default function Header() {
     const upper_row = (
-        <section className='top-0 h-16 w-full border-b bg-sandy-beige-4 py-2 shadow-sm backdrop-blur-3xl lg:shadow-none'>
-            <div className='grid h-full w-full grid-cols-12'>
-                <div className='col-span-3 h-full pl-4 pr-8 xl:px-12'>
+        <section className='top-0 w-full h-16 py-2 border-b shadow-sm bg-sandy-beige-4 backdrop-blur-3xl lg:shadow-none'>
+            <div className='grid w-full h-full grid-cols-12'>
+                <div className='h-full col-span-3 pl-4 pr-8 xl:px-12'>
                     <MobileMenuBurger />
-                    <nav className='hidden h-full w-full items-center lg:flex'>
-                        <ul className='flex w-full justify-between font-bold'>
+                    <nav className='items-center hidden w-full h-full lg:flex'>
+                        <ul className='flex justify-between w-full font-bold'>
                             <Link href='/'>
                                 <li>Home</li>
                             </Link>
                             <Link href='/shop'>
                                 <li>Shop</li>
                             </Link>
-                            <Link href='/help'>
+                            <Link href='/Hilfe'>
                                 <li>Hilfe</li>
                             </Link>
                         </ul>
                     </nav>
                 </div>
 
-                <div className='col-span-6 flex h-full overflow-hidden rounded-3xl border border-coastal-blue-3 px-2'>
-                    <div className='relative h-12 w-24'>
+                <div className='flex h-full col-span-6 px-2 overflow-hidden border rounded-3xl border-coastal-blue-3'>
+                    <div className='relative w-24 h-12'>
                         <Link href='/' className=''>
                             <Image
                                 src='/p2d_logo.png'
@@ -40,14 +40,14 @@ export default function Header() {
                     <input
                         type='text'
                         placeholder='Suche...'
-                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10 outline-none'
+                        className='w-full h-full text-center bg-transparent border-l outline-none border-coastal-blue-3 placeholder-coastal-blue-10'
                     />
                 </div>
 
-                <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
+                <nav className='flex justify-around h-full col-span-3 lg:justify-end lg:space-x-8 lg:pr-8'>
                     <Link
                         href='/einkaufswagen'
-                        className='flex h-full items-center'
+                        className='flex items-center h-full'
                     >
                         <FiShoppingCart
                             size={32}
@@ -60,8 +60,8 @@ export default function Header() {
         </section>
     );
     const lower_row = (
-        <nav className='hidden h-8 w-full border-b bg-sandy-beige-1 shadow-lg backdrop-blur-3xl lg:block'>
-            <ul className='flex h-full w-full items-center justify-around text-sm'>
+        <nav className='hidden w-full h-8 border-b shadow-lg bg-sandy-beige-1 backdrop-blur-3xl lg:block'>
+            <ul className='flex items-center justify-around w-full h-full text-sm'>
                 <Link href='shop'>
                     <li>Handyhüllen</li>
                 </Link>
@@ -84,7 +84,7 @@ export default function Header() {
         </nav>
     );
     const wrapper = (
-        <header className='max-w-screen fixed z-50 h-fit w-full'>
+        <header className='fixed z-50 w-full max-w-screen h-fit'>
             {upper_row}
             {lower_row}
             <SideMenu />
