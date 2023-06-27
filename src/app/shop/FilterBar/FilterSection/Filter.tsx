@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Filter(props) {
+export default function Filter(props: any) {
     const styles = {
         none: {
             background: 'none',
@@ -32,7 +32,11 @@ export default function Filter(props) {
         <div>
             <button
                 onClick={() => props.addFilters(props.name)}
-                style={props.active ? styles.active : styles.none}
+                style={
+                    props.active
+                        ? (styles.active as React.CSSProperties)
+                        : (styles.none as React.CSSProperties)
+                }
             >
                 {props.name} {props.active ? 'X' : ''}
             </button>

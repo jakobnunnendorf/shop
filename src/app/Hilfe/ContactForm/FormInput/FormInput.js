@@ -41,7 +41,7 @@ export default function FormInput(props) {
             console.log(error.text);
         });
         props.handleToggle();
-        };
+        }
       
     return (
     <>

@@ -58,8 +58,8 @@ export function extract_product_from_form(formDataObject: FormData, model_array:
         price: formDataObject.get('price') as string,
         stock: parseInt(formDataObject.get('stock') as string),
         category: formDataObject.get('category') as string,
-        compatibleModels: model_array,
-        reviews: [],
+        compatibleModels: model_array.join(', '),
+        reviews: '',
         dimensions: {
             width: parseInt(formDataObject.get('width') as string),
             height: parseInt(formDataObject.get('height') as string),
