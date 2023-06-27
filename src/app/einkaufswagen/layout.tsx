@@ -5,8 +5,8 @@ export const metadata = {
 
 export default function CartLayout({ children }: { children: React.ReactNode }) {
     return (
-        <section>
-            <>{children}</>
+        <section className=' grid h-[calc(100vh-6rem)] place-items-center'>
+            {children}
         </section>
-    )
+    );
 }

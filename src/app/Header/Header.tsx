@@ -1,18 +1,18 @@
 import Image from "next/image"
 import Link from "next/link"
-import { FiShoppingCart } from 'react-icons/fi';
 import MobileMenuBurger from './MobileMenuBurger';
 import SideMenu from './SideMenu';
 import UserHeaderLink from './UserHeaderLink';
+import CartIcon from './CartIcon';
 
 export default function Header() {
     const upper_row = (
-        <section className='top-0 w-full h-16 py-2 border-b shadow-sm bg-sandy-beige-4 backdrop-blur-3xl lg:shadow-none'>
+        <section className='top-0 w-full h-16 py-2 border-b shadow-sm bg-sandy-beige-5 backdrop-blur-3xl lg:shadow-none'>
             <div className='grid w-full h-full grid-cols-12'>
                 <div className='h-full col-span-3 pl-4 pr-8 xl:px-12'>
                     <MobileMenuBurger />
                     <nav className='items-center hidden w-full h-full lg:flex'>
-                        <ul className='flex justify-between w-full font-bold'>
+                        <ul className='flex justify-between w-full font-bold text-coastal-blue-10'>
                             <Link href='/'>
                                 <li>Home</li>
                             </Link>
@@ -45,15 +45,7 @@ export default function Header() {
                 </div>
 
                 <nav className='flex justify-around h-full col-span-3 lg:justify-end lg:space-x-8 lg:pr-8'>
-                    <Link
-                        href='/einkaufswagen'
-                        className='flex items-center h-full'
-                    >
-                        <FiShoppingCart
-                            size={32}
-                            className='text-coastal-blue-10'
-                        />
-                    </Link>
+                    <CartIcon />
                     <UserHeaderLink />
                 </nav>
             </div>

@@ -1,6 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useState } from 'react';
+import { useContext } from 'react';
+import { CartContext } from '../../globalState/CartContext';
 import './Cart.css';
 
 interface ProductInfo {
@@ -34,6 +37,8 @@ const cartProp: CartItem[] = [
 ];
 
 export default function Cart() {
+    const { value: cartItems, setValue: setCartItems } =
+        useContext(CartContext);
     const [checkoutModalOpen, setCheckoutModalOpen] = useState(false);
 
     const totalPrice = cartProp.reduce(
@@ -54,10 +59,12 @@ export default function Cart() {
         return accumulator + item.productInfo.price * item.quantity;
     }, 0);
     return (
-        <div className='cart-container'>
+        <div className='max-w-xl rborder'>
             {!checkoutModalOpen && (
                 <>
-                    <h2 className='cart-title'>Dein Einkaufswagen</h2>
+                    <h2 className='text-3xl font-bold text-center'>
+                        Dein Einkaufswagen
+                    </h2>
                     <table className='table'>
                         <thead>
                             <tr>
@@ -69,16 +76,18 @@ export default function Cart() {
                             </tr>
                         </thead>
                         <tbody>
-                            {cartProp.map((item, index) => (
+                            {cartItems.map((item: any, index: number) => (
                                 <tr key={index}>
                                     <td>
-                                        <img
-                                            src={item.productInfo.images}
-                                            alt={item.productInfo.name}
-                                            className='cart-image'
+                                        <Image
+                                            src={item.productInfo.imageURL ? item.productInfo.imageURL : 'https://www.fidlock.com/consumer/thumbnail/e2/13/ce/1675257207/iphone14pro_800x800.jpg'}
+                                            alt={item.productInfo.title}
+                                            className=''
+                                            fill={true}
+                                            objectFit='contain'
                                         />
                                     </td>
-                                    <td>{item.productInfo.name}</td>
+                                    <td>{item.productInfo.title}</td>
                                     <td>
                                         <div className='td-quantity'>
                                             <button className='cart-button'>
@@ -90,9 +99,7 @@ export default function Cart() {
                                             </button>
                                         </div>
                                     </td>
-                                    <td>
-                                        ${item.productInfo.price.toFixed(2)}
-                                    </td>
+                                    <td>{item.productInfo.price}</td>
                                     <td>
                                         $
                                         {(
@@ -105,7 +112,7 @@ export default function Cart() {
                         </tbody>
                     </table>
                     <div className='cart-total'>
-                        <h3 className='total-price'>
+                        <h3 className=''>
                             Gesamtpreis {totalPrice.toFixed(2)} €
                         </h3>
                     </div>
