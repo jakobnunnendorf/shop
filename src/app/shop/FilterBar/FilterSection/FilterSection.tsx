@@ -7,9 +7,9 @@ import Filter from './Filter';
 
 export default function FilterSection(props: any) {
     const [show, setShow] = useState(
-        props.section_name === 'Price'
+        props.section_name === 'Preis'
             ? true
-            : props.section_name === 'Categories'
+            : props.section_name === 'Kategorien'
             ? true
             : false
     );
@@ -41,15 +41,7 @@ export default function FilterSection(props: any) {
             <ul style={show ? styles.show_ul : styles.hide_ul}>
                 {props.filter_array.map((filter: string, index: number) => (
                     <li key={index}>
-                        <Filter
-                            name={filter}
-                            addFilters={props.addFilters}
-                            active={
-                                props.activeFilters.includes(filter)
-                                    ? true
-                                    : false
-                            }
-                        />
+                        <Filter name={filter} addFilters={props.addFilters} />
                     </li>
                 ))}
             </ul>
