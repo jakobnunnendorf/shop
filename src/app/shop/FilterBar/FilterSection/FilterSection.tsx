@@ -6,24 +6,14 @@ import { FiChevronDown } from 'react-icons/fi';
 import Filter from './Filter';
 
 export default function FilterSection(props: any) {
-    const [show, setShow] = useState(
+    const hide =
         props.section_name === 'Preis'
             ? true
             : props.section_name === 'Kategorien'
             ? true
-            : false
-    );
+            : false;
+    const [show, setShow] = useState(hide);
     const styles = {
-        section_frame: {
-            marginTop: '5vh',
-            width: '50%',
-            textAlign: 'left' as const,
-        },
-        header: {
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-        },
         hide_ul: {
             display: 'none',
         },
@@ -32,8 +22,11 @@ export default function FilterSection(props: any) {
         },
     };
     return (
-        <section style={styles.section_frame}>
-            <div style={styles.header} onClick={() => setShow(!show)}>
+        <section className=' w-fit'>
+            <div
+                className='flex text-xl font-bold text-coastal-blue-10'
+                onClick={() => setShow(!show)}
+            >
                 <h5>{props.section_name}</h5>
                 <FiChevronDown />
             </div>

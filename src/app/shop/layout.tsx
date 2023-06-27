@@ -13,7 +13,9 @@ export default function ShopLayout({
     return (
         <section className='flex'>
             <FilterBar />
-            {children}
+            <section className=' flex w-[calc(100vw-12rem)] justify-center'>
+                {children}
+            </section>
         </section>
     );
 }

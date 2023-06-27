@@ -59,7 +59,7 @@ export default function Cart() {
         return accumulator + item.productInfo.price * item.quantity;
     }, 0);
     return (
-        <div className='max-w-xl rborder'>
+        <div className='max-w-xl '>
             {!checkoutModalOpen && (
                 <>
                     <h2 className='text-3xl font-bold text-center'>

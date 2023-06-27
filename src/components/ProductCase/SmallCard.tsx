@@ -21,8 +21,8 @@ export default function SmallCard({ product }: { product: productsFetchResponse 
     // const compatibleModels_array = product.compatibleModels?.split(',');
     const compatibleModels_array = 'iPhone 8'.split(',');
     const wrapper = (
-        <article className='h-full overflow-hidden '>
-            <figure className='relative w-full overflow-hidden h-1/2 rounded-t-3xl'>
+        <article className='flex h-full flex-col overflow-hidden '>
+            <figure className='relative w-full flex-grow overflow-hidden rounded-t-3xl'>
                 <Image
                     src={product.imageURL}
                     fill={true}
@@ -30,16 +30,17 @@ export default function SmallCard({ product }: { product: productsFetchResponse 
                     objectFit='contain'
                 />
             </figure>
-            <div className='flex flex-col justify-between w-full px-2 h-1/2'>
-                <h2 className='font-bold text-center cursor-pointer line-clamp-2 h-fit lg:m-2'>
+            <div className='flex h-1/2 w-full flex-col justify-between px-2'>
+                <h2 className='line-clamp-2 h-fit cursor-pointer text-center font-bold text-gray-700 lg:m-2'>
                     {product.title}
                 </h2>
-                <div className='flex flex-wrap items-start justify-center flex-grow space-x-1 '>
+
+                <div className='flex flex-grow flex-wrap items-start justify-center space-x-1 '>
                     {compatibleModels_array.map((model, index) => {
                         return (
                             <div
                                 key={index}
-                                className='px-2 text-xs font-bold text-gray-500 border rounded-full h-fit w-fit'
+                                className='h-fit w-fit rounded-full border px-2 text-xs font-bold text-gray-500'
                             >
                                 {model}
                             </div>
@@ -48,13 +49,15 @@ export default function SmallCard({ product }: { product: productsFetchResponse 
                 </div>
                 {/* <p className='text-center'>{product.description}</p> */}
                 <div className='flex items-start justify-around '>
-                    <p className='py-2 text-center'>{product.price}</p>
+                    <p className='py-2 text-center font-bold text-gray-500'>
+                        {product.price}
+                    </p>
                     <div className='flex flex-col items-end '>
-                        <span className='flex items-center space-x-1 '>
+                        <span className='flex items-center space-x-1 text-gray-500'>
                             <span className='text-sm'>Warenkorb</span>
                             <AddToCartButton product={product} />
                         </span>
-                        <p className='hidden my-2 text-xs text-end text-slate-500 lg:block'>
+                        <p className='my-2 hidden text-end text-xs text-slate-500 lg:block'>
                             {product.stock} übrig
                         </p>
                     </div>

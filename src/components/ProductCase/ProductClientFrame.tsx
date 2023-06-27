@@ -23,18 +23,24 @@ export default function ProductClientFrame({
 
     const wrapper_with_content = (
         <article
-            ref={ProductCardRef}
-            className={`${
+            className={
                 active
                     ? 'fixed left-1/2 top-1/2 z-50 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-3xl  border bg-white shadow-xl'
-                    : 'h-56 cursor-pointer rounded-3xl border shadow-xl lg:h-72 lg:max-w-lg xl:h-96 xl:max-w-xs'
-            }`}
-            onClick={() => setActive(!active)}
+                    : 'relative h-96 w-64 rounded-3xl border shadow-xl'
+            }
         >
+            <div
+                ref={ProductCardRef}
+                onClick={() => setActive(true)}
+                className={
+                    active
+                        ? ''
+                        : 'rborder absolute top-0 z-20 h-2/3 w-full cursor-pointer'
+                }
+            ></div>
             {active ? ExtendedCard : SmallCard}
         </article>
     );
 
     return wrapper_with_content;
 }
-// 'h-56 w-36 cursor-pointer rounded-3xl border shadow-xl lg:h-72 lg:w-48 xl:h-96 xl:w-64'

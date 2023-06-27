@@ -22,7 +22,7 @@ export default async function ShopPage() {
     const supabase = createServerComponentClient({ cookies });
     const { data: productData } = await supabase.from('products').select('*');
     return (
-        <section className='grid grid-cols-4 gap-4 p-4'>
+        <section className='grid grid-cols-4 gap-4 p-4  w-fit'>
             {productData?.map((product, index) => {
                 const extended_card_component_with_props = (
                     <ExtendedCard product={product as productsFetchResponse} />
