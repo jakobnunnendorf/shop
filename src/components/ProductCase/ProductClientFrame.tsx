@@ -35,7 +35,7 @@ export default function ProductClientFrame({
                 className={
                     active
                         ? ''
-                        : 'rborder absolute top-0 z-20 h-2/3 w-full cursor-pointer'
+                        : ' absolute top-0 z-20 h-2/3 w-full cursor-pointer'
                 }
             ></div>
             {active ? ExtendedCard : SmallCard}
