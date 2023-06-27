@@ -7,8 +7,8 @@ interface iProduct {
     price: string;
     stock: number;
     category: string;
-    compatibleModels: Array<string>;
-    reviews: null | Array<iReview>;
+    compatibleModels: string | null;
+    reviews: null | string;
     dimensions: {
         width: null | number;
         height: null | number;
