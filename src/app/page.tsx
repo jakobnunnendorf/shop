@@ -67,7 +67,7 @@ export default async function HomePage() {
         await fetchProductsFromCategory(30, 'phone');
 
     return (
-        <main className='space-y-32'>
+        <main className=''>
             <Home />
 
             <ProductCarousel

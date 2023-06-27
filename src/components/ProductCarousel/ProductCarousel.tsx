@@ -32,8 +32,8 @@ export function ProductCarousel({
     ];
 
     return (
-        <div className='flex flex-col items-center '>
-            <h2 className='m-8 text-4xl font-bold text-teal-900 hover:underline'>
+        <div className='flex flex-col items-center py-16 '>
+            <h2 className='gradient-text m-8 text-5xl font-bold text-coastal-blue-10 hover:underline'>
                 {heading}
             </h2>
             <div className='flex w-96 snap-x space-x-4 overflow-x-auto py-16 scrollbar-hide lg:w-2/3'>
@@ -47,7 +47,7 @@ export function ProductCarousel({
                         <SmallCard product={product as productsFetchResponse} />
                     );
                     return (
-                        <div className='snap-center' key={index}>
+                        <div className=' h-96 w-96 snap-center' key={index}>
                             <ProductClientFrame
                                 ExtendedCard={
                                     extended_card_component_with_props

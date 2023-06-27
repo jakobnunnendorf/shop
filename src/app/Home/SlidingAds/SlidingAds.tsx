@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
+import './SlidingAds.css';
 
 const SlidingAds = ({ images }: { images: string[] }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -19,7 +20,7 @@ const SlidingAds = ({ images }: { images: string[] }) => {
     const imageSlider = {
         justifyContent: 'center',
         width: '100%',
-        height: '450px',
+        height: '500px',
         position: 'relative',
         marginBottom: '15px',
     };
@@ -64,41 +65,48 @@ const SlidingAds = ({ images }: { images: string[] }) => {
 
     return (
         <div style={imageSlider as React.CSSProperties}>
-            <div
-                style={leftArrow as React.CSSProperties}
-                onClick={handlePreviousClick}
-            >
-                {/* Prev */}
-            </div>
-            <div
-                style={rightArrow as React.CSSProperties}
-                onClick={handleNextClick}
-            >
-                {/* Next */}
-            </div>
-            <Image
-                src={images[currentImageIndex]}
-                alt='sliding-ad'
-                style={slideStyles as React.CSSProperties}
-                fill={true}
-            />
-            <h1
-                className='absolute top-10 flex w-full justify-center text-center text-3xl font-extrabold text-coastal-blue-10'
-                style={styles.giant_heading}
-            >
-                {' '}
-                <span className='flex flex-col items-center space-y-8 rounded-3xl bg-sandy-beige-3 p-8 backdrop-blur-lg'>
-                    {' '}
-                    <span>Willkommen bei</span>{' '}
-                    <span className='flex'>Phone 2 Door</span>{' '}
+            <div>
+                <div>
+                    <div
+                        style={leftArrow as React.CSSProperties}
+                        onClick={handlePreviousClick}
+                    >
+                        {/* Prev */}
+                    </div>
+                    <div
+                        style={rightArrow as React.CSSProperties}
+                        onClick={handleNextClick}
+                    >
+                        {/* Next */}
+                    </div>
                     <Image
-                        src={'/p2d_logo3.png'}
-                        width={300}
-                        height={300}
-                        alt='logo'
+                        src={images[currentImageIndex]}
+                        alt='sliding-ad'
+                        style={slideStyles as React.CSSProperties}
+                        fill={true}
                     />
-                </span>
-            </h1>
+                </div>
+                <div className=''>
+                    <h1
+                        className='absolute flex justify-center w-1/2 h-full text-5xl font-extrabold text-center y-8 bg-sandy-beige-4 text-coastal-blue-10 backdrop-blur-3xl'
+                        style={styles.giant_heading}
+                    >
+                        {' '}
+                        <span className='flex flex-col items-center p-8 space-y-8 '>
+                            {' '}
+                            <span className=''>Willkommen bei</span>{' '}
+                            {/* <span className='flex'>Phone 2 Door</span>{' '} */}
+                            <Image
+                                src={'/p2d_logo3.png'}
+                                width={400}
+                                height={400}
+                                alt='Phone 2 Door Logo'
+                            />
+                        </span>
+                    </h1>
+                </div>
+            </div>
+            <div className='absolute bottom-0 w-full h-2 sliding-gradient'></div>
         </div>
     );
 };
