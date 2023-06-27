@@ -99,6 +99,16 @@ module.exports = {
                         1: 'hsla(186, 89%, 40%,0.1)',
                     },
                 },
+                multicolore: {
+                    pink: '#F56991',
+                    orange: '#F7971E',
+                    yellow: '#FFC107',
+                    green: '#4CAF50',
+                    lightblue: '#03A9F4',
+                    blue: '#3F51B5',
+                    purple: '#9C27B0',
+                    black: '#212121',
+                },
             },
             fontFamily: {
                 body: [
