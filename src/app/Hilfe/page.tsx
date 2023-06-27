@@ -13,7 +13,6 @@ import ContactUs from './ContactUs/ContactUs';
 //     faPhone,
 // } from '@fortawesome/free-solid-svg-icons';
 import { FiMail, FiPhone, FiSmartphone } from 'react-icons/fi';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContactForm from './ContactForm/ContactForm';
 
 import './Help.css';
