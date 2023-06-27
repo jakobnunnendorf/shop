@@ -2,16 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import SlidingAds from './SlidingAds/SlidingAds';
-import SampleProductsContainer from './SampleProductsContainer/SampleProductsContainer';
 import './Home.css';
 
-export default function Home(props: any) {
+export default function Home() {
     const [fadeIn, setFadeIn] = useState(true);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setFadeIn(!fadeIn);
-        }, 2000); // set the interval duration in milliseconds
+        }, 6000); // set the interval duration in milliseconds
         return () => clearInterval(interval);
     }, [fadeIn]);
 
@@ -27,19 +26,6 @@ export default function Home(props: any) {
             <div className='imageSlides'>
                 <SlidingAds images={imageLinks} />
             </div>
-            {/* <div
-                className='some'
-                style={{ animation: `${fadeIn ? 'fadeIn' : ''} 3s ease-out` }}
-            >
-                {' '}
-                Best Sellers{' '}
-            </div>
-            <div>
-                <div className='sampleContainer'>
-                    <SampleProductsContainer
-                    />
-                </div>
-            </div> */}
         </div>
     );
 }

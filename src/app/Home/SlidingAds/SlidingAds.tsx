@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import React, { useCallback, useEffect, useState } from 'react';
 
-const SlidingAds = ({ images }: { images: any }) => {
+const SlidingAds = ({ images }: { images: string[] }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     const handlePreviousClick = () => {
@@ -9,11 +10,11 @@ const SlidingAds = ({ images }: { images: any }) => {
         );
     };
 
-    const handleNextClick = () => {
+    const handleNextClick = useCallback(() => {
         setCurrentImageIndex(
             currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1
         );
-    };
+    }, [currentImageIndex, images.length]);
 
     const imageSlider = {
         justifyContent: 'center',
@@ -53,7 +54,13 @@ const SlidingAds = ({ images }: { images: any }) => {
             handleNextClick();
         }, 6000);
         return () => clearInterval(interval);
-    }, [currentImageIndex]);
+    }, [currentImageIndex, handleNextClick]);
+
+    const styles = {
+        giant_heading: {
+            fontSize: 'clamp(2rem, 8vw, 4rem)',
+        },
+    };
 
     return (
         <div style={imageSlider as React.CSSProperties}>
@@ -69,11 +76,29 @@ const SlidingAds = ({ images }: { images: any }) => {
             >
                 {/* Next */}
             </div>
-            <img
+            <Image
                 src={images[currentImageIndex]}
                 alt='sliding-ad'
                 style={slideStyles as React.CSSProperties}
+                fill={true}
             />
+            <h1
+                className='absolute top-10 flex w-full justify-center text-center text-3xl font-extrabold text-coastal-blue-10'
+                style={styles.giant_heading}
+            >
+                {' '}
+                <span className='flex flex-col items-center space-y-8 rounded-3xl bg-sandy-beige-3 p-8 backdrop-blur-lg'>
+                    {' '}
+                    <span>Willkommen bei</span>{' '}
+                    <span className='flex'>Phone 2 Door</span>{' '}
+                    <Image
+                        src={'/p2d_logo3.png'}
+                        width={300}
+                        height={300}
+                        alt='logo'
+                    />
+                </span>
+            </h1>
         </div>
     );
 };
