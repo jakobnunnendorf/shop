@@ -3,20 +3,6 @@ import React from 'react'; // TODO add colours
 
 import { FiShoppingCart, FiStar } from 'react-icons/fi';
 
-interface productsFetchResponse {
-    id: string;
-    created_at: Date;
-    title: string;
-    imageURL: string;
-    description: string;
-    price: string;
-    stock: number;
-    category: string;
-    compatibleModels: string | null;
-    reviews: string | null;
-    dimensions: null;
-}
-
 export default function ExtendedCard({
     product,
 }: {
@@ -28,7 +14,7 @@ export default function ExtendedCard({
             <div className='relative col-span-2 flex h-full items-end justify-center bg-gray-100 p-6'>
                 {product.title ? (
                     <Image
-                        src={product.imageURL}
+                        src={product.imageURL[0]}
                         fill={true}
                         objectFit='cover'
                         alt={product.title}

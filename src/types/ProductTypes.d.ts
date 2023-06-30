@@ -15,3 +15,17 @@ interface iProduct {
         depth: null | number;
     };
 }
+
+interface productsFetchResponse {
+    id: string;
+    created_at: Date;
+    title: string;
+    imageURL: string[];
+    description: string;
+    price: string;
+    stock: number;
+    category: string;
+    compatibleModels: string | null;
+    reviews: string | null;
+    dimensions: null;
+}

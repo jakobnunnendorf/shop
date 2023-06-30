@@ -3,53 +3,44 @@ import React from 'react';
 import { FiShoppingCart } from 'react-icons/fi';
 import AddToCartButton from './AddToCartButton';
 
-interface productsFetchResponse {
-    id: string;
-    created_at: Date;
-    title: string;
-    imageURL: string;
-    description: string;
-    price: string;
-    stock: number;
-    category: string;
-    compatibleModels: string | null;
-    reviews: string | null;
-    dimensions: null;
-}
-
-export default function SmallCard({ product }: { product: productsFetchResponse }) {
-    // const compatibleModels_array = product.compatibleModels?.split(',');
-    const compatibleModels_array = 'iPhone 8'.split(',');
+export default function SmallCard({
+    product,
+}: {
+    product: productsFetchResponse;
+}) {
+    const compatibleModels_array: string[] | null = product.compatibleModels as string[] | null;
     const wrapper = (
-        <article className='flex h-full flex-col overflow-hidden '>
-            <figure className='relative w-full flex-grow overflow-hidden rounded-t-3xl'>
+        <article className='flex flex-col h-full overflow-hidden '>
+            <figure className='relative flex-grow w-full overflow-hidden rounded-t-3xl'>
                 <Image
-                    src={product.imageURL}
+                    src={product.imageURL ? product.imageURL[0] : ''}
                     fill={true}
                     alt={product.title}
                     objectFit='contain'
                 />
             </figure>
-            <div className='flex h-1/2 w-full flex-col justify-between px-2'>
-                <h2 className='line-clamp-2 h-fit cursor-pointer text-center font-bold text-gray-700 lg:m-2'>
+            <div className='flex flex-col justify-between w-full px-2 h-1/2'>
+                <h2 className='font-bold text-center text-gray-700 cursor-pointer line-clamp-2 h-fit lg:m-2'>
                     {product.title}
                 </h2>
 
-                <div className='flex flex-grow flex-wrap items-start justify-center space-x-1 '>
-                    {compatibleModels_array.map((model, index) => {
-                        return (
-                            <div
-                                key={index}
-                                className='h-fit w-fit rounded-full border px-2 text-xs font-bold text-gray-500'
-                            >
-                                {model}
-                            </div>
-                        );
-                    })}
+                <div className='flex flex-wrap items-start justify-center flex-grow space-x-1 '>
+                    {compatibleModels_array?.map(
+                        (model: string, index: number) => {
+                            return (
+                                <div
+                                    key={index}
+                                    className='px-2 text-xs font-bold text-gray-500 border rounded-full h-fit w-fit'
+                                >
+                                    {model}
+                                </div>
+                            );
+                        }
+                    )}
                 </div>
                 {/* <p className='text-center'>{product.description}</p> */}
                 <div className='flex items-start justify-around '>
-                    <p className='py-2 text-center font-bold text-gray-500'>
+                    <p className='py-2 font-bold text-center text-gray-500'>
                         {product.price}
                     </p>
                     <div className='flex flex-col items-end '>
@@ -57,7 +48,7 @@ export default function SmallCard({ product }: { product: productsFetchResponse 
                             <span className='text-sm'>Warenkorb</span>
                             <AddToCartButton product={product} />
                         </span>
-                        <p className='my-2 hidden text-end text-xs text-slate-500 lg:block'>
+                        <p className='hidden my-2 text-xs text-end text-slate-500 lg:block'>
                             {product.stock} übrig
                         </p>
                     </div>
