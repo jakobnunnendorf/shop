@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { v4 as uuidv4 } from "uuid"
+import { CartContext } from '@globalState/CartContext'
 import supabase from "@utils/supabase"
 
 export async function uploadFile_to_supabase_storage(
@@ -67,4 +69,36 @@ export function extract_product_from_form(formDataObject: FormData, model_array:
         },
     };
     return product
+}
+
+export function convert_price_string_to_float(price: string) {
+    const price_string = price.replace(' €', '').replace(',', '.').trim();
+    const price_float = parseFloat(price_string);
+    return price_float;
+}
+
+
+export function AddToCart(product: any, cartItems: any, setCartItems: any) {
+    const already_in_cart =
+        cartItems.find((item: any) => {
+            return item.product.id === product.id;
+        }) !== undefined;
+    // const replace_array = cartItems.map();
+    if (already_in_cart) {
+        setCartItems((prev_cartItems: any) => {
+            return prev_cartItems.map((cartItem: any) => {
+                if (cartItem.product.id === product.id) {
+                    return {
+                        product: { ...cartItem.product },
+                        quantity: cartItem.quantity + 1,
+                    };
+                } else {
+                    return cartItem;
+                }
+            });
+        });
+    } else {
+        setCartItems([...cartItems, { product, quantity: 1 }]);
+    }
+    console.log(cartItems);
 }
