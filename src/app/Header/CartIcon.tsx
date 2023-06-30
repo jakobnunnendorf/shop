@@ -16,10 +16,7 @@ export default function CartIcon() {
         return totalQuantity;
     }
     return (
-        <Link
-            href='/einkaufswagen'
-            className='relative flex h-full items-center '
-        >
+        <Link href='/warenkorb' className='relative flex h-full items-center '>
             <FiShoppingCart size={32} className='text-coastal-blue-10' />
             <p className='absolute left-full top-0 font-bold text-coastal-blue-8'>
                 {getTotalQuantityFromCart(cartItems)}

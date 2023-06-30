@@ -2,7 +2,7 @@
 
 import { createContext, useState } from 'react';
 
-export const CartContext = createContext<any>(null);
+export const CartContext = createContext<any>([]);
 
 export function CartContextProvider({
     children,
