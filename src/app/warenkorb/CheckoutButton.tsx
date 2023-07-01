@@ -12,7 +12,7 @@ export default function CheckoutButton() {
         let subtotal = 0;
         cartItems.forEach((cartItem: any) => {
             subtotal +=
-                parseFloat(cartItem.product.price.replace(',', '.')) *
+                cartItem.product.price *
                 cartItem.quantity;
         });
         return subtotal;
@@ -22,9 +22,28 @@ export default function CheckoutButton() {
 
     const items_in_cart = cartItems.length > 0;
 
+
+    const order = async () => {
+        const data: any = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                cartItems,
+            }),
+        });
+
+        // if (!data.ok) return alert('Something went wrong');
+
+        const { url } = await data.json();
+        window.location.href = url;
+    };
+        
+
     return (
-        <div className='mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3'>
-            <div className='mb-2 flex justify-between'>
+        <div className='h-full p-6 mt-6 bg-white border rounded-lg shadow-md md:mt-0 md:w-1/3'>
+            <div className='flex justify-between mb-2'>
                 <p className='text-gray-700'>Produktpreis</p>
                 <p className='text-gray-700'>{subtotal}€</p>
             </div>
@@ -43,6 +62,7 @@ export default function CheckoutButton() {
                 </div>
             </div>
             <button
+                onClick={order}
                 className={`mt-6 w-full rounded-md ${
                     items_in_cart ? 'bg-blue-500' : 'bg-gray-400'
                 } py-1.5 font-medium text-blue-50 hover:bg-blue-600`}

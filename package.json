@@ -26,10 +26,13 @@
     "dependencies": {
         "@emailjs/browser": "^3.11.0",
         "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@stripe/react-stripe-js": "^2.1.1",
+        "@stripe/stripe-js": "^1.54.1",
         "@supabase/auth-helpers-nextjs": "^0.7.2",
         "@supabase/supabase-js": "^2.23.0",
         "@t3-oss/env-nextjs": "^0.3.0",
         "@vercel/otel": "^0.3.0",
+        "axios": "^1.4.0",
         "class-variance-authority": "^0.6.0",
         "emailjs": "^4.0.2",
         "lodash": "^4.17.21",
@@ -37,6 +40,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-icons": "^4.8.0",
+        "stripe": "^12.11.0",
         "tailwind-merge": "^1.10.0",
         "tailwind-scrollbar-hide": "^1.1.7",
         "uuid": "^9.0.0"
