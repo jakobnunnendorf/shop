@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { CartContext } from '../../globalState/CartContext';
+import Link from 'next/link';
 
 export default function CheckoutButton() {
     const { value: cartItems, setValue: setCartItems } =
@@ -61,14 +62,16 @@ export default function CheckoutButton() {
                     <p className='text-sm text-gray-700'>Incl. 19% Mwst.</p>
                 </div>
             </div>
-            <button
-                onClick={order}
-                className={`mt-6 w-full rounded-md ${
-                    items_in_cart ? 'bg-blue-500' : 'bg-gray-400'
-                } py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
-            >
-                Jetzt kaufen
-            </button>
+            <Link href='/warenkorb/checkout'>
+                <button
+                    // onClick={order}
+                    className={`mt-6 w-full rounded-md ${
+                        items_in_cart ? 'bg-blue-500' : 'bg-gray-400'
+                    } py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
+                >
+                    Jetzt kaufen
+                </button>
+            </Link>
         </div>
     );
 }
