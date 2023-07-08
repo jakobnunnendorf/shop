@@ -1,46 +1,19 @@
+import Link from 'next/link';
 import React from 'react';
 import { useContext } from 'react';
-import { CartContext } from '../../globalState/CartContext';
-import Link from 'next/link';
+import { CartContext, CartContextType } from '../../globalState/CartContext';
 
 export default function CheckoutButton() {
-    const { value: cartItems, setValue: setCartItems } =
-        useContext(CartContext);
+    const { getSubTotal, cart } =
+        useContext(CartContext) as CartContextType;
+
 
     const shippingCosts = 4.99;
 
-    function getSubtotal() {
-        let subtotal = 0;
-        cartItems.forEach((cartItem: any) => {
-            subtotal +=
-                cartItem.product.price *
-                cartItem.quantity;
-        });
-        return subtotal;
-    }
-    const subtotal = getSubtotal().toFixed(2);
-    const total = shippingCosts + getSubtotal();
+    const subtotal = getSubTotal().toFixed(2);
+    const total = shippingCosts + getSubTotal();
 
-    const items_in_cart = cartItems.length > 0;
-
-
-    const order = async () => {
-        const data: any = await fetch('/api/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                cartItems,
-            }),
-        });
-
-        // if (!data.ok) return alert('Something went wrong');
-
-        const { url } = await data.json();
-        window.location.href = url;
-    };
-        
+    const items_in_cart = cart.length > 0;
 
     return (
         <div className='h-full p-6 mt-6 bg-white border rounded-lg shadow-md md:mt-0 md:w-1/3'>
@@ -64,7 +37,6 @@ export default function CheckoutButton() {
             </div>
             <Link href='/warenkorb/checkout'>
                 <button
-                    // onClick={order}
                     className={`mt-6 w-full rounded-md ${
                         items_in_cart ? 'bg-blue-500' : 'bg-gray-400'
                     } py-1.5 font-medium text-blue-50 hover:bg-blue-600`}

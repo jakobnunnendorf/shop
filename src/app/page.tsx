@@ -38,33 +38,59 @@ export default async function HomePage() {
                 .select('*')
                 .eq('category', category)
                 .limit(amount);
-            return data as productsFetchResponse[];
+            return data as product[];
         } else {
             const { data } = await supabase
                 .from('products')
                 .select('*')
                 .limit(amount);
-            return data as productsFetchResponse[];
+            return data as product[];
         }
     };
 
-    const bestSellerData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30);
-
-    const phoneCasesData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30, 'phone case');
-    const screenProtectorData = await fetchProductsFromCategory(
+    const bestSellerData: Promise<product[]> = fetchProductsFromCategory(30);
+    const phoneCasesData: Promise<product[]> = fetchProductsFromCategory(
+        30,
+        'phone case'
+    );
+    const screenProtectorData: Promise<product[]> = fetchProductsFromCategory(
         30,
         'screen protector'
     );
-    const chargingCableData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30, 'charging cable');
-    const chargingAdapterData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30, 'charging adapter');
-    const tabletCaseData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30, 'tablet case');
-    const phoneHolderData: productsFetchResponse[] =
-        await fetchProductsFromCategory(30, 'phone');
+    const chargingCableData: Promise<product[]> = fetchProductsFromCategory(
+        30,
+        'charging cable'
+    );
+    const chargingAdapterData: Promise<product[]> = fetchProductsFromCategory(
+        30,
+        'charging adapter'
+    );
+    const tabletCaseData: Promise<product[]> = fetchProductsFromCategory(
+        30,
+        'tablet case'
+    );
+    const phoneHolderData: Promise<product[]> = fetchProductsFromCategory(
+        30,
+        'phone holder'
+    );
+
+    const [
+        bestSeller,
+        phoneCases,
+        screenProtector,
+        chargingCable,
+        chargingAdapter,
+        tabletCase,
+        phoneHolder,
+    ] = await Promise.all([
+        bestSellerData,
+        phoneCasesData,
+        screenProtectorData,
+        chargingCableData,
+        chargingAdapterData,
+        tabletCaseData,
+        phoneHolderData,
+    ]);
 
     return (
         <main className=''>
@@ -72,32 +98,26 @@ export default async function HomePage() {
 
             <ProductCarousel
                 heading='Unsere Bestseller'
-                productData={bestSellerData}
+                productData={bestSeller}
             />
             <CategoryBlocks />
-            <ProductCarousel
-                heading='Handyhüllen'
-                productData={phoneCasesData}
-            />
+            <ProductCarousel heading='Handyhüllen' productData={phoneCases} />
             <ProductCarousel
                 heading='Panzergläser'
-                productData={screenProtectorData}
+                productData={screenProtector}
             />
-            <ProductCarousel
-                heading='Ladekabel'
-                productData={chargingCableData}
-            />
+            <ProductCarousel heading='Ladekabel' productData={chargingCable} />
             <ProductCarousel
                 heading='Ladestecker'
-                productData={chargingAdapterData}
+                productData={chargingAdapter}
             />
             <ProductCarousel
                 heading='Tablet-Taschen'
-                productData={tabletCaseData}
+                productData={tabletCase}
             />
             <ProductCarousel
                 heading='Handy-Halterungen'
-                productData={phoneHolderData}
+                productData={phoneHolder}
             />
         </main>
     );

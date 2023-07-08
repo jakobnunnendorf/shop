@@ -4,19 +4,25 @@ import { NextResponse } from 'next/server';
 import { stripe } from '@lib/stripe';
 
 
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
 export async function POST(req: Request) {
     const supabase = createServerComponentClient({ cookies });
 
     const sig = req.headers.get('stripe-signature') || '';
-    const body_raw: any = await req.text();
 
-    const body_info: any = await req.json();
+    const body_info_text: string = await req.text();
+    const body_info: any = JSON.parse(body_info_text);
 
     let event;
 
     try {
         event = stripe.webhooks.constructEvent(
-            body_raw,
+            body_info_text,
             sig,
             process.env.STRIPE_WEBHOOK_SECRET || ''
         );
@@ -28,8 +34,14 @@ export async function POST(req: Request) {
                     customer_details: body_info.data.object.customer_details,
                 })
                 .eq('order_id', body_info.data.object.metadata.order_id);
-            if(body_info.data.object.metadata.checkout_mode === 'signup_and_checkout') {
-                await supabase.from('profiles').update({ email: [body_info.data.object.metadata.email] }).eq('profile_id', body_info.data.object.metadata.user_id);
+            if (
+                body_info.data.object.metadata.checkout_mode ===
+                'signup_and_checkout'
+            ) {
+                await supabase
+                    .from('profiles')
+                    .update({ email: [body_info.data.object.metadata.email] })
+                    .eq('profile_id', body_info.data.object.metadata.user_id);
             }
             // TODO: send email to customer
         }

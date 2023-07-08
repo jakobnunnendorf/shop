@@ -1,31 +1,28 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-
-import { FiUser } from 'react-icons/fi';
 import { useContext } from 'react';
-import { CartContext } from '@globalState/CartContext';
 import { useState } from 'react';
+import { FiUser } from 'react-icons/fi';
+import { CartContext, CartContextType } from '@globalState/CartContext';
 
 export default function CheckoutPage() {
-    const { value: cartItems } = useContext(CartContext);
+    const { cart } = useContext(CartContext) as CartContextType;
     const [first_password, set_first_password] = useState('');
     const [second_password, set_second_password] = useState('');
     const [error_message, set_error_message] = useState('');
 
-    const handle_first_password_change = (e: any) => {
+    const handle_first_password_change = (e: React.ChangeEvent<HTMLInputElement>): void => {
         set_first_password(e.target.value);
     };
 
-    const handle_second_password_change = (e: any) => {
+    const handle_second_password_change = (e: React.ChangeEvent<HTMLInputElement>): void => {
         set_second_password(e.target.value);
     };
 
     const handle_checkout_and_signup = async (formData: FormData) => {
-        const signup_email = formData.get('email');
-        const signup_password = formData.get('password');
-        const signup_password_repeat = formData.get('password_repeat');
+        const signup_email = formData.get('email') as email | null;
+        const signup_password = formData.get('password') as string;
+        const signup_password_repeat = formData.get('password_repeat') as string;
 
         if (signup_password === signup_password_repeat) {
             set_error_message('');
@@ -35,7 +32,7 @@ export default function CheckoutPage() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    cartItems: [...cartItems],
+                    cartItems: [...cart],
                     metadata: {
                         email: signup_email,
                         password: signup_password,
@@ -60,7 +57,7 @@ export default function CheckoutPage() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                cartItems: [...cartItems],
+                cartItems: [...cart],
                 metadata: {
                     email: login_email,
                     password: login_password,
@@ -79,7 +76,7 @@ export default function CheckoutPage() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                cartItems: [...cartItems],
+                cartItems: [...cart],
                 metadata: {
                     checkout_mode: 'guest_checkout',
                 },
@@ -91,15 +88,15 @@ export default function CheckoutPage() {
 
     return (
         <section className=' flex h-[calc(100vh-6rem)] w-full'>
-            <aside className='flex h-full w-1/2 flex-col items-center justify-center border-r'>
-                <div className='flex h-2/3 flex-col space-y-8'>
+            <aside className='flex flex-col items-center justify-center w-1/2 h-full border-r'>
+                <div className='flex flex-col space-y-8 h-2/3'>
                     <h2 className='text-3xl font-bold text-coastal-blue-10'>
                         Ich bin zum ersten Mal hier
                     </h2>
                     <ul className='flex flex-col space-y-16'>
                         <li className='flex flex-col items-start space-y-4 '>
                             <div className='flex items-center space-x-4'>
-                                <div className='flex aspect-square h-8 w-8 items-center justify-center rounded-full border border-coastal-blue-10 p-2 font-bold text-coastal-blue-10'>
+                                <div className='flex items-center justify-center w-8 h-8 p-2 font-bold border rounded-full aspect-square border-coastal-blue-10 text-coastal-blue-10'>
                                     1
                                 </div>{' '}
                                 <h3 className=''>
@@ -113,14 +110,14 @@ export default function CheckoutPage() {
                                 <input
                                     type='email'
                                     placeholder='E-Mail-Adresse'
-                                    className='col-span-2 rounded-t-md border px-2 py-1 outline-none'
+                                    className='col-span-2 px-2 py-1 border outline-none rounded-t-md'
                                     name='email'
                                 />
                                 <input
                                     onChange={handle_first_password_change}
                                     type='password'
                                     placeholder='Passwort'
-                                    className='rounded-bl-md border border-t-0 px-2 py-1 outline-none'
+                                    className='px-2 py-1 border border-t-0 outline-none rounded-bl-md'
                                     name='password'
                                 />
                                 <input
@@ -136,13 +133,13 @@ export default function CheckoutPage() {
                                     }`}
                                     name='password_repeat'
                                 />
-                                <div className='col-span-2 flex flex-col items-center justify-center'>
+                                <div className='flex flex-col items-center justify-center col-span-2'>
                                     <p className='text-xs text-red-500'>
                                         {error_message}
                                     </p>
                                     <button
                                         type='submit'
-                                        className='mt-4 flex w-fit items-center justify-center space-x-2 rounded-lg bg-coastal-blue-10 px-4 py-2 font-bold text-white'
+                                        className='flex items-center justify-center px-4 py-2 mt-4 space-x-2 font-bold text-white rounded-lg w-fit bg-coastal-blue-10'
                                     >
                                         <FiUser className='text-white' />
                                         <span>Checkout</span>
@@ -153,15 +150,15 @@ export default function CheckoutPage() {
                         <li className='flex flex-col items-start justify-center space-x-4'>
                             {' '}
                             <div className='flex items-center space-x-4'>
-                                <div className='flex aspect-square h-8 w-8 items-center justify-center rounded-full border border-coastal-blue-10 p-2 font-bold text-coastal-blue-10'>
+                                <div className='flex items-center justify-center w-8 h-8 p-2 font-bold border rounded-full aspect-square border-coastal-blue-10 text-coastal-blue-10'>
                                     2
                                 </div>{' '}
                                 <h3>oder als Gast fortfahren</h3>
                             </div>
-                            <div className='col-span-2 flex w-full justify-center'>
+                            <div className='flex justify-center w-full col-span-2'>
                                 <button
                                     onClick={handle_guest_checkout}
-                                    className='relative mt-4 w-fit rounded-lg border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10'
+                                    className='relative px-4 py-2 mt-4 font-bold border rounded-lg w-fit border-coastal-blue-10 text-coastal-blue-10'
                                 >
                                     Gast Checkout
                                 </button>
@@ -170,19 +167,19 @@ export default function CheckoutPage() {
                     </ul>
                 </div>
             </aside>
-            <aside className='flex h-full w-1/2 items-center justify-center '>
-                <div className='h-2/3 space-y-8'>
+            <aside className='flex items-center justify-center w-1/2 h-full '>
+                <div className='space-y-8 h-2/3'>
                     <h2 className='text-3xl font-bold text-coastal-blue-10'>
                         Ich war schonmal hier
                     </h2>
                     <form
                         action={handle_login_and_checkout}
-                        className='flex flex-col items-center space-y-4 rounded-lg border p-4'
+                        className='flex flex-col items-center p-4 space-y-4 border rounded-lg'
                     >
-                        <div className='flex w-full flex-col'>
+                        <div className='flex flex-col w-full'>
                             <input
                                 type='email'
-                                className='rounded-t border px-2'
+                                className='px-2 border rounded-t'
                                 placeholder='Email'
                                 name='email'
                             />
@@ -190,13 +187,13 @@ export default function CheckoutPage() {
                                 type='password'
                                 name='password'
                                 id=''
-                                className='rounded-b border border-t-0 px-2'
+                                className='px-2 border border-t-0 rounded-b'
                                 placeholder='Passwort'
                             />
                         </div>
                         <button
                             type='submit'
-                            className='w-fit rounded-lg bg-coastal-blue-10 px-4 py-2 font-bold text-white'
+                            className='px-4 py-2 font-bold text-white rounded-lg w-fit bg-coastal-blue-10'
                         >
                             Login
                         </button>

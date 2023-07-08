@@ -69,5 +69,4 @@ export default function ShopPage() {
         </section>
     );
     return section;
-    // return <ProductGrid products={products} />;
 }

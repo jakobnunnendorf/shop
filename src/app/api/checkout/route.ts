@@ -35,6 +35,8 @@ export const POST = async (request: Request) => {
         },
     ];
 
+    const customer_email_value = metadata.email ? metadata.email : null;
+
     const total_line_items = [...product_line_items, ...delivery_line_item];
 
     // if (!userSession) return NextResponse.json({ error: 'You must be logged in to checkout' }, { status: 401 })
@@ -42,9 +44,11 @@ export const POST = async (request: Request) => {
     try {
         // const order = await supabase.from('orders').insert({...})
         // const clearCart() = await supabase.from('cart').delete().match({ user_id: userSession.user.id })...
-        const { data: orderData } = (await supabase //TODO: add checks if signup or login worked
+        const { data: orderData }: { data: any } = await supabase //TODO: add checks if signup or login worked
             .from('orders')
-            .insert([{ cart: cartItems }])) as any;
+            .insert([{ cart: cartItems }])
+            .select()
+            .single();
         metadata.order_id = orderData?.order_id; // add order id to metadata
 
         // for signup_and_checkout, create user and add order id to profile
@@ -93,6 +97,7 @@ export const POST = async (request: Request) => {
                 allowed_countries: ['DE'],
             },
             metadata: metadata,
+            customer_email: customer_email_value,
         });
 
         return NextResponse.json({ url: checkOutSession.url });

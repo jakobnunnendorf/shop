@@ -3,17 +3,17 @@
 import React, { useContext } from 'react';
 import CartRow from './CartRow';
 import CheckoutButton from './CheckoutButton';
-import { CartContext } from '../../globalState/CartContext';
 import SkeletonRow from './SkeletonRow';
+import { CartContext, CartContextType } from '../../globalState/CartContext';
 
 export default function CartPage() {
-    const { value: cartItems } = useContext(CartContext);
+    const { cart } = useContext(CartContext) as CartContextType;
 
     const cart_item_rows = (
         <div className='rounded-lg md:w-2/3'>
-            {cartItems.length > 0 ? (
-                cartItems.map((cartItem: any) => {
-                    return <CartRow key={cartItem.id} cartItem={cartItem} />;
+            {cart.length > 0 ? (
+                cart.map((cartItem: cart_item) => {
+                    return <CartRow key={cartItem.product.id} cartItem={cartItem} />;
                 })
             ) : (
                 <SkeletonRow />
@@ -22,7 +22,7 @@ export default function CartPage() {
     );
 
     const container = (
-        <div className='mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0'>
+        <div className='justify-center max-w-5xl px-6 mx-auto md:flex md:space-x-6 xl:px-0'>
             {cart_item_rows}
             <CheckoutButton />
         </div>
@@ -30,7 +30,7 @@ export default function CartPage() {
 
     const frame = (
         <div className='h-[calc(100vh-7rem)] w-full pt-20'>
-            <h1 className='mb-10 text-center text-2xl font-bold'>
+            <h1 className='mb-10 text-2xl font-bold text-center'>
                 Deine Artikel
             </h1>
             {container}
