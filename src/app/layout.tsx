@@ -1,8 +1,7 @@
 import './globals.css';
 
-import {
-    ActiveProductContextProvider,
-} from '@globalState/ActiveProductCard';
+import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
+import { ActiveProductContextProvider } from '@globalState/ActiveProductCard';
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
@@ -20,18 +19,20 @@ export default function RootLayout({
                 <link rel='icon' href='/favicon.ico' />
             </head>
             <body>
-                <ActiveProductContextProvider>
-                    <CartContextProvider>
-                        <SessionContextProvider>
-                            <MobileMenuStateContextProvider>
-                                <Header />
-                            </MobileMenuStateContextProvider>
-                            <main className='relative w-full top-16 lg:top-24'>
-                                {children}
-                            </main>
-                        </SessionContextProvider>
-                    </CartContextProvider>
-                </ActiveProductContextProvider>
+                <ActiveFiltersContextProvider>
+                    <ActiveProductContextProvider>
+                        <CartContextProvider>
+                            <SessionContextProvider>
+                                <MobileMenuStateContextProvider>
+                                    <Header />
+                                </MobileMenuStateContextProvider>
+                                <main className='relative top-16 w-full lg:top-24'>
+                                    {children}
+                                </main>
+                            </SessionContextProvider>
+                        </CartContextProvider>
+                    </ActiveProductContextProvider>
+                </ActiveFiltersContextProvider>
             </body>
         </html>
     );
