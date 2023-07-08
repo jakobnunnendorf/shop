@@ -83,7 +83,7 @@ export function AddToCart(product: any, cartItems: any, setCartItems: any) {
         cartItems.find((item: any) => {
             return item.product.id === product.id;
         }) !== undefined;
-    // const replace_array = cartItems.map();
+    const replace_array = cartItems.map();
     if (already_in_cart) {
         setCartItems((prev_cartItems: any) => {
             return prev_cartItems.map((cartItem: any) => {
@@ -102,3 +102,12 @@ export function AddToCart(product: any, cartItems: any, setCartItems: any) {
     }
     console.log(cartItems);
 }
+
+export const extractDefaultImage = (product: product) => {
+    if (product && product.imageURL_object) {
+        const default_image = product.imageURL_object.default_color.imageURL_array[0];
+        return default_image;
+    } else {
+        return '';
+    }
+};

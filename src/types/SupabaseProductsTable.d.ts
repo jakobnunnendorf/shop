@@ -22,7 +22,15 @@ type productCategory =
     | 'tablet case'
     | 'phone holder';
 
-type compatibleModels = string[];
+type compatibleModels = device[] | null;
+
+interface device{
+    name: string;
+    brand: string;
+    deviceCategory: deviceCategory;
+}
+
+type deviceCategory = 'phone' | 'tablet' | 'laptop' | 'smartwatch' | 'earbuds' | 'headphones' | 'speaker';
 
 type productColor =
     | 'schwarz'
