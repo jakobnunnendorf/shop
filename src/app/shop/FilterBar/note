@@ -1,0 +1,35 @@
+[
+    { 
+        "compatibleModels": [
+            {
+                "name": "Samsung Galaxy Z Flip 5G",
+                "brand": "Samsung",
+                "deviceType": "phone"
+            },
+            {
+                "name": "Samsung Galaxy Z Flip",
+                "brand": "Samsung",
+                "deviceType": "phone"
+            },
+            {
+                "name": "Samsung Galaxy Fold",
+                "brand": "Samsung",
+                "deviceType": "phone"
+            }
+        ]
+    },
+    {
+        "compatibleModels": [
+            {
+                "name": "MacBook Pro 15\" 2016",
+                "brand": "Apple",
+                "deviceType": "laptop"
+            },
+            {
+                "name": "MacBook Pro 15\" 2018",
+                "brand": "Apple",
+                "deviceType": "laptop"
+            }
+        ]
+    }
+]

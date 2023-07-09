@@ -26,7 +26,7 @@ export default function PaymentForm() {
         }
     };
     return (
-        <form className='rborder flex h-96 w-96 flex-col' onSubmit={onSubmit}>
+        <form className=' flex h-96 w-96 flex-col' onSubmit={onSubmit}>
             <CardElement />
             <button type='submit'>Submit</button>
         </form>

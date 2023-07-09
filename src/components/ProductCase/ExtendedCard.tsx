@@ -18,8 +18,8 @@ export default function ExtendedCard({
     }
     
     const wrapper = (
-        <article className='grid w-full h-full grid-cols-3'>
-            <div className='relative flex items-end justify-center h-full col-span-2 p-6 bg-gray-100'>
+        <article className='grid h-full w-full grid-cols-3'>
+            <div className='relative col-span-2 flex h-full items-end justify-center bg-gray-100 p-6'>
                 {product.title ? (
                     <Image
                         src={returnDefaultPicture()}
@@ -28,29 +28,29 @@ export default function ExtendedCard({
                         alt={product.title}
                     />
                 ) : null}
-                <div className='z-50 flex justify-between w-4/5 space-x-4'>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
-                    <div className='flex-grow bg-gray-200 rounded-lg aspect-square'></div>
+                <div className='z-50 flex w-4/5 justify-between space-x-4'>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
+                    <div className='aspect-square flex-grow rounded-lg bg-gray-200'></div>
                 </div>
             </div>
-            <div className='p-8 space-y-8'>
+            <div className='space-y-8 p-8'>
                 {product ? (
                     <h2 className='text-xl font-bold'>{product.title}</h2>
                 ) : (
-                    <div className='h-12 bg-gray-100 rounded-full'></div>
+                    <div className='h-12 rounded-full bg-gray-100'></div>
                 )}
                 <div className='space-y-4 '>
                     <h3 className='text-xl font-bold'>Farbe</h3>
                     <ul className='flex justify-around'>
-                        <li className='w-6 h-6 bg-green-400 rounded-full'></li>
-                        <li className='w-6 h-6 bg-blue-400 rounded-full'></li>
-                        <li className='w-6 h-6 bg-red-400 rounded-full'></li>
-                        <li className='w-6 h-6 bg-yellow-400 rounded-full'></li>
-                        <li className='w-6 h-6 bg-orange-400 rounded-full'></li>
+                        <li className='h-6 w-6 rounded-full bg-green-400'></li>
+                        <li className='h-6 w-6 rounded-full bg-blue-400'></li>
+                        <li className='h-6 w-6 rounded-full bg-red-400'></li>
+                        <li className='h-6 w-6 rounded-full bg-yellow-400'></li>
+                        <li className='h-6 w-6 rounded-full bg-orange-400'></li>
                     </ul>
                 </div>
                 {product.description ? (
@@ -61,15 +61,17 @@ export default function ExtendedCard({
                 ) : (
                     <div className='space-y-4 '>
                         <h3 className='text-xl font-bold'>Beschreibung</h3>
-                        <div className='h-4 bg-gray-100 rounded-full'></div>
-                        <div className='h-4 bg-gray-100 rounded-full'></div>
-                        <div className='h-4 bg-gray-100 rounded-full'></div>
+                        <div className='h-4 rounded-full bg-gray-100'></div>
+                        <div className='h-4 rounded-full bg-gray-100'></div>
+                        <div className='h-4 rounded-full bg-gray-100'></div>
                     </div>
                 )}
-                <div className='flex items-center justify-around h-12 rounded-full '>
+                <div className='flex h-12 items-center justify-around rounded-full '>
                     <span className='flex items-center'>
                         <div className=''>
-                            {product.reviews.length > 0 ? `(${product.reviews.length}) ` : ''}
+                            {product.reviews?.length > 0
+                                ? `(${product.reviews.length}) `
+                                : ''}
                         </div>
                         <FiStar className='text-yellow-400' />
                         <FiStar className='text-yellow-400' />
@@ -84,14 +86,14 @@ export default function ExtendedCard({
                         </span>
                     ) : (
                         <span className='flex text-lg font-bold'>
-                            <div className='w-4 h-8 bg-gray-100 rounded-full'></div>
+                            <div className='h-8 w-4 rounded-full bg-gray-100'></div>
                             ,
-                            <div className='w-4 h-8 bg-gray-100 rounded-full'></div>
+                            <div className='h-8 w-4 rounded-full bg-gray-100'></div>
                             &nbsp; €
                         </span>
                     )}
                 </div>
-                <button className='flex items-center px-4 py-2 mx-auto mt-2 space-x-2 font-bold rounded-full bg-seafoam-green-8 text-coastal-blue-10'>
+                <button className='mx-auto mt-2 flex items-center space-x-2 rounded-full bg-seafoam-green-8 px-4 py-2 font-bold text-coastal-blue-10'>
                     <span>Einkaufswagen</span>{' '}
                     <FiShoppingCart className='font-bold' />
                 </button>
