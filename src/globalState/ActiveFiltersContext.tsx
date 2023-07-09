@@ -5,6 +5,7 @@ import { createContext, useState } from 'react';
 export type FilterContextType = {
     categoryFilters: string[]; //TODO: increase specificity
     deviceFilters: device[];
+    priceFilters: number[][];
     addCategoryFilter: (filter: string) => void;
     removeCategoryFilter: (filter: string) => void;
     toggleCategoryFilter: (filter: string) => void;
@@ -14,7 +15,9 @@ export type FilterContextType = {
     removeDeviceFilter: (filter: device) => void;
     toggleDeviceFilter: (filter: device) => void;
     setDeviceFilter: (filter: device) => void;
+    isDeviceInFilterArray: (device: device) => boolean;
     clearDeviceFilters: () => void;
+    togglePriceFilter: (filter: number[]) => void;
     clearAllFilters: () => void;
 };
 
@@ -65,16 +68,36 @@ export const ActiveFiltersContextProvider = ({
 
     const removeDeviceFilter = (filter: device) => {
         setDeviceFilters(
-            deviceFilters.filter((deviceFilter) => deviceFilter !== filter)
+            deviceFilters.filter(
+                (deviceFilter) =>
+                    deviceFilter.name !== filter.name ||
+                    deviceFilter.brand !== filter.brand ||
+                    deviceFilter.deviceCategory !== filter.deviceCategory
+            )
         );
     };
 
     const toggleDeviceFilter = (filter: device) => {
-        if (deviceFilters.includes(filter)) {
+        const hasFilter = deviceFilters.some(
+            (device) =>
+                device.name === filter.name &&
+                device.brand === filter.brand &&
+                device.deviceCategory === filter.deviceCategory
+        );
+        if (hasFilter) {
             removeDeviceFilter(filter);
         } else {
             addDeviceFilter(filter);
         }
+    };
+
+    const isDeviceInFilterArray = (device: device) => {
+        return deviceFilters.some(
+            (deviceFilter) =>
+                deviceFilter.name === device.name &&
+                deviceFilter.brand === device.brand &&
+                deviceFilter.deviceCategory === device.deviceCategory
+        );
     };
 
     const setDeviceFilter = (filter: device) => {
@@ -83,6 +106,34 @@ export const ActiveFiltersContextProvider = ({
 
     const clearDeviceFilters = () => {
         setDeviceFilters([]);
+    };
+
+    const [priceFilters, setPriceFilters] = useState<number[][]>([]);
+
+    const addPriceFilter = (filter: number[]) => {
+        setPriceFilters([...priceFilters, filter]);
+    };
+
+    const removePriceFilter = (filter: number[]) => {
+        setPriceFilters(
+            priceFilters.filter(
+                (priceFilter) =>
+                    priceFilter[0] !== filter[0] && priceFilter[1] !== filter[1]
+            )
+        );
+    };
+
+    const togglePriceFilter = (filter: number[]) => {
+        if (
+            priceFilters.some(
+                (priceFilter) =>
+                    priceFilter[0] === filter[0] && priceFilter[1] === filter[1]
+            )
+        ) {
+            removePriceFilter(filter);
+        } else {
+            addPriceFilter(filter);
+        }
     };
 
     const clearAllFilters = () => {
@@ -95,6 +146,7 @@ export const ActiveFiltersContextProvider = ({
             value={{
                 categoryFilters,
                 deviceFilters,
+                priceFilters,
                 addCategoryFilter,
                 removeCategoryFilter,
                 toggleCategoryFilter,
@@ -104,7 +156,9 @@ export const ActiveFiltersContextProvider = ({
                 removeDeviceFilter,
                 toggleDeviceFilter,
                 setDeviceFilter,
+                isDeviceInFilterArray,
                 clearDeviceFilters,
+                togglePriceFilter,
                 clearAllFilters,
             }}
         >

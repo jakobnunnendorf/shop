@@ -16,9 +16,8 @@ export default function DeviceFilterSection({
 }: {
     modelTree: modelTree;
     }) {
-    const { toggleDeviceFilter, deviceFilters } = useContext(
-        ActiveFiltersContext
-    ) as FilterContextType;
+    const { toggleDeviceFilter, deviceFilters, isDeviceInFilterArray } =
+        useContext(ActiveFiltersContext) as FilterContextType;
 
     const [expanded, setExpanded] = React.useState(true);
     const toggleExpanded = () => {
@@ -26,7 +25,7 @@ export default function DeviceFilterSection({
     };
 
     const wrapper = (
-        <div className='w-full pb-2 border-b'>
+        <div className='w-full border-b pb-2'>
             <div className='flex items-center space-x-4 text-xl font-bold text-coastal-blue-10'>
                 <h2>Mein Modell</h2>
                 <button onClick={toggleExpanded}>
@@ -44,6 +43,8 @@ export default function DeviceFilterSection({
                                     deviceCategory: 'phone',
                                 };
                                 const filterForThisDevice = () => {
+                                    console.log(device);
+                                    console.log(isDeviceInFilterArray(device));
                                     toggleDeviceFilter(device);
                                 };
                                 return (
@@ -54,17 +55,31 @@ export default function DeviceFilterSection({
                                         <DeviceFilter
                                             key={index}
                                             deviceName={deviceName}
-                                            active={deviceFilters.includes(device)}
+                                            active={isDeviceInFilterArray(
+                                                device
+                                            )}
                                         />
                                     </button>
                                 );
                             }
                         );
+                        const toggleThisBrand = () => {
+                            const filter: device = {
+                                name: '',
+                                brand: brand,
+                                deviceCategory: '',
+                            };
+                            toggleDeviceFilter(filter);
+                        };
                         return (
                             <SubFilter
-                                key={index}
                                 deviceFilterArray={deviceFilterArray}
+                                toggleThisBrand={toggleThisBrand}
+                                active={deviceFilters.some(
+                                    (device) => device.brand === brand
+                                )}
                                 brand={brand}
+                                key={index}
                             />
                         );
                     })}

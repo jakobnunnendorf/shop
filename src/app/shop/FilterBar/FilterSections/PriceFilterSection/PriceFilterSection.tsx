@@ -1,13 +1,23 @@
 'use client';
 import React from 'react';
-import { FiChevronDown, FiChevronUp, FiSquare } from 'react-icons/fi';
+import { FiCheck, FiChevronDown, FiChevronUp, FiSquare } from 'react-icons/fi';
+import PriceFilter from './PriceFilter';
+import {
+    ActiveFiltersContext,
+    FilterContextType,
+} from '@globalState/ActiveFiltersContext';
 
 export default function PriceFilterSection() {
     const [expanded, setExpanded] = React.useState(false);
     const toggleExpanded = () => {
         setExpanded(!expanded);
     };
-    const priceFilters = [
+
+    const { priceFilters, togglePriceFilter } = React.useContext(
+        ActiveFiltersContext
+    ) as FilterContextType;
+
+    const prices = [
         [0, 4.99],
         [5, 9.99],
         [10, 14.99],
@@ -16,15 +26,22 @@ export default function PriceFilterSection() {
         [30, 49.99],
         [50, 99.99],
     ];
-    const priceArray = priceFilters.map((price, index) => {
+    console.log(priceFilters);
+    const priceArray = prices.map((price, index) => {
+        // console.log(price);
+        // console.log(isPriceFilterActive(price, priceFilters));
+        const toggleThisPriceFilter = () => {
+            console.log(priceFilters);
+            console.log(price);
+            togglePriceFilter(price);
+        };
         return (
-            <div
-                key={index}
-                className='flex w-full items-center justify-between'
-            >
-                <label>{`€${price[0]} - €${price[1]}`}</label>
-                <FiSquare />
-            </div>
+            <button onClick={toggleThisPriceFilter} key={index}>
+                <PriceFilter
+                    active={isPriceFilterActive(price, priceFilters)}
+                    priceFilter={price}
+                />
+            </button>
         );
     });
     const priceFilterSection = (
@@ -35,8 +52,21 @@ export default function PriceFilterSection() {
                     {expanded ? <FiChevronUp /> : <FiChevronDown />}
                 </button>
             </div>
-            {expanded && priceArray}
+            <section className='flex flex-col'>
+                {expanded && priceArray}
+            </section>
         </section>
     );
     return priceFilterSection;
 }
+
+const isPriceFilterActive = (
+    priceFilter: number[],
+    priceFilters: number[][]
+) => {
+    return priceFilters.some(
+        (activePriceFilter) =>
+            activePriceFilter[0] === priceFilter[0] &&
+            activePriceFilter[1] === priceFilter[1]
+    );
+};

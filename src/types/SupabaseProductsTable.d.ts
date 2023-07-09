@@ -30,7 +30,15 @@ interface device{
     deviceCategory: deviceCategory;
 }
 
-type deviceCategory = 'phone' | 'tablet' | 'laptop' | 'smartwatch' | 'earbuds' | 'headphones' | 'speaker';
+type deviceCategory =
+    | 'phone'
+    | 'tablet'
+    | 'laptop'
+    | 'smartwatch'
+    | 'earbuds'
+    | 'headphones'
+    | 'speaker'
+    | '';
 
 type productColor =
     | 'schwarz'

@@ -1,14 +1,18 @@
 'use client';
 
 import React from 'react';
-import { FiChevronDown, FiSquare } from 'react-icons/fi';
+import { FiCheck, FiChevronDown, FiSquare } from 'react-icons/fi';
 
 export default function SubFilter({
     deviceFilterArray,
+    toggleThisBrand,
     brand,
+    active,
 }: {
     deviceFilterArray: JSX.Element[];
     brand: string;
+    toggleThisBrand: () => void;
+    active: boolean;
 }) {
     const [expanded, setExpanded] = React.useState(false);
     const toggleExpanded = () => {
@@ -17,7 +21,9 @@ export default function SubFilter({
     const wrapper = (
         <section className='w-full '>
             <article className='flex w-full items-center justify-between space-x-2 '>
-                <FiSquare />
+                <button onClick={toggleThisBrand}>
+                    {active ? <FiCheck /> : <FiSquare />}
+                </button>
                 <h2 className='text-md font-bold'>{brand}</h2>
                 <button onClick={toggleExpanded}>
                     <FiChevronDown />
