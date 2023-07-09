@@ -41,8 +41,10 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                     </h2>
                     <p className='mt-1 text-xs text-gray-700'>
                         {cartItem.product.compatibleModels?.map(
-                            (model: string) => {
-                                return <span key={model}>{model}, </span>;
+                            (model: device) => {
+                                return (
+                                    <span key={model.name}>{model.name}, </span>
+                                );
                             }
                         )}
                     </p>
