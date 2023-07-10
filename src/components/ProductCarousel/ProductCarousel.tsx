@@ -11,10 +11,10 @@ export function ProductCarousel({
     productData,
 }: {
     heading: string;
-    productData: productsFetchResponse[];
+    productData: product[];
 }) {
     const productDataWithSkeletons = [
-        ...(productData as productsFetchResponse[]),
+        ...(productData as product[]),
         ...Array.from({ length: 20 - productData.length }, () => ({})),
     ];
 
@@ -23,15 +23,15 @@ export function ProductCarousel({
             <h2 className='m-8 text-5xl font-bold gradient-text text-coastal-blue-10 hover:underline'>
                 {heading}
             </h2>
-            <div className='flex py-16 space-x-4 overflow-x-auto w-96 snap-x scrollbar-hide lg:w-2/3'>
+            <div className='flex px-4 py-16 space-x-4 overflow-x-auto w-96 snap-x scrollbar-hide lg:w-2/3'>
                 {productDataWithSkeletons.map((product, index) => {
                     const extended_card_component_with_props = (
                         <ExtendedCard
-                            product={product as productsFetchResponse}
+                            product={product as product}
                         />
                     );
                     const small_card_component_with_props = (
-                        <SmallCard product={product as productsFetchResponse} />
+                        <SmallCard product={product as product} />
                     );
                     return (
                         <div className=' h-96 w-96 snap-center' key={index}>

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import React from 'react';
 import {
     FiBatteryCharging,
     FiMoreHorizontal,
@@ -7,8 +7,21 @@ import {
     FiTablet,
 } from 'react-icons/fi';
 import { CategoryBlock } from './CategoryBlock';
-import Showcase from './Showcase';
-import Left from './Left';
+
+export default function Left() {
+    return (
+        <aside className='space-y-8 bg-coastal-blue-10 px-10 py-8 lg:py-16'>
+            <h1 className='text-center text-5xl font-bold text-sandy-beige-10'>
+                Entdecke unsere Produkte
+            </h1>
+            <div className='grid w-fit grid-cols-3 gap-4'>
+                {Object.values(categories).map((category, index) => (
+                    <CategoryBlock key={index} categoryData={category} />
+                ))}
+            </div>
+        </aside>
+    );
+}
 
 const categories = {
     category1: {
@@ -48,12 +61,3 @@ const categories = {
         style: 'text-multicolore-blue border-multicolore-blue',
     },
 };
-
-export function CategoryBlocks() {
-    return (
-        <div className='flex w-full flex-col overflow-hidden lg:h-[70vh] lg:flex-row lg:shadow-xl'>
-            <Left />
-            <Showcase />
-        </div>
-    );
-}

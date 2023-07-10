@@ -93,9 +93,8 @@ export default async function HomePage() {
     ]);
 
     return (
-        <main className=''>
+        <main className='w-full'>
             <Home />
-
             <ProductCarousel
                 heading='Unsere Bestseller'
                 productData={bestSeller}
