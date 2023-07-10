@@ -16,9 +16,9 @@ export default function FilterLink({
     filterValue: productCategory;
     }) {
 
-    const { setFilter } = useContext(ActiveFiltersContext) as FilterContextType;
+    const { setCategoryFilter } = useContext(ActiveFiltersContext) as FilterContextType;
     const setThisFilter = () => {
-        setFilter(filterValue);
+        setCategoryFilter(filterValue);
     }
     return (
         <Link onClick={setThisFilter} href='/shop'>

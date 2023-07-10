@@ -10,7 +10,7 @@ export default function PriceFilter({
 }) {
     return (
         <article className='flex w-full justify-between '>
-            <h3 className='text-md'>
+            <h3 className='text-sm'>
                 {priceFilter[0]} - {String(priceFilter[1]).replace('.', ',')} €
             </h3>
             {active ? <FiCheck /> : <FiSquare />}

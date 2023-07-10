@@ -25,15 +25,15 @@ export default function DeviceFilterSection({
     };
 
     const wrapper = (
-        <div className='w-full border-b pb-2'>
-            <div className='flex items-center space-x-4 text-xl font-bold text-coastal-blue-10'>
-                <h2>Mein Modell</h2>
+        <div className='w-full border-b lg:pb-2 '>
+            <div className='flex items-center p-2 text-xl font-bold text-coastal-blue-10 lg:space-x-4'>
+                <h2 className='text-lg'> Modell</h2>
                 <button onClick={toggleExpanded}>
                     {expanded ? <FiChevronUp /> : <FiChevronDown />}
                 </button>
             </div>
             {expanded && (
-                <section>
+                <section className='absolute right-1/2 z-10 flex translate-x-1/2 lg:relative lg:block'>
                     {Object.keys(modelTree).map((brand, index) => {
                         const deviceFilterArray = modelTree[brand].map(
                             (deviceName: string, index: number) => {
@@ -85,6 +85,7 @@ export default function DeviceFilterSection({
                     })}
                 </section>
             )}
+            {expanded && <section className='h-36 w-full '></section>}
         </div>
     );
     return wrapper;

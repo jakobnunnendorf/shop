@@ -10,8 +10,8 @@ export default function CategoryFilter({
     active: boolean;
 }) {
     return (
-        <div className='flex w-full items-center justify-between'>
-            <div>{category[1]}</div>
+        <div className='flex w-36 items-center justify-between lg:w-full'>
+            <h4 className='text-sm'>{category[1]}</h4>
             {active ? <FiCheck /> : <FiSquare />}
         </div>
     );

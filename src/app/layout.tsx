@@ -3,7 +3,7 @@ import './globals.css';
 import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
 import { ActiveProductContextProvider } from '@globalState/ActiveProductCard';
 import { CartContextProvider } from '@globalState/CartContext';
-import { MobileMenuStateContextProvider } from '@globalState/MobileMenuContext';
+import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import Header from './Header/Header';
 
@@ -23,9 +23,9 @@ export default function RootLayout({
                     <ActiveProductContextProvider>
                         <CartContextProvider>
                             <SessionContextProvider>
-                                <MobileMenuStateContextProvider>
+                                <MobileMenuContextProvider>
                                     <Header />
-                                </MobileMenuStateContextProvider>
+                                </MobileMenuContextProvider>
                                 <main className='relative top-16 w-full lg:top-24'>
                                     {children}
                                 </main>

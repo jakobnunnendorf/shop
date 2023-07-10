@@ -12,8 +12,8 @@ export default function SmallCard({ product }: { product: product }) {
     };
 
     const wrapper = (
-        <article className='flex flex-col h-full overflow-hidden '>
-            <figure className='relative flex-grow w-full overflow-hidden rounded-t-3xl'>
+        <article className='flex h-fit flex-col justify-between overflow-hidden lg:h-full '>
+            <figure className='relative h-24 w-full flex-grow overflow-hidden rounded-t-3xl'>
                 <Image
                     src={defaultImage()}
                     fill={true}
@@ -21,18 +21,17 @@ export default function SmallCard({ product }: { product: product }) {
                     objectFit='contain'
                 />
             </figure>
-            <div className='flex flex-col justify-between w-full px-2 h-1/2'>
-                <h2 className='font-bold text-center text-gray-700 cursor-pointer line-clamp-2 h-fit lg:m-2'>
+            <div className='flex h-1/2 w-full flex-col justify-between px-2'>
+                <h2 className='line-clamp-2 h-fit cursor-pointer text-center text-xs font-bold text-gray-700 lg:m-2'>
                     {product.title}
                 </h2>
-
-                <div className='flex flex-wrap items-start justify-center flex-grow space-x-1 '>
+                <div className='flex flex-grow flex-wrap items-start justify-center space-x-1 '>
                     {compatibleModels_array?.map(
                         (model: device, index: number) => {
                             return (
                                 <div
                                     key={index}
-                                    className='px-2 text-xs font-bold text-gray-500 border rounded-full h-fit w-fit'
+                                    className='h-fit w-fit rounded-full border px-2 text-[5px] font-bold text-gray-500 lg:text-xs'
                                 >
                                     {model.name}
                                 </div>
@@ -40,17 +39,15 @@ export default function SmallCard({ product }: { product: product }) {
                         }
                     )}
                 </div>
-                {/* <p className='text-center'>{product.description}</p> */}
                 <div className='flex items-start justify-around '>
-                    <p className='py-2 font-bold text-center text-gray-500'>
-                        {product.price}
+                    <p className='py-2 text-center text-xs font-bold text-gray-500'>
+                        {String(product.price).replace('.', ',')}&nbsp;€
                     </p>
                     <div className='flex flex-col items-end '>
                         <span className='flex items-center space-x-1 text-gray-500'>
-                            <span className='text-sm'>Warenkorb</span>
                             <AddToCartButton product={product} />
                         </span>
-                        <p className='hidden my-2 text-xs text-end text-slate-500 lg:block'>
+                        <p className='my-2 hidden text-end text-xs text-slate-500 lg:block'>
                             {product.stock} übrig
                         </p>
                     </div>
@@ -61,21 +58,21 @@ export default function SmallCard({ product }: { product: product }) {
 
     const small_card_skeleton = (
         <article className='box-border h-full overflow-hidden'>
-            <figure className='relative w-full overflow-hidden border h-1/2 rounded-t-3xl'></figure>
-            <div className='flex flex-col justify-between w-full px-2 border h-1/2'>
-                <h2 className='flex items-center justify-center h-12 font-bold text-center cursor-pointer lg:m-2'>
-                    <div className='w-40 h-8 bg-gray-100 rounded-full '></div>
+            <figure className='relative h-1/2 w-full overflow-hidden rounded-t-3xl border'></figure>
+            <div className='flex h-1/2 w-full flex-col justify-between border px-2'>
+                <h2 className='flex h-12 cursor-pointer items-center justify-center text-center font-bold lg:m-2'>
+                    <div className='h-8 w-40 rounded-full bg-gray-100 '></div>
                 </h2>
-                <div className='flex flex-wrap items-start justify-center flex-grow space-x-1 '>
-                    <div className='w-16 h-4 bg-gray-100 rounded-full'></div>
-                    <div className='w-16 h-4 bg-gray-100 rounded-full'></div>
-                    <div className='w-16 h-4 bg-gray-100 rounded-full'></div>
-                    <div className='w-16 h-4 bg-gray-100 rounded-full'></div>
+                <div className='flex flex-grow flex-wrap items-start justify-center space-x-1 '>
+                    <div className='h-4 w-16 rounded-full bg-gray-100'></div>
+                    <div className='h-4 w-16 rounded-full bg-gray-100'></div>
+                    <div className='h-4 w-16 rounded-full bg-gray-100'></div>
+                    <div className='h-4 w-16 rounded-full bg-gray-100'></div>
                 </div>
                 {/* <p className='text-center'>{product.description}</p> */}
                 <div className='flex items-start justify-around '>
                     <p className='py-2 text-center'>
-                        <span className='w-8 h-4 bg-gray-100 rounded-full'>
+                        <span className='h-4 w-8 rounded-full bg-gray-100'>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
                         &nbsp;€
@@ -83,12 +80,12 @@ export default function SmallCard({ product }: { product: product }) {
                     <div className='flex flex-col items-end '>
                         <span className='flex items-center space-x-1 '>
                             <span className='text-sm'>Warenkorb</span>
-                            <button className='p-2 border-2 rounded-full shadow-xl'>
+                            <button className='rounded-full border-2 p-2 shadow-xl'>
                                 <FiShoppingCart />
                             </button>
                         </span>
-                        <p className='hidden my-2 text-xs text-end text-slate-500 lg:block'>
-                            <span className='w-8 h-4 bg-gray-100 rounded-full'>
+                        <p className='my-2 hidden text-end text-xs text-slate-500 lg:block'>
+                            <span className='h-4 w-8 rounded-full bg-gray-100'>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span>
                             &nbsp;übrig

@@ -2,24 +2,32 @@
 
 import { createContext, useState } from 'react';
 
-export const MobileMenuStateContext = createContext<{ value: boolean, setValue: React.Dispatch<React.SetStateAction<boolean>> }>({ value: false, setValue: () => {return} });
+export type MobileMenuContextType = {
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    toggleOpen: () => void;
+};
 
-export function MobileMenuStateContextProvider({
+export const MobileMenuContext = createContext<MobileMenuContextType | null>(null);
+
+export function MobileMenuContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [currentMobileMenuState, setCurrentMobileMenuState] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleOpen = () => setIsOpen(!isOpen);
     return (
         <div>
-            <MobileMenuStateContext.Provider
+            <MobileMenuContext.Provider
                 value={{
-                    value: currentMobileMenuState,
-                    setValue: setCurrentMobileMenuState,
+                    isOpen,
+                    setIsOpen,
+                    toggleOpen,
                 }}
             >
                 {children}
-            </MobileMenuStateContext.Provider>
+            </MobileMenuContext.Provider>
         </div>
     );
 }

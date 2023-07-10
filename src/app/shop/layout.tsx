@@ -11,9 +11,9 @@ export default function ShopLayout({
     children: React.ReactNode;
 }) {
     return (
-        <section className='flex'>
+        <section className='flex flex-col lg:flex-row'>
             <FilterBar />
-            <section className=' flex w-[calc(100vw-12rem)] justify-center'>
+            <section className=' flex w-full justify-center lg:w-[calc(100vw-11rem)]'>
                 {children}
             </section>
         </section>

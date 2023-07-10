@@ -45,16 +45,20 @@ export default function PriceFilterSection() {
         );
     });
     const priceFilterSection = (
-        <section className='w-full border-b pb-2'>
-            <div className='flex items-center space-x-4 text-xl font-bold text-coastal-blue-10'>
+        <section className='w-full border-b lg:pb-2'>
+            <div className='flex items-center p-2 text-xl font-bold text-coastal-blue-10 lg:space-x-4 lg:p-0'>
                 <h2>Preis</h2>
                 <button onClick={toggleExpanded}>
                     {expanded ? <FiChevronUp /> : <FiChevronDown />}
                 </button>
             </div>
-            <section className='flex flex-col'>
+            <section className='hidden h-24 flex-col lg:flex lg:h-auto'>
                 {expanded && priceArray}
             </section>
+            <section className='absolute left-0 z-10 grid h-24 w-screen grid-cols-3 flex-col gap-2 p-2 lg:hidden'>
+                {expanded && priceArray}
+            </section>{' '}
+            {expanded && <section className='h-24 w-full '></section>}
         </section>
     );
     return priceFilterSection;
