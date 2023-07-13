@@ -1,5 +1,4 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
+import supabase from '@utils/supabase';
 
 export interface modelTree {
     [key: string]: string[];
@@ -8,8 +7,6 @@ interface resObject {
     compatibleModels: compatibleModels;
 }
 type resType = { data: resObject[] | null };
-
-const supabase = createServerComponentClient({ cookies });
 
 export const returnModelTree = async () => {
     const { data } = (await supabase
@@ -20,7 +17,7 @@ export const returnModelTree = async () => {
         compatibleModels: resObject[]
     ): modelTree => {
         const models: modelTree = {};
-        compatibleModels.forEach((dataWrapperObject) => {
+        compatibleModels?.forEach((dataWrapperObject) => {
             const { compatibleModels } = dataWrapperObject;
             compatibleModels?.forEach((device) => {
                 if (Object.keys(models).includes(device.brand)) {

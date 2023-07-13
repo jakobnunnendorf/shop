@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function ProductClientFrame({
     ExtendedCard,
@@ -12,14 +12,26 @@ export default function ProductClientFrame({
     const [active, setActive] = useState(false);
     const ProductCardRef = useRef<HTMLDivElement>(null);
 
-    window.addEventListener('mousedown', (event) => {
-        if (
-            ProductCardRef.current &&
-            !ProductCardRef.current.contains(event.target as Node)
-        ) {
-            setActive(false);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Make sure we are in a browser environment
+            const handleClickOutside = (event: MouseEvent) => {
+                if (
+                    ProductCardRef.current &&
+                    !ProductCardRef.current.contains(event.target as Node)
+                ) {
+                    // Your logic here
+                }
+            };
+
+            window.addEventListener('mousedown', handleClickOutside);
+
+            return () => {
+                // cleanup function that removes the event listener when the component unmounts
+                window.removeEventListener('mousedown', handleClickOutside);
+            };
         }
-    });
+    }, []); // Empty dependency array ensures this effect runs only once after the initial render
 
     const wrapper_with_content = (
         <article

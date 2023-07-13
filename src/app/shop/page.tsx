@@ -20,7 +20,6 @@ export default function ShopPage() {
     useEffect(() => {
         const supabase = createClientComponentClient();
         const getProducts = async () => {
-            // fetch products where the category is in the active filters array
             const fetchProductsByCategory = async () => {
                 if (categoryFilters.length === 0) {
                     const { data: products } = await supabase

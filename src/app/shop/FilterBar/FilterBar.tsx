@@ -1,17 +1,24 @@
 import React from 'react';
-import CategoryFilterSection from './FilterSections/CategoryFilterSection/CategoryFilterSection';
-import DeviceFilterSection from './FilterSections/DeviceFilterSection/DeviceFilterSection';
-import PriceFilterSection from './FilterSections/PriceFilterSection/PriceFilterSection';
 import { modelTree, returnModelTree } from './helperFunctions';
+import Mobile from './Mobile/Mobile';
+import Client from './components/Client';
 
 export default async function FilterBar() {
     const modelTree: modelTree = await returnModelTree();
 
-    return (
-        <div className='grid h-auto w-full grid-cols-3 items-start border-r-2 lg:flex lg:min-h-[calc(100vh-6rem)] lg:w-64 lg:flex-col lg:space-y-4 lg:p-8'>
-            <CategoryFilterSection />
-            {modelTree ? <DeviceFilterSection modelTree={modelTree} /> : null}
-            <PriceFilterSection />
+    // all info
+
+    // expanded 1
+    // expanded 2
+    // expanded 3
+    // mobileSlot
+
+    const filterBar = (
+        <div className='w-full border h-fit lg:flex lg:h-auto lg:w-auto lg:flex-grow lg:flex-col'>
+            <Client modelTree={modelTree} />
+            
         </div>
     );
+
+    return filterBar;
 }

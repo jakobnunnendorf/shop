@@ -3,6 +3,20 @@ import { v4 as uuidv4 } from "uuid"
 import { CartContext } from '@globalState/CartContext'
 import supabase from "@utils/supabase"
 
+interface uploadProduct {
+    id: UUID;
+    title: string;
+    description: string;
+    price: number;
+    stock: number;
+    category: productCategory;
+    compatibleModels: compatibleModels;
+    reviews: string[];
+    dimensions: dimensions;
+    imageURL_object: imageURL_object;
+}
+
+
 export async function uploadFile_to_supabase_storage(
     bucket: string,
     pathName: string,
@@ -21,7 +35,10 @@ export async function uploadFile_to_supabase_storage(
 }
 
 
-export async function addProduct_to_database(newProduct: iProduct, imageFile?: File) {
+export async function addProduct_to_database(
+    newProduct: uploadProduct,
+    imageFile?: File
+) {
     console.log('addProduct_to_database');
     newProduct.id = uuidv4();
     const filePath = `image_${newProduct.title}_${newProduct.id}`;
@@ -47,11 +64,11 @@ export async function addProduct_to_database(newProduct: iProduct, imageFile?: F
     if (error) {
         console.log(JSON.stringify(error, null, 2));
     }
-    return data
+    return data;
 }
 
 export function extract_product_from_form(formDataObject: FormData, model_array: string[]) {
-    const product: iProduct = {
+    const product: uploadProduct = {
         id: '',
         created_at: new Date(),
         title: formDataObject.get('title') as string,
@@ -77,32 +94,6 @@ export function convert_price_string_to_float(price: string) {
     return price_float;
 }
 
-
-export function AddToCart(product: any, cartItems: any, setCartItems: any) {
-    const already_in_cart =
-        cartItems.find((item: any) => {
-            return item.product.id === product.id;
-        }) !== undefined;
-    const replace_array = cartItems.map();
-    if (already_in_cart) {
-        setCartItems((prev_cartItems: any) => {
-            return prev_cartItems.map((cartItem: any) => {
-                if (cartItem.product.id === product.id) {
-                    return {
-                        product: { ...cartItem.product },
-                        quantity: cartItem.quantity + 1,
-                    };
-                } else {
-                    return cartItem;
-                }
-            });
-        });
-    } else {
-        setCartItems([...cartItems, { product, quantity: 1 }]);
-    }
-    console.log(cartItems);
-}
-
 export const extractDefaultImage = (product: product) => {
     if (product && product.imageURL_object) {
         const default_image = product.imageURL_object.default_color.imageURL_array[0];
@@ -111,3 +102,7 @@ export const extractDefaultImage = (product: product) => {
         return '';
     }
 };
+
+export const eur = (price: number): string => {
+    return String(price).replace('.', ',') + ' €';
+}

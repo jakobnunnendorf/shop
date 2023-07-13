@@ -1,3 +1,4 @@
+import { FilterBarContextProvider } from '@app/shop/FilterBarContext';
 import FilterBar from './FilterBar/FilterBar';
 
 export const metadata = {
@@ -12,8 +13,10 @@ export default function ShopLayout({
 }) {
     return (
         <section className='flex flex-col lg:flex-row'>
-            <FilterBar />
-            <section className=' flex w-full justify-center lg:w-[calc(100vw-11rem)]'>
+            <FilterBarContextProvider>
+                <FilterBar />
+            </FilterBarContextProvider>
+            <section className='  flex w-full justify-center lg:w-[calc(100vw-14rem)]'>
                 {children}
             </section>
         </section>
