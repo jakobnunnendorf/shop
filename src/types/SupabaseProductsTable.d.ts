@@ -14,6 +14,33 @@ interface product {
     imageURL_object: imageURL_object;
 }
 
+interface uploadProduct {
+    id: UUID | null;
+    title: string;
+    description: string | null;
+    price: number;
+    stock: number;
+    category: productCategory;
+    compatibleModels: compatibleModels | null;
+    reviews: product_review_reference_array | null;
+    dimensions: dimensions | null;
+    imageURL_object: imageURL_object | null;
+}
+
+interface uploadProductDraft {
+    id?: UUID;
+    title?: string;
+    description?: string;
+    price?: number;
+    stock?: number;
+    category?: productCategory;
+    compatibleModels?: compatibleModels;
+    reviews?: product_review_reference_array;
+    dimensions?: dimensions;
+    imageURL_object?: imageURL_object;
+    fileStorage?: Record<string, File>;
+}
+
 type productCategory =
     | 'phone case'
     | 'screen protector'
@@ -24,7 +51,7 @@ type productCategory =
 
 type compatibleModels = device[] | null;
 
-interface device{
+interface device {
     name: string;
     brand: string;
     deviceCategory: deviceCategory;
@@ -52,32 +79,31 @@ type productColor =
     | 'orange'
     | 'braun'
     | 'grau'
-    | 'gold'
     | 'silber'
     | 'transparent';
 
 type tailwind_productColor =
-    | 'black'
-    | 'white'
-    | 'red-500'
-    | 'blue-500'
-    | 'green-500'
-    | 'yellow-500'
-    | 'purple-500'
-    | 'pink-500'
-    | 'orange-500'
-    | 'gray-500'
-    | 'gold-500'
-    | 'silver-500'
-    | 'none';
+    | 'bg-black'
+    | 'bg-white'
+    | 'bg-red-500'
+    | 'bg-blue-500'
+    | 'bg-green-500'
+    | 'bg-yellow-500'
+    | 'bg-purple-500'
+    | 'bg-pink-500'
+    | 'bg-orange-500'
+    | 'bg-[#965a3e]'
+    | 'bg-gray-500'
+    | 'bg-slate-300'
+    | 'border';
 
 type ProductInColor = {
-    imageURL_array: bucketURL<ProductImageBucket>[] | string[]; //TODO: remove string array after testing
+    imageURL_array: bucketURL<'ProductImageBucket'>[] | string[]; //TODO: remove string array after testing
     color_name: productColor | null;
     tailwind_color: tailwind_productColor | null;
 };
 
-interface imageURL_object {
+interface imageURL_object extends Record<string, ProductInColor | null> {
     default_color: ProductInColor;
     color_2: ProductInColor | null;
     color_3: ProductInColor | null;
