@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function ProductClientFrame({
     ExtendedCard,
@@ -12,14 +12,29 @@ export default function ProductClientFrame({
     const [active, setActive] = useState(false);
     const ProductCardRef = useRef<HTMLDivElement>(null);
 
-    window.addEventListener('mousedown', (event) => {
-        if (
-            ProductCardRef.current &&
-            !ProductCardRef.current.contains(event.target as Node)
-        ) {
-            setActive(false);
-        }
-    });
+    // window.addEventListener('mousedown', (event) => {
+    //     if (
+    //         ProductCardRef.current &&
+    //         !ProductCardRef.current.contains(event.target as Node)
+    //     ) {
+    //         setActive(false);
+    //     }
+    // });
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                ProductCardRef.current &&
+                !ProductCardRef.current.contains(event.target as Node)
+            ) {
+                setActive(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [ProductCardRef]);
 
     const wrapper_with_content = (
         <article

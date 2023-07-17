@@ -3,7 +3,7 @@
 'use client';
 import React from 'react';
 import ProductClientFrame from '@components/ProductCase/ProductClientFrame';
-import ExtendedCard from '../ProductCase/ExtendedCard';
+import ExtendedCard from '../ProductCase/ExtendedCard/ExtendedCard';
 import SmallCard from '../ProductCase/SmallCard';
 
 export function ProductCarousel({

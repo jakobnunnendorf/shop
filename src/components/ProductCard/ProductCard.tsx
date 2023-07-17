@@ -1,44 +1,48 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
+import { returnDefaultPicture } from '@lib/helperFunctions';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { FiShoppingCart } from "react-icons/fi"
-export default function ProductCard({ product }: { product: iProduct; }) {
-    const [active, setActive] = useState(false)
-    const ProductCardRef = useRef<HTMLDivElement>(null)
+import { FiShoppingCart } from 'react-icons/fi';
+export default function ProductCard({ product }: { product: product }) {
+    const [active, setActive] = useState(false);
+    const ProductCardRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-            if (ProductCardRef.current && !ProductCardRef.current.contains(event.target as Node)) {
-                setActive(false)
+            if (
+                ProductCardRef.current &&
+                !ProductCardRef.current.contains(event.target as Node)
+            ) {
+                setActive(false);
             }
-        }
-        document.addEventListener("mousedown", handleClickOutside)
+        };
+        document.addEventListener('mousedown', handleClickOutside);
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }, [ProductCardRef])
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [ProductCardRef]);
 
     const largeContent = (
         <div className=''>
             <img
-                src={product.imageURL}
+                src={returnDefaultPicture(product)}
                 className='cursor-pointer'
                 alt={product.title}
             />
             <article className='p-2 '>
-                <h2 className='m-2 text-center cursor-pointer line-clamp-2'>
+                <h2 className='m-2 line-clamp-2 cursor-pointer text-center'>
                     {product.title}
                 </h2>
                 <div className='flex items-center justify-around '>
                     <p className='text-center'>{product.price}</p>
                     <div className='flex flex-col items-center'>
-                        <button className='p-2 border-2 rounded-full'>
+                        <button className='rounded-full border-2 p-2'>
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className='px-4 my-2 text-xs text-end text-slate-500'>
+                <p className='my-2 px-4 text-end text-xs text-slate-500'>
                     {product.stock} übrig
                 </p>
             </article>
@@ -47,23 +51,23 @@ export default function ProductCard({ product }: { product: iProduct; }) {
     const smallContent = (
         <div>
             <img
-                src={product.imageURL}
+                src={returnDefaultPicture(product)}
                 className='cursor-pointer'
                 alt={product.title}
             />
             <article className='p-2 '>
-                <h2 className='text-center cursor-pointer line-clamp-2 lg:m-2'>
+                <h2 className='line-clamp-2 cursor-pointer text-center lg:m-2'>
                     {product.title}
                 </h2>
                 <div className='flex items-center justify-around '>
                     <p className='text-center'>{product.price}</p>
                     <div className='flex flex-col items-center'>
-                        <button className='p-2 border-2 rounded-full'>
+                        <button className='rounded-full border-2 p-2'>
                             <FiShoppingCart />
                         </button>
                     </div>
                 </div>
-                <p className='hidden px-4 my-2 text-xs text-end text-slate-500 lg:block'>
+                <p className='my-2 hidden px-4 text-end text-xs text-slate-500 lg:block'>
                     {product.stock} übrig
                 </p>
             </article>
@@ -83,5 +87,5 @@ export default function ProductCard({ product }: { product: iProduct; }) {
             {active ? largeContent : smallContent}
         </article>
     );
-    return wrapper_with_content
+    return wrapper_with_content;
 }

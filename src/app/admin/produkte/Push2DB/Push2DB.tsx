@@ -1,15 +1,15 @@
-"use client"
+'use client';
 
-import React, { useEffect, useRef, useState } from "react"
-import ButtonCard from './ButtonCard';
-import ProductForm from './ProductForm';
+import React, { useEffect, useRef, useState } from 'react';
+import ProductForm from './ProductForm/ProductForm';
+import ButtonCard from '../ButtonCard';
+import { NewProductContextProvider } from '@globalState/NewProductContext';
 
 export default function Push2DB() {
     const ProductCardRef = useRef<HTMLDivElement>(null); // for click outside
     const [active, setActive] = useState<boolean>(false);
 
     useEffect(() => {
-        
         const handleClickOutside = (event: MouseEvent) => {
             if (
                 ProductCardRef.current &&
@@ -24,19 +24,19 @@ export default function Push2DB() {
         };
     }, [ProductCardRef]);
 
-    const wrapper_with_content = (
+    const renderButtonOrForm = (
         <article
             ref={ProductCardRef}
             className={`${
                 active
                     ? 'fixed left-1/2 top-1/2 h-[75vh] w-4/5 -translate-x-1/2 -translate-y-1/2 backdrop-blur-3xl backdrop-filter'
                     : null
-            } rounded-3xl border border-green-400 shadow-2xl`}
+            } z-40 rounded-3xl border border-green-200 shadow-2xl`}
             onClick={() => setActive(true)}
         >
-            {active ? <ProductForm setActive={setActive} /> : <ButtonCard />}
+            {active ? <ProductForm /> : <ButtonCard />}
         </article>
     );
 
-    return wrapper_with_content;
+    return renderButtonOrForm;
 }
