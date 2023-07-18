@@ -1,19 +1,76 @@
 import React, { Dispatch } from 'react';
 import { FiCheck, FiEdit2, FiX } from 'react-icons/fi';
+import {
+    NewProductContext,
+    NewProductContextType,
+} from '@globalState/NewProductContext';
+import { set } from 'lodash';
 
 export default function ControlBar({
     status,
     setStatus,
 }: {
     status: string;
-    setStatus: Dispatch<
-        React.SetStateAction<'showcase' | 'preview' | 'edit' | 'explain'>
-    >;
+    setStatus: Dispatch<React.SetStateAction<productStatus>>;
 }) {
-    const confirmPicture = () => {
+    const {
+        fileStorage,
+        setFileStorage,
+        newProduct,
+        setNewProduct,
+        previewURL,
+        setPreviewURL,
+        selectedFile,
+        setSelectedFile,
+        activeIndex,
+        activeColorKey,
+    } = React.useContext(NewProductContext) as NewProductContextType;
+
+    /*function findImageURLKeyByColorName(
+        colorName: productColor,
+        imageURLObject: imageURL_object
+    ): string | null {
+        for (const key in imageURLObject) {
+            const productInColor = imageURLObject[key];
+            if (productInColor?.color_name === colorName) {
+                return key;
+            }
+        }
+        return null;
+    }*/
+
+    const confirmImage = () => {
+        if (selectedFile && previewURL) {
+            setFileStorage({ ...fileStorage, [previewURL]: selectedFile });
+            const numberOfExistingPictures =
+                newProduct.imageURL_object[activeColorKey]?.imageURL_array
+                    .length;
+            const selectedColorObject: ProductInColor | null =
+                newProduct.imageURL_object[activeColorKey];
+            if (numberOfExistingPictures !== undefined && selectedColorObject) {
+                if (activeIndex < numberOfExistingPictures) {
+                    selectedColorObject.imageURL_array[activeIndex] =
+                        previewURL;
+                } else {
+                    selectedColorObject.imageURL_array[
+                        selectedColorObject.imageURL_array.length
+                    ] = previewURL;
+                }
+                const newImageURL_object = {
+                    ...newProduct.imageURL_object,
+                    [activeColorKey]: selectedColorObject,
+                };
+                setNewProduct({
+                    ...newProduct,
+                    imageURL_object: newImageURL_object,
+                });
+            }
+        }
         setStatus('showcase');
     };
     const editPicture = () => {
+        setSelectedFile(null);
+        setPreviewURL(null);
         setStatus('edit');
     };
     const backToShowcase = () => {
@@ -35,7 +92,7 @@ export default function ControlBar({
             <button type='button' onClick={editPicture}>
                 <FiX className='inline-block h-6 w-6 text-red-500' />
             </button>
-            <button type='button' onClick={confirmPicture}>
+            <button type='button' onClick={confirmImage}>
                 <FiCheck className='inline-block h-6 w-6 text-green-500' />
             </button>
         </div>
@@ -51,12 +108,14 @@ export default function ControlBar({
         </button>
     );
     return (
-        <div className='absolute right-6 top-6 z-50'>
-            {status === 'showcase'
-                ? duringShowcase
-                : status === 'edit'
-                ? duringEdit
-                : duringPreview}
-        </div>
+        newProduct.imageURL_object[activeColorKey]?.color_name !== null && (
+            <div className='absolute right-6 top-6 z-50'>
+                {status === 'showcase' || status === 'ready'
+                    ? duringShowcase
+                    : status === 'edit'
+                    ? duringEdit
+                    : duringPreview}
+            </div>
+        )
     );
 }

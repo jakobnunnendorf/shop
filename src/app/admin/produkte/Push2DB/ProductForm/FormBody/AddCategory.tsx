@@ -7,21 +7,25 @@ import {
 } from '@globalState/NewProductContext';
 
 export default function AddCategory() {
-    const { newCategory, setNewCategory } = useContext(
+    const { newProduct, setNewProduct } = useContext(
         NewProductContext
     ) as NewProductContextType;
-    const [categoryInput, setCategoryInput] =
+    const [categoryDraft, setCategoryDraft] =
         React.useState<productCategory | null>(null);
 
-    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleCategorySelected = (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
         const categoryId = e.target.value as productCategory;
-        setCategoryInput(categoryId);
+        setCategoryDraft(categoryId);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const addCategoryToNewProduct = (e: React.FormEvent) => {
         e.preventDefault();
-        if (categoryInput !== null) {
-            setNewCategory(categoryInput);
+        if (categoryDraft !== null && newProduct.category === null) {
+            setNewProduct({ ...newProduct, category: categoryDraft });
+        } else {
+            setNewProduct({ ...newProduct, category: null });
         }
     };
     type categoryType = [string, productCategory][];
@@ -34,12 +38,15 @@ export default function AddCategory() {
         ['Handy-Halterungen', 'phone holder'],
     ];
     const addCategory = (
-        <form className='flex items-center space-x-2' onSubmit={handleSubmit}>
+        <form
+            className='flex items-center space-x-2'
+            onSubmit={addCategoryToNewProduct}
+        >
             <label htmlFor='category'>Kategorie:</label>
             <select
                 id='category'
-                value={categoryInput ?? ''}
-                onChange={handleSelectChange}
+                value={categoryDraft ?? ''}
+                onChange={handleCategorySelected}
             >
                 <option className='text-xs' value=''>
                     -- auswählen --
@@ -51,8 +58,8 @@ export default function AddCategory() {
                 ))}
             </select>
             <button
-                onClick={handleSubmit}
-                className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'
+                onClick={addCategoryToNewProduct}
+                className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
             >
                 <FiCheck />
             </button>
@@ -60,14 +67,14 @@ export default function AddCategory() {
     );
 
     const category = (
-        <div className='flex justify-end w-full '>
+        <div className='flex w-full justify-end '>
             <button
-                onClick={() => setNewCategory(null)}
-                className='text-xs  text-slate-500'
+                onClick={addCategoryToNewProduct}
+                className='text-xs text-slate-500'
             >
-                {newCategory}
+                {newProduct.category}
             </button>
         </div>
     );
-    return newCategory ? category : addCategory;
+    return newProduct.category ? category : addCategory;
 }

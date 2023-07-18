@@ -30,11 +30,8 @@ export default function PriceFilterSection() {
         ActiveFiltersContext
         ) as FilterContextType;
         
-        console.log(priceFilters);
         const priceArray = prices.map((price, index) => {
             const toggleThisPriceFilter = () => {
-                console.log(priceFilters);
-                console.log(price);
                 togglePriceFilter(price);
             };
             return (

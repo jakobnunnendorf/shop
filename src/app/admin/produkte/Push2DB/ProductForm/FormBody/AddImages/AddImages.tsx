@@ -6,40 +6,39 @@ import ControlBar from './ControlBar';
 import Explain from './Explain';
 import ImageInput from './ImageInput/ImageInput';
 import StatusBar from './StatusBar';
-
+import { FiPlus } from 'react-icons/fi';
 
 export default function AddImages({
     status,
     setStatus,
 }: {
-    status: string;
-    setStatus: React.Dispatch<
-        React.SetStateAction<'showcase' | 'preview' | 'edit' | 'explain'>
-    >;
+    status: productStatus;
+    setStatus: React.Dispatch<React.SetStateAction<productStatus>>;
 }) {
-    const { newProduct, colorInFocus, activeIndex, setActiveIndex } =
+    const { newProduct, activeColorKey, activeIndex, setActiveIndex } =
         React.useContext(NewProductContext) as NewProductContextType;
-    let imageArray: bucketURL<'ProductImageBucket'>[] | string[] = [];
-    if (newProduct) {
-        if (newProduct.imageURL_object) {
-            const activeColor = Object.values(newProduct.imageURL_object).find(
-                (color) => {
-                    return color && color.color_name === colorInFocus;
-                }
-            );
-            imageArray = activeColor ? activeColor.imageURL_array : [];
-        }
-    }
 
-    useEffect(() => {
-        setStatus('showcase');
-    }, [activeIndex]);
+    const activeColor = newProduct.imageURL_object[activeColorKey];
+    const imageArray: bucketURL<'ProductImageBucket'>[] | string[] =
+        activeColor?.imageURL_array && activeColor.imageURL_array.length > 0
+            ? activeColor.imageURL_array
+            : [];
+    const defaultColorInitialised =
+        newProduct.imageURL_object[activeColorKey]?.color_name !== null;
+    console.log('imageArray[activeIndex] ', imageArray[activeIndex]);
+    console.log('imageArray.length === 0', imageArray.length === 0);
+    const bigImageOrSayToAddColor = defaultColorInitialised ? (
+        <BigImage
+            imageURL={imageArray[activeIndex]}
+            isSkeleton={imageArray.length === 0}
+        />
+    ) : (
+        <div className='grid w-full h-full place-content-center'>
+            {' '}
+            Bitte wähle eine Farbe aus
+        </div>
+    );
 
-    useEffect(() => {
-        if (colorInFocus && imageArray.length === 0) {
-            setStatus('edit');
-        }
-    }, [colorInFocus, newProduct]);
     const addImages = (
         <div
             className={`relative col-span-2  ${
@@ -49,6 +48,8 @@ export default function AddImages({
                     ? ' border-3 border-yellow-400'
                     : status === 'edit'
                     ? 'border-3 border-orange-400'
+                    : status === 'ready'
+                    ? 'border-3 border-green-400'
                     : 'border-r-2'
             } overflow-hidden rounded-l-3xl lg:col-span-2`}
         >
@@ -58,11 +59,12 @@ export default function AddImages({
             )}
             {status === 'explain' ? (
                 <Explain setStatus={setStatus} />
-            ) : status === 'showcase' ? (
-                <BigImage
-                    imageURL={imageArray[activeIndex]}
-                    isSkeleton={imageArray.length === 0}
-                />
+            ) : status === 'showcase' || status === 'ready' ? (
+                // <BigImage
+                //     imageURL={imageArray[activeIndex]}
+                //     isSkeleton={imageArray.length === 0}
+                // />
+                bigImageOrSayToAddColor
             ) : (
                 <ImageInput setStatus={setStatus} />
             )}
@@ -71,9 +73,11 @@ export default function AddImages({
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
+                    setStatus={setStatus}
                 />
             )}
         </div>
     );
+
     return addImages;
 }

@@ -8,42 +8,43 @@ import {
 } from '@globalState/NewProductContext';
 
 export default function AddPrice() {
-    const { newPrice, setNewPrice } = useContext(
+    const { newProduct, setNewProduct } = useContext(
         NewProductContext
     ) as NewProductContextType;
-    const [priceInput, setPriceInput] = React.useState('');
+    const [priceDraft, setPriceDraft] = React.useState('');
 
-    const handleSubmit = (): void => {
-        setNewPrice(parseFloat(priceInput.replace(',', '.')));
+    const addPriceDraftToNewProduct = (): void => {
+        const newPrice = parseFloat(priceDraft.replace(',', '.'));
+        setNewProduct({ ...newProduct, price: newPrice });
     };
 
     const editPrice = (e: React.FormEvent): void => {
         e.preventDefault();
-        setNewPrice(null);
+        setNewProduct({ ...newProduct, price: null });
     };
 
     const addPrice = (
         <div className='flex items-center justify-center space-x-2 p-4'>
             <input
                 className='w-16 rounded-lg border px-2 py-1'
-                value={priceInput}
-                onChange={(event) => setPriceInput(event.target.value)}
+                value={priceDraft}
+                onChange={(event) => setPriceDraft(event.target.value)}
                 type='text'
                 placeholder='14,99'
                 pattern='\d+ \, \d+'
             />
             <p>€</p>
             <button
-                onClick={handleSubmit}
+                onClick={addPriceDraftToNewProduct}
                 className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
             >
                 <FiCheck />
             </button>
         </div>
     );
-    return newPrice ? (
+    return newProduct.price ? (
         <button type='button' onClick={editPrice}>
-            <Price productPrice={newPrice} />
+            <Price productPrice={newProduct.price} />
         </button>
     ) : (
         addPrice

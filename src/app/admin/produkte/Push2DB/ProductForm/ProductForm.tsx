@@ -1,10 +1,6 @@
-import React, { useRef, useState } from 'react';
-import { FiUploadCloud } from 'react-icons/fi';
-import { useRouter } from 'next/navigation';
-import HeaderRow from './HeaderRow';
+import React from 'react';
 import FormBody from './FormBody/FormBody';
-import { NewProductContextProvider } from '@globalState/NewProductContext';
-
+import HeaderRow from './HeaderRow';
 export default function ProductForm() {
     const product_form = (
         <form

@@ -27,13 +27,6 @@ export default async function UserInfoPanel() {
             profileFetchError ||
             billingAddressFetchError
         ) {
-            // print errors if they exist
-            console.log('profileFetchError: ');
-            console.log(JSON.stringify(profileFetchError, null, 2));
-            console.log('addressFetchError: ');
-            console.log(JSON.stringify(deliveryAddressFetchError, null, 2));
-            console.log('addressFetchError: ');
-            console.log(JSON.stringify(billingAddressFetchError, null, 2));
         }
 
         let deliveryAddress_string;

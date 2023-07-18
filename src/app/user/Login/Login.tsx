@@ -60,11 +60,7 @@ export default function Login() {
             .update(profile_data)
             .eq('profile_id', id_of_new_user);
         if (!userSignupError && !addedProfileError) {
-            console.log(
-                `registrationInfo: ${JSON.stringify(registrationInfo)}`
-            );
             setUserContextValue(registrationInfo);
-            console.log(`userContext: ${JSON.stringify(userContextValue)}`);
             router.push('/user/signup-success');
         } else {
             alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');

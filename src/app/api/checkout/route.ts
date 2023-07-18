@@ -102,7 +102,6 @@ export const POST = async (request: Request) => {
 
         return NextResponse.json({ url: checkOutSession.url });
     } catch (error) {
-        console.log(error);
         return NextResponse.json(
             { error: 'Something went wrong' },
             { status: 500 }

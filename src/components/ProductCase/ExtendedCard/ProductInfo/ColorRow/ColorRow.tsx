@@ -4,11 +4,11 @@ import ColorMap from './ColorMap';
 export default function ColorRow({
     colors,
     selectColor,
-    selectedColor,
+    activeColorKey,
 }: {
     colors: ProductInColor[];
     selectColor: (color: productColor) => void;
-    selectedColor: productColor | null;
+    activeColorKey: productColor | null;
 }) {
     const colorRow = (
         <div className='space-y-4 '>
@@ -17,7 +17,7 @@ export default function ColorRow({
                 <ColorMap
                     colors={colors}
                     selectColor={selectColor}
-                    selectedColor={selectedColor}
+                    activeColorKey={activeColorKey}
                 />
             </ul>
         </div>

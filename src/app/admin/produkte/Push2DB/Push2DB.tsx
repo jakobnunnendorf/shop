@@ -3,10 +3,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ProductForm from './ProductForm/ProductForm';
 import ButtonCard from '../ButtonCard';
-import { NewProductContextProvider } from '@globalState/NewProductContext';
-
 export default function Push2DB() {
-    const ProductCardRef = useRef<HTMLDivElement>(null); // for click outside
+    const ProductCardRef = useRef<HTMLDivElement>(null);
     const [active, setActive] = useState<boolean>(false);
 
     useEffect(() => {
@@ -29,7 +27,7 @@ export default function Push2DB() {
             ref={ProductCardRef}
             className={`${
                 active
-                    ? 'fixed left-1/2 top-1/2 h-[75vh] w-4/5 -translate-x-1/2 -translate-y-1/2 backdrop-blur-3xl backdrop-filter'
+                    ? 'fixed left-1/2 top-1/2 h-[75vh] w-4/5 -translate-x-1/2 -translate-y-1/2 backdrop-blur-3xl'
                     : null
             } z-40 rounded-3xl border border-green-200 shadow-2xl`}
             onClick={() => setActive(true)}

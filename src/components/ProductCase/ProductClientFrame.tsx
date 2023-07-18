@@ -12,15 +12,6 @@ export default function ProductClientFrame({
     const [active, setActive] = useState(false);
     const ProductCardRef = useRef<HTMLDivElement>(null);
 
-    // window.addEventListener('mousedown', (event) => {
-    //     if (
-    //         ProductCardRef.current &&
-    //         !ProductCardRef.current.contains(event.target as Node)
-    //     ) {
-    //         setActive(false);
-    //     }
-    // });
-
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (

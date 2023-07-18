@@ -5,15 +5,15 @@ export default function ThumbnailRow({
     imageURL_array,
     setActiveIndex,
     activeIndex,
+    setStatus,
 }: {
     imageURL_array: bucketURL<'ProductImageBucket'>[] | string[];
     setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
     activeIndex: number;
-}) {
+    setStatus: React.Dispatch<React.SetStateAction<productStatus>>;
+    }) {
     const amountOfImages = imageURL_array.length;
     const fillUp = new Array(5 - amountOfImages).fill(null);
-    console.log(fillUp);
-
     const thumbnailRow = (
         <ul className='absolute z-50 flex justify-start w-4/5 h-24 space-x-6 translate-x-1/2 bottom-4 right-1/2 '>
             {imageURL_array.map((imageURL, index) => {

@@ -28,17 +28,17 @@ interface uploadProduct {
 }
 
 interface uploadProductDraft {
-    id?: UUID;
-    title?: string;
-    description?: string;
-    price?: number;
-    stock?: number;
-    category?: productCategory;
-    compatibleModels?: compatibleModels;
-    reviews?: product_review_reference_array;
-    dimensions?: dimensions;
-    imageURL_object?: imageURL_object;
-    fileStorage?: Record<string, File>;
+    id: UUID | null;
+    title: string | null;
+    description: string | null;
+    price: number | null;
+    stock: number | null;
+    category: productCategory | null;
+    compatibleModels: compatibleModels | null;
+    reviews: product_review_reference_array | null;
+    dimensions: dimensions | null;
+    imageURL_object: imageURL_object;
+    fileStorage: Record<string, File> | null;
 }
 
 type productCategory =
@@ -103,7 +103,7 @@ type ProductInColor = {
     tailwind_color: tailwind_productColor | null;
 };
 
-interface imageURL_object extends Record<string, ProductInColor | null> {
+interface imageURL_object extends Record<ColorKey, ProductInColor | null> {
     default_color: ProductInColor;
     color_2: ProductInColor | null;
     color_3: ProductInColor | null;
@@ -119,3 +119,20 @@ type dimensions = {
     height: number;
     depth: number;
 };
+
+type productStatus =
+    | 'showcase'
+    | 'preview'
+    | 'edit'
+    | 'explain'
+    | 'ready'
+    | 'uploading'
+    | 'error';
+
+type colorKey =
+    | 'default_color'
+    | 'color_2'
+    | 'color_3'
+    | 'color_4'
+    | 'color_5'
+    | 'color_6';

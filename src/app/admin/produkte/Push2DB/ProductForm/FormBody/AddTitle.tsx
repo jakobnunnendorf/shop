@@ -8,41 +8,41 @@ import {
 } from '@globalState/NewProductContext';
 
 export default function AddTitle() {
-    const { newTitle, setNewTitle } = useContext(
+    const { newProduct, setNewProduct } = useContext(
         NewProductContext
     ) as NewProductContextType;
-    const [titleInput, setTitleInput] = React.useState('');
+    const [titleDraft, setTitleDraft] = React.useState('');
 
-    const handleSubmit = (): void => {
-        setNewTitle(titleInput);
+    const submitTitleDraftToNewProduct = (): void => {
+        setNewProduct({ ...newProduct, title: titleDraft });
     };
 
     const editTitle = (e: React.FormEvent): void => {
         e.preventDefault();
-        setNewTitle(null);
+        setNewProduct({ ...newProduct, title: null });
     };
 
     const addTitle = (
-        <div className='flex justify-center p-4 space-x-2 '>
+        <div className='flex justify-center space-x-2 p-4 '>
             <input
-                className='px-2 py-1 border rounded-lg'
-                value={titleInput}
-                onChange={(event) => setTitleInput(event.target.value)}
+                className='rounded-lg border px-2 py-1'
+                value={titleDraft}
+                onChange={(event) => setTitleDraft(event.target.value)}
                 type='text'
                 placeholder='Produkt Titel eingeben'
             />
 
             <button
-                onClick={handleSubmit}
-                className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'
+                onClick={submitTitleDraftToNewProduct}
+                className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
             >
                 <FiCheck />
             </button>
         </div>
     );
-    return newTitle ? (
+    return newProduct.title ? (
         <button type='button' onClick={editTitle}>
-            <Title productTitle={newTitle} />
+            <Title productTitle={newProduct.title} />
         </button>
     ) : (
         addTitle

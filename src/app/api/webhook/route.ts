@@ -46,7 +46,6 @@ export async function POST(req: Request) {
             // TODO: send email to customer
         }
     } catch (err) {
-        console.log(err);
         await supabase
             .from('debugging')
             .insert([{ message: err, comment: 'error' }]);

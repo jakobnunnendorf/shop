@@ -20,10 +20,7 @@ export default function Profile({
         const router = useRouter();
     const HandleLogout = async () => {
         const supabase = createClientComponentClient();
-        const { error } = await supabase.auth.signOut();
-        if (error) {
-            console.log(error);
-        }
+         await supabase.auth.signOut();
         router.refresh();
     };
 

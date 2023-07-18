@@ -6,10 +6,9 @@ import { UserContext } from '@globalState/UserContext';
 
 export default function SignUpSuccessPage() {
     const { value: currentUser } = useContext(UserContext);
-    console.log(currentUser);
     return (
-        <div className='flex h-full w-full flex-col items-center justify-start space-y-12 py-24 '>
-            <h2 className='text-center text-3xl'>
+        <div className='flex flex-col items-center justify-start w-full h-full py-24 space-y-12 '>
+            <h2 className='text-3xl text-center'>
                 Hallo{' '}
                 <span className='font-bold text-coastal-blue-10'>
                     {currentUser?.firstName}
@@ -18,24 +17,24 @@ export default function SignUpSuccessPage() {
                 Dein Account ist fast fertig!
             </h2>
             <div className=''>
-                <h3 className='mb-4 text-center text-2xl font-bold '>
+                <h3 className='mb-4 text-2xl font-bold text-center '>
                     Jetzt nur noch:{' '}
                 </h3>
                 <ul className='relative space-y-4 text-xl'>
-                    <li className='flex w-fit space-x-8'>
-                        <div className='flex h-8 w-8 items-center justify-center rounded-full border p-2'>
+                    <li className='flex space-x-8 w-fit'>
+                        <div className='flex items-center justify-center w-8 h-8 p-2 border rounded-full'>
                             <FiMail />
                         </div>
                         <div>Email öffnen</div>
                     </li>
-                    <li className='flex w-fit space-x-8'>
-                        <div className='flex h-8 w-8 items-center justify-center rounded-full border p-2'>
+                    <li className='flex space-x-8 w-fit'>
+                        <div className='flex items-center justify-center w-8 h-8 p-2 border rounded-full'>
                             <FiMousePointer />
                         </div>
                         <div>Bestätigungslink clicken</div>
                     </li>
-                    <li className='flex w-fit space-x-8'>
-                        <div className='flex h-8 w-8 items-center justify-center rounded-full border p-2'>
+                    <li className='flex space-x-8 w-fit'>
+                        <div className='flex items-center justify-center w-8 h-8 p-2 border rounded-full'>
                             <FiUserCheck />
                         </div>
                         <div>Einloggen</div>

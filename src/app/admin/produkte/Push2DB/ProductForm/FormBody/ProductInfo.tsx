@@ -21,10 +21,10 @@ export default function ProductInfo() {
                 <Reviews productReviews={[]} />
                 <AddPrice />
             </div>
-            <div className='flex items-center px-4 py-2 mx-auto mt-2 space-x-2 font-bold rounded-full w-fit bg-seafoam-green-8 text-coastal-blue-10'>
+            {/* <div className='flex items-center px-4 py-2 mx-auto mt-2 space-x-2 font-bold rounded-full w-fit bg-seafoam-green-8 text-coastal-blue-10'>
                 <span>Einkaufswagen</span>{' '}
                 <FiShoppingCart className='font-bold' />
-            </div>
+            </div> */}
         </div>
     );
     return productInfo;

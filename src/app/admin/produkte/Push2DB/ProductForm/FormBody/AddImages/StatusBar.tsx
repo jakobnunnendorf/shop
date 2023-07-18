@@ -17,12 +17,20 @@ export default function StatusBar({ status }: { status: string }) {
         </h3>
     );
 
+     const ready = (
+         <h3 className='font-mono font-bold tracking-widest text-green-400'>
+             Ready to upload
+         </h3>
+     );
+
     return (
         <div className='absolute right-1/2 top-2 z-50 translate-x-1/2'>
             {status === 'showcase'
                 ? showcase
                 : status === 'preview'
                 ? preview
+                : status === 'ready'
+                ? ready
                 : edit}
         </div>
     );
