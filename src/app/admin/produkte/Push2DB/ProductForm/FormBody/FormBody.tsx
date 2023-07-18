@@ -4,7 +4,7 @@ import {
     NewProductContextType,
 } from '@globalState/NewProductContext';
 import AddImages from './AddImages/AddImages';
-import ProductInfo from './ProductInfo';
+import ProductInfo from './ProductInfo/ProductInfo';
 
 export default function FormBody() {
     const { status, setStatus } = React.useContext(
@@ -12,7 +12,7 @@ export default function FormBody() {
     ) as NewProductContextType;
 
     return (
-        <div className='grid flex-grow grid-cols-3 rounded-3xl border bg-white'>
+        <div className='grid flex-grow grid-cols-3 rounded-3xl bg-white'>
             <AddImages status={status} setStatus={setStatus} />
             <ProductInfo />
         </div>

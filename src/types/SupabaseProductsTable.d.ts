@@ -28,7 +28,7 @@ interface uploadProduct {
 }
 
 interface uploadProductDraft {
-    id: UUID | null;
+    id?: UUID | null;
     title: string | null;
     description: string | null;
     price: number | null;
@@ -38,7 +38,6 @@ interface uploadProductDraft {
     reviews: product_review_reference_array | null;
     dimensions: dimensions | null;
     imageURL_object: imageURL_object;
-    fileStorage: Record<string, File> | null;
 }
 
 type productCategory =

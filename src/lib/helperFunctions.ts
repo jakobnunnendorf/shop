@@ -1,6 +1,4 @@
-import { useContext } from 'react'
 import { v4 as uuidv4 } from "uuid"
-import { CartContext } from '@globalState/CartContext'
 import supabase from "@utils/supabase"
 
 interface uploadProduct {
@@ -25,7 +23,6 @@ export async function uploadFile_to_supabase_storage(
     error_callback?: () => void
 ) {
         const { data, error } = await supabase.storage.from(bucket).upload(pathName, file)
-        console.log(`data: ${data} error: ${error}`)
         if (error && error_callback) {
             error_callback()
         } else if (success_callback) {
@@ -39,44 +36,35 @@ export async function addProduct_to_database(
     newProduct: uploadProduct,
     imageFile?: File
 ) {
-    console.log('addProduct_to_database');
-    newProduct.id = uuidv4();
+    newProduct.id = uuidv4() as UUID;
     const filePath = `image_${newProduct.title}_${newProduct.id}`;
     if (imageFile) {
-        console.log('image exists');
         const { data: storageData, error: storageError } =
             await supabase.storage
                 .from('productImageBucket')
                 .upload(filePath, imageFile);
-        console.log(JSON.stringify(storageData, null, 2));
-        console.log(JSON.stringify(storageError, null, 2));
         const { data: urlResponse } = await supabase.storage
             .from('productImageBucket')
             .getPublicUrl(filePath);
-        const image_url = urlResponse.publicUrl;
-        newProduct.imageURL = image_url;
-    } else {
-        console.log('no image file');
-    }
-    const { data, error } = await supabase
+        const image_url = urlResponse.publicUrl as bucketURL<'ProductImageBucket'>;
+        newProduct.imageURL_object.default_color.imageURL_array.push(image_url);
+    } 
+    const { data } = await supabase
         .from('products')
-        .insert([newProduct as iProduct]);
-    if (error) {
-        console.log(JSON.stringify(error, null, 2));
-    }
+        .insert([newProduct as uploadProduct]);
+   
     return data;
 }
 
 export function extract_product_from_form(formDataObject: FormData, model_array: string[]) {
     const product: uploadProduct = {
-        id: '',
         created_at: new Date(),
         title: formDataObject.get('title') as string,
         imageURL: '',
         description: formDataObject.get('description') as string,
-        price: formDataObject.get('price') as string,
+        price: parseFloat(formDataObject.get('price') as string) as number,
         stock: parseInt(formDataObject.get('stock') as string),
-        category: formDataObject.get('category') as string,
+        category: formDataObject.get('category') as productCategory,
         compatibleModels: model_array.join(', '),
         reviews: '',
         dimensions: {
@@ -106,3 +94,10 @@ export const extractDefaultImage = (product: product) => {
 export const eur = (price: number): string => {
     return String(price).replace('.', ',') + ' €';
 }
+
+export const returnDefaultPicture = (product:product): string => {
+    const getDefaultImage = (product: product) => {
+        return product.imageURL_object.default_color.imageURL_array[0];
+    };
+    return getDefaultImage(product);
+};

@@ -32,7 +32,7 @@ export default function Push2DB() {
             } z-40 rounded-3xl border border-green-200 shadow-2xl`}
             onClick={() => setActive(true)}
         >
-            {active ? <ProductForm /> : <ButtonCard />}
+            {active ? <ProductForm setActive={setActive} /> : <ButtonCard />}
         </article>
     );
 

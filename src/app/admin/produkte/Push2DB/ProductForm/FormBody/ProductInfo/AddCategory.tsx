@@ -59,7 +59,7 @@ export default function AddCategory() {
             </select>
             <button
                 onClick={addCategoryToNewProduct}
-                className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
+                className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'
             >
                 <FiCheck />
             </button>
@@ -67,7 +67,7 @@ export default function AddCategory() {
     );
 
     const category = (
-        <div className='flex w-full justify-end '>
+        <div className='flex justify-end w-full '>
             <button
                 onClick={addCategoryToNewProduct}
                 className='text-xs text-slate-500'

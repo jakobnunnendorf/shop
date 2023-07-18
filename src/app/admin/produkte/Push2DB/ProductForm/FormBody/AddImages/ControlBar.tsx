@@ -4,7 +4,6 @@ import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
-import { set } from 'lodash';
 
 export default function ControlBar({
     status,
@@ -81,19 +80,19 @@ export default function ControlBar({
         <button
             onClick={backToShowcase}
             type='button'
-            className='space-x-4 rounded-full bg-sandy-beige-1 px-2 py-1 backdrop-blur-3xl'
+            className='px-2 py-1 space-x-4 rounded-full bg-sandy-beige-1 backdrop-blur-3xl'
         >
             <p>cancel</p> <FiX />
         </button>
     );
 
     const duringPreview = (
-        <div className='space-x-4 rounded-full bg-sandy-beige-1 px-2 py-1 backdrop-blur-3xl'>
+        <div className='px-2 py-1 space-x-4 rounded-full bg-sandy-beige-1 backdrop-blur-3xl'>
             <button type='button' onClick={editPicture}>
-                <FiX className='inline-block h-6 w-6 text-red-500' />
+                <FiX className='inline-block w-6 h-6 text-red-500' />
             </button>
             <button type='button' onClick={confirmImage}>
-                <FiCheck className='inline-block h-6 w-6 text-green-500' />
+                <FiCheck className='inline-block w-6 h-6 text-green-500' />
             </button>
         </div>
     );
@@ -101,7 +100,7 @@ export default function ControlBar({
         <button
             type='button'
             onClick={editPicture}
-            className='flex items-center space-x-1 rounded-full bg-sandy-beige-1 px-2 py-1 backdrop-blur-3xl'
+            className='flex items-center px-2 py-1 space-x-1 rounded-full bg-sandy-beige-1 backdrop-blur-3xl'
         >
             <p>Edit Mode</p>
             <FiEdit2 className=' text-slate-500' />
@@ -109,7 +108,7 @@ export default function ControlBar({
     );
     return (
         newProduct.imageURL_object[activeColorKey]?.color_name !== null && (
-            <div className='absolute right-6 top-6 z-50'>
+            <div className='absolute z-50 right-6 top-6'>
                 {status === 'showcase' || status === 'ready'
                     ? duringShowcase
                     : status === 'edit'

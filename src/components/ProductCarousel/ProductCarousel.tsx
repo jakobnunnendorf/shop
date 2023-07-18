@@ -4,7 +4,7 @@
 import React from 'react';
 import ProductClientFrame from '@components/ProductCase/ProductClientFrame';
 import ExtendedCard from '../ProductCase/ExtendedCard/ExtendedCard';
-import SmallCard from '../ProductCase/SmallCard';
+import SmallCard from '../ProductCase/SmallCard/SmallCard';
 
 export function ProductCarousel({
     heading,

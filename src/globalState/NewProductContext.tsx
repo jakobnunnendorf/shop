@@ -50,9 +50,10 @@ export function NewProductContextProvider({
             newProduct.title &&
             newProduct.description &&
             newProduct.price &&
-            // newProduct.stock &&
+            newProduct.stock &&
             newProduct.category &&
-            // newProduct.compatibleModels &&
+            newProduct.compatibleModels &&
+            newProduct.compatibleModels.length > 0 &&
             newProduct.imageURL_object.default_color.color_name &&
             newProduct.imageURL_object.default_color.imageURL_array.length > 0;
         console.log('hasAllNecessaryData', hasAllNecessaryData);
@@ -86,7 +87,6 @@ export function NewProductContextProvider({
 }
 
 const blankNewProduct: uploadProductDraft = {
-    id: null,
     title: null,
     description: null,
     price: null,
@@ -107,7 +107,6 @@ const blankNewProduct: uploadProductDraft = {
         color_5: null,
         color_6: null,
     },
-    fileStorage: null,
 };
 const colorToTailwind: Record<productColor, tailwind_productColor> = {
     schwarz: 'bg-black',

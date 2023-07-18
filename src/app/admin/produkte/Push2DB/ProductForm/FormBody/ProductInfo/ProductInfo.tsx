@@ -1,19 +1,22 @@
 import React from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
 
 import Reviews from '@components/ProductCase/ExtendedCard/ProductInfo/Reviews';
+import AddCategory from './AddCategory';
 import AddDescription from './AddDescription';
 import AddPrice from './AddPrice';
+import AddStockQuantity from './AddStockQuantity';
 import AddTitle from './AddTitle';
 import AddColors from './Colors/AddColors';
-import AddCategory from './AddCategory';
+import AddCompatibleModels from './CompatibleModels/AddCompatibleModels';
 
 export default function ProductInfo() {
     const productInfo = (
-        <div className='p-8 space-y-8'>
+        <div className='p-8'>
             <div>
                 <AddTitle />
                 <AddCategory />
+                <AddStockQuantity />
+                <AddCompatibleModels />
             </div>
             <AddColors />
             <AddDescription />

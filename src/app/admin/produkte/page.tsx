@@ -1,6 +1,6 @@
 import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
 import ProductClientFrame from '@components/ProductCase/ProductClientFrame';
-import SmallCard from '@components/ProductCase/SmallCard';
+import SmallCard from '@components/ProductCase/SmallCard/SmallCard';
 import supabase from '@utils/supabase';
 import Push2DB from './Push2DB/Push2DB';
 

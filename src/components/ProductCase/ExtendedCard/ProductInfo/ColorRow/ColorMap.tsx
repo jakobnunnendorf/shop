@@ -3,11 +3,11 @@ import React from 'react';
 
 export default function ColorMap({
     colors,
-    activeColorKey,
+    activeColor,
     selectColor,
 }: {
     colors: ProductInColor[];
-    activeColorKey: ProductInColor | null;
+    activeColor: ProductInColor | null;
     selectColor: (color: ProductInColor) => void;
 }) {
     const colorMap = colors.map((color) => {
@@ -24,7 +24,7 @@ export default function ColorMap({
                     className={`h-6 w-6 ${
                         color.tailwind_color
                     } rounded-full border-2 ${
-                        color.color_name === activeColorKey?.color_name
+                        color.color_name === activeColor?.color_name
                             ? ' border-blue-400 shadow-2xl'
                             : ''
                     }}`}

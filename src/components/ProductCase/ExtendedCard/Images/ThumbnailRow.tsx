@@ -15,7 +15,7 @@ export default function ThumbnailRow({
     const amountOfImages = imageURL_array.length;
     const fillUp = new Array(5 - amountOfImages).fill(null);
     const thumbnailRow = (
-        <ul className='absolute z-50 flex justify-start w-4/5 h-24 space-x-6 translate-x-1/2 bottom-4 right-1/2 '>
+        <ul className='absolute z-40 flex justify-start w-4/5 h-24 space-x-6 translate-x-1/2 bottom-4 right-1/2 '>
             {imageURL_array.map((imageURL, index) => {
                 const setThisIndexActive = () => {
                     setActiveIndex(index);

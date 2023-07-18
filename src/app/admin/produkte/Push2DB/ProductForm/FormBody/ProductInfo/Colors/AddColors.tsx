@@ -11,7 +11,6 @@ export default function AddColors() {
     const { newProduct, activeColorKey, setActiveColorKey } = React.useContext(
         NewProductContext
     ) as NewProductContextType;
-
     const [showColorDialogue, setShowColorDialogue] = React.useState(false);
     const toggleColorDialogue = () => {
         setShowColorDialogue(!showColorDialogue);
@@ -41,17 +40,17 @@ export default function AddColors() {
                     <ColorDialogue toggleColorDialogue={toggleColorDialogue} />
                 ) : null}
                 <h3 className='text-xl font-bold '> Farben</h3>
-                <ul className='flex space-x-4 py-2'>
+                <ul className='flex py-2 space-x-4'>
                     {nonNullColors.length < 6 && (
                         <button type='button' onClick={toggleColorDialogue}>
-                            <li className='grid h-6 w-6 place-content-center rounded-full border'>
+                            <li className='grid w-6 h-6 border rounded-full place-content-center'>
                                 <FiPlus className='text-slate-500' />
                             </li>
                         </button>
                     )}
                     <ColorMap
                         colors={nonNullColors}
-                        activeColorKey={
+                        activeColor={
                             newProduct.imageURL_object[activeColorKey]
                         }
                         selectColor={setKeyFromColor}
