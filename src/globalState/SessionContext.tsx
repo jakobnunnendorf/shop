@@ -1,20 +1,31 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { Session, User } from '@supabase/supabase-js';
+import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
-export const SessionContext = createContext<any>(null);
+export interface SessionContextType {
+    session: Session | null;
+    user: User | null;
+    setSession: Dispatch<SetStateAction<Session | null>>;
+    setUser: Dispatch<SetStateAction<User | null>>;
+}
+
+export const SessionContext = createContext<SessionContextType | null>(null);
 
 export function SessionContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [currentSession, setCurrentSession] = useState(null);
+    const [session, setSession] = useState<Session | null>(null);
+    const [user, setUser] = useState<User | null>(null);
     return (
-       <div>
-         <SessionContext.Provider value={{value: currentSession, setValue: setCurrentSession}}>
-             {children}
-         </SessionContext.Provider>
-       </div>
+        <div>
+            <SessionContext.Provider
+                value={{ session, setSession, user, setUser }}
+            >
+                {children}
+            </SessionContext.Provider>
+        </div>
     );
 }

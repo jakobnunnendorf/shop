@@ -2,8 +2,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Login from './Login/Login';
 import Greeting from './profile/Greeting';
-import UserInfoPanel from './profile/UserInfoPanel';
 import Profile from './profile/Profile';
+import UserInfoPanel from './profile/UserInfoPanel';
 
 export default async function UserPage() {
     const supabase = createServerComponentClient({ cookies });

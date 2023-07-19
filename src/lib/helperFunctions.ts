@@ -39,7 +39,6 @@ export async function addProduct_to_database(
     newProduct.id = uuidv4() as UUID;
     const filePath = `image_${newProduct.title}_${newProduct.id}`;
     if (imageFile) {
-        const { data: storageData, error: storageError } =
             await supabase.storage
                 .from('productImageBucket')
                 .upload(filePath, imageFile);

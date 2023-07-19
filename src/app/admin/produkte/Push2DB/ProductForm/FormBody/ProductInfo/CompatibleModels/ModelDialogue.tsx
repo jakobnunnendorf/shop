@@ -19,9 +19,6 @@ export default function ModelDialogue({
         React.useState<deviceCategory>('');
     const [modelNameDraft, setModelNameDraft] = React.useState<string>('');
     const [errorMessage, setErrorMessage] = React.useState<string>('');
-    console.log('manufacturerDraft', manufacturerDraft.length > 0);
-    console.log('categoryDraft', categoryDraft.length > 0);
-    console.log('modelNameDraft', modelNameDraft.length > 0);
 
     const addDeviceToNewProduct = () => {
         if (

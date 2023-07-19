@@ -1,10 +1,11 @@
+import Image from 'next/image';
 import React from 'react';
 import './PaymentMethodsAndSecurity.css';
-import visaLogo from './payment-logos/visa.png';
-import mastercardLogo from './payment-logos/mastercard.png';
 import amexLogo from './payment-logos/amx.png';
-import paypalLogo from './payment-logos/paypal.png';
+import mastercardLogo from './payment-logos/mastercard.png';
 import paylahLogo from './payment-logos/paylah.png';
+import paypalLogo from './payment-logos/paypal.png';
+import visaLogo from './payment-logos/visa.png';
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faCoins, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
@@ -19,13 +20,22 @@ const PaymentMethodsAndSecurity = () => {
             <div className='payment-methods'>
                 <div className='cardsDescription'>
                     <div className='cards'>
-                        <img class='smallLogo' src={visaLogo} alt='visa' />
-                        <img
-                            class='smallLogo'
+                        <Image
+                            className='smallLogo'
+                            src={visaLogo}
+                            alt='visa'
+                            fill
+                        />
+                        <Image
+                            className='smallLogo'
                             src={mastercardLogo}
                             alt='mastercard'
                         />
-                        <img class='smallLogo' src={amexLogo} alt='amex' />
+                        <Image
+                            className='smallLogo'
+                            src={amexLogo}
+                            alt='amex'
+                        />
                     </div>
                     <div className='description'>
                         Phone 2 Door bietet eine Reihe von Zahlungsoptionen für
@@ -45,7 +55,7 @@ const PaymentMethodsAndSecurity = () => {
                 </div>
                 <div className='payPalDescription'>
                     <div className='payPal'>
-                        <img class='bigLogo' src={paypalLogo} alt='paypal' />
+                        <Image className='bigLogo' src={paypalLogo} alt='paypal' />
                     </div>
                     <div className='description'>
                         PayPal ist eine sichere und bequeme Möglichkeit,
@@ -60,7 +70,11 @@ const PaymentMethodsAndSecurity = () => {
                 </div>
                 <div className='payLahDescription'>
                     <div className='payLah'>
-                        <img class='bigLogo' src={paylahLogo} alt='paylah' />
+                        <Image
+                            className='bigLogo'
+                            src={paylahLogo}
+                            alt='paylah'
+                        />
                     </div>
                     <div className='description'>
                         Paylah ist eine sichere mobile Wallet-App der DBS Bank

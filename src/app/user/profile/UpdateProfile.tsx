@@ -3,34 +3,44 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React, { useContext, useEffect, useState } from 'react';
-import { ProfileInfoContext } from '@globalState/ProfileInfoContext';
+import {
+    ProfileInfoContext,
+    ProfileInfoContextType,
+} from '@globalState/ProfileInfoContext';
 import { UpdateProfileInfo } from '@lib/NextJsServerActions';
+
+interface currentAddresses {
+    deliveryAddress: address;
+    billingAddress: address;
+}
 
 export default function UpdateProfile() {
     // fetch pre existing profile data just to display as placeholders
-    const [sameAsDelivery, setSameAsDelivery] = useState<any>(false);
-    const [currentProfileInfo, setCurrentProfileInfo] = useState<any>();
-    const [currentAddresses, setCurrentAddresses] = useState<any>();
+    const [sameAsDelivery, setSameAsDelivery] = useState<boolean>(false);
+    const [currentProfileInfo, setCurrentProfileInfo] =
+        useState<profile | null>(null);
+    const [currentAddresses, setCurrentAddresses] =
+        useState<currentAddresses | null>(null);
     useEffect(() => {
         const supabase = createClientComponentClient();
         const getCurrentProfileInfo = async () => {
-            const { data: currentProfileInfo } = await supabase
+            const { data } = (await supabase
                 .from('profiles')
                 .select()
-                .single();
-            setCurrentProfileInfo(currentProfileInfo);
+                .single()) as { data: profile };
+            setCurrentProfileInfo(data);
         };
         const getCurrentAddresses = async () => {
-            const { data: deliveryAddress } = await supabase
+            const { data: deliveryAddress } = (await supabase
                 .from('addresses')
                 .select()
                 .eq('type', 'delivery')
-                .single();
-            const { data: billingAddress } = await supabase
+                .single()) as { data: address };
+            const { data: billingAddress } = (await supabase
                 .from('addresses')
                 .select()
                 .eq('type', 'billing')
-                .single();
+                .single()) as { data: address };
             setCurrentAddresses({
                 deliveryAddress: deliveryAddress,
                 billingAddress: billingAddress,
@@ -41,8 +51,9 @@ export default function UpdateProfile() {
         getCurrentAddresses();
     }, []);
 
-    const { value: profile, setValue: setProfile } =
-        useContext(ProfileInfoContext);
+    const { toggleEditProfile } = useContext(
+        ProfileInfoContext
+    ) as ProfileInfoContextType;
 
     const profile_inputs = (
         <div className='grid grid-cols-12 gap-8 '>
@@ -51,7 +62,7 @@ export default function UpdateProfile() {
                 <br />
                 <input
                     type='text'
-                    placeholder={currentProfileInfo?.firstName}
+                    placeholder={currentProfileInfo?.firstName || 'Vorname'}
                     className='px-2 border rounded-lg'
                     name='newFirstName'
                 />
@@ -62,7 +73,7 @@ export default function UpdateProfile() {
                 </span>
                 <input
                     type='text'
-                    placeholder={currentProfileInfo?.lastName}
+                    placeholder={currentProfileInfo?.lastName || 'Nachname'}
                     className='px-2 border rounded-lg'
                     name='newLastName'
                 />
@@ -84,7 +95,7 @@ export default function UpdateProfile() {
                 </span>
                 <input
                     type='text'
-                    placeholder={currentProfileInfo?.phone}
+                    placeholder={currentProfileInfo?.phone || 'Telefon'}
                     className='px-2 border rounded-lg'
                     name='newPhone'
                 />
@@ -177,9 +188,8 @@ export default function UpdateProfile() {
     const button_row = (
         <div className='flex space-x-8'>
             <button
-                onClick={() => {
-                    setProfile({ ...profile, editProfile: false });
-                }}
+                type='button'
+                onClick={toggleEditProfile}
                 className='flex justify-center px-4 py-2 font-bold border w-36 rounded-xl border-coastal-blue-10 text-coastal-blue-10 '
             >
                 abbrechen
@@ -195,9 +205,8 @@ export default function UpdateProfile() {
 
     function handleSubmit(formData: FormData) {
         UpdateProfileInfo(formData);
-        setProfile({ ...profile, editProfile: false });
+        toggleEditProfile();
     }
-
 
     const content = (
         <form action={handleSubmit}>

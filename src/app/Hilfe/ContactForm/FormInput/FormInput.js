@@ -1,6 +1,6 @@
+import emailjs from '@emailjs/browser';
 import React from 'react';
 import { useRef } from 'react';
-import emailjs from '@emailjs/browser';
 
 export default function FormInput(props) {
     const styles = {
@@ -45,7 +45,6 @@ export default function FormInput(props) {
       
     return (
     <>
-    <h3 style={styles.h3}></h3>
             <div style={styles.bg}>
                 <form
                 ref={form}

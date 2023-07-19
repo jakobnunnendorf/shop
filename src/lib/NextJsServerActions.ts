@@ -34,7 +34,7 @@ async function update_or_insert_address(
     const address_exists = await check_if_adress_exists(type, profile_id);
 
     const newAdress_filtered = Object.fromEntries(
-        Object.entries(newAdress).filter(([key, value]) =>
+        Object.entries(newAdress).filter(([value]) =>
             value ? value.length > 0 : false
         )
     );
@@ -57,7 +57,7 @@ async function update_or_insert_address(
 
 async function updateContactInfo(newProfileData: object, profile_id: string) {
     const newProfileData_filtered = Object.fromEntries(
-        Object.entries(newProfileData).filter(([key, value]) =>
+        Object.entries(newProfileData).filter(([value]) =>
             value ? value.length > 0 : false
         )
     );

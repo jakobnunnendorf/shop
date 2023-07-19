@@ -8,8 +8,8 @@ import {
     FiSettings,
     FiUser,
 } from 'react-icons/fi';
-import { UserContextProvider } from '@globalState/UserContext';
 import { ProfileInfoContextProvider } from '@globalState/ProfileInfoContext';
+import { UserContextProvider } from '@globalState/UserContext';
 export const dynamic = 'force-dynamic';
 
 export const metadata = {

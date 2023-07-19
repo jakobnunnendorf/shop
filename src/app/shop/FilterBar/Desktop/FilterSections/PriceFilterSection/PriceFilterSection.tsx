@@ -2,12 +2,12 @@
 import React from 'react';
 import Filter from '@app/shop/FilterBar/components/Filter';
 import FilterHeading from '@app/shop/FilterBar/components/FilterHeading';
+import FilterList from '@app/shop/FilterBar/components/FilterList';
 import {
     ActiveFiltersContext,
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
 import { eur } from '@lib/helperFunctions';
-import FilterList from '@app/shop/FilterBar/components/FilterList';
 
 const prices = [
     [0, 4.99],

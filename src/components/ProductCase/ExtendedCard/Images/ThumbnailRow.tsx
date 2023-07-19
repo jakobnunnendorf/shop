@@ -5,7 +5,6 @@ export default function ThumbnailRow({
     imageURL_array,
     setActiveIndex,
     activeIndex,
-    setStatus,
 }: {
     imageURL_array: bucketURL<'ProductImageBucket'>[] | string[];
     setActiveIndex: React.Dispatch<React.SetStateAction<number>>;

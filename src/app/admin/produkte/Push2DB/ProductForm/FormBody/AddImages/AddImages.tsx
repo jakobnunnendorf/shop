@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
 import ThumbnailRow from '@components/ProductCase/ExtendedCard/Images/ThumbnailRow';
 import { NewProductContext, NewProductContextType } from '@globalState/NewProductContext';
@@ -6,7 +6,6 @@ import ControlBar from './ControlBar';
 import Explain from './Explain';
 import ImageInput from './ImageInput/ImageInput';
 import StatusBar from './StatusBar';
-import { FiPlus } from 'react-icons/fi';
 
 export default function AddImages({
     status,
@@ -25,8 +24,6 @@ export default function AddImages({
             : [];
     const defaultColorInitialised =
         newProduct.imageURL_object[activeColorKey]?.color_name !== null;
-    console.log('imageArray[activeIndex] ', imageArray[activeIndex]);
-    console.log('imageArray.length === 0', imageArray.length === 0);
     const bigImageOrSayToAddColor = defaultColorInitialised ? (
         <BigImage
             imageURL={imageArray[activeIndex]}

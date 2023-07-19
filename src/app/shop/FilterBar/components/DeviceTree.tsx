@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import DeviceFilter from '../Desktop/FilterSections/DeviceFilterSection/DeviceFilter';
+import Filter from './Filter';
 import SubFilter from '../Desktop/FilterSections/DeviceFilterSection/SubFilter';
 import { modelTree } from '../helperFunctions';
-import Filter from './Filter';
 
 export default function DeviceTree({
     modelTree,

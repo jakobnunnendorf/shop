@@ -24,7 +24,6 @@ export default function ColorDialogue({
                 return color_name === null || color_name === undefined;
             }
         );
-        console.log('nextFreeColorKey', nextFreeColorKey);
         if (nextFreeColorKey) {
             const imageURL_object: imageURL_object = {
                 ...newProduct.imageURL_object,

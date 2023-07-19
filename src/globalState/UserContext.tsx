@@ -2,21 +2,43 @@
 
 import { createContext, useState } from 'react';
 
-export const UserContext = createContext<any>(null);
+export interface registrationInfo {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    password: string;
+    confirmPassword: string;
+}
+export interface UserContextType {
+    registrationInfo: registrationInfo;
+    setRegistrationInfo: React.Dispatch<React.SetStateAction<registrationInfo>>;
+}
+
+export const UserContext = createContext<UserContextType | null>(null);
 
 export function UserContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [currentUser, setCurrentUser] = useState(null);
+    const [registrationInfo, setRegistrationInfo] = useState(blankUser);
     return (
         <div>
             <UserContext.Provider
-                value={{ value: currentUser, setValue: setCurrentUser }}
+                value={{ registrationInfo, setRegistrationInfo }}
             >
                 {children}
             </UserContext.Provider>
         </div>
     );
 }
+
+const blankUser = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+};

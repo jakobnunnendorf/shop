@@ -8,7 +8,7 @@ export default async function AdminDashboard() {
     const {
         data: { session },
     } = await supabase.auth.getSession();
-    const { data: userRole, error } = await supabase
+    const { data: userRole } = await supabase
         .from('profiles')
         .select('role')
         .eq('profile_id', session?.user.id)

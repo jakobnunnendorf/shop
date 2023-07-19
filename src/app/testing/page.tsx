@@ -1,5 +1,4 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Metadata } from 'next';
 
 export const metadata = {
     title: '',
@@ -10,7 +9,7 @@ export default async function TestingPage() {
     const supabase = createClientComponentClient();
     const {
         data,
-        error,
+        
     }: {
         data: profilesFetchData;
         error: supabasefetchResponseError;

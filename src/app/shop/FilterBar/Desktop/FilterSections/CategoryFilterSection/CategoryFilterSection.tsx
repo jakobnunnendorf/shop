@@ -25,32 +25,32 @@ export default function CategoryFilterSection({
 }: {
     filterList: JSX.Element;
 }) {
-    const { toggleCategoryFilter, categoryFilters } = useContext(
-        ActiveFiltersContext
-    ) as FilterContextType;
+    // const { toggleCategoryFilter, categoryFilters } = useContext(
+    //     ActiveFiltersContext
+    // ) as FilterContextType;
 
     const [expanded, setExpanded] = useState(true);
 
-    const categoryFiltersComponents = categories.map((category, index) => {
-        const toggleThisCategory = () => {
-            toggleCategoryFilter(category[0]);
-        };
-        return (
-            <button className='w-full' onClick={toggleThisCategory} key={index}>
-                <Filter
-                    filterName={category[1]}
-                    active={categoryFilters.includes(category[0])}
-                />
-            </button>
-        );
-    });
+    // const categoryFiltersComponents = categories.map((category, index) => {
+    //     const toggleThisCategory = () => {
+    //         toggleCategoryFilter(category[0]);
+    //     };
+    //     return (
+    //         <button className='w-full' onClick={toggleThisCategory} key={index}>
+    //             <Filter
+    //                 filterName={category[1]}
+    //                 active={categoryFilters.includes(category[0])}
+    //             />
+    //         </button>
+    //     );
+    // });
 
     const toggleExpanded = () => {
         setExpanded(!expanded);
     };
 
     const categoryFilterSection = (
-        <section className='w-full border-b  lg:pb-2'>
+        <section className='w-full border-b lg:pb-2'>
             <FilterHeading
                 heading='Kategorien'
                 expanded={expanded}

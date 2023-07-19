@@ -1,26 +1,18 @@
+import Image from 'next/image';
 import React from 'react';
-import FAQ from './FAQ/FAQ';
-import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy';
-import ShippingInfo from './ShippingInfo/ShippingInfo';
-import ReturnRefund from './ReturnRefund/ReturnRefund';
-import PaymentMethodsAndSecurity from './PaymentMethodsAndSecurity/PaymentMethodsAndSecurity';
-import ContactUs from './ContactUs/ContactUs';
-// import {
-//     faEnvelope,
-//     faFax,
-//     faMobile,
-//     faMobileAlt,
-//     faPhone,
-// } from '@fortawesome/free-solid-svg-icons';
-import { FiMail, FiPhone, FiSmartphone } from 'react-icons/fi';
+import { FiMail, FiPhone } from 'react-icons/fi';
 import ContactForm from './ContactForm/ContactForm';
-
+import FAQ from './FAQ/FAQ';
+import PaymentMethodsAndSecurity from './PaymentMethodsAndSecurity/PaymentMethodsAndSecurity';
+import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy';
+import ReturnRefund from './ReturnRefund/ReturnRefund';
+import ShippingInfo from './ShippingInfo/ShippingInfo';
 import './Help.css';
 
 export default function Help() {
     return (
         <div className='help'>
-            <img
+            <Image
                 src='https://dominionpayroll.com/wp-content/uploads/HelpCenter.png'
                 alt='Hilfezentrum'
                 className='help__image'

@@ -20,7 +20,6 @@ export default function AddColors() {
         (color): color is ProductInColor =>
             color !== null && color.color_name !== null
     );
-    console.log('nonNullColors', nonNullColors);
     const setKeyFromColor = (color: ProductInColor) => {
         let keyOfColor = Object.keys(newProduct.imageURL_object).find(
             (colorKey): colorKey is colorKey => {

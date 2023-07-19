@@ -20,7 +20,7 @@ export default function ImageInput({
     useEffect(() => {
         setSelectedFile(null);
         setPreviewURL(null);
-    }, []);
+    }, [setPreviewURL, setSelectedFile]);
 
     const chooseImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];

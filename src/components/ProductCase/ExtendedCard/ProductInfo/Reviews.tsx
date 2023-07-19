@@ -1,7 +1,11 @@
 import React from 'react';
 import { FiStar } from 'react-icons/fi';
 
-export default function Reviews({ productReviews }: { productReviews: any }) {
+export default function Reviews({
+    productReviews,
+}: {
+    productReviews: UUID[];
+}) {
     const reviews = (
         <span className='flex items-center'>
             <div className=''>

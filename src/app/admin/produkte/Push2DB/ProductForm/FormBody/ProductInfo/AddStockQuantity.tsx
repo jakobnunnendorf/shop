@@ -16,7 +16,6 @@ export default function AddStockQuantity() {
     const addStockQuantityDraftToNewProduct = (): void => {
         const newStockQuantity = parseInt(stockQuantityDraft);
         setNewProduct({ ...newProduct, stock: newStockQuantity });
-        console.log(newProduct);
     };
 
     const editStockQuantity = (e: React.FormEvent): void => {
@@ -25,12 +24,11 @@ export default function AddStockQuantity() {
     };
 
     const addStockQuantity = (
-        <div className='flex items-center justify-center space-x-2 p-4'>
+        <div className='flex items-center justify-center p-4 space-x-2'>
             <input
-                className='w-20 rounded-lg border px-2 py-1'
+                className='w-20 px-2 py-1 border rounded-lg'
                 value={stockQuantityDraft}
                 onChange={(event) => {
-                    console.log(stockQuantityDraft);
                     setStockQuantityDraft(event.target.value);
                 }}
                 type='text'
@@ -39,7 +37,7 @@ export default function AddStockQuantity() {
             />
             <button
                 onClick={addStockQuantityDraftToNewProduct}
-                className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
+                className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'
             >
                 <FiCheck />
             </button>
@@ -49,7 +47,7 @@ export default function AddStockQuantity() {
         <button
             type='button'
             onClick={editStockQuantity}
-            className='flex w-full justify-end '
+            className='flex justify-end w-full '
         >
             <DiplayStockQuantity stock={newProduct.stock} />
         </button>

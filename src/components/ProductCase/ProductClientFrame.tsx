@@ -31,7 +31,7 @@ export default function ProductClientFrame({
         <article
             className={
                 active
-                    ? 'fixed left-1/2 top-1/2 z-50 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-3xl  border bg-white shadow-xl'
+                    ? 'fixed right-1/2 bottom-1/2 z-50 h-2/3 w-2/3 translate-x-1/2 translate-y-1/2 transform overflow-hidden rounded-3xl  border bg-white shadow-xl'
                     : 'relative h-96 w-64 rounded-3xl border shadow-xl'
             }
         >

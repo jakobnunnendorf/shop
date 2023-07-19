@@ -1,10 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
-import {
-    FilterBarContext,
-    FilterBarContextType,
-} from '@app/shop/FilterBarContext';
+import { createContext, useState } from 'react';
 
 export type FilterContextType = {
     categoryFilters: string[]; //TODO: increase specificity

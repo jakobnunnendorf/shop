@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
+import { FiPlus } from 'react-icons/fi';
+import CompatibleModelTags from '@components/ProductCase/SmallCard/CompatibleModelTags';
 import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
-import CompatibleModelTags from '@components/ProductCase/SmallCard/CompatibleModelTags';
-import { FiPlus } from 'react-icons/fi';
 import ModelDialogue from './ModelDialogue';
 
 export default function AddCompatibleModels() {
-    const { newProduct, setNewProduct } = React.useContext(
+    const { newProduct } = React.useContext(
         NewProductContext
     ) as NewProductContextType;
     const [showModelDialogue, setShowModelDialogue] =
@@ -25,11 +25,11 @@ export default function AddCompatibleModels() {
     const addCompatibleModels = (
         <div>
             <h2>kompatible Modelle</h2>
-            <div className='relative flex w-full items-center space-x-2 '>
+            <div className='relative flex items-center w-full space-x-2 '>
                 <button
                     type='button'
                     onClick={() => setShowModelDialogue(true)}
-                    className='grid h-6 w-6 place-content-center rounded-full border'
+                    className='grid w-6 h-6 border rounded-full place-content-center'
                 >
                     <FiPlus className='text-slate-500' />
                 </button>

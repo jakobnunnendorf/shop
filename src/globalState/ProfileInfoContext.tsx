@@ -2,21 +2,29 @@
 
 import { createContext, useState } from 'react';
 
-export const ProfileInfoContext = createContext<any>(null);
+export interface ProfileInfoContextType {
+    editProfile: boolean;
+    toggleEditProfile: () => void;
+}
+
+export const ProfileInfoContext = createContext<ProfileInfoContextType | null>(
+    null
+);
 
 export function ProfileInfoContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [currentProfileInfo, setCurrentProfileInfo] = useState({
-        editProfile: false,
-    });
+    const [editProfile, setEditProfile] = useState<boolean>(false);
+    const toggleEditProfile = () => {
+        setEditProfile(!editProfile);
+    };
     return (
         <ProfileInfoContext.Provider
             value={{
-                value: currentProfileInfo,
-                setValue: setCurrentProfileInfo,
+                editProfile,
+                toggleEditProfile,
             }}
         >
             {children}

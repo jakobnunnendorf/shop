@@ -4,17 +4,15 @@ import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import {
-    MobileMenuContext,
-    MobileMenuContextType,
-} from '@globalState/MobileMenuContext';
-import {
     ActiveFiltersContext,
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
-import { useRouter } from 'next/navigation';
+import {
+    MobileMenuContext,
+    MobileMenuContextType,
+} from '@globalState/MobileMenuContext';
 
 export default function SideMenu() {
-    const router = useRouter();
 
     const { isOpen, toggleOpen } = useContext(
         MobileMenuContext
