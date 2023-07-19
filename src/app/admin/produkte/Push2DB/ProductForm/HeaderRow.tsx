@@ -1,12 +1,13 @@
 'use client';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FiCheck, FiUploadCloud } from 'react-icons/fi';
+import { v4 as uuidv4 } from 'uuid';
 import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function HeaderRow({
     setActive,
@@ -14,41 +15,109 @@ export default function HeaderRow({
     setActive: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
     const supabase = createClientComponentClient();
-    const { newProduct, fileStorage } = React.useContext(
+    const { newProduct, fileStorage, setNewProduct } = React.useContext(
         NewProductContext
     ) as NewProductContextType;
 
     const [success, setSuccess] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
+    const [imagesUploaded, setImagesUploaded] = React.useState<boolean>(false);
+
+    const uploadAndReplaceImage = async () => {
+        // iterate through each image in the imageURL array of each color
+        const generateUUIDforProduct = () => {
+            const productId = uuidv4() as UUID;
+            setNewProduct({ ...newProduct, id: productId });
+            return productId;
+        };
+        const productID = generateUUIDforProduct(); // create a new UUID for the product
+
+        const colorKeys = Object.keys(newProduct.imageURL_object) as colorKey[];
+        const ColorsThatAreNotNullAndHaveAnImage = colorKeys.filter((color) => {
+            // create array of all keys where the color is not null
+            const colorObject = newProduct.imageURL_object[color];
+            return (
+                colorObject !== null && colorObject.imageURL_array.length > 0
+            );
+        });
+
+        const copyNewProduct = { ...newProduct };
+
+        const uploadAndReplaceImageForColor = async (colorKey: colorKey) => {
+            const imageArray =
+                newProduct.imageURL_object[colorKey]?.imageURL_array;
+            if (imageArray) {
+                const returnFileForPreviewURL = (previewURL: string): File => {
+                    const fileForPreviewURL = fileStorage[previewURL];
+                    return fileForPreviewURL;
+                };
+
+                const newImageArray = await Promise.all(
+                    // create an array with the new image URLs
+                    imageArray.map(async (previewURL) => {
+                        const fileForPreviewURL: File =
+                            returnFileForPreviewURL(previewURL);
+                        const filePath = `${newProduct.title}/${colorKey}/${productID}`;
+                        await supabase.storage
+                            .from('productImageBucket')
+                            .upload(filePath, fileForPreviewURL);
+                        const { data } = await supabase.storage
+                            .from('productImageBucket')
+                            .getPublicUrl(filePath);
+                        const publicUrl = data?.publicUrl;
+                        return publicUrl;
+                    })
+                );
+
+                const newImageURLObject = {
+                    ...newProduct.imageURL_object,
+                    [colorKey]: {
+                        ...newProduct.imageURL_object[colorKey],
+                        imageURL_array: newImageArray,
+                    },
+                } as imageURL_object;
+
+                copyNewProduct.imageURL_object = newImageURLObject;
+                console.log('copyNewProduct', copyNewProduct);
+
+                /* setNewProduct({
+                //     ...newProduct,
+                //     imageURL_object: newImageURLObject,
+                 });*/
+            }
+        };
+        for (const colorKey of ColorsThatAreNotNullAndHaveAnImage) {
+            await uploadAndReplaceImageForColor(colorKey);
+            console.log('copyNewProduct3', copyNewProduct);
+        }
+        console.log('copyNewProduct4', copyNewProduct);
+        return copyNewProduct;
+        // setImagesUploaded(true);
+    };
 
     const uploadProduct = async () => {
-        setLoading(true);
-        console.log('newProduct', newProduct, 'fileStorage', fileStorage);
+        // setLoading(true);
+        console.log(await uploadAndReplaceImage());
+        const product = await uploadAndReplaceImage();
         const { data, error } = await supabase
             .from('products')
-            .insert([newProduct]);
-        await supabase.from('debugging').insert([
-            {
-                message: 'data and error',
-                content_2: data,
-                content_3: error,
-            },
-        ]);
-        setLoading(false);
-        if (!error) {
-            setSuccess(true);
-            setTimeout(() => {
-                setActive(false);
-            }, 2000);
-        }
+            .insert([product]);
+        // setLoading(false);
+        // if (!error) {
+        //     setSuccess(true);
+        //     setTimeout(() => {
+        //         setActive(false);
+        //     }, 2000);
+        // }
     };
+
     const headerRow = (
-        <div className='flex items-center justify-between h-20 px-12 mt-2 lg:mt-4'>
+        <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
             <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
             <button
                 type='button'
                 onClick={uploadProduct}
-                className='flex items-center px-2 py-1 space-x-2 border-2 border-green-400 rounded-xl'
+                className='flex items-center space-x-2 rounded-xl border-2 border-green-400 px-2 py-1'
             >
                 <div className='text-green-800'>
                     <span className='hidden lg:inline'>Hochladen</span>
@@ -72,7 +141,7 @@ export default function HeaderRow({
                         </div>
                     )}
                     {loading && (
-                        <div className='relative w-40 h-40'>
+                        <div className='relative h-40 w-40'>
                             <Image
                                 src={'/loading.gif'}
                                 fill={true}
