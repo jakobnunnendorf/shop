@@ -5,20 +5,6 @@ import { CategoryBlocks } from '@components/CategoryBlocks/CategoryBlocks';
 import { ProductCarousel } from '@components/ProductCarousel/ProductCarousel';
 import Home from './Home/Home';
 
-interface productsFetchResponse {
-    id: string;
-    created_at: Date;
-    title: string;
-    imageURL: string;
-    description: string;
-    price: string;
-    stock: number;
-    category: string;
-    compatibleModels: string | null;
-    reviews: string | null;
-    dimensions: null;
-}
-
 export const metadata: Metadata = {
     title: 'Phone2Door.com',
     description:

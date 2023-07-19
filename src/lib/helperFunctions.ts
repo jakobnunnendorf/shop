@@ -55,26 +55,6 @@ export async function addProduct_to_database(
     return data;
 }
 
-export function extract_product_from_form(formDataObject: FormData, model_array: string[]) {
-    const product: uploadProduct = {
-        created_at: new Date(),
-        title: formDataObject.get('title') as string,
-        imageURL: '',
-        description: formDataObject.get('description') as string,
-        price: parseFloat(formDataObject.get('price') as string) as number,
-        stock: parseInt(formDataObject.get('stock') as string),
-        category: formDataObject.get('category') as productCategory,
-        compatibleModels: model_array.join(', '),
-        reviews: '',
-        dimensions: {
-            width: parseInt(formDataObject.get('width') as string),
-            height: parseInt(formDataObject.get('height') as string),
-            depth: parseInt(formDataObject.get('depth') as string),
-        },
-    };
-    return product
-}
-
 export function convert_price_string_to_float(price: string) {
     const price_string = price.replace(' €', '').replace(',', '.').trim();
     const price_float = parseFloat(price_string);

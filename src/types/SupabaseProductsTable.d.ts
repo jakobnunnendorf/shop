@@ -111,7 +111,7 @@ interface imageURL_object extends Record<ColorKey, ProductInColor | null> {
     color_6: ProductInColor | null;
 }
 
-type product_review_reference_array = string[];
+type product_review_reference_array = UUID[];
 
 type dimensions = {
     width: number;

@@ -9,7 +9,6 @@ export default function ThumbnailRow({
     imageURL_array: bucketURL<'ProductImageBucket'>[] | string[];
     setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
     activeIndex: number;
-    setStatus: React.Dispatch<React.SetStateAction<productStatus>>;
     }) {
     const amountOfImages = imageURL_array.length;
     const fillUp = new Array(5 - amountOfImages).fill(null);

@@ -70,7 +70,6 @@ export default function AddImages({
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-                    setStatus={setStatus}
                 />
             )}
         </div>
