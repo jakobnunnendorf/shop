@@ -19,7 +19,7 @@ export default function SmallCard({
     };
 
     const wrapper = (
-        <article className='flex h-full flex-col overflow-hidden'>
+        <article className='flex h-full w-full flex-col overflow-hidden'>
             <SmallImage
                 imageURL={defaultImage()}
                 title={product.title}

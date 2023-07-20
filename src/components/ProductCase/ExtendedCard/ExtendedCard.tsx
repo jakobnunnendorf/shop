@@ -18,7 +18,6 @@ export default function ExtendedCard({
 
     const extendedCard = (
         <article className='grid w-full h-full grid-rows-2 lg:grid-cols-3 lg:grid-rows-none'>
-            <ProductCardContextProvider>
                 <button
                     className='absolute z-50 border-b shadow-2xl left-4 top-4 border-seafoam-green-10'
                     onClick={collapse}
@@ -32,7 +31,6 @@ export default function ExtendedCard({
                 />
 
                 <ProductInfo product={product} />
-            </ProductCardContextProvider>
         </article>
     );
     return extendedCard;

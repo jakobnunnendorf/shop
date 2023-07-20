@@ -28,8 +28,8 @@ export default function Push2DB() {
             className={`${
                 active
                     ? 'fixed left-1/2 top-1/2 h-[75vh] w-4/5 -translate-x-1/2 -translate-y-1/2 backdrop-blur-3xl'
-                    : null
-            } z-40 rounded-3xl border border-green-200 shadow-2xl`}
+                    : 'w-full'
+            } z-40 h-48 rounded-3xl border border-green-200 shadow-2xl lg:h-auto`}
             onClick={() => setActive(true)}
         >
             {active ? <ProductForm setActive={setActive} /> : <ButtonCard />}

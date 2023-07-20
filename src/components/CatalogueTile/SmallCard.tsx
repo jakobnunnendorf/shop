@@ -4,7 +4,13 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { extractDefaultImage } from '@lib/helperFunctions';
 import AddToCartButton from './AddToCartButton';
 
-export default function SmallCard({ product }: { product: product }) {
+export default function SmallCard({
+    product,
+    expand,
+}: {
+    product: product;
+    expand: () => void;
+}) {
     const compatibleModels_array = product.compatibleModels as compatibleModels;
 
     const defaultImage = () => {
@@ -12,8 +18,11 @@ export default function SmallCard({ product }: { product: product }) {
     };
 
     const wrapper = (
-        <article className='flex h-fit flex-col justify-between overflow-hidden lg:h-full '>
-            <figure className='relative h-24 w-full flex-grow overflow-hidden rounded-t-3xl'>
+        <article className='flex h-48 flex-col justify-between overflow-hidden lg:h-full '>
+            <figure
+                onClick={expand}
+                className='relative h-24 w-full flex-grow overflow-hidden rounded-t-3xl'
+            >
                 <Image
                     src={defaultImage()}
                     fill={true}
@@ -22,7 +31,10 @@ export default function SmallCard({ product }: { product: product }) {
                 />
             </figure>
             <div className='flex h-1/2 w-full flex-col justify-between px-2'>
-                <h2 className='line-clamp-2 h-fit cursor-pointer text-center text-xs font-bold text-gray-700 lg:m-2'>
+                <h2
+                    onClick={expand}
+                    className='line-clamp-2 h-fit cursor-pointer text-center text-xs font-bold text-gray-700 lg:m-2'
+                >
                     {product.title}
                 </h2>
                 <div className='flex flex-grow flex-wrap items-start justify-center space-x-1 '>

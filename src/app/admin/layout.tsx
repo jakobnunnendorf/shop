@@ -66,14 +66,16 @@ export default function AdminLayout({
         </ul>
     );
     const AdminLayout = (
-        <section className='flex'>
-            <aside className='h-screen w-12 space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
+        <section className='flex w-full '>
+            <aside className='fixed h-screen w-12 space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
                 <h2 className='mb-8 hidden text-center text-xl font-bold text-slate-400 lg:block'>
                     Admin Panel
                 </h2>
                 {navigationMenu}
             </aside>
-            <section className='w-full px-2 py-8 lg:px-16'>{children}</section>
+            <section className='relative left-12 w-[calc(100vw-3rem)] px-2 py-8 lg:px-16'>
+                {children}
+            </section>
         </section>
     );
     return AdminLayout;

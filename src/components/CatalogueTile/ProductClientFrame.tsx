@@ -1,17 +1,19 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import SmallCard from './SmallCard';
+// import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
+import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
 
-export default function ProductClientFrame({
-    ExtendedCard,
-    SmallCard,
-}: {
-    ExtendedCard: React.ReactNode;
-    SmallCard: React.ReactNode;
-}) {
+export default function ProductClientFrame({ product }: { product: product }) {
     const [active, setActive] = useState(false);
     const ProductCardRef = useRef<HTMLDivElement>(null);
-
+    const collapse = () => {
+        setActive(false);
+    };
+    const expand = () => {
+        setActive(true);
+    };
     useEffect(() => {
         if (typeof window !== 'undefined') {
             // Make sure we are in a browser environment
@@ -35,22 +37,18 @@ export default function ProductClientFrame({
 
     const wrapper_with_content = (
         <article
+            ref={ProductCardRef}
             className={
                 active
-                    ? 'fixed left-1/2 top-1/2 z-50 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-3xl  border bg-white shadow-xl'
+                    ? 'fixed bottom-4  left-1/2 z-50 h-[calc(100vh-6rem)] w-[calc(100vw-1rem)] -translate-x-1/2 transform overflow-hidden rounded-3xl border bg-white shadow-xl lg:bottom-1/2  lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2'
                     : 'relative rounded-3xl border shadow-xl lg:h-96 lg:w-64'
             }
         >
-            <div
-                ref={ProductCardRef}
-                onClick={() => setActive(true)}
-                className={
-                    active
-                        ? ''
-                        : ' absolute top-0 z-20 h-2/3 w-full cursor-pointer'
-                }
-            ></div>
-            {active ? ExtendedCard : SmallCard}
+            {active ? (
+                <ExtendedCard product={product} collapse={collapse} />
+            ) : (
+                <SmallCard product={product} expand={expand} />
+            )}
         </article>
     );
 

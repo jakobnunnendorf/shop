@@ -2,9 +2,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useContext, useEffect, useState } from 'react';
-import ExtendedCard from '@components/CatalogueTile/ExtendedCard';
 import ProductClientFrame from '@components/CatalogueTile/ProductClientFrame';
-import SmallCard from '@components/CatalogueTile/SmallCard';
 import {
     ActiveFiltersContext,
     FilterContextType,
@@ -53,19 +51,7 @@ export default function ShopPage() {
     const section = (
         <section className='grid w-full grid-cols-3 gap-4 p-2 lg:w-fit lg:grid-cols-4 lg:p-4'>
             {products?.map((product, index) => {
-                const extended_card_component_with_props = (
-                    <ExtendedCard product={product as product} />
-                );
-                const small_card_component_with_props = (
-                    <SmallCard product={product as product} />
-                );
-                return (
-                    <ProductClientFrame
-                        key={index}
-                        ExtendedCard={extended_card_component_with_props}
-                        SmallCard={small_card_component_with_props}
-                    />
-                );
+                return <ProductClientFrame key={index} product={product} />;
             })}
         </section>
     );

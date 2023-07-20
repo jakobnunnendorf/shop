@@ -3,7 +3,7 @@ import { FiPlus } from 'react-icons/fi';
 
 export default function ButtonCard() {
     const buttonCard = (
-        <button className='flex h-full w-full flex-col items-center justify-center rounded-3xl px-4  py-4 lg:py-8'>
+        <button className='flex h-48 w-full flex-col items-center justify-center rounded-3xl px-4 py-4 lg:h-full lg:py-8'>
             <FiPlus
                 className='aspect-square h-16 w-16 lg:h-36 lg:w-36'
                 fill='true'

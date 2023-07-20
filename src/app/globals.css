@@ -5,6 +5,12 @@
 .rborder {
     border: 1px solid red;
 }
+.gborder {
+    border: 1px solid green;
+}
+.bborder {
+    border: 1px solid blue;
+}
 
 .gradient-text {
     background: linear-gradient(to right, #0388A6, #32D9C8);

@@ -6,9 +6,9 @@ export default function ProductManagementLayout({
     children: React.ReactNode;
 }) {
     const layout = (
-        <NewProductContextProvider>
-            <section>{children}</section>
-        </NewProductContextProvider>
+        <section className='w-full'>
+            <NewProductContextProvider>{children}</NewProductContextProvider>
+        </section>
     );
     return layout;
 }

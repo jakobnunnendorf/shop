@@ -1,6 +1,4 @@
-import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
-import ProductClientFrame from '@components/ProductCase/ProductClientFrame';
-import SmallCard from '@components/ProductCase/SmallCard/SmallCard';
+import ProductClientFrame from '@components/CatalogueTile/ProductClientFrame';
 import supabase from '@utils/supabase';
 import Push2DB from './Push2DB/Push2DB';
 
@@ -13,19 +11,16 @@ export default async function ProductManagementPage() {
 
     const productsArray = products?.map((product, index) => {
         return (
-            <div className=' h-96 w-96 snap-center' key={index}>
-                <ProductClientFrame
-                    ExtendedCard={<ExtendedCard product={product as product} />}
-                    SmallCard={<SmallCard product={product as product} />}
-                />
+            <div className='w-full h-48  snap-center' key={index}>
+                <ProductClientFrame product={product} />
             </div>
         );
     });
 
     const ProductManagementPageContent = (
-        <section className='w-full space-y-4 '>
+        <section className='w-full '>
             <h1 className='text-3xl text-center'>Produkte verwalten</h1>
-            <div className='grid w-full grid-cols-4 gap-4 '>
+            <div className='grid w-full grid-cols-2 gap-4 lg:grid-cols-4 '>
                 <Push2DB />
                 {productsArray}
             </div>
