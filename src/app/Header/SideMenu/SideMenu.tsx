@@ -35,7 +35,7 @@ export default function SideMenu() {
             } h-screen w-[66vw] bg-sandy-beige-3 px-4 py-16 text-coastal-blue-9 backdrop-blur-3xl`}
         >
             <nav className=' h-[70vh]'>
-                <ul className='flex flex-col justify-around h-full pr-4 text-3xl font-bold'>
+                <ul className='flex h-full flex-col justify-around pr-4 text-3xl font-bold'>
                     <li className='py-4 '>
                         <Link onClick={toggleOpen} href='/'>
                             Home
@@ -115,7 +115,7 @@ export default function SideMenu() {
                         </ul>
                     </li>
                     <li className='py-4 '>
-                        <Link onClick={toggleOpen} href='/Hilfe'>
+                        <Link onClick={toggleOpen} href='/user/wunschliste'>
                             Wunschliste
                         </Link>
                     </li>{' '}

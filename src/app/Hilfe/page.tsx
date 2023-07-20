@@ -12,11 +12,14 @@ import './Help.css';
 export default function Help() {
     return (
         <div className='help'>
-            <Image
-                src='https://dominionpayroll.com/wp-content/uploads/HelpCenter.png'
-                alt='Hilfezentrum'
-                className='help__image'
-            />
+            <figure className='relative'>
+                <Image
+                    src='https://dominionpayroll.com/wp-content/uploads/HelpCenter.png'
+                    alt='Hilfezentrum'
+                    className='help__image'
+                    fill={true}
+                />
+            </figure>
             <div className='help__section'>
                 <FAQ />
             </div>
