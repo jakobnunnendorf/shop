@@ -12,8 +12,8 @@ export default function Thumbnail({
     isAddButton?: boolean;
 }) {
     const thumbnail = imageURL ? (
-        <div className='w-full aspect-square '>
-            <figure className='relative w-full h-full bg-gray-200 rounded-lg'>
+        <div className='aspect-square w-full '>
+            <figure className='relative h-full w-full rounded-lg bg-gray-200 lg:h-24 lg:w-24'>
                 <Image
                     alt='product thumbnail'
                     src={imageURL}

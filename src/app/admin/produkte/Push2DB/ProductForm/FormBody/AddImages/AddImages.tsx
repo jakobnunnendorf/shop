@@ -48,7 +48,7 @@ export default function AddImages({
                     : status === 'ready'
                     ? 'border-3 border-green-400'
                     : 'border-r-2'
-            } overflow-hidden rounded-l-3xl lg:col-span-2`}
+            } flex items-end justify-center overflow-hidden rounded-l-3xl`}
         >
             {status !== 'explain' && <StatusBar status={status} />}
             {status !== 'explain' && (
@@ -70,6 +70,7 @@ export default function AddImages({
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
+                    buttonSlot={true}
                 />
             )}
         </div>

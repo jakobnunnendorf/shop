@@ -40,7 +40,7 @@ export default function ProductClientFrame({ product }: { product: product }) {
             ref={ProductCardRef}
             className={
                 active
-                    ? 'fixed bottom-4  left-1/2 z-50 h-[calc(100vh-6rem)] w-[calc(100vw-1rem)] -translate-x-1/2 transform overflow-hidden rounded-3xl border bg-white shadow-xl lg:bottom-1/2  lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2'
+                    ? 'fixed bottom-4  left-1/2 z-50 h-[calc(100vh-6rem)] w-[calc(100vw-1rem)] -translate-x-1/2 transform overflow-hidden rounded-3xl border bg-white shadow-xl lg:bottom-1/2  lg:h-2/3 lg:w-2/3 lg:translate-y-1/2'
                     : 'relative rounded-3xl border shadow-xl lg:h-96 lg:w-64'
             }
         >

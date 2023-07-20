@@ -11,7 +11,10 @@ export default async function ProductManagementPage() {
 
     const productsArray = products?.map((product, index) => {
         return (
-            <div className='w-full h-48  snap-center' key={index}>
+            <div
+                className='h-48 w-full snap-center lg:h-96 lg:w-64'
+                key={index}
+            >
                 <ProductClientFrame product={product} />
             </div>
         );
