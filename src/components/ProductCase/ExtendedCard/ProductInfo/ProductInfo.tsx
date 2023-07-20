@@ -9,7 +9,7 @@ import CartButton from '../CartButton';
 
 export default function ProductInfo({ product }: { product: product }) {
     const productInfo = (
-        <div className='rborder flex h-full w-full flex-col justify-evenly p-8'>
+        <div className='flex h-full w-full flex-col justify-evenly p-8'>
             <div className='pb-0 lg:pb-4'>
                 <Title productTitle={product.title} />
                 <CompatibleModelTags
