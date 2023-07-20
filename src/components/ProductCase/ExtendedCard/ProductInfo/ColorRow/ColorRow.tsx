@@ -27,9 +27,9 @@ export default function ColorRow({ imageURL_object }: { imageURL_object: imageUR
     };
 
     const colorRow = (
-        <div className='space-y-4 '>
-            <h3 className='text-xl font-bold'>Farbe</h3>
-            <ul className='flex justify-around'>
+        <div className='row-span-3 '>
+            <h3 className='pb-2 text-xl font-bold'>Farbe</h3>
+            <ul className='flex space-x-4 '>
                 <ColorMap
                     colors={colors}
                     selectColor={selectKeyFromColor}

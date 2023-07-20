@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
-import CompatibleModelTags from '@components/ProductCase/SmallCard/CompatibleModelTags';
+import CompatibleModelTags from '@components/ProductCase/components/CompatibleModelTags';
 import {
     NewProductContext,
     NewProductContextType,

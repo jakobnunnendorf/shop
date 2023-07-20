@@ -15,16 +15,20 @@ export default function Images({
         return imageURL_array[index];
     };
     const images = (
-        <div className='relative col-span-2 flex h-full w-full items-end justify-center bg-gray-100 p-6 '>
+        <div className='relative flex items-end justify-center w-full h-full p-6 bg-gray-100 lg:col-span-2 '>
             {imageURL_array && imageURL_array.length > 0 ? (
-                <Image
-                    src={getImageAt(activeIndex)}
-                    fill={true}
-                    objectFit='cover'
-                    alt={'product image'}
-                />
+                <div className='absolute top-0 left-0 z-10 w-full h-full'>
+                    <figure className='relative w-full h-full '>
+                        <Image
+                            src={getImageAt(activeIndex)}
+                            fill={true}
+                            objectFit='cover'
+                            alt={'product image'}
+                        />
+                    </figure>
+                </div>
             ) : (
-                <div className='h-full w-full '></div>
+                <div className='relative w-full h-full'></div>
             )}
             <ThumbnailRow
                 imageURL_array={imageURL_array}

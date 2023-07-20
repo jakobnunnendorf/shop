@@ -12,6 +12,8 @@ export interface ProductCardContextType {
     setActiveColorKey: Dispatch<SetStateAction<colorKey>>;
     activeIndex: number;
     setActiveIndex: Dispatch<SetStateAction<number>>;
+    extended: boolean;
+    setExtended: Dispatch<SetStateAction<boolean>>;
 }
 
 export const ProductCardContext = createContext<ProductCardContextType | null>(
@@ -26,6 +28,7 @@ export function ProductCardContextProvider({
     const [activeColorKey, setActiveColorKey] =
         useState<colorKey>('default_color');
     const [activeIndex, setActiveIndex] = useState<number>(0);
+    const [extended, setExtended] = useState<boolean>(false);
 
     return (
         <ProductCardContext.Provider
@@ -34,6 +37,8 @@ export function ProductCardContextProvider({
                 setActiveColorKey,
                 activeIndex,
                 setActiveIndex,
+                extended,
+                setExtended,
             }}
         >
             {children}

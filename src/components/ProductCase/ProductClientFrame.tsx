@@ -1,14 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import ExtendedCard from './ExtendedCard/ExtendedCard';
+import SmallCard from './SmallCard/SmallCard';
 
-export default function ProductClientFrame({
-    ExtendedCard,
-    SmallCard,
-}: {
-    ExtendedCard: React.ReactNode;
-    SmallCard: React.ReactNode;
-}) {
+export default function ProductClientFrame({ product }: { product: product }) {
     const [active, setActive] = useState(false);
     const ProductCardRef = useRef<HTMLDivElement>(null);
 
@@ -18,7 +14,7 @@ export default function ProductClientFrame({
                 ProductCardRef.current &&
                 !ProductCardRef.current.contains(event.target as Node)
             ) {
-                setActive(false);
+                collapse();
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -27,24 +23,26 @@ export default function ProductClientFrame({
         };
     }, [ProductCardRef]);
 
+    const expand = () => {
+        setActive(true);
+    };
+    const collapse = () => {
+        setActive(false);
+    };
     const wrapper_with_content = (
         <article
-            className={
+            ref={ProductCardRef}
+            className={`${
                 active
-                    ? 'fixed right-1/2 bottom-1/2 z-50 h-2/3 w-2/3 translate-x-1/2 translate-y-1/2 transform overflow-hidden rounded-3xl  border bg-white shadow-xl'
+                    ? 'fixed right-1/2 top-20 z-50 h-[calc(100vh-6rem)] w-[calc(100vw-1rem)] translate-x-1/2 transform overflow-hidden rounded-3xl border bg-white shadow-xl lg:top-1/2  lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2'
                     : 'relative h-96 w-64 rounded-3xl border shadow-xl'
-            }
+            } duration-100 ease-in-out `}
         >
-            <div
-                ref={ProductCardRef}
-                onClick={() => setActive(true)}
-                className={
-                    active
-                        ? ''
-                        : ' absolute top-0 z-20 h-2/3 w-full cursor-pointer'
-                }
-            ></div>
-            {active ? ExtendedCard : SmallCard}
+            {active ? (
+                <ExtendedCard product={product} collapse={collapse} />
+            ) : (
+                <SmallCard product={product} expand={expand} />
+            )}
         </article>
     );
 

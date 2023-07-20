@@ -16,7 +16,7 @@ export default function CompatibleModelTags({
     const tagArray = brands.concat(modelNames ? modelNames : []);
 
     const modelNameTags = (
-        <div className='flex flex-wrap items-start justify-center space-x-1'>
+        <div className='flex flex-wrap items-start justify-center space-x-1 '>
             {tagArray &&
                 tagArray.map((tag: string) => {
                     return (

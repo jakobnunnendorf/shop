@@ -1,0 +1,10 @@
+{
+  current: HTMLElement {
+    '__reactFiber$zl3obrjfuq': FiberNode {...},
+    '__reactProps$zl3obrjfuq': {...},
+    title: '',
+    lang: '',
+    translate: true,
+    ...
+  }
+}

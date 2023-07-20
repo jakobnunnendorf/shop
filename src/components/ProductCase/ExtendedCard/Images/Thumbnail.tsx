@@ -12,18 +12,20 @@ export default function Thumbnail({
     isAddButton?: boolean;
 }) {
     const thumbnail = imageURL ? (
-        <figure className='relative h-24 w-24 rounded-lg bg-gray-200'>
-            <Image
-                alt='product thumbnail'
-                src={imageURL}
-                fill={true}
-                objectFit='cover'
-            />
-        </figure>
+        <div className='w-full aspect-square '>
+            <figure className='relative w-full h-full bg-gray-200 rounded-lg'>
+                <Image
+                    alt='product thumbnail'
+                    src={imageURL}
+                    fill={true}
+                    objectFit='cover'
+                />
+            </figure>
+        </div>
     ) : null;
-    const skeleton = <div className='h-24 w-24 rounded-lg bg-gray-200 '></div>;
+    const skeleton = <div className='w-24 h-24 bg-gray-200 rounded-lg '></div>;
     const addButton = (
-        <div className='grid h-24 w-24 place-content-center rounded-lg bg-gray-200'>
+        <div className='grid w-24 h-24 bg-gray-200 rounded-lg place-content-center'>
             <FiPlus size={40} className='text-seafoam-green-7' />
         </div>
     );

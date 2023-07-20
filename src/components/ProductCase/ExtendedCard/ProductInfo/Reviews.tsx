@@ -7,7 +7,7 @@ export default function Reviews({
     productReviews: UUID[];
 }) {
     const reviews = (
-        <span className='flex items-center'>
+        <div className='flex items-center '>
             <div className=''>
                 {productReviews?.length > 0
                     ? `(${productReviews.length}) `
@@ -18,7 +18,7 @@ export default function Reviews({
             <FiStar className='text-yellow-400' />
             <FiStar className='text-yellow-400' />
             <FiStar className='text-yellow-400' />
-        </span>
+        </div>
     );
     return reviews;
 }
