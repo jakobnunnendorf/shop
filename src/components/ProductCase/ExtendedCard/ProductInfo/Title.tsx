@@ -10,7 +10,7 @@ export default function Title({
     const skeleton = <div className='h-12 rounded-full bg-gray-100'></div>;
     const title = (
         <h2
-            className={` row-span-2 text-center text-2xl font-bold lg:text-start lg:text-3xl `}
+            className={` pb-2 text-center text-xl font-bold lg:text-start lg:text-3xl `}
         >
             {productTitle}
         </h2>

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
 import SmallCard from './SmallCard';
 // import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
-import ExtendedCard from '@components/ProductCase/ExtendedCard/ExtendedCard';
 
 export default function ProductClientFrame({ product }: { product: product }) {
     const [active, setActive] = useState(false);

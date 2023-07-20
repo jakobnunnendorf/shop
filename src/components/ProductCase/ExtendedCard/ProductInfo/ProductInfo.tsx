@@ -9,8 +9,8 @@ import CartButton from '../CartButton';
 
 export default function ProductInfo({ product }: { product: product }) {
     const productInfo = (
-        <div className='flex h-full w-full flex-col justify-evenly p-8'>
-            <div className='pb-4 lg:pb-0'>
+        <div className='rborder flex h-full w-full flex-col justify-evenly p-8'>
+            <div className='pb-0 lg:pb-4'>
                 <Title productTitle={product.title} />
                 <CompatibleModelTags
                     compatibleModels_array={product.compatibleModels}
@@ -19,13 +19,13 @@ export default function ProductInfo({ product }: { product: product }) {
                     <ColorRow imageURL_object={product.imageURL_object} />
                 </div>
             </div>
-            <div className='row-span-2 w-full'>
-                <Description productDescription={product.description} />
-                <div className='flex w-full justify-evenly py-4'>
-                    <Reviews productReviews={product.reviews} />
+            <Description productDescription={product.description} />
+            <div className='flex w-full items-center lg:block '>
+                <div className='w-full justify-evenly py-4 lg:flex'>
                     <Price productPrice={product.price} />
+                    <Reviews productReviews={product.reviews} />
                 </div>
-                <div className='pt-8'>
+                <div className='lg:pt-8'>
                     <CartButton />
                 </div>
             </div>
