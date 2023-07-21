@@ -9,7 +9,7 @@ import {
 import Collapsed from './Collapsed/Collapsed';
 import Expanded from './Expanded/Expanded';
 
-export default async function ProductCard({
+export default function ProductCard({
     product,
     grid,
 }: {
@@ -57,7 +57,7 @@ export default async function ProductCard({
         >
             {expanded && (
                 <button
-                    className='absolute left-8 top-8 z-50 border-b-3 border-s-seafoam-green-7 text-3xl text-coastal-blue-7'
+                    className='absolute z-50 text-3xl left-8 top-8 border-b-3 border-s-seafoam-green-7 text-coastal-blue-7'
                     onClick={() => setExpanded(false)}
                 >
                     <FiArrowLeft />
