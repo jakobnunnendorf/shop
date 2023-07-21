@@ -9,7 +9,7 @@ export default function BigImage({
     isSkeleton?: boolean;
 }) {
     const bigImage = (
-        <div className='relative w-full h-full '>
+        <div className='absolute z-10 h-full w-full '>
             <Image
                 src={imageURL}
                 fill={true}
@@ -19,7 +19,7 @@ export default function BigImage({
         </div>
     );
     const skeleton = (
-        <div className='relative w-full h-full bg-gray-100 '></div>
+        <div className='absolute z-10 h-full w-full bg-gray-100 '></div>
     );
     return isSkeleton ? skeleton : bigImage;
 }

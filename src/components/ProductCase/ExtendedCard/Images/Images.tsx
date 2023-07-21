@@ -15,8 +15,8 @@ export default function Images({
         return imageURL_array[index];
     };
     const images = (
-        <div className='relative flex items-end justify-center w-full h-full p-6 bg-gray-100 lg:col-span-2 '>
-            {imageURL_array && imageURL_array.length > 0 ? (
+        <div className='relative flex h-full w-full items-end justify-center bg-gray-100 p-6 lg:col-span-2 '>
+            {/* {imageURL_array && imageURL_array.length > 0 ? (
                 <div className='absolute top-0 left-0 z-10 w-full h-full'>
                     <figure className='relative w-full h-full '>
                         <Image
@@ -29,7 +29,7 @@ export default function Images({
                 </div>
             ) : (
                 <div className='relative w-full h-full'></div>
-            )}
+            )} */}
             <ThumbnailRow
                 imageURL_array={imageURL_array}
                 setActiveIndex={setActiveIndex}

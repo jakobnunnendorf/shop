@@ -33,14 +33,14 @@ export default function ImageInput({
     };
 
     const imageInput = (
-        <div className='flex items-end justify-center w-full h-full p-6 bg-gray-100 '>
+        <div className='absolute z-10 flex h-full w-full items-end justify-center bg-gray-100 p-6 '>
             <input
                 ref={fileInputRef}
                 onChange={chooseImage}
                 name='imageURL'
                 type='file'
                 id='fileInput'
-                className='w-full h-full text-xs text-slate-500 file:absolute file:bottom-1/2 file:right-1/2 file:translate-x-1/2 file:translate-y-1/2 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-slate-500 after:content-none hover:file:bg-violet-100 lg:text-sm lg:file:mr-4 lg:file:text-sm'
+                className='h-full w-full text-xs text-slate-500 file:absolute file:bottom-1/2 file:right-1/2 file:translate-x-1/2 file:translate-y-1/2 file:rounded-full file:border-0 file:bg-cyan-50 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-slate-500 after:content-none hover:file:bg-violet-100 lg:text-sm lg:file:mr-4 lg:file:text-sm'
             />
         </div>
     );
