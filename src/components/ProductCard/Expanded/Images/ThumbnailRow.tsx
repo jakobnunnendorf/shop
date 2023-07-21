@@ -11,7 +11,7 @@ export default function ThumbnailRow({
     activeIndex: number;
 }) {
     const thumbnailRow = (
-        <ul className='z-20 grid h-24 w-full grid-cols-4 gap-4 px-4 lg:mb-8 lg:w-4/5 lg:px-0'>
+        <ul className='z-20 grid w-full h-24 grid-cols-4 gap-4 px-4 lg:mb-8 lg:w-4/5 lg:px-0'>
             {imageURL_array.map((imageURL, index) => {
                 const setThisIndexActive = () => {
                     setActiveIndex(index);
@@ -29,7 +29,7 @@ export default function ThumbnailRow({
                                     : ''
                             }`}
                         >
-                            <figure className='relative aspect-square h-full'>
+                            <figure className='relative h-full aspect-square'>
                                 <Image
                                     src={imageURL}
                                     fill

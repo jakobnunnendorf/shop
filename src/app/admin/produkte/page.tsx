@@ -1,4 +1,4 @@
-import ProductClientFrame from '@components/CatalogueTile/ProductClientFrame';
+import ProductCard from '@components/ProductCard/ProductCard';
 import supabase from '@utils/supabase';
 import Push2DB from './Push2DB/Push2DB';
 
@@ -12,10 +12,10 @@ export default async function ProductManagementPage() {
     const productsArray = products?.map((product, index) => {
         return (
             <div
-                className='h-48 w-full snap-center lg:h-96 lg:w-64'
+                className='w-full h-48 snap-center lg:h-96 lg:w-64'
                 key={index}
             >
-                <ProductClientFrame product={product} />
+                <ProductCard product={product} />
             </div>
         );
     });

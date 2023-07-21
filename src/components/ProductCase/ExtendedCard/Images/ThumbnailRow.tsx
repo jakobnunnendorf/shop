@@ -1,5 +1,6 @@
+import Image from 'next/image';
 import React from 'react';
-import Thumbnail from './Thumbnail';
+import { FiPlus } from 'react-icons/fi';
 
 export default function ThumbnailRow({
     imageURL_array,
@@ -15,7 +16,7 @@ export default function ThumbnailRow({
     const amountOfImages = imageURL_array.length;
     // const fillUp = new Array(5 - amountOfImages).fill(null);
     const thumbnailRow = (
-        <ul className='z-50 grid h-24 w-full grid-cols-4  lg:mb-4 lg:w-4/5'>
+        <ul className='z-50 grid h-24 w-full grid-cols-4 lg:mb-4 lg:w-4/5'>
             {imageURL_array.map((imageURL, index) => {
                 const setThisIndexActive = () => {
                     setActiveIndex(index);
@@ -33,7 +34,14 @@ export default function ThumbnailRow({
                                     : ''
                             }`}
                         >
-                            <Thumbnail imageURL={imageURL} />
+                            <figure className='relative aspect-square h-full'>
+                                <Image
+                                    src={imageURL}
+                                    fill
+                                    objectFit='cover'
+                                    alt={imageURL}
+                                />
+                            </figure>
                         </li>
                     </button>
                 );
@@ -43,7 +51,9 @@ export default function ThumbnailRow({
                     type='button'
                     onClick={() => setActiveIndex(amountOfImages)}
                 >
-                    <Thumbnail isAddButton={true} />
+                    <figure className='relative aspect-square h-full'>
+                        <FiPlus />
+                    </figure>
                 </button>
             )}
         </ul>

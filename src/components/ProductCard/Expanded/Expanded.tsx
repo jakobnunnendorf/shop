@@ -4,7 +4,7 @@ import {
     ActiveProductContextType,
 } from '@globalState/ActiveProductCardContext';
 import ExpandedInfo from './ExpandedInfo';
-import ExpandedPicture from './ExpandedPicture';
+import ExpandedPicture from './Images/ExpandedPicture';
 
 export default function Expanded({ product }: { product: product }) {
     const { state, dispatch } = useContext(

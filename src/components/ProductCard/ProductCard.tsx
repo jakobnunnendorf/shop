@@ -39,7 +39,7 @@ export default async function ProductCard({
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [ProductCardRef, dispatch]);
+    }, [ProductCardRef, dispatch, state.expanded]);
 
     const productCard = (
         <article

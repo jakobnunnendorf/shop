@@ -1,6 +1,6 @@
 import React from 'react';
+import ThumbnailRow from '@components/ProductCard/Expanded/Images/ThumbnailRow';
 import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
-import ThumbnailRow from '@components/ProductCard/Expanded/ThumbnailRow';
 import { NewProductContext, NewProductContextType } from '@globalState/NewProductContext';
 import ControlBar from './ControlBar';
 import Explain from './Explain';
