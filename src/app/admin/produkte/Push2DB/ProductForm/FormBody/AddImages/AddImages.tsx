@@ -70,7 +70,7 @@ export default function AddImages({
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-                    buttonSlot={true}
+                    // buttonSlot={true}
                 />
             )}
         </div>
