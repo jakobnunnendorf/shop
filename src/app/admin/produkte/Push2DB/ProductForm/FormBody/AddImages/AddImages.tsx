@@ -1,7 +1,10 @@
+import Image from 'next/image';
 import React from 'react';
 import ThumbnailRow from '@components/ProductCard/Expanded/Images/ThumbnailRow';
-import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
-import { NewProductContext, NewProductContextType } from '@globalState/NewProductContext';
+import {
+    NewProductContext,
+    NewProductContextType,
+} from '@globalState/NewProductContext';
 import ControlBar from './ControlBar';
 import Explain from './Explain';
 import ImageInput from './ImageInput/ImageInput';
@@ -23,32 +26,52 @@ export default function AddImages({
             ? activeColor.imageURL_array
             : [];
     const defaultColorInitialised =
-        newProduct.imageURL_object[activeColorKey]?.color_name !== null;
+        newProduct.imageURL_object[activeColorKey]?.color_name;
+    console.log(defaultColorInitialised);
     const bigImageOrSayToAddColor = defaultColorInitialised ? (
-        <BigImage
-            imageURL={imageArray[activeIndex]}
-            isSkeleton={imageArray.length === 0}
-        />
+        <figure className='absolute z-10 h-full w-full '>
+            <Image
+                src={imageArray[activeIndex]}
+                fill
+                objectFit='cover'
+                alt={imageArray[activeIndex]}
+            />
+        </figure>
     ) : (
-        <div className='grid w-full h-full place-content-center'>
-            {' '}
+        <div className='absolute grid h-full w-full place-content-center text-xl font-bold'>
             Bitte wähle eine Farbe aus
         </div>
     );
 
+    let borderStyle;
+    let content;
+    switch (status) {
+        case 'showcase':
+            borderStyle = 'border-3 border-blue-400';
+            content = bigImageOrSayToAddColor;
+            break;
+        case 'preview':
+            borderStyle = 'border-3 border-yellow-400';
+            // big image
+            break;
+        case 'edit':
+            borderStyle = 'border-3 border-orange-400';
+            // Image input
+            break;
+        case 'ready':
+            borderStyle = 'border-3 border-green-400';
+            content = bigImageOrSayToAddColor;
+            break;
+        default:
+            borderStyle = 'border-r-2';
+            break;
+    }
+
+    const showAddButon = status !== 'explain' && defaultColorInitialised;
+
     const addImages = (
         <div
-            className={`relative col-span-2  ${
-                status === 'showcase'
-                    ? 'border-3 border-blue-400'
-                    : status === 'preview'
-                    ? ' border-3 border-yellow-400'
-                    : status === 'edit'
-                    ? 'border-3 border-orange-400'
-                    : status === 'ready'
-                    ? 'border-3 border-green-400'
-                    : 'border-r-2'
-            } flex items-end justify-center overflow-hidden rounded-l-3xl`}
+            className={`relative lg:col-span-3 ${borderStyle} flex items-end justify-center overflow-hidden rounded-l-3xl`}
         >
             {status !== 'explain' && <StatusBar status={status} />}
             {status !== 'explain' && (
@@ -57,20 +80,17 @@ export default function AddImages({
             {status === 'explain' ? (
                 <Explain setStatus={setStatus} />
             ) : status === 'showcase' || status === 'ready' ? (
-                // <BigImage
-                //     imageURL={imageArray[activeIndex]}
-                //     isSkeleton={imageArray.length === 0}
-                // />
                 bigImageOrSayToAddColor
             ) : (
                 <ImageInput setStatus={setStatus} />
             )}
-            {status !== 'explain' && (
+            {showAddButon && (
                 <ThumbnailRow
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-                    // buttonSlot={true}
+                    buttonSlot={true}
+                    setStatus={setStatus}
                 />
             )}
         </div>

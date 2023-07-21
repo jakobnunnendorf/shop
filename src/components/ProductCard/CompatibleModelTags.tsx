@@ -19,7 +19,7 @@ export default function CompatibleModelTags({
 
     const modelNameTags = (
         <div
-            className={`flex flex-wrap items-start justify-center space-x-1 ${
+            className={`flex flex-wrap items-start justify-center space-x-1 py-1 ${
                 expanded ? ' px-8 py-2' : null
             }`}
         >
@@ -40,12 +40,5 @@ export default function CompatibleModelTags({
                 })}
         </div>
     );
-    /*
-    const compatibleModelsTags = (
-        <div className='flex flex-wrap items-start justify-start flex-grow space-x-1 '>
-            {brandNameTags}
-            {modelNameTags}
-        </div>
-    );*/
     return modelNameTags;
 }

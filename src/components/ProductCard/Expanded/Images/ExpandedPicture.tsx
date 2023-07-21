@@ -15,7 +15,7 @@ export default function ExpandedPicture({
 
     const expandedPicture = (
         <div className='relative flex items-end justify-center lg:col-span-3'>
-            <figure className='absolute h-full w-full '>
+            <figure className='absolute w-full h-full '>
                 <Image
                     src={activeImage}
                     fill

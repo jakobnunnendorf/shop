@@ -12,7 +12,7 @@ export function ProductCarousel({
     productData: product[];
 }) {
     return (
-        <div className='flex flex-col items-center py-16 '>
+        <div className='flex flex-col items-center py-8 lg:py-16 '>
             <h2 className='gradient-text m-8 text-5xl font-bold text-coastal-blue-10 hover:underline'>
                 {heading}
             </h2>
@@ -20,7 +20,7 @@ export function ProductCarousel({
                 {productData.map((product, index) => {
                     return (
                         <li className=' snap-center' key={index}>
-                            <div className='w-64'>
+                            <div className='w-48 lg:w-64'>
                                 <ProductCard product={product} />
                             </div>
                         </li>

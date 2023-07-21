@@ -5,7 +5,7 @@ export default function ProductForm({ setActive }: { setActive: React.Dispatch<R
     const product_form = (
         <form
             //onSubmit={}
-            className='flex flex-col h-full p-4 space-y-4'
+            className='flex h-full flex-col space-y-4 p-4'
         >
             <HeaderRow setActive={setActive} />
             <FormBody />

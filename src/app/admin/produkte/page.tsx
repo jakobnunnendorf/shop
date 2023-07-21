@@ -10,20 +10,13 @@ export default async function ProductManagementPage() {
         .select()) as sb_fetchResponseObject<product[]>;
 
     const productsArray = products?.map((product, index) => {
-        return (
-            <div
-                className='w-full h-48 snap-center lg:h-96 lg:w-64'
-                key={index}
-            >
-                <ProductCard product={product} />
-            </div>
-        );
+        return <ProductCard key={index} product={product} />;
     });
 
     const ProductManagementPageContent = (
         <section className='w-full '>
-            <h1 className='text-3xl text-center'>Produkte verwalten</h1>
-            <div className='grid w-full grid-cols-2 gap-4 lg:grid-cols-4 '>
+            <h1 className='text-center text-3xl'>Produkte verwalten</h1>
+            <div className='grid w-full grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4 '>
                 <Push2DB />
                 {productsArray}
             </div>
