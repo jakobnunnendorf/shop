@@ -1,25 +1,18 @@
 import Image from 'next/image';
-import React, { useContext } from 'react';
-import {
-    ActiveProductContext,
-    ActiveProductContextType,
-} from '@globalState/ActiveProductCardContext';
+import React from 'react';
 
 export default function ProductPicture({
     imageURL,
+    setExpanded,
 }: {
     imageURL: string | bucketURL<'productImageBucket'>;
+    setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-    const { dispatch } = useContext(
-        ActiveProductContext
-    ) as ActiveProductContextType;
-
-    const expand = () => {
-        dispatch({ type: 'toggleExpanded', payload: true });
-    };
-
     return (
-        <figure className='relative row-span-2 lg:row-span-1' onClick={expand}>
+        <figure
+            className='relative row-span-2 lg:row-span-1'
+            onClick={() => setExpanded(true)}
+        >
             <Image src={imageURL} alt={imageURL} fill objectFit='contain' />
         </figure>
     );

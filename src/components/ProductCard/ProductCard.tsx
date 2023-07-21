@@ -16,9 +16,13 @@ export default async function ProductCard({
     product: product;
     grid?: boolean;
 }) {
-    const { state, dispatch } = useContext(
+    const {dispatch } = useContext(
         ActiveProductContext
     ) as ActiveProductContextType;
+    const [expanded, setExpanded] = React.useState<boolean>(false);
+    const toggleExpanded = () => {
+        setExpanded(!expanded);
+    };
 
     const expandedFrame =
         'fixed right-1/2 top-16 z-50 h-[calc(100vh-4rem)] rounded-none lg:rounded-3xl w-screen translate-x-1/2 lg:top-1/2 lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2';
@@ -29,18 +33,18 @@ export default async function ProductCard({
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
-                state.expanded &&
+                expanded &&
                 ProductCardRef.current &&
                 !ProductCardRef.current.contains(event.target as Node)
             ) {
-                dispatch({ type: 'toggleExpanded', payload: false });
+                setExpanded(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [ProductCardRef, dispatch, state.expanded]);
+    }, [ProductCardRef, dispatch, expanded]);
 
     const productCard = (
         <article
@@ -49,22 +53,20 @@ export default async function ProductCard({
                 grid
                     ? 'lg:rounded-3xl lg:border lg:shadow-xl'
                     : 'rounded-3xl border shadow-xl'
-            }  bg-white ${state.expanded ? expandedFrame : collapsedFrame}`}
+            }  bg-white ${expanded ? expandedFrame : collapsedFrame}`}
         >
-            {state.expanded && (
+            {expanded && (
                 <button
                     className='absolute left-8 top-8 z-50 border-b-3 border-s-seafoam-green-7 text-3xl text-coastal-blue-7'
-                    onClick={() =>
-                        dispatch({ type: 'toggleExpanded', payload: false })
-                    }
+                    onClick={() => setExpanded(false)}
                 >
                     <FiArrowLeft />
                 </button>
             )}
-            {state.expanded ? (
+            {expanded ? (
                 <Expanded product={product} />
             ) : (
-                <Collapsed product={product} />
+                <Collapsed product={product} setExpanded={setExpanded} />
             )}
         </article>
     );
