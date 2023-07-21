@@ -1,6 +1,6 @@
 import React from 'react';
+import ThumbnailRow from '@components/ProductCard/Expanded/Images/ThumbnailRow';
 import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
-import ThumbnailRow from '@components/ProductCase/ExtendedCard/Images/ThumbnailRow';
 import { NewProductContext, NewProductContextType } from '@globalState/NewProductContext';
 import ControlBar from './ControlBar';
 import Explain from './Explain';
@@ -70,7 +70,7 @@ export default function AddImages({
                     imageURL_array={imageArray}
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
-                    buttonSlot={true}
+                    // buttonSlot={true}
                 />
             )}
         </div>

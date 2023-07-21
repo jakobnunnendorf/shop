@@ -49,7 +49,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
-        "@next/bundle-analyzer": "^13.3.0",
+        "@next/bundle-analyzer": "^13.4.10",
         "@opentelemetry/api": "^1.4.1",
         "@storybook/addon-essentials": "^7.0.5",
         "@storybook/addon-interactions": "^7.0.5",

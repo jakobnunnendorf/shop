@@ -2,8 +2,8 @@ import React from 'react';
 import { eur, extractDefaultImage } from '@lib/helperFunctions';
 import Skeleton from './Skeleton/Skeleton';
 import SmallImage from './SmallImage';
-import AddToCartButton from '../AddToCartButton';
-import CompatibleModelTags from '../components/CompatibleModelTags';
+import AddToCartButton from '../../ProductCard/Collapsed/AddToCartButton';
+import CompatibleModelTags from '../../ProductCard/CompatibleModelTags';
 
 export default function SmallCard({
     product,

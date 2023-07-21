@@ -1,11 +1,11 @@
 import React from 'react';
-import CompatibleModelTags from '@components/ProductCase/components/CompatibleModelTags';
-import ColorRow from './ColorRow/ColorRow';
+import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
+import ColorRow from '../../../ProductCard/Expanded/ColorRow/ColorRow';
 import Description from './Description';
 import Price from './Price';
 import Reviews from './Reviews';
 import Title from './Title';
-import CartButton from '../CartButton';
+import CartButton from '../../../ProductCard/Expanded/CartButton';
 
 export default function ProductInfo({ product }: { product: product }) {
     const productInfo = (
@@ -26,7 +26,7 @@ export default function ProductInfo({ product }: { product: product }) {
                     <Reviews productReviews={product.reviews} />
                 </div>
                 <div className='lg:pt-8'>
-                    <CartButton />
+                    <CartButton product={product} />
                 </div>
             </div>
         </div>

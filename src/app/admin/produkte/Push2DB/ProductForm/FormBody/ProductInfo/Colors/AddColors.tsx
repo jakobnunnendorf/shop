@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
-import ColorMap from '@components/ProductCase/ExtendedCard/ProductInfo/ColorRow/ColorMap';
+import ColorMap from '@components/ProductCard/Expanded/ColorRow/ColorMap';
 import {
     NewProductContext,
     NewProductContextType,

@@ -2,7 +2,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useContext, useEffect, useState } from 'react';
-import ProductClientFrame from '@components/CatalogueTile/ProductClientFrame';
+import ProductCard from '@components/ProductCard/ProductCard';
 import {
     ActiveFiltersContext,
     FilterContextType,
@@ -49,9 +49,13 @@ export default function ShopPage() {
     }, [categoryFilters, deviceFilters, priceFilters]);
 
     const section = (
-        <section className='grid w-full grid-cols-3 gap-4 p-2 lg:w-fit lg:grid-cols-4 lg:p-4'>
+        <section className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>
             {products?.map((product, index) => {
-                return <ProductClientFrame key={index} product={product} />;
+                return (
+                    <div key={index} className='w-full pb-4'>
+                        <ProductCard product={product} grid={true} />
+                    </div>
+                );
             })}
         </section>
     );
