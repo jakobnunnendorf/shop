@@ -1,5 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {
+    ActiveProductContext,
+    ActiveProductContextType,
+} from '@globalState/ActiveProductCardContext';
 
 export default function ProductPicture() {
-    return <figure>CollapsedPicture</figure>;
+    const { dispatch } = useContext(
+        ActiveProductContext
+    ) as ActiveProductContextType;
+
+    const expand = () => {
+        dispatch({ type: 'toggleExpanded', payload: true });
+    };
+
+    return <figure onClick={expand}>CollapsedPicture</figure>;
 }
