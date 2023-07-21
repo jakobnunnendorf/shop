@@ -1,6 +1,5 @@
 'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import Image from 'next/image';
 import React from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { FiCheck, FiUploadCloud } from 'react-icons/fi';
@@ -22,7 +21,6 @@ export default function HeaderRow({
 
     const [success, setSuccess] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
-    const [imagesUploaded, setImagesUploaded] = React.useState<boolean>(false);
 
     const uploadAndReplaceImage = async () => {
         // iterate through each image in the imageURL array of each color
@@ -80,11 +78,6 @@ export default function HeaderRow({
 
                 copyNewProduct.imageURL_object = newImageURLObject;
                 console.log('copyNewProduct', copyNewProduct);
-
-                /* setNewProduct({
-                //     ...newProduct,
-                //     imageURL_object: newImageURLObject,
-                 });*/
             }
         };
         for (const colorKey of ColorsThatAreNotNullAndHaveAnImage) {
@@ -93,24 +86,24 @@ export default function HeaderRow({
         }
         console.log('copyNewProduct4', copyNewProduct);
         return copyNewProduct;
-        // setImagesUploaded(true);
     };
 
     const uploadProduct = async () => {
-        // setLoading(true);
+        setLoading(true);
+        console.log('uploadProduct');
         console.log(await uploadAndReplaceImage());
         const product = await uploadAndReplaceImage();
-        const { data, error } = await supabase
-            .from('products')
-            .insert([product]);
-        // setLoading(false);
-        // if (!error) {
-        //     setSuccess(true);
-        //     setTimeout(() => {
-        //         setActive(false);
-        //     }, 2000);
-        // }
+        const { error } = await supabase.from('products').insert([product]);
+        setLoading(false);
+        if (!error) {
+            setSuccess(true);
+            setTimeout(() => {
+                setActive(false);
+            }, 2000);
+        }
     };
+
+    console.log(loading);
 
     const headerRow = (
         <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
@@ -125,7 +118,12 @@ export default function HeaderRow({
 
             <button
                 type='button'
-                onClick={uploadProduct}
+                onClick={() => {
+                    setLoading(true);
+                    setTimeout(() => {
+                        uploadProduct();
+                    }, 10);
+                }}
                 className='flex items-center space-x-2 rounded-xl border-2 border-green-400 px-2 py-1'
             >
                 <div className='text-green-800'>
@@ -133,6 +131,21 @@ export default function HeaderRow({
                 </div>
                 <FiUploadCloud className='text-green-800' />
             </button>
+            {loading && (
+                <div
+                    className={`absolute z-50 grid h-48 w-48 border bg-white text-xl font-bold text-green-400 ${
+                        success
+                            ? 'border-green-400'
+                            : loading
+                            ? 'border-seafoam-green-7'
+                            : ''
+                    } left-1/2 top-1/2 place-content-center rounded-lg`}
+                >
+                    <div className='flex'>
+                        <p> Loading...</p>{' '}
+                    </div>
+                </div>
+            )}
             {success && (
                 <div
                     className={`absolute z-50 grid h-48 w-48 border bg-white text-xl font-bold text-green-400 ${
@@ -143,20 +156,10 @@ export default function HeaderRow({
                             : ''
                     } left-1/2 top-1/2 place-content-center rounded-lg`}
                 >
-                    {loading && (
+                    {success && (
                         <div className='flex'>
                             <p> success</p>{' '}
                             <FiCheck className='text-2xl text-green-400' />
-                        </div>
-                    )}
-                    {loading && (
-                        <div className='relative h-40 w-40'>
-                            <Image
-                                src={'/loading.gif'}
-                                fill={true}
-                                objectFit='contain'
-                                alt='loading'
-                            />
                         </div>
                     )}
                 </div>
