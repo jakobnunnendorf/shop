@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import ButtonCard from './ButtonCard';
 import ProductForm from './ProductForm/ProductForm';
 export default function Push2DB() {
@@ -22,17 +23,24 @@ export default function Push2DB() {
         };
     }, [ProductCardRef]);
 
+    const expandedFrame =
+        'fixed right-1/2 top-16 z-50 h-[calc(100vh-4rem)] rounded-none lg:rounded-3xl w-screen translate-x-1/2 lg:top-1/2 lg:h-[70vh] lg:w-2/3 lg:-translate-y-1/2';
+    const collapsedFrame =
+        'relative w-full aspect-[4/7] lg:aspect-[2/3] max-w-xs';
+
     const renderButtonOrForm = (
         <article
             ref={ProductCardRef}
-            className={`${
-                active
-                    ? 'fixed left-1/2 top-1/2 h-[75vh] w-4/5 -translate-x-1/2 -translate-y-1/2 backdrop-blur-3xl'
-                    : 'w-full'
-            } relative aspect-[2/3] w-full max-w-xs rounded-3xl border border-green-400`}
-            onClick={() => setActive(true)}
+            className={` overflow-hidden 
+                    rounded-3xl border shadow-xl backdrop-blur-3xl ${
+                        active ? expandedFrame : collapsedFrame
+                    }`}
         >
-            {active ? <ProductForm setActive={setActive} /> : <ButtonCard />}
+            {active ? (
+                <ProductForm setActive={setActive} />
+            ) : (
+                <ButtonCard setActive={setActive} />
+            )}
         </article>
     );
 

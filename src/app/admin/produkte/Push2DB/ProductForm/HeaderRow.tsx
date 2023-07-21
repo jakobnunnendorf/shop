@@ -1,7 +1,8 @@
 'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { FiArrowLeft } from 'react-icons/fi';
 import { FiCheck, FiUploadCloud } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import {
@@ -113,7 +114,15 @@ export default function HeaderRow({
 
     const headerRow = (
         <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
+            <button
+                className='gradient mr-2 flex text-3xl text-coastal-blue-7'
+                onClick={() => setActive(false)}
+            >
+                <FiArrowLeft />
+                <p className='text-xl'>Zurück</p>
+            </button>
             <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
+
             <button
                 type='button'
                 onClick={uploadProduct}

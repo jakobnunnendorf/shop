@@ -12,7 +12,7 @@ export default function FormBody() {
     ) as NewProductContextType;
 
     return (
-        <div className='grid flex-grow grid-cols-3 rounded-3xl bg-white'>
+        <div className='grid h-[66vh] grid-cols-3 rounded-3xl bg-white'>
             <AddImages status={status} setStatus={setStatus} />
             <ProductInfo />
         </div>
