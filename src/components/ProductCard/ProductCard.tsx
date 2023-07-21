@@ -28,6 +28,7 @@ export default async function ProductCard({
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
+                state.expanded &&
                 ProductCardRef.current &&
                 !ProductCardRef.current.contains(event.target as Node)
             ) {

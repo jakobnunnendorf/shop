@@ -11,11 +11,6 @@ export function ProductCarousel({
     heading: string;
     productData: product[];
 }) {
-    // const productDataWithSkeletons: product[] = [
-    //     ...(productData as product[]),
-    //     ...Array.from({ length: 20 - productData.length }, () => ({})),
-    // ];
-
     return (
         <div className='flex flex-col items-center py-16 '>
             <h2 className='gradient-text m-8 text-5xl font-bold text-coastal-blue-10 hover:underline'>
