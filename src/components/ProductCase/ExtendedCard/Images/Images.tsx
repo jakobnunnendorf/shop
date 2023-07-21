@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import ThumbnailRow from './ThumbnailRow';
+import ThumbnailRow from '../../Expanded/ThumbnailRow';
 
 export default function Images({
     imageURL_array,
