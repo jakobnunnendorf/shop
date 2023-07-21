@@ -84,7 +84,7 @@ export function NewProductContextProvider({
     );
 }
 
-const blankNewProduct: uploadProductDraft = {
+export const blankNewProduct: uploadProductDraft = {
     title: null,
     description: null,
     price: null,

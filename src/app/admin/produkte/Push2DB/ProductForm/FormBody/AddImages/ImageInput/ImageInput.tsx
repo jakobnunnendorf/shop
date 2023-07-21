@@ -1,16 +1,16 @@
+import Image from 'next/image';
 import React, { useEffect } from 'react';
 import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
 import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
+import ExpandedPicture from '@components/ProductCard/Expanded/Images/ExpandedPicture';
 
 export default function ImageInput({
     setStatus,
 }: {
-    setStatus: React.Dispatch<
-        React.SetStateAction<productStatus>
-    >;
+    setStatus: React.Dispatch<React.SetStateAction<productStatus>>;
 }) {
     const fileInputRef = React.useRef<HTMLInputElement>(null);
     const { setSelectedFile, setPreviewURL, previewURL } = React.useContext(
@@ -45,5 +45,12 @@ export default function ImageInput({
         </div>
     );
 
-    return previewURL ? <BigImage imageURL={previewURL} /> : imageInput;
+    // return previewURL ? <BigImage imageURL={previewURL} /> : imageInput;
+    return previewURL ? (
+        <figure className='absolute h-full w-full '>
+            <Image src={previewURL} fill objectFit='cover' alt={previewURL} />
+        </figure>
+    ) : (
+        imageInput
+    );
 }

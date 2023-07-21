@@ -25,19 +25,6 @@ export default function ControlBar({
         activeColorKey,
     } = React.useContext(NewProductContext) as NewProductContextType;
 
-    /*function findImageURLKeyByColorName(
-        colorName: productColor,
-        imageURLObject: imageURL_object
-    ): string | null {
-        for (const key in imageURLObject) {
-            const productInColor = imageURLObject[key];
-            if (productInColor?.color_name === colorName) {
-                return key;
-            }
-        }
-        return null;
-    }*/
-
     const confirmImage = () => {
         if (selectedFile && previewURL) {
             setFileStorage({ ...fileStorage, [previewURL]: selectedFile });
@@ -87,7 +74,7 @@ export default function ControlBar({
     );
 
     const duringPreview = (
-        <div className='px-2 py-1 space-x-4 rounded-full bg-sandy-beige-1 backdrop-blur-3xl'>
+        <div className='z-50 px-2 py-1 space-x-4 rounded-full bg-sandy-beige-1 backdrop-blur-3xl'>
             <button type='button' onClick={editPicture}>
                 <FiX className='inline-block w-6 h-6 text-red-500' />
             </button>
@@ -106,8 +93,18 @@ export default function ControlBar({
             <FiEdit2 className=' text-slate-500' />
         </button>
     );
+    console.log(status);
+    console.log(
+        status === 'showcase' || status === 'ready'
+            ? 'duringShowcase'
+            : status === 'edit'
+            ? 'duringEdit'
+            : 'duringPreview'
+    );
+    console.log(newProduct.imageURL_object[activeColorKey]?.color_name);
+    console.log(activeColorKey);
     return (
-        newProduct.imageURL_object[activeColorKey]?.color_name !== null && (
+        newProduct.imageURL_object[activeColorKey]?.color_name && (
             <div className='absolute z-50 right-6 top-6'>
                 {status === 'showcase' || status === 'ready'
                     ? duringShowcase
