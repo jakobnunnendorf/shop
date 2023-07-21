@@ -9,7 +9,10 @@ export default function Price({ productPrice }: { productPrice: number }) {
         </div>
     );
     const price = (
-        <div className='text-lg font-bold '> {eur(productPrice)}</div>
+        <div className='text-[4cqw] font-bold lg:text-lg '>
+            {' '}
+            {eur(productPrice)}
+        </div>
     );
 
     return productPrice ? price : skeleton;

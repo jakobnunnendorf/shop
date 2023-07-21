@@ -11,10 +11,7 @@ export default function AddToCartButton({ product }: { product: product }) {
     };
 
     return (
-        <button
-            onClick={addThisItemToCart}
-            className='p-2 border-2 rounded-full shadow-xl'
-        >
+        <button onClick={addThisItemToCart} className='shadow-xl'>
             <FiShoppingCart />
         </button>
     );

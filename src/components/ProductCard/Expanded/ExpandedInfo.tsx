@@ -2,7 +2,7 @@ import React from 'react';
 import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
 import CartButton from '@components/ProductCard/Expanded/CartButton';
 import ColorRow from '@components/ProductCard/Expanded/ColorRow/ColorRow';
-import Price from '@components/ProductCase/ExtendedCard/ProductInfo/Price';
+import Price from '@components/ProductCard/Price';
 
 export default function ExpandedInfo({ product }: { product: product }) {
     const expandedInfo = (

@@ -2,7 +2,7 @@ import React from 'react';
 import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
 import ColorRow from '../../../ProductCard/Expanded/ColorRow/ColorRow';
 import Description from './Description';
-import Price from './Price';
+import Price from '../../../ProductCard/Price';
 import Reviews from './Reviews';
 import Title from './Title';
 import CartButton from '../../../ProductCard/Expanded/CartButton';
