@@ -26,7 +26,7 @@ export default function ProductInfo({ product }: { product: product }) {
                     <Reviews productReviews={product.reviews} />
                 </div>
                 <div className='lg:pt-8'>
-                    <CartButton />
+                    <CartButton product={product} />
                 </div>
             </div>
         </div>
