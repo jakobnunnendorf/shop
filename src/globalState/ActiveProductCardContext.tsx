@@ -6,7 +6,7 @@ export interface ActiveProductContextType {
     state: {
         expanded: boolean;
         activeIndex: number;
-        activeColorKey: colorKey | null;
+        activeColorKey: colorKey;
     };
     dispatch: React.Dispatch<reducerAction>;
 }
@@ -16,13 +16,13 @@ export const ActiveProductContext =
 
 interface reducerAction {
     type: 'setActiveIndex' | 'setActiveColorKey' | 'toggleExpanded';
-    payload: number | colorKey | null | boolean;
+    payload: number | colorKey | boolean;
 }
 
 interface reducerState {
     expanded: boolean;
     activeIndex: number;
-    activeColorKey: colorKey | null;
+    activeColorKey: colorKey;
 }
 
 const reducer = (state: reducerState, action: reducerAction) => {
@@ -46,7 +46,7 @@ export function ActiveProductContextProvider({
     const [state, dispatch] = useReducer(reducer, {
         expanded: true,
         activeIndex: 0,
-        activeColorKey: null,
+        activeColorKey: 'default_color',
     });
 
     const activeProductContextProvider = (

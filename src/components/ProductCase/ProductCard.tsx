@@ -43,7 +43,7 @@ export default async function ProductCard({ product }: { product: product }) {
         >
             {state.expanded && (
                 <button
-                    className='absolute text-3xl left-8 top-8 border-b-3 border-s-seafoam-green-7 text-coastal-blue-7'
+                    className='absolute left-8 top-8 z-50 border-b-3 border-s-seafoam-green-7 text-3xl text-coastal-blue-7'
                     onClick={() =>
                         dispatch({ type: 'toggleExpanded', payload: false })
                     }
@@ -51,9 +51,13 @@ export default async function ProductCard({ product }: { product: product }) {
                     <FiArrowLeft />
                 </button>
             )}
-            {state.expanded ? <Expanded /> : <Collapsed />}
+            {state.expanded ? (
+                <Expanded product={product} />
+            ) : (
+                <Collapsed product={product} />
+            )}
         </article>
     );
 
-    return <div className='grid grid-cols-2 rborder w-96'>{productCard}</div>;
+    return <div className='grid w-96 grid-cols-2'>{productCard}</div>;
 }

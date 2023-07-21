@@ -1,11 +1,13 @@
 import React from 'react';
 import CollapsedPicture from './CollapsedPicture';
 
-export default function Collapsed() {
+export default function Collapsed({ product }: { product: product }) {
+    const imageURL = product.imageURL_object.default_color.imageURL_array[0];
+
     const collapsed = (
-        <div className='grid w-full h-full grid-rows-2'>
-            <CollapsedPicture />
-            <article className='bborder'></article>
+        <div className='grid h-full w-full grid-rows-2'>
+            <CollapsedPicture imageURL={imageURL} />
+            <article className=''></article>
         </div>
     );
 
