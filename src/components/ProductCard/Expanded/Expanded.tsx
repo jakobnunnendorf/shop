@@ -3,6 +3,7 @@ import {
     ActiveProductContext,
     ActiveProductContextType,
 } from '@globalState/ActiveProductCardContext';
+import ExpandedInfo from './ExpandedInfo';
 import ExpandedPicture from './ExpandedPicture';
 
 export default function Expanded({ product }: { product: product }) {
@@ -19,13 +20,13 @@ export default function Expanded({ product }: { product: product }) {
     };
 
     const expanded = (
-        <div className='grid h-4/5 w-full grid-rows-2 lg:h-full lg:grid-cols-5 lg:grid-rows-none'>
+        <div className='grid w-full grid-rows-2 h-4/5 lg:h-full lg:grid-cols-5 lg:grid-rows-none'>
             <ExpandedPicture
                 imageURL_array={imageURL_array}
                 activeIndex={state.activeIndex}
                 setActiveIndex={setActiveIndex}
             />
-            <div className=' lg:col-span-2'>ProductInfo</div>
+            <ExpandedInfo product={product} />
         </div>
     );
 

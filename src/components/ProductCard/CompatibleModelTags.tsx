@@ -2,8 +2,10 @@ import React from 'react';
 
 export default function CompatibleModelTags({
     compatibleModels_array,
+    expanded,
 }: {
     compatibleModels_array: compatibleModels;
+    expanded?: boolean;
 }) {
     const modelNames = compatibleModels_array?.map((model: device) => {
         return model.name;
@@ -16,13 +18,21 @@ export default function CompatibleModelTags({
     const tagArray = brands.concat(modelNames ? modelNames : []);
 
     const modelNameTags = (
-        <div className='flex flex-wrap items-start justify-center space-x-1 '>
+        <div
+            className={`flex flex-wrap items-start justify-center space-x-1 ${
+                expanded ? ' px-8 py-2' : null
+            }`}
+        >
             {tagArray &&
                 tagArray.map((tag: string) => {
                     return (
                         <div
                             key={tag}
-                            className='h-fit w-fit rounded-full border px-2 text-[9px] font-bold text-gray-500'
+                            className={`h-fit w-fit rounded-full border px-1 ${
+                                expanded
+                                    ? 'lg:text-md text-sm font-bold'
+                                    : 'text-[9px]'
+                            }  text-gray-500`}
                         >
                             {tag}
                         </div>

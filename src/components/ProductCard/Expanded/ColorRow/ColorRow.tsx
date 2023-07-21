@@ -6,7 +6,11 @@ import {
 } from '@globalState/ProductCardContext';
 import ColorMap from './ColorMap';
 
-export default function ColorRow({ imageURL_object }: { imageURL_object: imageURL_object }) {
+export default function ColorRow({
+    imageURL_object,
+}: {
+    imageURL_object: imageURL_object;
+}) {
     const { activeColorKey, setActiveColorKey } = React.useContext(
         ProductCardContext
     ) as ProductCardContextType;
@@ -27,8 +31,8 @@ export default function ColorRow({ imageURL_object }: { imageURL_object: imageUR
     };
 
     const colorRow = (
-        <div className='row-span-3 '>
-            <h3 className='pb-2 text-xl font-bold'>Farbe</h3>
+        <div className='row-span-3 px-8 py-4'>
+            <h3 className='pb-2 text-xl font-bold'>Farbe auswählen</h3>
             <ul className='flex space-x-4 '>
                 <ColorMap
                     colors={colors}

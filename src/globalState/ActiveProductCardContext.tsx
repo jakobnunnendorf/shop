@@ -44,7 +44,7 @@ export function ActiveProductContextProvider({
     children: React.ReactNode;
 }) {
     const [state, dispatch] = useReducer(reducer, {
-        expanded: true,
+        expanded: false,
         activeIndex: 0,
         activeColorKey: 'default_color',
     });

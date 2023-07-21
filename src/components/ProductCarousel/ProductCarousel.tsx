@@ -2,9 +2,7 @@
 //NOTE: This is a comment
 'use client';
 import React from 'react';
-import ProductClientFrame from '@components/ProductCase/ProductClientFrame';
-import ExtendedCard from '../ProductCase/ExtendedCard/ExtendedCard';
-import SmallCard from '../ProductCase/SmallCard/SmallCard';
+import ProductCard from '@components/ProductCard/ProductCard';
 
 export function ProductCarousel({
     heading,
@@ -23,15 +21,17 @@ export function ProductCarousel({
             <h2 className='gradient-text m-8 text-5xl font-bold text-coastal-blue-10 hover:underline'>
                 {heading}
             </h2>
-            <div className='flex w-96 snap-x space-x-4 overflow-x-auto px-4 py-16 scrollbar-hide lg:w-2/3'>
+            <ul className='flex h-fit w-96 snap-x space-x-4 overflow-x-auto px-8 pb-8 scrollbar-hide lg:w-2/3'>
                 {productData.map((product, index) => {
                     return (
-                        <div className=' h-96 w-96 snap-center' key={index}>
-                            <ProductClientFrame product={product} />
-                        </div>
+                        <li className=' snap-center' key={index}>
+                            <div className='w-64'>
+                                <ProductCard product={product} />
+                            </div>
+                        </li>
                     );
                 })}
-            </div>
+            </ul>
         </div>
     );
 }
