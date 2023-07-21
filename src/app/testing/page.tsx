@@ -1,4 +1,5 @@
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import ProductCase from '@components/ProductCase/ProductCard';
+import supabase from '@utils/supabase';
 
 export const metadata = {
     title: '',
@@ -6,19 +7,9 @@ export const metadata = {
 };
 
 export default async function TestingPage() {
-    const supabase = createClientComponentClient();
-    const {
-        data,
-        
-    }: {
-        data: profilesFetchData;
-        error: supabasefetchResponseError;
-    } = await supabase.from('orders').select('*');
-
-    return (
-        <section>
-            <pre>{typeof data}</pre>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-        </section>
-    );
+    const { data: product } = (await supabase
+        .from('products')
+        .select('*')
+        .limit(5)) as sb_fetchResponseObject<product[]>;
+    return product ? <ProductCase product={product[0]} /> : null;
 }

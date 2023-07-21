@@ -1,7 +1,7 @@
 import './globals.css';
 
 import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
-import { ActiveProductContextProvider } from '@globalState/ActiveProductCard';
+import { ActiveProductContextProvider } from '@globalState/ActiveProductCardContext';
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
