@@ -22,6 +22,11 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
         set_second_password(e.target.value);
     };
     const handle_checkout_and_signup = async (formData: FormData) => {
+        if (cart.length === 0) {
+            alert('Warenkorb ist leer');
+            return;
+        }
+
         const signup_email = formData.get('email') as email | null;
         const signup_password = formData.get('password') as string;
         const signup_password_repeat = formData.get(
@@ -44,8 +49,12 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
                     },
                 }),
             });
-            const { url } = await data.json();
-           router.push(url);
+            const { url, error } = await data.json();
+            if (url && !error) {
+                router.push(url);
+            } else {
+                alert(`Fehler: ${error}`);
+            }
         } else {
             set_error_message('Passwörter stimmen nicht überein');
         }
@@ -53,7 +62,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
     const signUpAndCheckout = (
         <li className='flex flex-col items-start space-y-4 '>
             <div className='flex items-center space-x-4'>
-                <div className='flex aspect-square h-8 w-8 items-center justify-center rounded-full border border-coastal-blue-10 p-2 font-bold text-coastal-blue-10'>
+                <div className='flex items-center justify-center w-8 h-8 p-2 font-bold border rounded-full aspect-square border-coastal-blue-10 text-coastal-blue-10'>
                     1
                 </div>{' '}
                 <h3 className=''>Account erstellen und fortfahren</h3>
@@ -65,14 +74,14 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
                 <input
                     type='email'
                     placeholder='E-Mail-Adresse'
-                    className='col-span-2 rounded-t-md border px-2 py-1 outline-none'
+                    className='col-span-2 px-2 py-1 border outline-none rounded-t-md'
                     name='email'
                 />
                 <input
                     onChange={handle_first_password_change}
                     type='password'
                     placeholder='Passwort'
-                    className='rounded-bl-md border border-t-0 px-2 py-1 outline-none'
+                    className='px-2 py-1 border border-t-0 outline-none rounded-bl-md'
                     name='password'
                 />
                 <input
@@ -88,11 +97,11 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
                     }`}
                     name='password_repeat'
                 />
-                <div className='col-span-2 flex flex-col items-center justify-center'>
+                <div className='flex flex-col items-center justify-center col-span-2'>
                     <p className='text-xs text-red-500'>{error_message}</p>
                     <button
                         type='submit'
-                        className='mt-4 flex w-fit items-center justify-center space-x-2 rounded-lg bg-coastal-blue-10 px-4 py-2 font-bold text-white'
+                        className='flex items-center justify-center px-4 py-2 mt-4 space-x-2 font-bold text-white rounded-lg w-fit bg-coastal-blue-10'
                     >
                         <FiUser className='text-white' />
                         <span>Checkout</span>
