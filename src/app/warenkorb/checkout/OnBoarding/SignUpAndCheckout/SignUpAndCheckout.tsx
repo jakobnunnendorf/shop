@@ -1,10 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
 
 export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
+  const router = useRouter();
     const [error_message, set_error_message] = useState('');
 
     const [first_password, set_first_password] = useState('');
@@ -43,7 +45,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
                 }),
             });
             const { url } = await data.json();
-            window.location.href = url;
+           router.push(url);
         } else {
             set_error_message('Passwörter stimmen nicht überein');
         }

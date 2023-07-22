@@ -1,6 +1,9 @@
+'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
+    const router = useRouter();
     const handle_login_and_checkout = async (formData: FormData) => {
         const login_email = formData.get('email');
         const login_password = formData.get('password');
@@ -20,12 +23,12 @@ export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
             }),
         });
         const { url } = await data.json();
-        window.location.href = url;
+        router.push(url);
     };
 
     const loginAndCheckout = (
-        <aside className=' flex h-full w-full items-center justify-center '>
-            <div className=' h-2/3 space-y-8'>
+        <aside className='flex h-full w-full items-center justify-center '>
+            <div className='h-2/3 space-y-8'>
                 <h2 className='text-3xl font-bold text-coastal-blue-10'>
                     Ich war schonmal hier
                 </h2>
