@@ -5,10 +5,14 @@ import React from 'react';
 export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
     const router = useRouter();
     const handle_login_and_checkout = async (formData: FormData) => {
+        if (cart.length === 0) {
+            alert('Warenkorb ist leer');
+            return;
+        }
         const login_email = formData.get('email');
         const login_password = formData.get('password');
 
-        const data: any = await fetch('/api/checkout', {
+        const data: any = await fetch('/api/checkout/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,12 +22,15 @@ export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
                 metadata: {
                     email: login_email,
                     password: login_password,
-                    checkout_mode: 'login_and_checkout',
                 },
             }),
         });
-        const { url } = await data.json();
-        router.push(url);
+        const { url, error } = await data.json();
+        if (!error) {
+            router.push(url);
+        } else {
+            alert(error);
+        }
     };
 
     const loginAndCheckout = (

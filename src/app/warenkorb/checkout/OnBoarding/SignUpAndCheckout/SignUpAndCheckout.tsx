@@ -30,7 +30,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
 
         if (signup_password === signup_password_repeat) {
             set_error_message('');
-            const data: any = await fetch('/api/checkout', {
+            const data: any = await fetch('/api/checkout/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
