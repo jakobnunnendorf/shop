@@ -60,3 +60,91 @@ This Software Requirements Specification (SRS) document is divided into several 
 - **Non-Functional Requirements:** This section outlines the performance, safety, security, and software quality attributes of the system.
 - **Interface Requirements:** This section describes the user, hardware, software, and communication interfaces of the system.
 
+## 2. Overall Description
+
+### 2.1 Product Perspective
+
+Phone2Door.com is designed to provide an easy and relaxing online shopping experience in the phone accessories market. Unlike many e-commerce platforms that bombard customers with information and choices, Phone2Door.com aims to create a sense of relaxation and an enjoyable user experience. The platform focuses on simplicity and ease-of-use, minimizing the hassle.
+
+While the platform's functionality aligns with standard e-commerce practices, its distinguishing factor lies in its user experience. The goal is to cater to customers who prefer a more straightforward instead of an information-heavy shopping experience.
+
+### 2.2 Product Functions
+
+The main functions of the Phone2Door.com platform are divided into two user roles: Customer and Admin.
+
+#### Customer Functions:
+
+- **Product Browsing:** Customers can view a carousel of bestsellers and different product categories on the home page. They can enlarge the product to view more information and add the product in their preferred color to the cart.
+- **Checkout and Payment:** Customers can checkout with an existing account, a new account, or as a guest. Payments are processed securely via Stripe.
+- **Order Tracking and Reviews:** After purchase, customers can track their orders and write reviews about the products. 
+- **Returns:** Customers can request to return items, providing a message and pictures to the admin for review.
+- **Wishlist:** Customers can add products to a wishlist for future purchase.
+- **Account Management:** Customers can create an account to track orders and save personal information for faster checkout in the future.
+
+#### Admin Functions:
+
+- **Order Management:** Admins can view incoming orders, change order status (which triggers an email notification to the customer), and manually edit or cancel orders.
+- **Return Management:** Admins can view return requests from customers and approve or disapprove them.
+- **Analytics Dashboard:** Admins have access to a dashboard displaying key metrics such as revenue, sales per item, user traffic, and performance.
+- **User Profile Management:** Admins can view and manage user profiles to resolve any issues.
+- **Settings Panel:** The settings panel allows admins to manage various aspects of the store. (We'll detail this in the next step.)- -
+- **Product Panel:** A dedicated panel where admins can view and manage products in the catalog.
+
+### 2.3 User Characteristics
+
+There are two main types of users who will interact with the Phone2Door.com platform:
+
+#### Customer:
+
+Customers are the primary users of the platform. They are individuals looking to purchase phone accessories online. Their main tasks include browsing products, adding items to the cart, checking out, tracking orders, writing reviews, and managing their account.
+
+#### Admin:
+
+Admins are responsible for maintaining the platform. Their main tasks include managing the product catalog, processing orders, handling return requests, viewing and managing user profiles, and configuring system settings. They have access to the admin panel, which includes the order management panel, analytics dashboard, user profile management, product panel, and settings panel.
+
+### 2.4 Constraints
+
+#### Technical Constraints:
+- Development and production technologies include React, NextJS, Tailwind CSS, Supabase, and TypeScript.
+- The platform should be compatible with the most popular browsers on both iOS and Android devices, including Safari, Chrome, Firefox, and Edge.
+- All page load times should be below 2 seconds. All data mutations should occur on the server unless it is not possible.
+
+#### Regulatory Constraints:
+- The platform must comply with the General Data Protection Regulation (GDPR), which includes requirements for data protection, user consent, data portability, and the right to be forgotten. More details on GDPR can be found [here](https://gdpr-info.eu/).
+- The platform must also comply with German consumer protection laws, which include the right to return online purchases within 14 days, the requirement to provide detailed product information, and more. More details can be found [here](https://www.gesetze-im-internet.de/englisch_bgb/englisch_bgb.html#p3553).
+- The platform will use Stripe for payment processing, which complies with the Payment Services Directive (PSD2) requirements for strong customer authentication.
+
+#### Operational Constraints:
+- The platform aims for at least 99% uptime.
+- A backup and recovery plan should be in place to protect data and ensure system recovery in case of a failure. This could include regular data backups, a disaster recovery plan, and the use of redundant systems.
+- Maintenance tasks, including system updates and bug fixes, will be handled by one person. User support will be handled by the admin.
+
+#### Resource Constraints:
+- The platform aims to go live by August 7th.
+- The development team consists of 3 people, and the maintenance team consists of 1 person.
+
+### 2.5 Assumptions and Dependencies
+
+#### Assumptions:
+- **User Behavior:** The platform is designed for users who are likely to have internet literacy and familiarity with online shopping. The primary target demographic is individuals under the age of 40.
+- **Market Conditions:** The platform assumes a steady demand for phone accessories and that the product offerings will meet the needs of the target market.
+- **Technical Infrastructure:** The platform is designed to accommodate users with varying internet connection quality, including potentially poor mobile connections. It also assumes users will be using a wide range of different mobile devices.
+
+#### Dependencies:
+- **Third-Party Services:** The platform depends on several third-party services, including Stripe for payment processing and Supabase for backend services. Any downtime or changes in these services could impact the operation of the platform.
+- **Suppliers:** The product catalog may be impacted by changes in supplier pricing, availability, or quality. However, these changes will be managed by the admin.
+- **Regulatory Compliance:** The platform must comply with various laws and regulations, including [GDPR](https://gdpr-info.eu/) and [German consumer protection laws](https://www.gesetze-im-internet.de/englisch_bgb/englisch_bgb.html#p3553). Changes in these regulations may require updates to the platform.
+
+## 3. System Features
+
+### 3.1 Product Carousel
+
+#### Description and Priority
+The product carousel is a high-priority feature that displays an array of items on the home page. It provides a quick and easy way for customers to browse the best-selling items and items from each product category. When the customer clicks the heading of the carousel, it links to the product catalog and automatically applies the corresponding filters.
+
+#### Functional Requirements
+1. The product carousel should display an array of items.
+2. There should be one carousel for the best-selling items, calculated based on which items generate the most revenue.
+3. There should be one carousel for each product category.
+4. When the customer clicks the heading of the carousel, the system should link to the product catalog and automatically apply the corresponding filters.
+
