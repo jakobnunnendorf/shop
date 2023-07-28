@@ -226,3 +226,22 @@ Users can access their past orders through a link to the order history page in t
 #### 3.6.4 Wishlist Management
 
 Users can access their wishlist through a link to the wishlist page in their account. The detailed functionality of the wishlist page is covered in section 3.5.
+
+### 3.7 Admin Panel
+#### 3.7.1 Order Management
+- The admin can view all orders placed on the platform.
+- The admin can update the status of orders (e.g., "out for delivery", "delivered", etc.).
+- The admin can manage return requests and approve or disapprove them.
+- The admin can manually edit and cancel orders if necessary (e.g., if a customer requests a change).
+#### 3.7.1 Order Management
+
+- The admin can view all orders placed on the platform. In the desktop view, each row of the incoming orders list displays the thumbnail of the item (or the thumbnail of the most expensive item if there are multiple items), the order date, the address, the order status, the number of days since the order status was last updated (with a status light that changes from green (less than 1 day) to red (more than 5 days) as the number of days increases), and the total cost. In the mobile view, the information in the row is limited to the thumbnail, date, status, and the days since last status change indicator.
+- When the admin clicks on an order, it opens a dynamic page with all of the data associated with the order, including complete customer details, profile ID, a Google Maps widget showing the location pin of the address, and an interface to change the order status, cancel/edit the order, and edit the customer details. Both mobile and desktop views feature the same amount of information on the order management page.
+- The admin can update the status of orders (e.g., "out for delivery", "delivered", etc.). When the order status changes, the system automatically informs the customer about the change via email.
+- The admin can manage return requests and approve or disapprove them.
+- The admin can manually edit and cancel orders if necessary (e.g., if a customer requests a change).
+
+#### 3.7.2 User Management
+
+- The admin can view all user profiles on the platform.
+- The admin can manage user profiles, including updating user information.
