@@ -148,3 +148,46 @@ The product carousel is a high-priority feature that displays an array of items 
 3. There should be one carousel for each product category.
 4. When the customer clicks the heading of the carousel, the system should link to the product catalog and automatically apply the corresponding filters.
 
+### 3.2 Product Page
+
+#### Description and Priority
+The product page is a high-priority feature that provides detailed information about each item. It includes a larger view of the product image, additional views of the product through thumbnails, and a color selection feature. When a customer selects a color, the product images update to reflect the selected color.
+
+#### Functional Requirements
+1. The product page should display detailed information about the item.
+2. The page should include a larger view of the product image.
+3. The page should provide additional views of the product through thumbnails.
+4. The page should include a color selection feature. When a color is selected, the product images should update to reflect the selected color.
+5. The page should feature a checkout button that adds the product with the selected color in the cart.
+
+The dynamic page should include the information in this screenshot.
+![Product Page screenshot](https://github.com/jakobnunnendorf/shop/blob/8ad14b0a896fe836429889393e0a486002f2ac54/product%2520page%2520screenshot.png)
+
+### 3.3 Cart and Checkout
+
+#### Description and Priority
+The cart and checkout process is a high-priority feature that allows customers to review their selected items, adjust quantities, and proceed to purchase. The checkout process provides options for signing in to an existing account, registering a new account, or checking out as a guest.
+
+#### Functional Requirements
+1. The cart page should display a list of selected items, including their title, price, and thumbnail. If no items are selected, the page should display skeleton components and disable the checkout button.
+2. Customers should be able to increment or decrement the quantity of each item in the cart.
+3. Upon checkout, customers should be redirected to a page where they can choose to sign in to an existing account, register a new account, or check out as a guest.
+4. If the customer chooses to sign in to an existing account, their email should be provided to Stripe to prefill their information, and if they have an existing delivery address, it should also be prefilled.
+5. If the customer chooses to register and check out, the system should create their account in the background, send a verification email, and redirect them to Stripe checkout with their email prefilled.
+6. If the customer chooses to check out as a guest, they should fill in their email and delivery address on the Stripe page.
+
+### 3.4 Order Tracking and Review
+
+#### Description and Priority
+Order tracking and review is a high-priority feature that allows customers to view their order history, track the status of their orders, write reviews for completed orders, and request refunds or cancellations. 
+
+#### Functional Requirements
+1. The orders page should display a list of the customer's orders. Each row should include a thumbnail of the most expensive item in the order, the date of the order, the price of the order, and the order status.
+2. Clicking the thumbnail or title of each order row should link to a dynamic page showing the complete view of the order. This page should display the same information as in the summary row as a heading, and below it should show the entire cart of the order.
+3. The order page should show the status of the order (order accepted, paid, dispatched, delivered, review written) using a timeline with icons.
+4. Once the order is delivered, the order page should show an interface for the customer to submit a review for the order.
+5. Below the review interface, the order page should display a product carousel of similar items that the user may want to purchase.
+6. At the bottom of the page, there should be an interface where the user can either cancel the order if it hasn't been dispatched yet or request a refund once it has been dispatched and they want to return it. The refund/cancel widget should feature a refund status timeline with instructions once the customer requested a refund.
+
+##### Media
+![Order time line](https://github.com/jakobnunnendorf/shop/blob/7610ec3cced019e53519657ebe5fd80a86b951c3/order%2520time%2520line%2520example.png)
