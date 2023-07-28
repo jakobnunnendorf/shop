@@ -191,3 +191,38 @@ Order tracking and review is a high-priority feature that allows customers to vi
 
 ##### Media
 ![Order time line](https://github.com/jakobnunnendorf/shop/blob/7610ec3cced019e53519657ebe5fd80a86b951c3/order%2520time%2520line%2520example.png)
+
+### 3.5 Wishlist
+
+#### Description and Priority
+The wishlist is a high-priority feature that allows customers to save items they are interested in for future reference. Customers can add items to their wishlist from the product card and view their wishlist items on a dedicated page.
+
+#### Functional Requirements
+1. Each product card should include a heart-shaped wishlist button in the top left corner of the preview image.
+2. If the user is logged in and clicks the wishlist button, the product ID should be added to the wishlist array in the user profile.
+3. If the user is not logged in, the product ID should be added to the global state.
+4. The wishlist page should display the user's wishlist items in a row view similar to the cart. Instead of a checkout button, there should be an "Add All to Cart" button and each row should have an individual "Add to Cart" button.
+5. If the wishlist item does not store a color preference yet, the "Add to Cart" button for the specific item and the "Add All to Cart" button should be grayed out. An underlined text in orange should be displayed in the corresponding row saying "Please select a color". Clicking this text should forward the user to the dynamic product page where they can select a color and add the item to the cart.
+
+### 3.6 User Account
+#### 3.6.1 Account Creation and Authentication
+
+- Users can create an account by providing their email address and creating a password. They also have the option to add their name and phone number, but these are not mandatory fields.
+- The platform also offers the option to sign up using Google, Apple, or Facebook for a quicker registration process.
+- User authentication is handled using JSON Web Tokens (JWT) or session-based authentication.
+
+#### 3.6.2 Account Management
+
+- Users have the ability to update their personal information, including their email address, name, and phone number.
+- Users can add a delivery address and a billing address. If the user checks that delivery is the same as billing, the system will automatically copy the delivery address into the billing address field.
+- Users can change their password at any time.
+- Payment methods cannot be saved on the platform.
+- Users have the option to delete their account, which will permanently remove all associated data in compliance with GDPR regulations.
+
+#### 3.6.3 Order History
+
+Users can access their past orders through a link to the order history page in their account. The detailed functionality of the order history page is covered in section 3.4.
+
+#### 3.6.4 Wishlist Management
+
+Users can access their wishlist through a link to the wishlist page in their account. The detailed functionality of the wishlist page is covered in section 3.5.
