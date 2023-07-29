@@ -277,3 +277,31 @@ The Help page provides users with a variety of resources to assist them in using
 - **Account Management:** Information on how to create an account, retrieve a forgotten password, and update account information.
 - **Product Information:** Information about the products sold on the online shop.
 - **Shipping Information:** Details about the shipping methods, estimated delivery times, and costs.
+
+### 3.10 Search Functionality
+
+The platform provides a search function to help users find products more easily. The functionality and requirements for the search feature include:
+
+- **Text Search:** Users can enter text into the search bar located in the header. The system tokenizes the input text and returns a dropdown list of items that are most closely related to the input text.
+
+### 3.11 Product Catalogue
+
+The platform provides a product catalogue page where users can browse and filter products. The functionality and requirements for the product catalogue include:
+
+- **Product Grid:** The product catalogue page displays products in a grid format.
+- **Filter Bar:** Users can filter products by categories, devices, prices, reviews, and colors using the filter bar.
+
+### 3.12 Product Reviews
+
+The platform provides a product review feature where users can read and write reviews for products. The functionality and requirements for the product reviews include:
+
+- **Review Display:** Product reviews are displayed on the product pages. They show the average review score (between 0 and 5) and the total number of reviews.
+- **Review List:** When a customer clicks on the reviews bar, it opens a list of the last 5 reviews and an option to open a list of reviews for each star rating.
+- **Writing Reviews:** Customers can write a review on the orders page, providing a star rating (0-5) and a comment.
+
+### 3.14 Payment Processing
+
+The platform provides a payment processing feature where users can pay for their orders. The functionality and requirements for the payment processing include:
+
+- **Payment Gateway:** The payment processing is entirely handled by Stripe. 
+- **Payment Confirmation:** Once a payment is fulfilled, Stripe sends a POST request back to our API via a webhook. This triggers an API call that updates the status of the corresponding order to 'Paid'.
