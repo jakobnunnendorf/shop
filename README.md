@@ -245,3 +245,35 @@ Users can access their wishlist through a link to the wishlist page in their acc
 
 - The admin can view all user profiles on the platform.
 - The admin can manage user profiles, including updating user information.
+
+#### 3.7.3 Product Management
+
+- The admin can view a grid of all the product cards on the platform. The first element in the grid is an 'Add New Product' button.
+- The admin can click on a product card to open the dynamic product page for that product. This page is similar to the regular product page but includes additional features for editing, deleting, and viewing product analytics (such as sales, stock, and clicks in comparison to the average of the category).
+- The 'Add New Product' button opens a dynamic page with a form to fill in information about the new product.
+- The admin can add new products, update existing products, and remove products from the catalogue.
+
+#### 3.7.4 Analytics
+
+- The admin can view analytics related to sales, user traffic, and performance on the platform.
+- The analytics dashboard includes information such as total revenue, sales per item, user traffic, and performance metrics.
+
+#### 3.7.5 Settings
+
+- The admin can manage the content on the Help page through the Settings section in the admin panel.
+
+### 3.8 Help Page
+
+The Help page provides users with a variety of resources to assist them in using the online shop. This includes:
+
+- **FAQs:** A list of frequently asked questions and their answers, pulled from the database.
+- **Contact Information:** Contact information for customer support, pulled from the database.
+- **Email Contact Form:** A form that users can fill out to send an email to customer support.
+- **Delivery Options:** A table that outlines the different delivery options available to customers.
+- **Privacy Policy and AGB:** Information about the online shop's privacy policy and general terms and conditions.
+- **Order Tracking Information:** A section that explains how customers can track their orders and what each status means.
+- **Return and Refund Policy:** Detailed information about how customers can return products and request refunds.
+- **Payment Information:** Information about the payment methods accepted by the online shop.
+- **Account Management:** Information on how to create an account, retrieve a forgotten password, and update account information.
+- **Product Information:** Information about the products sold on the online shop.
+- **Shipping Information:** Details about the shipping methods, estimated delivery times, and costs.
