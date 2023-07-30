@@ -169,12 +169,13 @@ The dynamic page should include the information in this screenshot.
 The cart and checkout process is a high-priority feature that allows customers to review their selected items, adjust quantities, and proceed to purchase. The checkout process provides options for signing in to an existing account, registering a new account, or checking out as a guest.
 
 #### Functional Requirements
-1. The cart page should display a list of selected items, including their title, price, and thumbnail. If no items are selected, the page should display skeleton components and disable the checkout button.
-2. Customers should be able to increment or decrement the quantity of each item in the cart.
-3. Upon checkout, customers should be redirected to a page where they can choose to sign in to an existing account, register a new account, or check out as a guest.
-4. If the customer chooses to sign in to an existing account, their email should be provided to Stripe to prefill their information, and if they have an existing delivery address, it should also be prefilled.
-5. If the customer chooses to register and check out, the system should create their account in the background, send a verification email, and redirect them to Stripe checkout with their email prefilled.
-6. If the customer chooses to check out as a guest, they should fill in their email and delivery address on the Stripe page.
+1.If the user is logged in, the cart should be pushed to his profile in the database. Otherwise the cart is handled using global state.
+2. The cart page should display a list of selected items, including their title, price, and thumbnail. If no items are selected, the page should display skeleton components and disable the checkout button.
+3. Customers should be able to increment or decrement the quantity of each item in the cart.
+4. Upon checkout, customers should be redirected to a page where they can choose to sign in to an existing account, register a new account, or check out as a guest.
+5. If the customer chooses to sign in to an existing account, their email should be provided to Stripe to prefill their information, and if they have an existing delivery address, it should also be prefilled.
+6. If the customer chooses to register and check out, the system should create their account in the background, send a verification email, and redirect them to Stripe checkout with their email prefilled.
+7. If the customer chooses to check out as a guest, they should fill in their email and delivery address on the Stripe page.
 
 ### 3.4 Order Tracking and Review
 
