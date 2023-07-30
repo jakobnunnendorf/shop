@@ -3,6 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useContext, useEffect, useState } from 'react';
 import ProductCard from '@components/ProductCard/ProductCard';
+
 import {
     ActiveFiltersContext,
     FilterContextType,
@@ -10,7 +11,6 @@ import {
 
 export default function ShopPage() {
     const [products, setProducts] = useState<product[]>([]);
-
     const { categoryFilters, deviceFilters, priceFilters } = useContext(
         ActiveFiltersContext
     ) as FilterContextType;
@@ -24,6 +24,7 @@ export default function ShopPage() {
                         .from('products')
                         .select('*')
                         .limit(30);
+
                     return products;
                 } else {
                     const { data: products } = await supabase
@@ -31,6 +32,7 @@ export default function ShopPage() {
                         .select('*')
                         .in('category', categoryFilters)
                         .limit(30);
+
                     return products;
                 }
             };
@@ -76,6 +78,7 @@ const filterProductArrayByDeviceFilters = (
             // if the device filter has no name, we only filter by brand
             if (deviceFilter.name.length === 0) {
                 return product.compatibleModels?.some((compatibleDevice) => {
+                    compatibleDevice.brand === deviceFilter.brand? console.log(deviceFilter.brand) : compatibleDevice.brand = 'none';
                     return compatibleDevice.brand === deviceFilter.brand;
                 });
             } else {
@@ -106,5 +109,3 @@ const filterProductArrayByPriceFilters = (
     });
     return filteredProducts;
 };
-
-
