@@ -14,7 +14,7 @@ export default function LowerRow() {
     ];
 
     const lower_row = (
-        <nav className='hidden h-8 w-full border-b bg-sandy-beige-1 shadow-lg backdrop-blur-3xl lg:block'>
+        <nav className='hidden h-8 w-full  border-none bg-sandy-beige-1 -mt-1 shadow-lg backdrop-blur-3xl lg:block'>
             <ul className='flex h-full w-full items-center justify-around text-sm'>
                 {filterLinkPropValues.map((filterLinkPropValue) => {
                     return (
