@@ -13,25 +13,46 @@
 }
 
 .gradient-text {
-    background: linear-gradient(to right, #0388A6, #32D9C8);
+    background: linear-gradient(to right, #0388a6, #32d9c8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 @keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .sliding-gradient {
     background-size: 200% 200%;
-    background-image: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-image: linear-gradient(
+        45deg,
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab
+    );
     animation: gradient 3s ease infinite;
 }
 
-.ellipsis{
-  text-overflow: ellipsis; /* enables ellipsis */
-  white-space: nowrap; /* keeps the text in a single line */
-  overflow: hidden; /* keeps the element from overflowing its parent */
+.ellipsis {
+    text-overflow: ellipsis; /* enables ellipsis */
+    white-space: nowrap; /* keeps the text in a single line */
+    overflow: hidden; /* keeps the element from overflowing its parent */
+}
+
+.set-height {
+    height: 50px;
+}
+.tobottom-gradient-text {
+    background: linear-gradient(to bottom, #0f3443, #34e89e);
+    text-decoration: transparent;
+    background-clip: text;
 }

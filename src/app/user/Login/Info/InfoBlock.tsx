@@ -10,16 +10,16 @@ export default function InfoBlock({
 }) {
     const infoBlock = (
         <div className={`row-span-3 w-4/5 lg:row-span-5`}>
-            <div className='text-center font-bold text-white '>
+            <div className='text-center font-bold text-white'>
                 {hasAccount ? `` : 'Registrieren'} und zurücklehnen. <br />
                 Wir haben alles, was dein Handy braucht.
             </div>
-
+            {/* 
             <div className='row-span-4 hidden py-8 lg:flex lg:flex-col'>
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>
-                    &quot;Vorname&quot;:{' '}
+                    &quot;Vorname&quot;:{}
                     {JSON.stringify(registrationInfo.firstName)}
                 </p>
                 <p className=''>
@@ -34,7 +34,7 @@ export default function InfoBlock({
                     {JSON.stringify(registrationInfo.phone)}
                 </p>
                 <p>{'}'}</p>
-            </div>
+            </div> */}
         </div>
     );
     return infoBlock;
