@@ -5,6 +5,8 @@ import React from 'react';
 import CartIcon from './CartIcon';
 import MobileMenuBurger from './MobileMenuBurger';
 import UserHeaderLink from './UserHeaderLink';
+import SearchInput from './SearchInput';
+import SearchResults from './SearchResults';
 
 export default function UpperRow() {
     const upper_row = (
@@ -38,11 +40,7 @@ export default function UpperRow() {
                             />
                         </Link>
                     </div>
-                    <input
-                        type='text'
-                        placeholder='Suche...'
-                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10 outline-none'
-                    />
+                        <SearchInput />
                 </div>
 
                 <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
@@ -50,6 +48,7 @@ export default function UpperRow() {
                     <UserHeaderLink />
                 </nav>
             </div>
+            <SearchResults />
         </section>
     );
     return upper_row;

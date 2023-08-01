@@ -148,3 +148,161 @@ The product carousel is a high-priority feature that displays an array of items 
 3. There should be one carousel for each product category.
 4. When the customer clicks the heading of the carousel, the system should link to the product catalog and automatically apply the corresponding filters.
 
+### 3.2 Product Page
+
+#### Description and Priority
+The product page is a high-priority feature that provides detailed information about each item. It includes a larger view of the product image, additional views of the product through thumbnails, and a color selection feature. When a customer selects a color, the product images update to reflect the selected color.
+
+#### Functional Requirements
+1. The product page should display detailed information about the item.
+2. The page should include a larger view of the product image.
+3. The page should provide additional views of the product through thumbnails.
+4. The page should include a color selection feature. When a color is selected, the product images should update to reflect the selected color.
+5. The page should feature a checkout button that adds the product with the selected color in the cart.
+
+The dynamic page should include the information in this screenshot.
+![Product Page screenshot](https://github.com/jakobnunnendorf/shop/blob/8ad14b0a896fe836429889393e0a486002f2ac54/product%2520page%2520screenshot.png)
+
+### 3.3 Cart and Checkout
+
+#### Description and Priority
+The cart and checkout process is a high-priority feature that allows customers to review their selected items, adjust quantities, and proceed to purchase. The checkout process provides options for signing in to an existing account, registering a new account, or checking out as a guest.
+
+#### Functional Requirements
+1.If the user is logged in, the cart should be pushed to his profile in the database. Otherwise the cart is handled using global state.
+2. The cart page should display a list of selected items, including their title, price, and thumbnail. If no items are selected, the page should display skeleton components and disable the checkout button.
+3. Customers should be able to increment or decrement the quantity of each item in the cart.
+4. Upon checkout, customers should be redirected to a page where they can choose to sign in to an existing account, register a new account, or check out as a guest.
+5. If the customer chooses to sign in to an existing account, their email should be provided to Stripe to prefill their information, and if they have an existing delivery address, it should also be prefilled.
+6. If the customer chooses to register and check out, the system should create their account in the background, send a verification email, and redirect them to Stripe checkout with their email prefilled.
+7. If the customer chooses to check out as a guest, they should fill in their email and delivery address on the Stripe page.
+
+### 3.4 Order Tracking and Review
+
+#### Description and Priority
+Order tracking and review is a high-priority feature that allows customers to view their order history, track the status of their orders, write reviews for completed orders, and request refunds or cancellations. 
+
+#### Functional Requirements
+1. The orders page should display a list of the customer's orders. Each row should include a thumbnail of the most expensive item in the order, the date of the order, the price of the order, and the order status.
+2. Clicking the thumbnail or title of each order row should link to a dynamic page showing the complete view of the order. This page should display the same information as in the summary row as a heading, and below it should show the entire cart of the order.
+3. The order page should show the status of the order (order accepted, paid, dispatched, delivered, review written) using a timeline with icons.
+4. Once the order is delivered, the order page should show an interface for the customer to submit a review for the order.
+5. Below the review interface, the order page should display a product carousel of similar items that the user may want to purchase.
+6. At the bottom of the page, there should be an interface where the user can either cancel the order if it hasn't been dispatched yet or request a refund once it has been dispatched and they want to return it. The refund/cancel widget should feature a refund status timeline with instructions once the customer requested a refund.
+
+##### Media
+![Order time line](https://github.com/jakobnunnendorf/shop/blob/7610ec3cced019e53519657ebe5fd80a86b951c3/order%2520time%2520line%2520example.png)
+
+### 3.5 Wishlist
+
+#### Description and Priority
+The wishlist is a high-priority feature that allows customers to save items they are interested in for future reference. Customers can add items to their wishlist from the product card and view their wishlist items on a dedicated page.
+
+#### Functional Requirements
+1. Each product card should include a heart-shaped wishlist button in the top left corner of the preview image.
+2. If the user is logged in and clicks the wishlist button, the product ID should be added to the wishlist array in the user profile.
+3. If the user is not logged in, the product ID should be added to the global state.
+4. The wishlist page should display the user's wishlist items in a row view similar to the cart. Instead of a checkout button, there should be an "Add All to Cart" button and each row should have an individual "Add to Cart" button.
+5. If the wishlist item does not store a color preference yet, the "Add to Cart" button for the specific item and the "Add All to Cart" button should be grayed out. An underlined text in orange should be displayed in the corresponding row saying "Please select a color". Clicking this text should forward the user to the dynamic product page where they can select a color and add the item to the cart.
+
+### 3.6 User Account
+#### 3.6.1 Account Creation and Authentication
+
+- Users can create an account by providing their email address and creating a password. They also have the option to add their name and phone number, but these are not mandatory fields.
+- The platform also offers the option to sign up using Google, Apple, or Facebook for a quicker registration process.
+- User authentication is handled using JSON Web Tokens (JWT) or session-based authentication.
+
+#### 3.6.2 Account Management
+
+- Users have the ability to update their personal information, including their email address, name, and phone number.
+- Users can add a delivery address and a billing address. If the user checks that delivery is the same as billing, the system will automatically copy the delivery address into the billing address field.
+- Users can change their password at any time.
+- Payment methods cannot be saved on the platform.
+- Users have the option to delete their account, which will permanently remove all associated data in compliance with GDPR regulations.
+
+#### 3.6.3 Order History
+
+Users can access their past orders through a link to the order history page in their account. The detailed functionality of the order history page is covered in section 3.4.
+
+#### 3.6.4 Wishlist Management
+
+Users can access their wishlist through a link to the wishlist page in their account. The detailed functionality of the wishlist page is covered in section 3.5.
+
+### 3.7 Admin Panel
+#### 3.7.1 Order Management
+- The admin can view all orders placed on the platform.
+- The admin can update the status of orders (e.g., "out for delivery", "delivered", etc.).
+- The admin can manage return requests and approve or disapprove them.
+- The admin can manually edit and cancel orders if necessary (e.g., if a customer requests a change).
+#### 3.7.1 Order Management
+
+- The admin can view all orders placed on the platform. In the desktop view, each row of the incoming orders list displays the thumbnail of the item (or the thumbnail of the most expensive item if there are multiple items), the order date, the address, the order status, the number of days since the order status was last updated (with a status light that changes from green (less than 1 day) to red (more than 5 days) as the number of days increases), and the total cost. In the mobile view, the information in the row is limited to the thumbnail, date, status, and the days since last status change indicator.
+- When the admin clicks on an order, it opens a dynamic page with all of the data associated with the order, including complete customer details, profile ID, a Google Maps widget showing the location pin of the address, and an interface to change the order status, cancel/edit the order, and edit the customer details. Both mobile and desktop views feature the same amount of information on the order management page.
+- The admin can update the status of orders (e.g., "out for delivery", "delivered", etc.). When the order status changes, the system automatically informs the customer about the change via email.
+- The admin can manage return requests and approve or disapprove them.
+- The admin can manually edit and cancel orders if necessary (e.g., if a customer requests a change).
+
+#### 3.7.2 User Management
+
+- The admin can view all user profiles on the platform.
+- The admin can manage user profiles, including updating user information.
+
+#### 3.7.3 Product Management
+
+- The admin can view a grid of all the product cards on the platform. The first element in the grid is an 'Add New Product' button.
+- The admin can click on a product card to open the dynamic product page for that product. This page is similar to the regular product page but includes additional features for editing, deleting, and viewing product analytics (such as sales, stock, and clicks in comparison to the average of the category).
+- The 'Add New Product' button opens a dynamic page with a form to fill in information about the new product.
+- The admin can add new products, update existing products, and remove products from the catalogue.
+
+#### 3.7.4 Analytics
+
+- The admin can view analytics related to sales, user traffic, and performance on the platform.
+- The analytics dashboard includes information such as total revenue, sales per item, user traffic, and performance metrics.
+
+#### 3.7.5 Settings
+
+- The admin can manage the content on the Help page through the Settings section in the admin panel.
+
+### 3.8 Help Page
+
+The Help page provides users with a variety of resources to assist them in using the online shop. This includes:
+
+- **FAQs:** A list of frequently asked questions and their answers, pulled from the database.
+- **Contact Information:** Contact information for customer support, pulled from the database.
+- **Email Contact Form:** A form that users can fill out to send an email to customer support.
+- **Delivery Options:** A table that outlines the different delivery options available to customers.
+- **Privacy Policy and AGB:** Information about the online shop's privacy policy and general terms and conditions.
+- **Order Tracking Information:** A section that explains how customers can track their orders and what each status means.
+- **Return and Refund Policy:** Detailed information about how customers can return products and request refunds.
+- **Payment Information:** Information about the payment methods accepted by the online shop.
+- **Account Management:** Information on how to create an account, retrieve a forgotten password, and update account information.
+- **Product Information:** Information about the products sold on the online shop.
+- **Shipping Information:** Details about the shipping methods, estimated delivery times, and costs.
+
+### 3.10 Search Functionality
+
+The platform provides a search function to help users find products more easily. The functionality and requirements for the search feature include:
+
+- **Text Search:** Users can enter text into the search bar located in the header. The system tokenizes the input text and returns a dropdown list of items that are most closely related to the input text.
+
+### 3.11 Product Catalogue
+
+The platform provides a product catalogue page where users can browse and filter products. The functionality and requirements for the product catalogue include:
+
+- **Product Grid:** The product catalogue page displays products in a grid format.
+- **Filter Bar:** Users can filter products by categories, devices, prices, reviews, and colors using the filter bar.
+
+### 3.12 Product Reviews
+
+The platform provides a product review feature where users can read and write reviews for products. The functionality and requirements for the product reviews include:
+
+- **Review Display:** Product reviews are displayed on the product pages. They show the average review score (between 0 and 5) and the total number of reviews.
+- **Review List:** When a customer clicks on the reviews bar, it opens a list of the last 5 reviews and an option to open a list of reviews for each star rating.
+- **Writing Reviews:** Customers can write a review on the orders page, providing a star rating (0-5) and a comment.
+
+### 3.14 Payment Processing
+
+The platform provides a payment processing feature where users can pay for their orders. The functionality and requirements for the payment processing include:
+
+- **Payment Gateway:** The payment processing is entirely handled by Stripe. 
+- **Payment Confirmation:** Once a payment is fulfilled, Stripe sends a POST request back to our API via a webhook. This triggers an API call that updates the status of the corresponding order to 'Paid'.
