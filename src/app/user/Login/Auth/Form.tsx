@@ -102,6 +102,7 @@ export default function Form({
                     name='firstName'
                     value={registrationInfo.firstName}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             {hasAccount ? null : (
@@ -112,6 +113,7 @@ export default function Form({
                     name='lastName'
                     value={registrationInfo.lastName}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             <input // email
@@ -125,6 +127,7 @@ export default function Form({
                 name='email'
                 value={registrationInfo.email}
                 onChange={handleInputChange}
+                required
             />
             {hasAccount ? null : (
                 <input // phone
@@ -134,6 +137,7 @@ export default function Form({
                     name='phone'
                     value={registrationInfo.phone}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             <input // password
@@ -145,6 +149,7 @@ export default function Form({
                 name='password'
                 value={registrationInfo.password}
                 onChange={handleInputChange}
+                required
             />
             {hasAccount ? null : (
                 <input
@@ -161,6 +166,7 @@ export default function Form({
                     name='confirmPassword'
                     value={registrationInfo.confirmPassword}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center '>
