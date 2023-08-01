@@ -17,7 +17,7 @@ export default async function UserHeaderLink() {
             <FiUser size={32} className='text-coastal-blue-10' />
             {!currentSession && (
                 <p className='whitespace-nowrap text-center text-xs text-coastal-blue-10 '>
-                    sign in
+                    Login in
                 </p>
             )}
         </Link>
