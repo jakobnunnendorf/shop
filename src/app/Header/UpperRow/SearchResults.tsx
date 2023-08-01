@@ -10,31 +10,37 @@ export default function SearchResults() {
         ActiveFiltersContext
     ) as FilterContextType;
 
-    const [searchResults, setSearchResults] = useState<product[]>([]);
-        
+    const [searchProducts, setSearchProducts] = useState<product[]>([]);
+    
     useEffect(() => {
-        const getProducts = async () => {
         if (searchFilter !== '') {
-            const getSearchProducts = async () => {
-                const { data: searchResults } = await supabase
-                    .from('products')
-                    .select('*')
-                    .limit(30);
-                    
-                    console.log(searchResults);
-                    return searchResults;
+            const getProducts = async () => {
+                const getSearchProducts = async () => {
+                    const { data: searchResults } = await supabase
+                        .from('products')
+                        .select('*')
+                        .textSearch('title', searchFilter)
+                        .limit(3);
+                        
+                        console.log(searchResults);
+                        return searchResults;
+                    };
+
+                    const products = (await getSearchProducts() as product[]);
+                    setSearchProducts(products);
                 };
-
-                const products = (await getSearchProducts() as product[]);
-                setSearchResults(products);
-            };
-        };
-        getProducts();
-
+                getProducts();
+                console.log(searchProducts);
+            }
     }, [searchFilter]);
 
     return (
         <div>
+            {searchProducts.map((product, index) => (
+                <div key={index}>
+                    <p>{product.title}</p>
+                </div>
+            ))}
         </div>
     );
 };

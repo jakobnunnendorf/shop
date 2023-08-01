@@ -41,7 +41,6 @@ export default function UpperRow() {
                         </Link>
                     </div>
                         <SearchInput />
-                        <SearchResults />
                 </div>
 
                 <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
@@ -49,6 +48,7 @@ export default function UpperRow() {
                     <UserHeaderLink />
                 </nav>
             </div>
+            <SearchResults />
         </section>
     );
     return upper_row;
