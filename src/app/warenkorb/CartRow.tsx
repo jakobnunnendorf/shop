@@ -26,7 +26,7 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
 
     return (
         <div className='mb-6 justify-between rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start'>
-            <figure className='relative w-full rounded-lg sm:w-40'>
+            <figure className='relative h-20 w-24 rounded-lg sm:w-40'>
                 <Image
                     src={returnFirstPicture()}
                     alt='product-image'
