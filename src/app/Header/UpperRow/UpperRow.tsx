@@ -54,7 +54,7 @@ export default function UpperRow() {
                     </div>
                 </nav>
             </div>
-        </section>
+        </section>        
     );
     return upper_row;
 }
