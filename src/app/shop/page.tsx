@@ -2,12 +2,14 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useContext, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 import ProductCard from '@components/ProductCard/ProductCard';
 
 import {
     ActiveFiltersContext,
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
+import { getPriority } from 'os';
 
 export default function ShopPage() {
     const [products, setProducts] = useState<product[]>([]);
@@ -32,7 +34,7 @@ export default function ShopPage() {
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
-                        .textSearch('title', searchFilter)
+                        .textSearch('title', `${searchFilter}`)
                         .limit(30);
                         
                         return products;
@@ -59,6 +61,7 @@ export default function ShopPage() {
             setProducts(priceFilteredProducts);
         };
         getProducts();
+        debounce(getProducts, 100);
 
     }, [categoryFilters, deviceFilters, priceFilters, searchFilter]);
 
