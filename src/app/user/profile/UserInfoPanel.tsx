@@ -17,8 +17,6 @@ export default async function UserInfoPanel() {
         .eq('profile_id', user_id)
         .single();
 
-        console.log(profile);
-
     const fetchAddressData = async () => {
         const { data: deliveryAddress, error: deliveryAddressFetchError } =
             await supabase

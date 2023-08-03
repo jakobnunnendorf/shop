@@ -42,7 +42,7 @@ export default function ShopPage() {
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
-                        .textSearch('title', searchFilter)
+                        .textSearch('title', `${searchFilter}`)
                         .limit(30);
                     return products;
                 } else {
