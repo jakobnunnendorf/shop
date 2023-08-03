@@ -3,6 +3,7 @@ import './globals.css';
 import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
 import { ActiveProductContextProvider } from '@globalState/ActiveProductCardContext';
 import { CartContextProvider } from '@globalState/CartContext';
+import { WishlistContextProvider } from '@globalState/WishlistContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
@@ -23,16 +24,18 @@ export default function RootLayout({
                 <ProductCardContextProvider>
                     <ActiveFiltersContextProvider>
                         <ActiveProductContextProvider>
-                            <CartContextProvider>
-                                <SessionContextProvider>
-                                    <MobileMenuContextProvider>
-                                        <Header />
-                                    </MobileMenuContextProvider>
-                                    <main className='relative w-full top-16 lg:top-24'>
-                                        {children}
-                                    </main>
-                                </SessionContextProvider>
-                            </CartContextProvider>
+                            <WishlistContextProvider>
+                                <CartContextProvider>
+                                    <SessionContextProvider>
+                                        <MobileMenuContextProvider>
+                                            <Header />
+                                        </MobileMenuContextProvider>
+                                        <main className='relative top-16 w-full lg:top-24'>
+                                            {children}
+                                        </main>
+                                    </SessionContextProvider>
+                                </CartContextProvider>
+                            </WishlistContextProvider>
                         </ActiveProductContextProvider>
                     </ActiveFiltersContextProvider>
                 </ProductCardContextProvider>
