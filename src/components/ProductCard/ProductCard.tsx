@@ -16,7 +16,7 @@ export default function ProductCard({
     product: product;
     grid?: boolean;
 }) {
-    const {dispatch } = useContext(
+    const { dispatch } = useContext(
         ActiveProductContext
     ) as ActiveProductContextType;
     const [expanded, setExpanded] = React.useState<boolean>(false);
@@ -57,7 +57,7 @@ export default function ProductCard({
         >
             {expanded && (
                 <button
-                    className='absolute z-50 text-3xl left-8 top-8 border-b-3 border-s-seafoam-green-7 text-coastal-blue-7'
+                    className='absolute left-8 top-8 z-50 border-b-3 border-s-seafoam-green-7 text-3xl text-coastal-blue-7'
                     onClick={() => setExpanded(false)}
                 >
                     <FiArrowLeft />

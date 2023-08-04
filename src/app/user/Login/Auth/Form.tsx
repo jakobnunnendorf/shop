@@ -20,7 +20,8 @@ export default function Form({
     const router = useRouter();
     const { setSession, setUser } = useContext(
         SessionContext
-    ) as SessionContextType;    const { registrationInfo, setRegistrationInfo } = useContext(
+    ) as SessionContextType;
+    const { registrationInfo, setRegistrationInfo } = useContext(
         UserContext
     ) as UserContextType;
 
@@ -72,13 +73,15 @@ export default function Form({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
-        const {session, user} = data;
+        const { session, user } = data;
         if (!error) {
             setSession(session);
             setUser(user);
         } else {
             alert('Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
+            setLoading(false);
         }
+
         router.refresh();
     };
 
@@ -95,86 +98,92 @@ export default function Form({
                 <input // first name
                     type='text'
                     placeholder='Vorname'
-                    className='col-span-6 row-start-1 px-4 rounded-3xl'
+                    className='set-height col-span-12 row-start-1 rounded-3xl px-4'
                     name='firstName'
                     value={registrationInfo.firstName}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             {hasAccount ? null : (
                 <input // last name
                     type='text'
                     placeholder='Nachname'
-                    className='col-span-7 col-start-7 row-start-1 px-4 rounded-3xl'
+                    className='set-height col-span-12 col-start-1 row-start-2 rounded-3xl px-4'
                     name='lastName'
                     value={registrationInfo.lastName}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             <input // email
-                type='text'
+                type='email'
                 placeholder='E-Mail'
-                className={`${
+                className={`set-height${
                     hasAccount
-                        ? 'col-span-6 row-start-1'
-                        : 'col-span-7 row-start-2 '
+                        ? ' col-span-12 row-start-1'
+                        : ' col-span-12 row-start-3 '
                 }  rounded-3xl px-4`}
                 name='email'
                 value={registrationInfo.email}
                 onChange={handleInputChange}
+                required
             />
             {hasAccount ? null : (
                 <input // phone
                     type='text'
                     placeholder='Telefon'
-                    className='col-span-6 row-start-2 px-4 rounded-3xl'
+                    className='set-height col-span-12 row-start-4 rounded-3xl px-4'
                     name='phone'
                     value={registrationInfo.phone}
                     onChange={handleInputChange}
+                    required
                 />
             )}
             <input // password
-                type='text'
+                type='password'
                 placeholder='Passwort'
-                className={`col-span-6 ${
-                    hasAccount ? 'col-span-6 row-start-1' : 'row-start-3 '
+                className={`set-height col-span-12 ${
+                    hasAccount ? 'col-span-12 row-start-2' : 'row-start-5 '
                 }  rounded-3xl px-4`}
                 name='password'
                 value={registrationInfo.password}
                 onChange={handleInputChange}
+                required
             />
             {hasAccount ? null : (
                 <input
-                    type='text'
-                    placeholder='wiederholen'
-                    className={`${
+                    type='password'
+                    placeholder='Wiederholen'
+                    className={`set-height ${
                         registrationInfo.confirmPassword.length > 0
                             ? registrationInfo.password ===
                               registrationInfo.confirmPassword
                                 ? 'border-2 border-green-300'
                                 : 'border-2 border-red-300'
                             : ''
-                    } col-span-7 row-start-3 rounded-3xl px-4 outline-none`}
+                    } col-span-12 row-start-6 rounded-3xl px-4 outline-none`}
                     name='confirmPassword'
                     value={registrationInfo.confirmPassword}
                     onChange={handleInputChange}
+                    required
                 />
             )}
-            <div className='flex flex-col items-center col-span-12 col-start-1 row-span-2 '>
+            <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center '>
                 <button
                     type='submit'
-                    className='w-2/3 h-12 font-bold bg-green-300 rounded-3xl'
+                    className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
                 >
                     {hasAccount ? 'Jetzt einloggen' : 'Jetzt Registrieren'}
                 </button>
                 <button
                     type='button'
-                    className='mt-2 underline outline-none text-slate-500'
+                    className='mt-2 text-slate-500 underline outline-none'
                     onClick={() => toggleHasAccount(!hasAccount)}
                 >
                     Ich habe {hasAccount ? 'noch keinen' : 'schon einen'}{' '}
-                    Account: <br />
-                    {hasAccount ? 'jetzt registrieren' : 'zum login'}
+                    Account? <br />
+                    {/* {hasAccount ? 'jetzt registrieren' : 'zum login'} */}
                 </button>
             </div>
         </form>

@@ -5,7 +5,7 @@ import {
 } from '@globalState/ActiveProductCardContext';
 import CollapsedInfo from './CollapsedInfo';
 import CollapsedPicture from './CollapsedPicture';
-
+import AddToWishlistButton from './AddToWishlistButton';
 export default function Collapsed({
     product,
     setExpanded,
@@ -18,6 +18,9 @@ export default function Collapsed({
     const collapsed = (
         <div className='grid h-full w-full grid-rows-5 lg:grid-rows-2'>
             <CollapsedPicture imageURL={imageURL} setExpanded={setExpanded} />
+            <div className='absolute ml-1 mt-1'>
+                <AddToWishlistButton product={product} />
+            </div>
             <CollapsedInfo product={product} setExpanded={setExpanded} />
         </div>
     );
