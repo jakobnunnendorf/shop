@@ -5,22 +5,31 @@ import {
     WishlistContext,
     WishlistContextType,
 } from '@globalState/WishlistContext';
-
 export default function AddToWishlistButton({ product }: { product: product }) {
-    const { addProductToWishlist } = useContext(
-        WishlistContext
-    ) as WishlistContextType;
+    const {
+        addProductToWishlist,
+        isInWishlist,
+        removeWishlistItemWithProduct,
+    } = useContext(WishlistContext) as WishlistContextType;
 
-    const addThisItemToWishlist = () => {
-        addProductToWishlist(product);
+    const toggleToWishlist = () => {
+        isInWishlist(product)
+            ? removeWishlistItemWithProduct(product)
+            : addProductToWishlist(product);
     };
 
     return (
         <button
-            onClick={addThisItemToWishlist}
-            className='rounded-full border-2 bg-white p-2 shadow-xl'
+            onClick={() => {
+                toggleToWishlist();
+            }}
+            className={`rounded-full border-2  p-2 shadow-xl hover:bg-pink-400 ${
+                isInWishlist(product) ? `bg-pink-400` : `bg-white`
+            } `}
         >
-            <FiHeart />
+            <FiHeart
+                className={`${isInWishlist(product) ? `text-white` : ``}`}
+            />
         </button>
     );
 }

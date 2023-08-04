@@ -1,11 +1,13 @@
 'use client';
 
+import { values } from 'lodash';
 import { createContext, useState } from 'react';
 
 export type WishlistContextType = {
     Wishlist: Wishlist_item[];
     addWishlistItem: (WishlistItem: Wishlist_item) => void;
     removeWishlistItem: (WishlistItem: Wishlist_item) => void;
+    removeWishlistItemWithProduct: (product: product) => void;
     setWishlistItem: (WishlistItem: Wishlist_item) => void;
     incrementQuantity: (WishlistItem: Wishlist_item) => void;
     decrementQuantity: (WishlistItem: Wishlist_item) => void;
@@ -13,6 +15,7 @@ export type WishlistContextType = {
     getTotalQuantity: () => number;
     getSubTotal: () => number;
     addProductToWishlist: (product: product) => void;
+    isInWishlist: (product: product) => any;
 };
 
 export const WishlistContext = createContext<WishlistContextType | null>(null);
@@ -26,6 +29,16 @@ export function WishlistContextProvider({
 
     const addWishlistItem = (WishlistItem: Wishlist_item) => {
         setWishlist([...Wishlist, WishlistItem]);
+    };
+
+    const isInWishlist = (product: product) => {
+        let check = false;
+        for (let i = 0; i < Wishlist.length; i++) {
+            if (Wishlist[i].product.id === product.id) {
+                check = true;
+            }
+        }
+        return check;
     };
 
     const addProductToWishlist = (product: product) => {
@@ -44,6 +57,15 @@ export function WishlistContextProvider({
                 (WishlistItemInWishlist) =>
                     WishlistItemInWishlist.product.id !==
                     WishlistItem.product.id
+            )
+        );
+    };
+
+    const removeWishlistItemWithProduct = (product: product) => {
+        setWishlist(
+            Wishlist.filter(
+                (WishlistItemInWishlist) =>
+                    WishlistItemInWishlist.product.id !== product.id
             )
         );
     };
@@ -123,6 +145,8 @@ export function WishlistContextProvider({
                 getTotalQuantity,
                 getSubTotal,
                 addProductToWishlist,
+                isInWishlist,
+                removeWishlistItemWithProduct,
             }}
         >
             {' '}
