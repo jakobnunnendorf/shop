@@ -7,7 +7,7 @@ const supabase = createServerComponentClient({ cookies });
 export default async function Greeting() {
     async function fetch_first_name_and_avatar_url() {
         const {
-            data: { session: currentSession },
+            data: { session: currentSession }
         } = await supabase.auth.getSession();
 
         const user_id = currentSession?.user?.id;

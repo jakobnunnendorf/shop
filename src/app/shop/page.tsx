@@ -43,7 +43,7 @@ export default function ShopPage() {
                         .in('category', categoryFilters)
                         .limit(30);
 
-                    return products;
+                        return products;
                 }
             };
             const products = (await fetchProductsByCategory()) as product[];
