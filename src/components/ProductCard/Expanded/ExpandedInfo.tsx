@@ -1,6 +1,7 @@
 import React from 'react';
 import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
 import CartButton from '@components/ProductCard/Expanded/CartButton';
+import WishlistButton from '@components/ProductCard/Expanded/WishlistButton';
 import ColorRow from '@components/ProductCard/Expanded/ColorRow/ColorRow';
 import Price from '@components/ProductCard/Price';
 
@@ -21,6 +22,7 @@ export default function ExpandedInfo({ product }: { product: product }) {
             <ColorRow imageURL_object={product.imageURL_object} />
             <div className='flex w-full items-center justify-evenly'>
                 <Price productPrice={product.price} />
+                <WishlistButton product={product} />
                 <CartButton product={product} />
             </div>
         </div>

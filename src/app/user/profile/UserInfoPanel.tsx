@@ -1,13 +1,24 @@
+
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 export default async function UserInfoPanel() {
-    const supabase = createServerComponentClient({ cookies });
+    const supabase = createServerComponentClient( {cookies} );
+
+    const {
+        data: { session: currentSession }
+    } = await supabase.auth.getSession();
+
+    const user_id = currentSession?.user?.id;
 
     const { data: profile, error: profileFetchError } = await supabase
         .from('profiles')
-        .select('*')
+        .select()
+        .eq('profile_id', user_id)
         .single();
+
+        console.log(profile);
+
     const fetchAddressData = async () => {
         const { data: deliveryAddress, error: deliveryAddressFetchError } =
             await supabase
@@ -15,6 +26,7 @@ export default async function UserInfoPanel() {
                 .select('*')
                 .eq('type', 'delivery')
                 .single();
+
         const { data: billingAddress, error: billingAddressFetchError } =
             await supabase
                 .from('addresses')

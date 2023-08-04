@@ -17,7 +17,7 @@ export default function Login() {
     const [loading, setLoading] = useState<boolean>(false);
 
     const main_content_wrapper = (
-        <div className='grid min-h-[80vh] w-10/12 overflow-hidden rounded-3xl bg-slate-100 lg:h-2/3 lg:min-h-0 lg:w-2/3 lg:grid-cols-2'>
+        <div className='grid min-h-[80vh] w-10/12 overflow-hidden rounded-3xl bg-slate-100 shadow-2xl lg:h-2/3 lg:min-h-0 lg:w-2/3 lg:grid-cols-2'>
             <Info hasAccount={hasAccount} registrationInfo={registrationInfo} />
             <Auth
                 hasAccount={hasAccount}
@@ -28,7 +28,7 @@ export default function Login() {
     );
 
     const page_container = (
-        <section className='flex flex-col items-center justify-center w-full min-h-screen lg:h-fit lg:min-h-0 lg:pt-8'>
+        <section className='flex min-h-screen w-full flex-col items-center justify-center lg:h-fit lg:min-h-0 lg:pt-8'>
             {loading && <LoadingSpinner />}
             {!loading && <LoginHeading />}
             {!loading && main_content_wrapper}
