@@ -5,7 +5,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-export default async function UserInfoPanel( user_id: string | undefined ) {
+export default async function UserInfoPanel( {user_id}: {user_id?: string | undefined} ) {
     const supabase = createServerComponentClient( {cookies} );
 
     const {
@@ -13,11 +13,11 @@ export default async function UserInfoPanel( user_id: string | undefined ) {
     } = await supabase.auth.getSession();
 
     
-    if (user_id == null) user_id = currentSession?.user?.id; // if the prop hasn't been passed then use the current logged user's ID
+    if (user_id == undefined) user_id = currentSession?.user?.id; // if the prop hasn't been passed then use the current logged user's ID
 
     const { data: profile, error: profileFetchError } = await supabase
         .from('profiles')
-        .select()
+        .select('*')
         .eq('profile_id', user_id)
         .single();
 

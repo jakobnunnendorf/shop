@@ -30,7 +30,7 @@ export default function SearchResults() {
                     setSearchProducts(products);
                 };
                 getProducts();
-                console.log(searchProducts);
+                
             }
     }, [searchFilter]);
 
