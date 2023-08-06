@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React, { useContext, useEffect, useState } from 'react';
@@ -45,4 +45,3 @@ export default function SearchResults() {
         </div>
     );
 }
-
