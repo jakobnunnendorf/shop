@@ -1,19 +1,22 @@
-
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-export default async function UserInfoPanel() {
-    const supabase = createServerComponentClient( {cookies} );
+export default async function UserInfoPanel({
+    user_id,
+}: {
+    user_id?: string | undefined;
+}) {
+    const supabase = createServerComponentClient({ cookies });
 
     const {
-        data: { session: currentSession }
+        data: { session: currentSession },
     } = await supabase.auth.getSession();
 
-    const user_id = currentSession?.user?.id;
+    if (user_id == undefined) user_id = currentSession?.user?.id; // if the prop hasn't been passed then use the current logged user's ID
 
     const { data: profile, error: profileFetchError } = await supabase
         .from('profiles')
-        .select()
+        .select('*')
         .eq('profile_id', user_id)
         .single();
 
