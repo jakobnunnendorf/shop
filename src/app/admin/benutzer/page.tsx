@@ -19,28 +19,47 @@ export default async function AdminDashboardUsersList() {
     const profiles = (await user_profiles()) as profile[];
 
     return (
-        <>
+        <div>
             <ul className="grid grid-cols-1 gap-2 p-2 md:grid-cols-1">
-                {profiles.map((profile, index) => (
-                    <li key={index} className='bg-white rounded-lg shadow-md p2 md:p-4'>
-                        <Link href={`/admin/benutzer/${profile.profile_id}`} >
-                            <p className='font-semibold text-coastal-blue text-x1'>{profile.firstName} {profile.lastName}</p>
-                        </Link>
-                        <button
-                            className='ml-auto'
-                            onClick={() => {
-                                handleClick(profile);
-                                window.location.reload();
-                            }}
-                        >
-                            <FiTrash2 size={30} color='red' />
-                        </button>
+                {users.map((profile, index) => (
+                    <li key={index} className="p-4 bg-white rounded-lg shadow-md">
+                        <p className="text-xl font-semibold">{profile.firstName} {profile.lastName}</p>
                     </li>
                 ))}
             </ul>
         </div>
     );
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const supabase = createClientComponentClient();
+    
+    const fetchUsersProfiles = async () => {
+        const fetchUsers = async () => {
+            const { data: user_profiles } = await supabase
+            .from('profiles')
+            .select('*');
+    
+            console.log(user_profiles);  
+            return user_profiles;
+        };
+    
+        const user_profiles = await fetchUsers() as profile[];
+    
+        // filtering users with valid data
+        const filteredProfiles = filterProfilesByName(user_profiles);
+        return filteredProfiles;
+    };
+    
+    const profiles = fetchUsersProfiles();
+    
+    return {
+        props: {
+            profiles,
+        },
+    };
+};
+
 
 // ------------------ Helper Functions ------------------
 
@@ -52,6 +71,6 @@ const filterProfilesByName = (profiles: profile[]) => {
             return true;
         }
     });
-
+    
     return filteredUsers;
 };
