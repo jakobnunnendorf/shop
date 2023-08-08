@@ -13,20 +13,21 @@ export default async function AdminDashboardUsersList() {
 
         return profiles;
     }
-    const profiles = await user_profiles() as profile[];
+    const all_profiles = await user_profiles() as profile[];
+    const profiles = filterProfilesByName(all_profiles);
 
     return (
-        <div>
+        <>
             <ul className="grid grid-cols-1 md:grid-cols-1 gap-2 p-2">
                 {profiles.map((profile, index) => (
-                    <li key={index} className='bg-white rounded-lg shadow-md p-4'>
+                    <li key={index} className='bg-white rounded-lg shadow-md p2 md:p-4'>
                         <Link href={`/admin/benutzer/${profile.profile_id}`} >
-                                {profile.firstName} {profile.lastName}
+                            <p className='text-coastal-blue font-semibold text-x1'>{profile.firstName} {profile.lastName}</p>
                         </Link>
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 };
 
