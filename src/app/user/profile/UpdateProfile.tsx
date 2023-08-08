@@ -63,7 +63,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.firstName || 'Vorname'}
-                    className='px-2 border rounded-lg'
+                    className='rounded-lg border px-2'
                     name='newFirstName'
                 />
             </div>
@@ -74,7 +74,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.lastName || 'Nachname'}
-                    className='px-2 border rounded-lg'
+                    className='rounded-lg border px-2'
                     name='newLastName'
                 />
             </div>
@@ -85,7 +85,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.email}
-                    className='px-2 border rounded-lg'
+                    className='rounded-lg border px-2'
                     name='newEmail'
                 />
             </div>
@@ -96,7 +96,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.phone || 'Telefon'}
-                    className='px-2 border rounded-lg'
+                    className='rounded-lg border px-2'
                     name='newPhone'
                 />
             </div>
@@ -111,25 +111,25 @@ export default function UpdateProfile() {
                 type='text'
                 name='newDeliveryAddress_street'
                 placeholder={currentAddresses?.deliveryAddress?.street}
-                className='col-span-4 border rounded-lg'
+                className='col-span-4 rounded-lg border'
             />
             <input
                 type='text'
                 name='newDeliveryAddress_house_number'
                 placeholder={currentAddresses?.deliveryAddress?.house_number}
-                className='w-8 col-span-1 border rounded-lg'
+                className='col-span-1 w-8 rounded-lg border'
             />
             <input
                 type='text'
                 name='newDeliveryAddress_zip_code'
                 placeholder={currentAddresses?.deliveryAddress?.zip_code}
-                className='w-24 col-span-2 border rounded-lg'
+                className='col-span-2 w-24 rounded-lg border'
             />
             <input
                 type='text'
                 name='newDeliveryAddress_city'
                 placeholder={currentAddresses?.deliveryAddress?.city}
-                className='col-span-4 border rounded-lg w-36 '
+                className='col-span-4 w-36 rounded-lg border '
             />
         </div>
     );
@@ -152,7 +152,7 @@ export default function UpdateProfile() {
                         type='text'
                         name='newBillingAddress_street'
                         placeholder={currentAddresses?.billingAddress?.street}
-                        className='col-span-4 border rounded-lg'
+                        className='col-span-4 rounded-lg border'
                     />
                     <input
                         type='text'
@@ -160,19 +160,19 @@ export default function UpdateProfile() {
                         placeholder={
                             currentAddresses?.billingAddress?.house_number
                         }
-                        className='w-8 col-span-1 border rounded-lg'
+                        className='col-span-1 w-8 rounded-lg border'
                     />
                     <input
                         type='text'
                         name='newBillingAddress_zip_code'
                         placeholder={currentAddresses?.billingAddress?.zip_code}
-                        className='w-24 col-span-2 border rounded-lg'
+                        className='col-span-2 w-24 rounded-lg border'
                     />
                     <input
                         type='text'
                         name='newBillingAddress_city'
                         placeholder={currentAddresses?.billingAddress?.city}
-                        className='col-span-4 border rounded-lg w-36 '
+                        className='col-span-4 w-36 rounded-lg border '
                     />
                 </>
             )}
@@ -190,13 +190,13 @@ export default function UpdateProfile() {
             <button
                 type='button'
                 onClick={toggleEditProfile}
-                className='flex justify-center px-4 py-2 font-bold border w-36 rounded-xl border-coastal-blue-10 text-coastal-blue-10 '
+                className='flex w-36 justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10 '
             >
                 abbrechen
             </button>
             <button
                 type='submit'
-                className='flex justify-center px-4 py-2 space-x-2 font-bold text-white w-36 rounded-xl bg-coastal-blue-10'
+                className='flex w-36 justify-center space-x-2 rounded-xl bg-coastal-blue-10 px-4 py-2 font-bold text-white'
             >
                 <span>speichern</span>
             </button>
@@ -210,7 +210,7 @@ export default function UpdateProfile() {
 
     const content = (
         <form action={handleSubmit}>
-            <section className='w-full h-full p-8 space-y-4 text-xl border rounded-3xl lg:w-fit'>
+            <section className='h-full w-full space-y-4 rounded-3xl border p-8 text-xl lg:w-fit'>
                 {profile_inputs}
                 {address_inputs}
             </section>

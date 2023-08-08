@@ -7,8 +7,27 @@ import {
     ProfileInfoContext,
     ProfileInfoContextType,
 } from '@globalState/ProfileInfoContext';
-
 import UpdateProfile from './UpdateProfile';
+
+
+// Auth usage authorization
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseA = createClient(
+    'https://oymlbhawkvsltawcjlrq.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im95bWxiaGF3a3ZzbHRhd2NqbHJxIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY4NzI2MDc5NiwiZXhwIjoyMDAyODM2Nzk2fQ.cfAN5SjRusCHCT8q2fLSNBM6UhdbefmjmmdPn2OLyyk',
+    {
+        auth: {
+            autoRefreshToken: false,
+            persistSession: false,
+        },
+    }
+);
+
+// Access auth admin api
+const adminAuthClient = supabaseA.auth.admin;
+
+//______________________________________________________
 
 export default function Profile({
     UserInfoPanel,
@@ -21,6 +40,20 @@ export default function Profile({
         ProfileInfoContext
     ) as ProfileInfoContextType; // subscribe to ProfileInfoContext
 
+    // Deleting account
+    async function deleteAccount() {
+        const supabase = createClientComponentClient();
+
+        const {
+            data: { session: currentSession },
+        } = await supabase.auth.getSession();
+
+        const user_id = currentSession?.user?.id;
+        HandleLogout();
+        
+        adminAuthClient.deleteUser(`${user_id}`);   // Deleting user
+    }
+
     const router = useRouter();
     const HandleLogout = async () => {
         const supabase = createClientComponentClient();
@@ -32,18 +65,26 @@ export default function Profile({
             {Greeting}
             {editProfile ? <UpdateProfile /> : UserInfoPanel}
             {!editProfile && (
-                <div className='flex space-x-8'>
+                <div className='flex flex-wrap'>
                     <button
                         onClick={HandleLogout}
-                        className='flex w-36 justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10 '
+                        className='mb-2.5 ml-2.5 flex w-36 items-center justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10'
                     >
-                        ausloggen
+                        Ausloggen
                     </button>
                     <button
-                        className='flex w-36 justify-center space-x-2 rounded-xl bg-coastal-blue-10 px-4 py-2 font-bold text-white'
+                        className='mb-2.5 ml-2.5 flex w-36 items-center justify-center space-x-2 rounded-xl bg-coastal-blue-10 px-4 py-2 font-bold text-white'
                         onClick={toggleEditProfile}
                     >
-                        <span>bearbeiten</span>
+                        <span>Bearbeiten</span>
+                    </button>
+                    <button
+                        onClick={() => {
+                            deleteAccount();
+                        }}
+                        className='mb-2.5 ml-2.5 flex w-36 items-center justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10'
+                    >
+                        Löschen Kontos
                     </button>
                 </div>
             )}
