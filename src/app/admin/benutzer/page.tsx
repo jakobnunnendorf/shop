@@ -15,24 +15,22 @@ export default async function AdminDashboardUsersList() {
         const { data: profiles } = await supabase.from('profiles').select('*');
 
         return profiles;
-    };
-    const profiles = (await user_profiles()) as profile[];
+    }
+    const all_profiles = await user_profiles() as profile[];
+    const profiles = filterProfilesByName(all_profiles);
 
     return (
         <div>
-            <ul className='grid grid-cols-1 gap-2 p-2 md:grid-cols-1'>
+            <ul className="grid grid-cols-1 gap-2 p-2 md:grid-cols-1">
                 {profiles.map((profile, index) => (
-                    <li
-                        key={index}
-                        className='rounded-lg bg-white p-4 shadow-md'
-                    >
-                        <p className='text-xl font-semibold'>
-                            {profile.firstName} {profile.lastName}
-                        </p>
+                    <li key={index} className='p-4 bg-white rounded-lg shadow-md'>
+                        <Link href={`/admin/benutzer/${profile.profile_id}`} >
+                                {profile.firstName} {profile.lastName}
+                        </Link>
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 }
 
