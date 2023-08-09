@@ -1,6 +1,7 @@
 import React from 'react';
 import Client from './components/Client';
 import { modelTree, returnModelTree } from './helperFunctions';
+import Pagination from './Pagination';
 import MobileFilters from './MobileFilters/MobileFilters';
 
 export default async function FilterBar() {
@@ -11,7 +12,7 @@ export default async function FilterBar() {
             <div className='hidden lg:block'>
                 <Client modelTree={modelTree} />
             </div>
-            <MobileFilters modelTree={modelTree} />
+            <Pagination />
         </div>
     );
 

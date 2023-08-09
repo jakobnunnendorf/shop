@@ -42,7 +42,7 @@ export default function ShopPage() {
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
-                        .textSearch("title", searchFilter)
+                        .textSearch('title', searchFilter)
                         .limit(30);
                     return products;
                 } else {
@@ -79,7 +79,7 @@ export default function ShopPage() {
 
     const section = (
         <section className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>
-            {searchResults?.map((product, index) => {
+            {searchResults?.map((product: product, index: number) => {
                 return (
                     <div key={index} className='w-full pb-4'>
                         <ProductCard product={product} grid={true} />
