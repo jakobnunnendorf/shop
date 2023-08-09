@@ -9,7 +9,6 @@ import {
     ActiveFiltersContext,
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
-import { getPriority } from 'os';
 
 export default function ShopPage() {
     const [products, setProducts] = useState<product[]>([]);

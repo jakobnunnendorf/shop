@@ -16,7 +16,7 @@ export default function ShopLayout({
             <FilterBarContextProvider>
                 <FilterBar />
             </FilterBarContextProvider>
-            <section className='  flex w-full justify-center pt-4 lg:w-[calc(100vw-14rem)]'>
+            <section className='flex w-full justify-center pt-4 lg:w-[calc(100vw-14rem)]'>
                 {children}
             </section>
         </section>
