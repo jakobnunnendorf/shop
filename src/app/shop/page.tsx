@@ -11,40 +11,52 @@ import {
 } from '@globalState/ActiveFiltersContext';
 
 export default function ShopPage() {
+    
     const [products, setProducts] = useState<product[]>([]);
-    const { categoryFilters, deviceFilters, priceFilters, searchFilter } = useContext(
+    const { 
+        categoryFilters, deviceFilters, priceFilters,
+        searchFilter, pageFilter, updateTotalPages,
+    } = useContext(
         ActiveFiltersContext
     ) as FilterContextType;
+
     // const categoryFilters = ['screen protector'];
-    
+
     const supabase = createClientComponentClient(); // moved it outside of the useEffect hook in the hope for a possible optimization
     useEffect(() => {
+
+        // to show the number of products per page, alter this according to your needs
+        const start = pageFilter < 1? 1 : (pageFilter - 1) * 5;
+        const end = (start + 5) - 1;
 
         const getProducts = async () => {
             const fetchProductsByCategory = async () => {
                 if (categoryFilters.length === 0 && searchFilter.length === 0) {
-                    const { data: products } = await supabase
+                    const { data: products, count: totalRows } = await supabase
                         .from('products')
-                        .select('*')
-                        .limit(30);
+                        .select('*', { count: 'exact'}) // using count to get the total number of rows returned
+                        .range(start, end);
                     
+                    updateTotalPages( Math.ceil(Number(totalRows) / 5) ); 
                     return products;
                 } else if (categoryFilters.length === 0 && searchFilter.length !== 0) { // if there's something on the search bar
-                    const { data: products } = await supabase
+                    const { data: products, count: totalRows } = await supabase
                         .from('products')
-                        .select('*')
+                        .select('*', {count: 'exact'})
                         .textSearch("title", searchFilter)
-                        .limit(30);
-
-                        return products;
+                        .limit(15);
+                    
+                    updateTotalPages( Math.ceil(Number(totalRows) / 15) );    
+                    return products;
                 } else {
-                    const { data: products } = await supabase
+                    const { data: products, count: totalRows } = await supabase
                         .from('products')
                         .select('*')
                         .in('category', categoryFilters)
-                        .limit(30);
-
-                        return products;
+                        .range(start, end);
+                    
+                    updateTotalPages( Math.ceil(Number(totalRows) / 15) );    
+                    return products;
                 }
             };
             const products = (await fetchProductsByCategory()) as product[];
@@ -60,9 +72,9 @@ export default function ShopPage() {
             setProducts(priceFilteredProducts);
         };
         getProducts();
-        debounce(getProducts, 100);
+        debounce(getProducts, 100); // fix-up for products not showing often while searching
 
-    }, [categoryFilters, deviceFilters, priceFilters, searchFilter]);
+    }, [categoryFilters, deviceFilters, priceFilters, searchFilter, pageFilter]);
 
     const section = (
         <section className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>

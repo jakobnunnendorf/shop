@@ -1,5 +1,6 @@
 'use client';
 
+import { clear } from 'console';
 import { createContext, useState } from 'react';
 
 export type FilterContextType = {
@@ -7,6 +8,8 @@ export type FilterContextType = {
     deviceFilters: device[];
     priceFilters: number[][];
     searchFilter: string;
+    pageFilter: number;
+    totalPages: number;
     addCategoryFilter: (filter: string) => void;
     removeCategoryFilter: (filter: string) => void;
     toggleCategoryFilter: (filter: string) => void;
@@ -21,6 +24,9 @@ export type FilterContextType = {
     togglePriceFilter: (filter: number[]) => void;
     updateSearchFilter: (filter: string) => void;
     clearSearchFilter: () => void;
+    updatePageFilter: (filter: number) => void;
+    clearPageFilter: () => void;
+    updateTotalPages: (filter: number) => void;
     clearAllFilters: () => void;
 };
 
@@ -155,9 +161,32 @@ export const ActiveFiltersContextProvider = ({
         setSearchFilter('');
     };
 
+    const [pageFilter, setPageFilter] = useState<number>(1);
+
+    const updatePageFilter = (filter: number) => {
+        setPageFilter(filter);
+
+        // avoiding negative values
+        if (pageFilter < 1) {
+            setPageFilter(1);
+        }
+    };
+
+    const clearPageFilter = () => {
+        setPageFilter(1);  
+    };
+
+    const [totalPages, setTotalPages] = useState<number>(1);
+
+    const updateTotalPages = (filter: number) => {
+        setTotalPages(filter);
+    };
+    
     const clearAllFilters = () => {
         clearCategoryFilters();
         clearDeviceFilters();
+        clearSearchFilter();
+        clearPageFilter();
     };
 
     return (
@@ -167,6 +196,8 @@ export const ActiveFiltersContextProvider = ({
                 deviceFilters,
                 priceFilters,
                 searchFilter,
+                pageFilter,
+                totalPages,
                 addCategoryFilter,
                 removeCategoryFilter,
                 toggleCategoryFilter,
@@ -181,6 +212,9 @@ export const ActiveFiltersContextProvider = ({
                 togglePriceFilter,
                 updateSearchFilter,
                 clearSearchFilter, 
+                updatePageFilter,
+                clearPageFilter,
+                updateTotalPages,
                 clearAllFilters,
             }}
         >
