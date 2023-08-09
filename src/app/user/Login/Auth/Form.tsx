@@ -73,6 +73,8 @@ export default function Form({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
+        
+
         const { session, user } = data;
         if (!error) {
             setSession(session);
