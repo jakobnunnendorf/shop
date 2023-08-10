@@ -36,11 +36,11 @@ export default function ThumbnailRow({
                                     : ''
                             }`}
                         >
-                            <figure className='relative h-full aspect-square'>
+                            <figure className='relative aspect-square h-full'>
                                 <Image
                                     src={imageURL}
                                     fill
-                                    objectFit='cover'
+                                    className='object-cover'
                                     alt={imageURL}
                                 />
                             </figure>

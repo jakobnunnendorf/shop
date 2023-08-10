@@ -48,7 +48,12 @@ export default function ImageInput({
     // return previewURL ? <BigImage imageURL={previewURL} /> : imageInput;
     return previewURL ? (
         <figure className='absolute h-full w-full '>
-            <Image src={previewURL} fill objectFit='cover' alt={previewURL} />
+            <Image
+                src={previewURL}
+                fill
+                className='object-cover'
+                alt={previewURL}
+            />
         </figure>
     ) : (
         imageInput

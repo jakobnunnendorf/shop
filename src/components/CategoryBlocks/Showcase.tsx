@@ -12,7 +12,7 @@ export default function Showcase() {
                     src='/three_phones_v2.png'
                     fill={true}
                     alt='hero'
-                    objectFit='cover'
+                    className='object-cover'
                 />
             </figure>
         </section>

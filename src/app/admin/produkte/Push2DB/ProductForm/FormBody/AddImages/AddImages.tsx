@@ -33,7 +33,7 @@ export default function AddImages({
             <Image
                 src={imageArray[activeIndex]}
                 fill
-                objectFit='cover'
+                className='object-cover'
                 alt={imageArray[activeIndex]}
             />
         </figure>

@@ -18,7 +18,7 @@ export default function Thumbnail({
                     alt='product thumbnail'
                     src={imageURL}
                     fill={true}
-                    objectFit='cover'
+                    className='object-cover'
                 />
             </figure>
         </div>

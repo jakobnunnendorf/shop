@@ -37,7 +37,7 @@ export default function UpperRow() {
                                 src='/p2d_logo.png'
                                 alt='Phone2Door Handyzubehör Online shop Logo'
                                 fill={true}
-                                objectFit='contain'
+                                className='object-contain'
                             />
                         </Link>
                     </div>

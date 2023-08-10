@@ -22,7 +22,7 @@ export default function Images({
                         <Image
                             src={getImageAt(activeIndex)}
                             fill={true}
-                            objectFit='cover'
+                            className='object-cover'
                             alt={'product image'}
                         />
                     </figure>
