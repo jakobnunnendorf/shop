@@ -17,9 +17,8 @@ export default function ShopPage() {
     ) as FilterContextType;
     // const categoryFilters = ['screen protector'];
     
-    const supabase = createClientComponentClient(); // moved it outside of the useEffect hook in the hope for a possible optimization
     useEffect(() => {
-
+        const supabase = createClientComponentClient(); // moved it outside of the useEffect hook in the hope for a possible optimization
         const getProducts = async () => {
             const fetchProductsByCategory = async () => {
                 if (categoryFilters.length === 0 && searchFilter.length === 0) {
