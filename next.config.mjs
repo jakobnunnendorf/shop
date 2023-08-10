@@ -5,7 +5,6 @@ import withPlugins from "next-compose-plugins"
  * @type {import('next').NextConfig}
  */
 const config = withPlugins([[withBundleAnalyzer({ enabled: false })]], {
-    dynamic: 'force-dynamic',
     reactStrictMode: true,
     experimental: { instrumentationHook: true, serverActions: true, },
     rewrites() {
