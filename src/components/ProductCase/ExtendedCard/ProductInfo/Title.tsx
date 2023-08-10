@@ -1,12 +1,6 @@
 import React from 'react';
 
-export default function Title({
-    productTitle,
-    rowSpan,
-}: {
-    productTitle: string;
-    rowSpan?: number;
-}) {
+export default function Title({ productTitle }: { productTitle: string; rowSpan?: number }) {
     const skeleton = <div className='h-12 rounded-full bg-gray-100'></div>;
     const title = (
         <h2

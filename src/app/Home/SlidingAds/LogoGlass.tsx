@@ -20,7 +20,7 @@ export default function LogoGlass() {
                     src={'/p2d_logo3.png'}
                     fill={true}
                     alt='Phone 2 Door Logo'
-                    objectFit='contain'
+                    className='object-contain'
                 />
             </figure>
         </div>

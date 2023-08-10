@@ -31,7 +31,7 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                     src={returnFirstPicture()}
                     alt='product-image'
                     fill={true}
-                    objectFit='contain'
+                    className='object-contain'
                 />
             </figure>
             <div className='sm:ml-4 sm:flex sm:w-full sm:justify-between'>

@@ -3,10 +3,10 @@ import './globals.css';
 import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
 import { ActiveProductContextProvider } from '@globalState/ActiveProductCardContext';
 import { CartContextProvider } from '@globalState/CartContext';
-import { WishlistContextProvider } from '@globalState/WishlistContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
+import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
 
 export const dynamic = 'force-dynamic';

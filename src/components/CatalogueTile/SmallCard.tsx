@@ -27,7 +27,7 @@ export default function SmallCard({
                     src={defaultImage()}
                     fill={true}
                     alt={product.title}
-                    objectFit='contain'
+                    className='object-contain'
                 />
             </figure>
             <div className='flex h-1/2 w-full flex-col justify-between px-2'>

@@ -8,8 +8,7 @@ export default function BgBanner({ image }: { image: string }) {
                 src={image}
                 alt='sliding-ad'
                 fill={true}
-                objectFit='cover'
-                className=''
+                className='object-cover'
             />
         </figure>
     );

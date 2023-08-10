@@ -1,8 +1,11 @@
 'use client'
 
-import React, { useState, useEffect, useContext } from 'react'
-import { ActiveFiltersContext, FilterContextType } from '@globalState/ActiveFiltersContext'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React, { useContext, useEffect, useState } from 'react';
+import {
+    ActiveFiltersContext,
+    FilterContextType,
+} from '@globalState/ActiveFiltersContext';
 
 export default function SearchResults() {
     const supabase = createClientComponentClient();
@@ -11,7 +14,7 @@ export default function SearchResults() {
     ) as FilterContextType;
 
     const [searchProducts, setSearchProducts] = useState<product[]>([]);
-    
+
     useEffect(() => {
         if (searchFilter !== '') {
             const getProducts = async () => {
@@ -21,18 +24,25 @@ export default function SearchResults() {
                         .select('*')
                         .textSearch('title', searchFilter)
                         .limit(3);
-                        
-                        console.log(searchResults);
-                        return searchResults;
-                    };
 
-                    const products = (await getSearchProducts() as product[]);
-                    setSearchProducts(products);
+                    console.log(searchResults);
+                    return searchResults;
                 };
+<<<<<<< HEAD
                 getProducts();
                 
             }
     }, [searchFilter]);
+=======
+
+                const products = (await getSearchProducts()) as product[];
+                setSearchProducts(products);
+            };
+            getProducts();
+            console.log(searchProducts);
+        }
+    }, [searchFilter, searchProducts, supabase]);
+>>>>>>> 17eaf8b731d53dea9244f137c96f7742f66a5d02
 
     return (
         <div>
@@ -43,5 +53,5 @@ export default function SearchResults() {
             ))}
         </div>
     );
-};
+}
 

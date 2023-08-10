@@ -1,20 +1,13 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import AddToCartButton from '@components/CatalogueTile/AddToCartButton';
 
-import { useContext } from 'react';
 import {
     WishlistContext,
     WishlistContextType,
 } from '../../globalState/WishlistContext';
 
-export default function WishlistRow({
-    WishlistItem,
-    product,
-}: {
-    WishlistItem: Wishlist_item;
-    product: product;
-}) {
+export default function WishlistRow({ WishlistItem }: { WishlistItem: Wishlist_item }) {
     const { removeWishlistItem } = useContext(
         WishlistContext
     ) as WishlistContextType;
@@ -35,7 +28,7 @@ export default function WishlistRow({
                     src={returnFirstPicture()}
                     alt='product-image'
                     fill={true}
-                    objectFit='contain'
+                    className='object-contain'
                 />
             </figure>
             <div className='sm:ml-4 sm:flex sm:w-full sm:justify-between'>

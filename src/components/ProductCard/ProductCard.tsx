@@ -20,9 +20,6 @@ export default function ProductCard({
         ActiveProductContext
     ) as ActiveProductContextType;
     const [expanded, setExpanded] = React.useState<boolean>(false);
-    const toggleExpanded = () => {
-        setExpanded(!expanded);
-    };
 
     const expandedFrame =
         'fixed right-1/2 top-16 z-50 h-[calc(100vh-4rem)] rounded-none lg:rounded-3xl w-screen translate-x-1/2 lg:top-1/2 lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2';
@@ -57,7 +54,7 @@ export default function ProductCard({
         >
             {expanded && (
                 <button
-                    className='absolute left-8 top-8 z-50 border-b-3 border-s-seafoam-green-7 text-3xl text-coastal-blue-7'
+                    className='absolute z-50 text-3xl left-8 top-8 border-b-3 border-s-seafoam-green-7 text-coastal-blue-7'
                     onClick={() => setExpanded(false)}
                 >
                     <FiArrowLeft />

@@ -3,11 +3,11 @@ import Link from 'next/link';
 import React from 'react';
 
 import CartIcon from './CartIcon';
-import WishlistIcon from './WishlistIcon';
 import MobileMenuBurger from './MobileMenuBurger';
-import UserHeaderLink from './UserHeaderLink';
 import SearchInput from './SearchInput';
-import SearchResults from './SearchResults';
+// import SearchResults from './SearchResults';
+import UserHeaderLink from './UserHeaderLink';
+import WishlistIcon from './WishlistIcon';
 
 export default function UpperRow() {
     const upper_row = (
@@ -37,7 +37,7 @@ export default function UpperRow() {
                                 src='/p2d_logo.png'
                                 alt='Phone2Door Handyzubehör Online shop Logo'
                                 fill={true}
-                                objectFit='contain'
+                                className='object-contain'
                             />
                         </Link>
                     </div>
