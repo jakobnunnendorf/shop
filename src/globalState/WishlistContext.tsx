@@ -1,6 +1,5 @@
 'use client';
 
-import { values } from 'lodash';
 import { createContext, useState } from 'react';
 
 export type WishlistContextType = {
@@ -15,7 +14,7 @@ export type WishlistContextType = {
     getTotalQuantity: () => number;
     getSubTotal: () => number;
     addProductToWishlist: (product: product) => void;
-    isInWishlist: (product: product) => any;
+    isInWishlist: (product: product) => boolean;
 };
 
 export const WishlistContext = createContext<WishlistContextType | null>(null);

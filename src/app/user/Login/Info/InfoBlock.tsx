@@ -3,19 +3,19 @@ import { registrationInfo } from '@globalState/UserContext';
 
 export default function InfoBlock({
     hasAccount,
-    registrationInfo,
-}: {
+}: // registrationInfo,
+{
     hasAccount: boolean;
     registrationInfo: registrationInfo;
 }) {
     const infoBlock = (
         <div className={`row-span-3 w-4/5 lg:row-span-5`}>
-            <div className='text-center font-bold text-white'>
+            <div className='font-bold text-center text-white'>
                 {hasAccount ? `` : 'Registrieren'} und zurücklehnen. <br />
                 Wir haben alles, was dein Handy braucht.
             </div>
             {/* 
-            <div className='row-span-4 hidden py-8 lg:flex lg:flex-col'>
+            <div className='hidden row-span-4 py-8 lg:flex lg:flex-col'>
                 <h3 className='mb-2'>Der Server bedankt sich:</h3>
                 <p>{'{'}</p>
                 <p className=''>

@@ -60,7 +60,7 @@ export default function ShopPage() {
         };
         getProducts();
 
-    }, [categoryFilters, deviceFilters, priceFilters, searchFilter]);
+    }, [categoryFilters, deviceFilters, priceFilters, searchFilter, supabase]);
 
     const section = (
         <section className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>

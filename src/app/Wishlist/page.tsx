@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useContext } from 'react';
-import WishlistRow from './WishlistRow';
 import SkeletonRow from './SkeletonRow';
+import WishlistRow from './WishlistRow';
 import {
     WishlistContext,
     WishlistContextType,
@@ -29,14 +29,14 @@ export default function WishlistPage() {
     );
 
     const container = (
-        <div className='mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0'>
+        <div className='justify-center max-w-5xl px-6 mx-auto md:flex md:space-x-6 xl:px-0'>
             {Wishlist_item_rows}
         </div>
     );
 
     const frame = (
         <div className='h-[calc(100vh-7rem)] w-full pt-20'>
-            <h1 className='mb-10 text-center text-2xl font-bold'>
+            <h1 className='mb-10 text-2xl font-bold text-center'>
                 Deine Artikek
             </h1>
             {container}

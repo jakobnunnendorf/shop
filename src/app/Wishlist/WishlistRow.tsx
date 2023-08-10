@@ -1,8 +1,7 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import AddToCartButton from '@components/CatalogueTile/AddToCartButton';
 
-import { useContext } from 'react';
 import {
     WishlistContext,
     WishlistContextType,
@@ -10,7 +9,7 @@ import {
 
 export default function WishlistRow({
     WishlistItem,
-    product,
+    // product,
 }: {
     WishlistItem: Wishlist_item;
     product: product;
@@ -29,8 +28,8 @@ export default function WishlistRow({
     };
 
     return (
-        <div className='mb-6 justify-between rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start'>
-            <figure className='relative h-20 w-24 rounded-lg sm:w-40'>
+        <div className='justify-between p-6 mb-6 bg-white rounded-lg shadow-md sm:flex sm:justify-start'>
+            <figure className='relative w-24 h-20 rounded-lg sm:w-40'>
                 <Image
                     src={returnFirstPicture()}
                     alt='product-image'
@@ -53,7 +52,7 @@ export default function WishlistRow({
                         )}
                     </p>
                 </div>
-                <div className='mt-4 flex justify-between sm:mt-0 sm:block sm:space-x-6 sm:space-y-6'>
+                <div className='flex justify-between mt-4 sm:mt-0 sm:block sm:space-x-6 sm:space-y-6'>
                     <div className='flex items-center space-x-4'>
                         <p className='text-sm'>{WishlistItem.product.price}</p>
                         <svg
@@ -63,7 +62,7 @@ export default function WishlistRow({
                             viewBox='0 0 24 24'
                             stroke-width='1.5'
                             stroke='currentColor'
-                            className='h-5 w-5 cursor-pointer duration-150 hover:text-red-500'
+                            className='w-5 h-5 duration-150 cursor-pointer hover:text-red-500'
                         >
                             <path
                                 stroke-linecap='round'

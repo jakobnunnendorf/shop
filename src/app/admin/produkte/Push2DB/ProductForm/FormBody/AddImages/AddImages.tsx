@@ -42,8 +42,8 @@ export default function AddImages({
             Bitte wähle eine Farbe aus
         </div>
     );
-
     let borderStyle;
+    /*
     let content;
     switch (status) {
         case 'showcase':
@@ -65,7 +65,7 @@ export default function AddImages({
         default:
             borderStyle = 'border-r-2';
             break;
-    }
+    }*/
 
     const showAddButon = status !== 'explain' && defaultColorInitialised;
 

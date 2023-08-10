@@ -1,8 +1,8 @@
 // updates the search input globally (across all pages)
 'use client'
 
-import React, { useContext } from 'react'
 import { useRouter } from 'next/navigation'
+import React, { useContext } from 'react';
 import { ActiveFiltersContext, FilterContextType } from '@globalState/ActiveFiltersContext';
 
 export default function SearchInput() {
@@ -24,13 +24,13 @@ export default function SearchInput() {
 
     return (
         <>
-            <div className='flex h-full w-full'>
+            <div className='flex w-full h-full'>
                 <input
                     type='text'
                     placeholder='Suche...'
-                    className='h-full w-full px-2 rounded-l-3xl border border-coastal-blue-3 focus:outline-none focus:ring-2 focus:ring-coastal-blue-3 focus:border-transparent'
+                    className='w-full h-full px-2 border rounded-l-3xl border-coastal-blue-3 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-coastal-blue-3'
                     value={searchFilter}
-                    onChange={(e) => (updateSearchFilter(e.target.value))}
+                    onChange={(e) => updateSearchFilter(e.target.value)}
                     onKeyDown={handleKeyEvent}
                 />
             </div>

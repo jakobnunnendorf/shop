@@ -1,11 +1,9 @@
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import BigImage from '@components/ProductCase/ExtendedCard/Images/BigImage';
 import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
-import ExpandedPicture from '@components/ProductCard/Expanded/Images/ExpandedPicture';
 
 export default function ImageInput({
     setStatus,
