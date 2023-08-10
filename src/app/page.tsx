@@ -81,29 +81,71 @@ export default async function HomePage() {
     return (
         <main className='w-full'>
             <Home />
-            <ProductCarousel
-                heading='Unsere Bestseller'
-                productData={bestSeller}
-            />
+            {
+                bestSeller.length !== 0?
+                <ProductCarousel
+                    heading='Unsere Bestseller'
+                    productData={bestSeller}
+                />
+                :
+                <></>
+            }
             <CategoryBlocks />
-            <ProductCarousel heading='Handyhüllen' productData={phoneCases} />
-            <ProductCarousel
-                heading='Panzergläser'
-                productData={screenProtector}
-            />
-            <ProductCarousel heading='Ladekabel' productData={chargingCable} />
-            <ProductCarousel
+
+            { phoneCases.length !== 0?
+                <ProductCarousel 
+                    heading='Handyhüllen' 
+                    productData={phoneCases}
+                />
+                :
+                <></>
+            }
+
+            { screenProtector.length !== 0?
+                <ProductCarousel
+                    heading='Panzergläser'
+                    productData={screenProtector}
+                />
+                :
+                <></>
+            }
+            
+            { chargingCable.length !== 0?
+                <ProductCarousel 
+                heading='Ladekabel'
+                productData={chargingCable} 
+                />
+                : 
+                <></>
+            }
+            
+            { chargingAdapter.length !== 0?
+                <ProductCarousel
                 heading='Ladestecker'
                 productData={chargingAdapter}
-            />
-            <ProductCarousel
+                /> 
+                : 
+                <></> 
+            }
+
+            { tabletCase.length !== 0? 
+                <ProductCarousel
                 heading='Tablet-Taschen'
                 productData={tabletCase}
-            />
-            <ProductCarousel
-                heading='Handy-Halterungen'
-                productData={phoneHolder}
-            />
+                />
+                : 
+                <></>
+            }
+
+            { phoneHolder.length !== 0?
+                <ProductCarousel
+                    heading='Handy-Halterungen'
+                    productData={phoneHolder}
+                />
+                : 
+                <></>
+            }
+
         </main>
     );
 }
