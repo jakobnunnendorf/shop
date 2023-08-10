@@ -13,13 +13,13 @@ export default function SmallImage({
     const smallImage = (
         <figure
             onClick={expand}
-            className='relative flex-grow w-full overflow-hidden rounded-t-3xl'
+            className='relative w-full flex-grow overflow-hidden rounded-t-3xl'
         >
             <Image
                 src={imageURL}
                 fill={true}
                 alt={title ? title : 'product image'}
-                objectFit='cover'
+                className='object-fit'
             />
         </figure>
     );

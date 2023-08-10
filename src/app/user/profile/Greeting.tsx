@@ -2,9 +2,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 
-const supabase = createServerComponentClient({ cookies });
 
 export default async function Greeting() {
+    const supabase = createServerComponentClient({ cookies });
     async function fetch_first_name_and_avatar_url() {
         const {
             data: { session: currentSession },
@@ -29,8 +29,7 @@ export default async function Greeting() {
         };
     }
 
-    const { first_name, avatar_url } =
-        await fetch_first_name_and_avatar_url();
+    const { first_name, avatar_url } = await fetch_first_name_and_avatar_url();
 
     return (
         <>
@@ -51,7 +50,7 @@ export default async function Greeting() {
                 alt='profile avatar'
                 width={128}
                 height={128}
-                className='object-cover w-32 h-32 col-span-3 rounded-full'
+                className='col-span-3 h-32 w-32 rounded-full object-cover'
             />
         </>
     );

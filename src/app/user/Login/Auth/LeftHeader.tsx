@@ -5,7 +5,7 @@ export default function LeftHeader({ hasAccount }: { hasAccount: boolean }) {
         <h2
             className={`${
                 hasAccount ? 'row-start-2' : 'row-start-1'
-            } row-span-1 text-center text-2xl font-bold`}
+            } text-lxl row-span-1 text-center text-3xl font-bold`}
         >
             Deine Infos
         </h2>

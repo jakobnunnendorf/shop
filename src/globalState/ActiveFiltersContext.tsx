@@ -6,6 +6,7 @@ export type FilterContextType = {
     categoryFilters: string[]; //TODO: increase specificity
     deviceFilters: device[];
     priceFilters: number[][];
+    searchFilter: string;
     addCategoryFilter: (filter: string) => void;
     removeCategoryFilter: (filter: string) => void;
     toggleCategoryFilter: (filter: string) => void;
@@ -18,6 +19,8 @@ export type FilterContextType = {
     isDeviceInFilterArray: (device: device) => boolean;
     clearDeviceFilters: () => void;
     togglePriceFilter: (filter: number[]) => void;
+    updateSearchFilter: (filter: string) => void;
+    clearSearchFilter: () => void;
     clearAllFilters: () => void;
 };
 
@@ -50,6 +53,8 @@ export const ActiveFiltersContextProvider = ({
         } else {
             addCategoryFilter(filter);
         }
+
+        clearSearchFilter();
     };
 
     const setCategoryFilter = (filter: string) => {
@@ -89,6 +94,8 @@ export const ActiveFiltersContextProvider = ({
         } else {
             addDeviceFilter(filter);
         }
+
+        clearSearchFilter();
     };
 
     const isDeviceInFilterArray = (device: device) => {
@@ -134,6 +141,18 @@ export const ActiveFiltersContextProvider = ({
         } else {
             addPriceFilter(filter);
         }
+
+        clearSearchFilter();
+    };
+
+    const [searchFilter, setSearchFilter] = useState<string>('');
+
+    const updateSearchFilter = (filter: string) => {
+        setSearchFilter(filter);
+    }
+
+    const clearSearchFilter = () => {
+        setSearchFilter('');
     };
 
     const clearAllFilters = () => {
@@ -147,6 +166,7 @@ export const ActiveFiltersContextProvider = ({
                 categoryFilters,
                 deviceFilters,
                 priceFilters,
+                searchFilter,
                 addCategoryFilter,
                 removeCategoryFilter,
                 toggleCategoryFilter,
@@ -159,6 +179,8 @@ export const ActiveFiltersContextProvider = ({
                 isDeviceInFilterArray,
                 clearDeviceFilters,
                 togglePriceFilter,
+                updateSearchFilter,
+                clearSearchFilter, 
                 clearAllFilters,
             }}
         >

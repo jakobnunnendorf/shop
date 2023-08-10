@@ -24,7 +24,7 @@ export default function ExtendedCard({
                     <Image
                         src={returnDefaultPicture()}
                         fill={true}
-                        objectFit='cover'
+                        className='object-cover'
                         alt={product.title}
                     />
                 ) : null}

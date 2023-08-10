@@ -4,7 +4,10 @@ import React from 'react';
 
 import CartIcon from './CartIcon';
 import MobileMenuBurger from './MobileMenuBurger';
+import SearchInput from './SearchInput';
+// import SearchResults from './SearchResults';
 import UserHeaderLink from './UserHeaderLink';
+import WishlistIcon from './WishlistIcon';
 
 export default function UpperRow() {
     const upper_row = (
@@ -34,22 +37,21 @@ export default function UpperRow() {
                                 src='/p2d_logo.png'
                                 alt='Phone2Door Handyzubehör Online shop Logo'
                                 fill={true}
-                                objectFit='contain'
+                                className='object-contain'
                             />
                         </Link>
                     </div>
-                    <input
-                        type='text'
-                        placeholder='Suche...'
-                        className='h-full w-full border-l border-coastal-blue-3 bg-transparent text-center placeholder-coastal-blue-10 outline-none'
-                    />
+                    <SearchInput />
+                    {/* <SearchResults />{need some styling} */}
                 </div>
 
                 <nav className='col-span-3 flex h-full justify-around lg:justify-end lg:space-x-8 lg:pr-8'>
+                    <WishlistIcon />
                     <CartIcon />
                     <UserHeaderLink />
                 </nav>
             </div>
+            {/* <SearchResults /> */}
         </section>
     );
     return upper_row;

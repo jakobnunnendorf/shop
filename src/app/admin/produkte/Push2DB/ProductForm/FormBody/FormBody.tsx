@@ -5,7 +5,6 @@ import {
 } from '@globalState/NewProductContext';
 import AddImages from './AddImages/AddImages';
 import ProductInfo from './ProductInfo/ProductInfo';
-import ControlBar from './AddImages/ControlBar';
 
 export default function FormBody() {
     const { status, setStatus } = React.useContext(

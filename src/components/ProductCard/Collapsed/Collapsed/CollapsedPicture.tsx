@@ -20,7 +20,12 @@ export default function ProductPicture({
 
     return (
         <figure className='relative' onClick={expand}>
-            <Image src={imageURL} alt={imageURL} fill objectFit='contain' />
+            <Image
+                src={imageURL}
+                alt={imageURL}
+                fill
+                className='object-contain'
+            />
         </figure>
     );
 }

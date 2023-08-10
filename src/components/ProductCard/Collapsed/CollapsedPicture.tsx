@@ -13,7 +13,12 @@ export default function ProductPicture({
             className='relative row-span-2 lg:row-span-1'
             onClick={() => setExpanded(true)}
         >
-            <Image src={imageURL} alt={imageURL} fill objectFit='contain' />
+            <Image
+                src={imageURL}
+                alt={imageURL}
+                fill
+                className='object-contain'
+            />
         </figure>
     );
 }

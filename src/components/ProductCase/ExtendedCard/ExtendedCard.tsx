@@ -1,7 +1,6 @@
 'use client';
 import React from 'react'; // TODO add colours
 import { FiArrowLeft } from 'react-icons/fi';
-import { ProductCardContextProvider } from '@globalState/ProductCardContext';
 import Images from './Images/Images';
 import ProductInfo from './ProductInfo/ProductInfo';
 

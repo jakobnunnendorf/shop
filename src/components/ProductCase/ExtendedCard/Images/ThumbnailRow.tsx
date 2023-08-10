@@ -38,7 +38,7 @@ export default function ThumbnailRow({
                                 <Image
                                     src={imageURL}
                                     fill
-                                    objectFit='cover'
+                                    className='object-cover'
                                     alt={imageURL}
                                 />
                             </figure>

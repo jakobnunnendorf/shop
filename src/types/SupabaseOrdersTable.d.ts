@@ -22,3 +22,8 @@ interface cart_item {
     product: product;
     quantity: number;
 }
+
+interface Wishlist_item {
+    product: product;
+    quantity: number;
+}

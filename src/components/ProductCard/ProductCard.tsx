@@ -16,13 +16,10 @@ export default function ProductCard({
     product: product;
     grid?: boolean;
 }) {
-    const {dispatch } = useContext(
+    const { dispatch } = useContext(
         ActiveProductContext
     ) as ActiveProductContextType;
     const [expanded, setExpanded] = React.useState<boolean>(false);
-    const toggleExpanded = () => {
-        setExpanded(!expanded);
-    };
 
     const expandedFrame =
         'fixed right-1/2 top-16 z-50 h-[calc(100vh-4rem)] rounded-none lg:rounded-3xl w-screen translate-x-1/2 lg:top-1/2 lg:h-2/3 lg:w-2/3 lg:-translate-y-1/2';

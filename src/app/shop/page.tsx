@@ -3,6 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useContext, useEffect, useState } from 'react';
 import ProductCard from '@components/ProductCard/ProductCard';
+
 import {
     ActiveFiltersContext,
     FilterContextType,
@@ -10,31 +11,43 @@ import {
 
 export default function ShopPage() {
     const [products, setProducts] = useState<product[]>([]);
-
-    const { categoryFilters, deviceFilters, priceFilters } = useContext(
+    const { categoryFilters, deviceFilters, priceFilters, searchFilter } = useContext(
         ActiveFiltersContext
     ) as FilterContextType;
     // const categoryFilters = ['screen protector'];
+    
+    const supabase = createClientComponentClient(); // moved it outside of the useEffect hook in the hope for a possible optimization
     useEffect(() => {
-        const supabase = createClientComponentClient();
+
         const getProducts = async () => {
             const fetchProductsByCategory = async () => {
-                if (categoryFilters.length === 0) {
+                if (categoryFilters.length === 0 && searchFilter.length === 0) {
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
                         .limit(30);
+                    
                     return products;
+                } else if (categoryFilters.length === 0 && searchFilter.length !== 0) { // if there's something on the search bar
+                    const { data: products } = await supabase
+                        .from('products')
+                        .select('*')
+                        .textSearch('title', searchFilter)
+                        .limit(30);
+                        
+                        return products;
                 } else {
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
                         .in('category', categoryFilters)
                         .limit(30);
-                    return products;
+
+                        return products;
                 }
             };
             const products = (await fetchProductsByCategory()) as product[];
+
             const deviceFilteredProducts = filterProductArrayByDeviceFilters(
                 products,
                 deviceFilters
@@ -46,7 +59,8 @@ export default function ShopPage() {
             setProducts(priceFilteredProducts);
         };
         getProducts();
-    }, [categoryFilters, deviceFilters, priceFilters]);
+
+    }, [categoryFilters, deviceFilters, priceFilters, searchFilter, supabase]);
 
     const section = (
         <section className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>
@@ -106,5 +120,3 @@ const filterProductArrayByPriceFilters = (
     });
     return filteredProducts;
 };
-
-

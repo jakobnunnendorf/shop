@@ -13,7 +13,7 @@ export default function BigImage({
             <Image
                 src={imageURL}
                 fill={true}
-                objectFit='cover'
+                className='object-cover'
                 alt={'product image'}
             />
         </div>
