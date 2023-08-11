@@ -57,16 +57,16 @@ export default function Expanded({
             </div>
             <div className='flex-grow px-4 py-8'>
                 <h2 className='text-3xl font-bold text-center'>Deine Filter</h2>
-                <div>
-                    <h3 className='text-xl font-bold'>Farben</h3>
+                <div className='py-8 pt-16'>
                     <ul className='flex justify-center py-4 space-x-2'>
-                        <li className='w-8 h-8 bg-blue-400 border rounded-full'></li>
-                        <li className='w-8 h-8 bg-green-400 border rounded-full'></li>
-                        <li className='w-8 h-8 bg-orange-400 border rounded-full'></li>
-                        <li className='w-8 h-8 bg-yellow-400 border rounded-full'></li>
-                        <li className='w-8 h-8 bg-red-400 border rounded-full'></li>
-                        <li className='w-8 h-8 bg-pink-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-blue-400 border rounded-full border-coastal-blue-10'></li>
+                        <li className='w-8 h-8 bg-green-400 border rounded-full border-coastal-blue-10'></li>
+                        <li className='w-8 h-8 bg-orange-400 border rounded-full border-coastal-blue-10'></li>
+                        <li className='w-8 h-8 bg-yellow-400 border rounded-full border-coastal-blue-10'></li>
+                        <li className='w-8 h-8 bg-red-400 border rounded-full border-coastal-blue-10'></li>
+                        <li className='w-8 h-8 bg-pink-400 border rounded-full border-coastal-blue-10'></li>
                     </ul>
+                    <h3 className='text-xl font-bold text-center'>Farben</h3>
                 </div>
                 <div className='py-4'>
                     <FilterSection
