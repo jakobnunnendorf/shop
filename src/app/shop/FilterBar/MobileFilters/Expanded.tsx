@@ -46,8 +46,8 @@ export default function Expanded({
     ) as SearchResultsContextType;
 
     const expandedMobileFilters = (
-        <div className='flex flex-col w-full h-full bborder justify-evenly'>
-            <div className='flex items-center justify-end w-full h-16 px-8 rborder'>
+        <div className='flex flex-col w-full h-full justify-evenly'>
+            <div className='flex items-center justify-end w-full h-16 px-8 '>
                 <button
                     className='flex items-center h-8 underline w-fit border-coastal-blue-10 text-coastal-blue-10'
                     onClick={close}
@@ -55,21 +55,37 @@ export default function Expanded({
                     Schließen <FiX size={20} />
                 </button>
             </div>
-            <div className='flex-grow px-4'>
+            <div className='flex-grow px-4 py-8'>
                 <h2 className='text-3xl font-bold text-center'>Deine Filter</h2>
-                <FilterSection heading='Kategorien' filters={categoryArray} />
-                <FilterSection
-                    heading='Modelle'
-                    filters={
-                        <DeviceTree
-                            modelTree={modelTree}
-                            toggleDeviceFilter={toggleDeviceFilter}
-                            deviceFilters={deviceFilters}
-                            isDeviceInFilterArray={isDeviceInFilterArray}
-                        />
-                    }
-                />
-                <FilterSection heading='Preise' filters={priceArray} />
+                <div>
+                    <h3 className='text-xl font-bold'>Farben</h3>
+                    <ul className='flex justify-center py-4 space-x-2'>
+                        <li className='w-8 h-8 bg-blue-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-green-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-orange-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-yellow-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-red-400 border rounded-full'></li>
+                        <li className='w-8 h-8 bg-pink-400 border rounded-full'></li>
+                    </ul>
+                </div>
+                <div className='py-4'>
+                    <FilterSection
+                        heading='Kategorien'
+                        filters={categoryArray}
+                    />
+                    <FilterSection
+                        heading='Modelle'
+                        filters={
+                            <DeviceTree
+                                modelTree={modelTree}
+                                toggleDeviceFilter={toggleDeviceFilter}
+                                deviceFilters={deviceFilters}
+                                isDeviceInFilterArray={isDeviceInFilterArray}
+                            />
+                        }
+                    />
+                    <FilterSection heading='Preise' filters={priceArray} />
+                </div>
             </div>
             <div className='grid w-full grid-cols-2 py-16 justify-evenly'>
                 <button
@@ -78,7 +94,10 @@ export default function Expanded({
                 >
                     Filter löschen
                 </button>
-                <button className='flex items-center w-4/5 px-2 py-2 mx-auto ml-2 text-white border rounded-full justify-evenly bg-coastal-blue-10 hover:bg-coastal-blue-10'>
+                <button
+                    onClick={close}
+                    className='flex items-center w-4/5 px-2 py-2 mx-auto ml-2 text-white border rounded-full justify-evenly bg-coastal-blue-10 hover:bg-coastal-blue-10'
+                >
                     ({numberOfResults}) Treffer
                     <FiSearch size={20} />
                 </button>
