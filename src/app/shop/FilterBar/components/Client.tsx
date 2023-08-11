@@ -9,7 +9,7 @@ import { modelTree } from '../helperFunctions';
 export default function Client({ modelTree }: { modelTree: modelTree }) {
     const { mobileSlot } = useContext(FilterBarContext) as FilterBarContextType;
     return (
-        <div className='w-full px-2 lg:flex lg:flex-col lg:px-4'>
+        <div className='rborder w-full px-2 lg:flex lg:flex-col lg:px-4'>
             <Responsive modelTree={modelTree} />
             <MobileSlot filters={mobileSlot} />
         </div>

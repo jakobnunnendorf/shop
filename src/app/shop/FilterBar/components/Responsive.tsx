@@ -18,7 +18,7 @@ export default function Responsive({ modelTree }: { modelTree: modelTree }) {
     const {
         categoryExpanded,
         toggleCategoryExpanded,
-        categoryFilterList,
+        categoryArray,
         deviceExpanded,
         toggleDeviceExpanded,
         priceExpanded,
@@ -39,13 +39,18 @@ export default function Responsive({ modelTree }: { modelTree: modelTree }) {
                 toggleExpanded={() => {
                     toggleCategoryExpanded();
                     if (!mobileSlot) {
-                        setMobileSlot(categoryFilterList);
+                        setMobileSlot(categoryArray);
                     } else {
                         setMobileSlot(null);
                     }
                 }}
             />
-            {categoryFilterList}
+            <div className='hidden lg:block'>
+                <FilterList
+                    expanded={categoryExpanded}
+                    filters={categoryArray}
+                />
+            </div>
             <FilterHeading
                 heading='Modelle'
                 expanded={deviceExpanded}

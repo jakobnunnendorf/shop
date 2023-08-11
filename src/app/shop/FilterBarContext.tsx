@@ -34,7 +34,7 @@ const prices = [
 export interface FilterBarContextType {
     categoryExpanded: boolean;
     toggleCategoryExpanded: () => void;
-    categoryFilterList: React.JSX.Element;
+    categoryArray: React.JSX.Element[];
     deviceExpanded: boolean;
     toggleDeviceExpanded: () => void;
     priceExpanded: boolean;
@@ -94,14 +94,14 @@ export function FilterBarContextProvider({
             </button>
         );
     });
-    const categoryFilterList = (
-        <div className='hidden lg:block'>
-            <FilterList
-                expanded={categoryExpanded}
-                filters={categoryFiltersComponents}
-            />
-        </div>
-    );
+    // const categoryArray = (
+    //     <div className='hidden lg:block'>
+    //         <FilterList
+    //             expanded={categoryExpanded}
+    //             filters={categoryFiltersComponents}
+    //         />
+    //     </div>
+    // );
 
     const priceArray = prices.map((price, index) => {
         const toggleThisPriceFilter = () => {
@@ -116,12 +116,29 @@ export function FilterBarContextProvider({
             </button>
         );
     });
+    const categoryArray = categories.map((category, index) => {
+        const toggleThisCategory = () => {
+            toggleCategoryFilter(category[0]);
+        };
+        return (
+            <button
+                className='rborder'
+                onClick={toggleThisCategory}
+                key={index}
+            >
+                <Filter
+                    filterName={category[1]}
+                    active={categoryFilters.includes(category[0])}
+                />
+            </button>
+        );
+    });
     return (
         <FilterBarContext.Provider
             value={{
                 categoryExpanded,
                 toggleCategoryExpanded,
-                categoryFilterList,
+                categoryArray,
                 deviceExpanded,
                 toggleDeviceExpanded,
                 priceExpanded,
