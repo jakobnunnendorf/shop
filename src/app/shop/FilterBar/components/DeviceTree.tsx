@@ -39,17 +39,12 @@ export default function DeviceTree({
                                 toggleDeviceFilter(device);
                             };
                             return (
-                                <button
-                                    className='w-full '
-                                    onClick={filterForThisDevice}
+                                <Filter
                                     key={index}
-                                >
-                                    <Filter
-                                        key={index}
-                                        filterName={deviceName}
-                                        active={isDeviceInFilterArray(device)}
-                                    />
-                                </button>
+                                    filter={deviceName}
+                                    toggleFilter={filterForThisDevice}
+                                    active={isDeviceInFilterArray(device)}
+                                />
                             );
                         }
                     );

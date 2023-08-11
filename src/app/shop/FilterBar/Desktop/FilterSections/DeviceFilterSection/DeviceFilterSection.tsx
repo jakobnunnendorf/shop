@@ -28,7 +28,7 @@ export default function DeviceFilterSection({
             <FilterHeading
                 toggleExpanded={toggleExpanded}
                 expanded={expanded}
-                heading='Modell'
+                heading='Modelle'
             />
             {expanded && (
                 <DeviceTree
