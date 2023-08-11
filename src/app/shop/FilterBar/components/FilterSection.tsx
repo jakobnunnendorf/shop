@@ -36,7 +36,7 @@ export default function FilterSection({
                 expanded={heading === expanded}
                 toggleExpanded={handleToggleExpanded}
             />
-            <div className='hidden lg:block'>
+            <div>
                 {expanded === heading && (
                     <div className=''>
                         {Array.isArray(filters) ? (

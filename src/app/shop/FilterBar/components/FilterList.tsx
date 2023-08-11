@@ -6,10 +6,14 @@ export default function FilterList({
     filters: React.JSX.Element[] | React.JSX.Element;
 }) {
     const filterList = (
-        <ul className='grid w-full grid-cols-3 lg:flex lg:flex-col'>
+        <ul className='flex flex-col w-full px-8 '>
             {Array.isArray(filters) ? (
                 filters.map((filter, index) => {
-                    return <li key={index}>{filter}</li>;
+                    return (
+                        <li className='w-1/2 lg:w-full' key={index}>
+                            {filter}
+                        </li>
+                    );
                 })
             ) : (
                 <li>{filters}</li>
