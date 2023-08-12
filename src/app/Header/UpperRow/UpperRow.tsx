@@ -3,10 +3,10 @@ import React from 'react';
 
 import CartIcon from './CartIcon';
 import MobileMenuBurger from './MobileMenuBurger';
-import SearchBar from '../SearchBar/SearchBar';
 import UserHeaderLink from './UserHeaderLink';
-// import SearchResults from './SearchResults';
 import WishlistIcon from './WishlistIcon';
+import SearchBar from '../SearchBar/SearchBar';
+
 
 export default function UpperRow() {
     const upper_row = (
@@ -39,7 +39,6 @@ export default function UpperRow() {
                     <UserHeaderLink />
                 </nav>
             </div>
-            {/* <SearchResults /> */}
         </section>
     );
     return upper_row;
