@@ -2,6 +2,7 @@ import React from 'react';
 import AddToWishlistButton from './AddToWishlistButton';
 import CollapsedInfo from './CollapsedInfo';
 import CollapsedPicture from './CollapsedPicture';
+import Link from 'next/link';
 export default function Collapsed({
     product,
     setExpanded,
@@ -13,11 +14,11 @@ export default function Collapsed({
 
     const collapsed = (
         <div className='grid w-full h-full grid-rows-5 lg:grid-rows-2'>
-            <CollapsedPicture imageURL={imageURL} setExpanded={setExpanded} />
+            <CollapsedPicture imageURL={imageURL} productId={product.id} />
             <div className='absolute mt-1 ml-1'>
                 <AddToWishlistButton product={product} />
             </div>
-            <CollapsedInfo product={product} setExpanded={setExpanded} />
+            <CollapsedInfo product={product} />
         </div>
     );
 
