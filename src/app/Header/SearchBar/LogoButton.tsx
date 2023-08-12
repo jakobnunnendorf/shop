@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function LogoButton() {
     const logoButton = (
-        <div className='relative w-24 h-8 '>
+        <div className='relative w-24 h-full '>
             <Link href='/' className=''>
                 <Image
                     src='/p2d_logo.png'
