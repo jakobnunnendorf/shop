@@ -1,16 +1,24 @@
 import React from 'react';
 
 export default function FilterList({
-    expanded,
     filters,
 }: {
-    expanded: boolean;
-    filters: React.JSX.Element[];
+    filters: React.JSX.Element[] | React.JSX.Element;
 }) {
     const filterList = (
-        <section className=' grid w-full grid-cols-3 flex-col lg:flex'>
-            {expanded && filters}
-        </section>
+        <ul className='flex flex-col w-full px-8 '>
+            {Array.isArray(filters) ? (
+                filters.map((filter, index) => {
+                    return (
+                        <li className='w-1/2 lg:w-full' key={index}>
+                            {filter}
+                        </li>
+                    );
+                })
+            ) : (
+                <li>{filters}</li>
+            )}
+        </ul>
     );
     return filterList;
 }

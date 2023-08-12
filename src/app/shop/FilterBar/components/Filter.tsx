@@ -1,18 +1,33 @@
-import React from 'react'
+'use client';
+import React, { useContext } from 'react';
 import { FiCheck, FiSquare } from 'react-icons/fi';
+import { categories } from '@app/shop/FilterBarContext';
+import {
+    ActiveFiltersContext,
+    FilterContextType,
+} from '@globalState/ActiveFiltersContext';
 
 export default function Filter({
-    filterName,
+    filter,
     active,
+    toggleFilter,
 }: {
-    filterName: string;
+    filter: string | JSX.Element;
     active: boolean;
-    }) {
-    const filter = (
-        <article className='flex w-full justify-between '>
-            <h3 className='text-sm'>{filterName}</h3>
-            {active ? <FiCheck /> : <FiSquare />}
+    toggleFilter: () => void;
+}) {
+    const { categoryFilters, priceFilters, deviceFilters } = useContext(
+        ActiveFiltersContext
+    ) as FilterContextType;
+
+    const filterElement = (
+        <article className='flex justify-between w-full '>
+            <h3 className='text-sm'>{filter}</h3>
+            <button onClick={toggleFilter}>
+                {active ? <FiCheck /> : <FiSquare />}
+            </button>
         </article>
     );
-    return filter;
+    return filterElement;
 }
+

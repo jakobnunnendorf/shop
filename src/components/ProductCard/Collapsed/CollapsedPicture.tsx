@@ -1,24 +1,24 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 export default function ProductPicture({
     imageURL,
-    setExpanded,
+    productId,
 }: {
     imageURL: string | bucketURL<'productImageBucket'>;
-    setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+    productId: UUID;
 }) {
     return (
-        <figure
-            className='relative row-span-2 lg:row-span-1'
-            onClick={() => setExpanded(true)}
-        >
-            <Image
-                src={imageURL}
-                alt={imageURL}
-                fill
-                className='object-contain'
-            />
+        <figure className='relative row-span-2 lg:row-span-1'>
+            <Link href={`/produkte/${productId}`}>
+                <Image
+                    src={imageURL}
+                    alt={imageURL}
+                    fill
+                    className='object-contain'
+                />
+            </Link>
         </figure>
     );
 }

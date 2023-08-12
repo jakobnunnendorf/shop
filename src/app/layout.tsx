@@ -8,6 +8,7 @@ import { ProductCardContextProvider } from '@globalState/ProductCardContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
+import { SearchResultsContextProvider } from '@globalState/SearchResults';
 
 export const dynamic = 'force-dynamic';
 export default function RootLayout({
@@ -21,24 +22,26 @@ export default function RootLayout({
                 <link rel='icon' href='/favicon.ico' />
             </head>
             <body>
-                <ProductCardContextProvider>
-                    <ActiveFiltersContextProvider>
-                        <ActiveProductContextProvider>
-                            <WishlistContextProvider>
-                                <CartContextProvider>
-                                    <SessionContextProvider>
-                                        <MobileMenuContextProvider>
-                                            <Header />
-                                        </MobileMenuContextProvider>
-                                        <main className='relative top-16 w-full lg:top-24'>
-                                            {children}
-                                        </main>
-                                    </SessionContextProvider>
-                                </CartContextProvider>
-                            </WishlistContextProvider>
-                        </ActiveProductContextProvider>
-                    </ActiveFiltersContextProvider>
-                </ProductCardContextProvider>
+                <SearchResultsContextProvider>
+                    <ProductCardContextProvider>
+                        <ActiveFiltersContextProvider>
+                            <ActiveProductContextProvider>
+                                <WishlistContextProvider>
+                                    <CartContextProvider>
+                                        <SessionContextProvider>
+                                            <MobileMenuContextProvider>
+                                                <Header />
+                                            </MobileMenuContextProvider>
+                                            <main className='relative w-full top-32 lg:top-24'>
+                                                {children}
+                                            </main>
+                                        </SessionContextProvider>
+                                    </CartContextProvider>
+                                </WishlistContextProvider>
+                            </ActiveProductContextProvider>
+                        </ActiveFiltersContextProvider>
+                    </ProductCardContextProvider>
+                </SearchResultsContextProvider>
             </body>
         </html>
     );

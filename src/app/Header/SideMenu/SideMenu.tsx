@@ -30,12 +30,12 @@ export default function SideMenu() {
     const [showShopLinks, setShowShopLinks] = useState(false);
     return (
         <aside
-            className={`${
-                isOpen ? 'block' : 'hidden'
-            } h-screen w-[66vw] bg-sandy-beige-3 px-4 py-16 text-coastal-blue-9 backdrop-blur-3xl`}
+            className={`fixed top-20 z-50 h-screen w-[66vw] bg-sandy-beige-3 px-4 py-16 text-coastal-blue-9 backdrop-blur-3xl transition-transform duration-300 ${
+                isOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
             <nav className=' h-[70vh]'>
-                <ul className='flex h-full flex-col justify-around pr-4 text-3xl font-bold'>
+                <ul className='flex flex-col justify-around h-full pr-4 text-3xl font-bold'>
                     <li className='py-4 '>
                         <Link onClick={toggleOpen} href='/'>
                             Home
@@ -115,7 +115,7 @@ export default function SideMenu() {
                         </ul>
                     </li>
                     <li className='py-4 '>
-                        <Link onClick={toggleOpen} href='/user/wunschliste'>
+                        <Link onClick={toggleOpen} href='/wunschliste'>
                             Wunschliste
                         </Link>
                     </li>{' '}

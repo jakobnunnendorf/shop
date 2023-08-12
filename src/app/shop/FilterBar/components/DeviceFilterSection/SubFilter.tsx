@@ -32,7 +32,7 @@ export default function SubFilter({
                     </button>
                 </article>
                 {expanded && (
-                    <div className='hidden  lg:block'>
+                    <div className='hidden lg:block'>
                         <FilterList
                             filters={deviceFilterArray}
                             // expanded={expanded}

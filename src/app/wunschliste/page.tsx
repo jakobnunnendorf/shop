@@ -37,7 +37,7 @@ export default function WishlistPage() {
     const frame = (
         <div className='h-[calc(100vh-7rem)] w-full pt-20'>
             <h1 className='mb-10 text-2xl font-bold text-center'>
-                Deine Artikek
+                Deine Artikel
             </h1>
             {container}
         </div>

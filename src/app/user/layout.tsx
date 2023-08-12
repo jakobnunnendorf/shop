@@ -47,7 +47,7 @@ export default async function UserLayout({
             icon: <FiPackage className='text-slate-500' size={30} />,
         },
         {
-            route: '/user/wunschliste',
+            route: '/wunschliste',
             title: 'Wunschliste',
             key: 'wishlist',
             icon: <FiHeart className='text-slate-500' size={30} />,
@@ -84,7 +84,7 @@ export default async function UserLayout({
         </ul>
     );
     const mobileMenu = (
-        <nav className='fixed bottom-0 grid w-full grid-flow-col py-4 text-xs font-bold text-white list-none h-28 rounded-t-3xl bg-slate-700 lg:hidden'>
+        <nav className='fixed bottom-0 grid h-28 w-full list-none grid-flow-col rounded-t-3xl bg-slate-700 py-4 text-xs font-bold text-white lg:hidden'>
             <Link href='/user'>
                 <li className='flex flex-col items-center space-y-2'>
                     <FiUser className='text-slate-300' size={30} />
@@ -105,7 +105,7 @@ export default async function UserLayout({
                     </li>
                 </Link>
             )}
-            <Link href='/user/wunschliste'>
+            <Link href='/wunschliste'>
                 <li className='flex flex-col items-center space-y-2'>
                     <FiHeart className='text-slate-300' size={30} />
                     <div>Wunschliste</div>
