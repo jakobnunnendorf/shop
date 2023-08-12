@@ -1,6 +1,6 @@
 import React from 'react';
 import FilterLink from './FilterLink';
-import SearchBar from '../UpperRow/SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 
 type filterLinkPropValue = [string, productCategory];
 
