@@ -10,7 +10,7 @@ import WishlistIcon from './WishlistIcon';
 
 export default function UpperRow() {
     const upper_row = (
-        <section className='top-0 w-full h-20 py-2 border-b shadow-sm bg-sandy-beige-5 backdrop-blur-3xl lg:shadow-none'>
+        <section className='top-0 w-full h-20 py-2 border-b shadow-sm bg-sandy-beige-5 backdrop-blur-3xl lg:h-16 lg:shadow-none'>
             <div className='grid w-full h-full grid-cols-12'>
                 <div className='h-full col-span-3 pl-4 pr-8 xl:px-12'>
                     <MobileMenuBurger />
@@ -29,7 +29,7 @@ export default function UpperRow() {
                     </nav>
                 </div>
 
-                <div className='hidden lg:block'>
+                <div className='hidden lg:col-span-6 lg:block'>
                     <SearchBar />
                 </div>
 
