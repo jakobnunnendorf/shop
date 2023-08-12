@@ -1,8 +1,6 @@
 'use client';
 import React, { useContext } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
-import Client from '../components/Client';
-import FilterList from '@app/shop/FilterBar/components/FilterList';
 import { modelTree } from '@app/shop/FilterBar/helperFunctions';
 import {
     FilterBarContext,
@@ -12,12 +10,12 @@ import {
     ActiveFiltersContext,
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
-import DeviceTree from '../components/DeviceTree';
-import FilterSection from '../components/FilterSection';
 import {
     SearchResultsContext,
     SearchResultsContextType,
 } from '@globalState/SearchResults';
+import DeviceTree from '../components/DeviceTree';
+import FilterSection from '../components/FilterSection';
 
 export default function Expanded({
     close,
@@ -26,14 +24,9 @@ export default function Expanded({
     close: () => void;
     modelTree: modelTree;
 }) {
-    const {
-        expanded,
-        setExpanded,
-        categoryArray,
-        priceArray,
-        setMobileSlot,
-        mobileSlot,
-    } = useContext(FilterBarContext) as FilterBarContextType;
+    const { categoryArray, priceArray } = useContext(
+        FilterBarContext
+    ) as FilterBarContextType;
     const {
         toggleDeviceFilter,
         deviceFilters,
