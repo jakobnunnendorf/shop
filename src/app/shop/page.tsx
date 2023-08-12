@@ -14,6 +14,76 @@ export default function ShopPage() {
         SearchResultsContext
     ) as SearchResultsContextType;
 
+<<<<<<< HEAD
+=======
+    const { categoryFilters, deviceFilters, priceFilters, searchFilter } =
+        useContext(ActiveFiltersContext) as FilterContextType;
+    // const categoryFilters = ['screen protector'];
+
+    const supabase = createClientComponentClient(); // moved it outside of the useEffect hook in the hope for a possible optimization
+    useEffect(() => {
+        const getProducts = async () => {
+            const fetchProductsByCategory = async () => {
+                if (categoryFilters.length === 0 && searchFilter.length === 0) {
+                    const { data: products } = await supabase
+                        .from('products')
+                        .select('*')
+                        .limit(30);
+
+                    return products;
+                } else if (
+                    categoryFilters.length === 0 &&
+                    searchFilter.length !== 0
+                ) {
+                    // if there's something on the search bar
+                    const { data: products } = await supabase
+                        .from('products')
+                        .select('*')
+                        .textSearch("title", searchFilter)
+                        .limit(30);
+                    console.log(searchFilter);
+                    console.log(products);
+                    return products;
+>>>>>>> 36ad95237bc5f732014447ab14ddba412c46ba57
+                } else {
+                    const { data: products } = await supabase
+                        .from('products')
+                        .select('*')
+                        .in('category', categoryFilters)
+                        .limit(30);
+
+                    return products;
+                }
+            };
+            const products = (await fetchProductsByCategory()) as product[];
+
+            const deviceFilteredProducts = filterProductArrayByDeviceFilters(
+                products,
+                deviceFilters
+            );
+            const priceFilteredProducts = filterProductArrayByPriceFilters(
+                deviceFilteredProducts,
+                priceFilters
+            );
+            setSearchResults(priceFilteredProducts);
+        };
+        getProducts();
+<<<<<<< HEAD
+        debounce(getProducts, 100);
+
+    }, [categoryFilters, deviceFilters, priceFilters, searchFilter]);
+=======
+    }, [
+        categoryFilters,
+        deviceFilters,
+        priceFilters,
+        searchFilter,
+        setSearchResults,
+        supabase,
+    ]);
+>>>>>>> 36ad95237bc5f732014447ab14ddba412c46ba57
+
+>>>>>>> 0ba3edf (style(preview&product): fix positioning)
     const section = (
         <section>
             <div className='grid place-content-center py-16'>
