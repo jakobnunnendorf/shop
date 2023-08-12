@@ -186,7 +186,7 @@ export default function UpdateProfile() {
         </div>
     );
     const button_row = (
-        <div className='flex space-x-8'>
+        <div className='flex space-x-8 mt-2 justify-center'>
             <button
                 type='button'
                 onClick={toggleEditProfile}
