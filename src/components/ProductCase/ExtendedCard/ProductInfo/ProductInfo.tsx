@@ -3,7 +3,7 @@ import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
 import Description from './Description';
 import Reviews from './Reviews';
 import Title from './Title';
-import CartButton from '../../../ProductCard/Expanded/CartButton';
+import CartButton from '../../../ProductCard/Expanded/CartButton/CartButton';
 import ColorRow from '../../../ProductCard/Expanded/ColorRow/ColorRow';
 import Price from '../../../ProductCard/Price';
 

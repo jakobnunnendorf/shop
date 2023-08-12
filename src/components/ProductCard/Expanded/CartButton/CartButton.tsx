@@ -12,7 +12,7 @@ export default function CartButton({ product }: { product: product }) {
     const cartButton = (
         <button
             onClick={addThisItemToCart}
-            className='row-span-1 flex items-center space-x-2 rounded-full bg-seafoam-green-8 px-4 py-2 font-bold text-coastal-blue-10'
+            className='flex items-center row-span-1 px-4 py-2 space-x-2 font-bold rounded-full bg-seafoam-green-8 text-coastal-blue-10'
         >
             <span>Einkaufswagen</span> <FiShoppingCart className='font-bold' />
         </button>
