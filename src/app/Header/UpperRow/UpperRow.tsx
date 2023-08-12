@@ -3,7 +3,7 @@ import React from 'react';
 
 import CartIcon from './CartIcon';
 import MobileMenuBurger from './MobileMenuBurger';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar/SearchBar';
 import UserHeaderLink from './UserHeaderLink';
 // import SearchResults from './SearchResults';
 import WishlistIcon from './WishlistIcon';
