@@ -1,5 +1,6 @@
 import ProductCard from '@components/ProductCard/ProductCard';
 import supabase from '@utils/supabase';
+import Link from 'next/link';
 
 export const metadata = {
     title: '',
@@ -7,13 +8,19 @@ export const metadata = {
 };
 
 export default async function TestingPage() {
-    const { data: product } = (await supabase
+    const { data: products } = (await supabase
         .from('products')
         .select('*')
         .limit(5)) as sb_fetchResponseObject<product[]>;
-    return product ? (
-        <div className='grid w-full grid-cols-2'>
-            <ProductCard product={product[0]} grid={true} />{' '}
-        </div>
+    return products ? (
+        <ul className='flex flex-col gap-4'>
+            {products.map((product, index) => (
+                <Link href={`/shop/produkte/${product.id}`} key={index}>
+                    <li>
+                        <h2>{product.title}</h2>
+                    </li>
+                </Link>
+            ))}
+        </ul>
     ) : null;
 }
