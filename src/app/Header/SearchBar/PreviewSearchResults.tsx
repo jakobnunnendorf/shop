@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useContext, useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
@@ -16,7 +17,7 @@ import {
 export default function PreviewSearchResults() {
     const isShopPage = usePathname() === '/shop';
 
-    const { searchFilter, updateSearchFilter } = useContext(
+    const { searchFilter } = useContext(
         ActiveFiltersContext
     ) as FilterContextType;
 
@@ -25,11 +26,7 @@ export default function PreviewSearchResults() {
     ) as SearchResultsContextType;
 
     const topThreeResults = searchResults.slice(0, 3);
-    const [selectedProduct, setSelectedProduct] = useState<product | null>(
-        null
-    );
-    const [opened, setOpened] = useState<boolean>(true);
-
+    const [selectedProduct] = useState<product | null>(null);
     const previewSearchResults = (
         <div
             className={`${
@@ -43,35 +40,26 @@ export default function PreviewSearchResults() {
             <ul className='pt-4 space-y-2'>
                 {topThreeResults.map((searchResult, index) => {
                     return (
-                        <li
-                            className='grid h-24 grid-cols-5 border-b'
-                            key={index}
-                        >
-                            <figure className='relative w-3/5 m-auto aspect-square'>
-                                <Image
-                                    src={
-                                        searchResult.imageURL_object
-                                            .default_color.imageURL_array[0]
-                                    }
-                                    alt={searchResult.title}
-                                    fill
-                                    className='contain'
-                                />
-                            </figure>
-                            <h2 className='col-span-3 my-auto'>
-                                {searchResult.title}
-                            </h2>
-                            <button
-                                className='my-auto'
-                                onClick={() => {
-                                    setSelectedProduct(searchResult);
-                                    setOpened(false);
-                                    updateSearchFilter('');
-                                }}
-                            >
-                                <FiArrowRight className='text-coastal-blue-10' />
-                            </button>
-                        </li>
+                        <Link href={`/produkte/${searchResult.id}`} key={index}>
+                            <li className='grid h-24 grid-cols-5 border-b'>
+                                <figure className='relative w-3/5 m-auto aspect-square'>
+                                    <Image
+                                        src={
+                                            searchResult.imageURL_object
+                                                .default_color.imageURL_array[0]
+                                        }
+                                        alt={searchResult.title}
+                                        fill
+                                        className='contain'
+                                    />
+                                </figure>
+                                <h2 className='col-span-3 my-auto'>
+                                    {searchResult.title}
+                                </h2>
+
+                                <FiArrowRight className='m-auto text-coastal-blue-10' />
+                            </li>
+                        </Link>
                     );
                 })}
             </ul>
