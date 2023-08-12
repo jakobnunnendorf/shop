@@ -32,7 +32,7 @@ export default function RootLayout({
                                             <MobileMenuContextProvider>
                                                 <Header />
                                             </MobileMenuContextProvider>
-                                            <main className='relative w-full top-16 lg:top-24'>
+                                            <main className='relative w-full top-32 lg:top-24'>
                                                 {children}
                                             </main>
                                         </SessionContextProvider>
