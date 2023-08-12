@@ -13,16 +13,15 @@ import {
 } from '@globalState/ActiveFiltersContext';
 import DeviceTree from './DeviceTree';
 import FilterHeading from './FilterHeading';
+import FilterSection from './FilterSection';
+
+import SubFilter from '../Desktop/FilterSections/DeviceFilterSection/SubFilter';
 
 export default function Responsive({ modelTree }: { modelTree: modelTree }) {
     const {
-        categoryExpanded,
-        toggleCategoryExpanded,
-        categoryFilterList,
-        deviceExpanded,
-        toggleDeviceExpanded,
-        priceExpanded,
-        togglePriceExpanded,
+        expanded,
+        setExpanded,
+        categoryArray,
         priceArray,
         setMobileSlot,
         mobileSlot,
@@ -31,65 +30,23 @@ export default function Responsive({ modelTree }: { modelTree: modelTree }) {
     const { toggleDeviceFilter, deviceFilters, isDeviceInFilterArray } =
         useContext(ActiveFiltersContext) as FilterContextType;
 
+    console.log(categoryArray);
+
     const responsive = (
         <div className='grid grid-cols-3 lg:flex lg:flex-col'>
-            <FilterHeading
-                heading='Kategorien'
-                expanded={categoryExpanded}
-                toggleExpanded={() => {
-                    toggleCategoryExpanded();
-                    if (!mobileSlot) {
-                        setMobileSlot(categoryFilterList);
-                    } else {
-                        setMobileSlot(null);
-                    }
-                }}
-            />
-            {categoryFilterList}
-            <FilterHeading
+            <FilterSection heading='Kategorien' filters={categoryArray} />
+            <FilterSection
                 heading='Modelle'
-                expanded={deviceExpanded}
-                toggleExpanded={() => {
-                    toggleDeviceExpanded();
-                    if (!mobileSlot) {
-                        setMobileSlot(
-                            <DeviceTree
-                                modelTree={modelTree}
-                                toggleDeviceFilter={toggleDeviceFilter}
-                                deviceFilters={deviceFilters}
-                                isDeviceInFilterArray={isDeviceInFilterArray}
-                            />
-                        );
-                    } else {
-                        setMobileSlot(null);
-                    }
-                }}
-            />
-            <div className='hidden lg:block'>
-                {deviceExpanded && (
+                filters={
                     <DeviceTree
                         modelTree={modelTree}
                         toggleDeviceFilter={toggleDeviceFilter}
                         deviceFilters={deviceFilters}
                         isDeviceInFilterArray={isDeviceInFilterArray}
                     />
-                )}
-            </div>
-            <FilterHeading
-                heading='Preise'
-                expanded={priceExpanded}
-                toggleExpanded={() => {
-                    togglePriceExpanded();
-                    if (!mobileSlot) {
-                        setMobileSlot(priceArray);
-                    } else {
-                        setMobileSlot(null);
-                    }
-                }}
+                }
             />
-            <div className='hidden lg:block'>
-                <FilterList expanded={priceExpanded} filters={priceArray} />
-            </div>
+            <FilterSection heading='Preise' filters={priceArray} />
         </div>
     );
     return responsive;

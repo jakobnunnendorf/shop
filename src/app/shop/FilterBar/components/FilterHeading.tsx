@@ -1,12 +1,13 @@
 import React from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import { filterHeading } from '@app/shop/FilterBarContext';
 
 export default function FilterHeading({
     heading,
     expanded,
     toggleExpanded,
 }: {
-    heading: string;
+    heading: filterHeading;
     expanded: boolean;
     toggleExpanded: () => void;
 }) {

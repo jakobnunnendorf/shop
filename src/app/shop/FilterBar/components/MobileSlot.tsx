@@ -1,6 +1,19 @@
 import React from 'react';
+import FilterList from './FilterList';
 
-export default function MobileSlot({ filters }: { filters: React.ReactNode }) {
-    const mobileSlot = <div className='w-full h-fit lg:hidden'>{filters}</div>;
+export default function MobileSlot({
+    filters,
+}: {
+    filters: JSX.Element[] | JSX.Element | null;
+}) {
+    const mobileSlot = (
+        <div className='w-full h-fit lg:hidden'>
+            {Array.isArray(filters) ? (
+                <FilterList filters={filters} />
+            ) : (
+                filters
+            )}
+        </div>
+    );
     return mobileSlot;
 }

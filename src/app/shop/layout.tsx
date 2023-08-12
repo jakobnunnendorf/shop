@@ -1,4 +1,5 @@
 import { FilterBarContextProvider } from '@app/shop/FilterBarContext';
+import { SearchResultsContextProvider } from '@globalState/SearchResults';
 import FilterBar from './FilterBar/FilterBar';
 
 export const metadata = {

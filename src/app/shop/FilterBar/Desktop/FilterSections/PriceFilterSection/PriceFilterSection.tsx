@@ -37,22 +37,23 @@ export default function PriceFilterSection() {
             return (
                 <button onClick={toggleThisPriceFilter} key={index}>
                     <Filter
-                        filterName={`${eur(price[0])} - ${eur(price[1])}`}
+                        filter={`${eur(price[0])} - ${eur(price[1])}`}
                         active={isPriceFilterActive(price, priceFilters)}
+                        toggleFilter={toggleThisPriceFilter}
                     />
                 </button>
             );
         });
-    const priceFilterSection = (
-        <section className='w-full border-b lg:pb-2'>
-            <FilterHeading
-                heading='Preis'
-                expanded={expanded}
-                toggleExpanded={toggleExpanded}
-            />
-            <FilterList expanded={expanded} filters={priceArray} />
-        </section>
-    );
+        const priceFilterSection = (
+            <section className='w-full border-b lg:pb-2'>
+                <FilterHeading
+                    heading='Preise'
+                    expanded={expanded}
+                    toggleExpanded={toggleExpanded}
+                />
+                <FilterList filters={priceArray} />
+            </section>
+        );
     return priceFilterSection;
 }
 
