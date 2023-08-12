@@ -115,7 +115,11 @@ export default function SideMenu() {
                         </ul>
                     </li>
                     <li className='py-4 '>
+<<<<<<< HEAD
                         <Link onClick={toggleOpen} href='/wunschliste'>
+=======
+                        <Link onClick={toggleOpen} href='/Wishlist'>
+>>>>>>> 5a15c68 (Linked the wishlist page with wishlist button in side menu and user profile)
                             Wunschliste
                         </Link>
                     </li>{' '}
