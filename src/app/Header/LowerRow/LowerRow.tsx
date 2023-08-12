@@ -1,5 +1,6 @@
 import React from 'react';
 import FilterLink from './FilterLink';
+import SearchBar from '../UpperRow/SearchBar';
 
 type filterLinkPropValue = [string, productCategory];
 
@@ -14,8 +15,8 @@ export default function LowerRow() {
     ];
 
     const lower_row = (
-        <nav className='hidden h-8 w-full border-b bg-sandy-beige-1 shadow-lg backdrop-blur-3xl lg:block'>
-            <ul className='flex h-full w-full items-center justify-around text-sm'>
+        <nav className='flex justify-center w-full h-12 py-2 border-b shadow-lg bg-sandy-beige-1 backdrop-blur-3xl lg:block lg:h-8 lg:bg-sandy-beige-1 lg:py-0'>
+            <ul className='items-center justify-around hidden w-full h-full text-sm lg:flex'>
                 {filterLinkPropValues.map((filterLinkPropValue) => {
                     return (
                         <FilterLink
@@ -26,6 +27,7 @@ export default function LowerRow() {
                     );
                 })}
             </ul>
+            <SearchBar />
         </nav>
     );
 
