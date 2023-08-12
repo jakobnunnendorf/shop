@@ -38,7 +38,10 @@ export function CartContextProvider({
 
     const addProductToCart = (product: product) => {
         const cartItem = cart.find(
-            (cartItemInCart) => cartItemInCart.product.id === product.id
+            (cartItemInCart) =>
+                cartItemInCart.product.id === product.id &&
+                cartItemInCart.color ===
+                    product.imageURL_object[state.activeColorKey]?.color_name
         );
 
         const selectedColor =
