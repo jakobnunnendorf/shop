@@ -27,7 +27,9 @@ export default function LowerRow() {
                     );
                 })}
             </ul>
-            <SearchBar />
+            <div className=' lg:hidden'>
+                <SearchBar />
+            </div>
         </nav>
     );
 
