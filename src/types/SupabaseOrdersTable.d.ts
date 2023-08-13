@@ -21,6 +21,7 @@ interface customer_details {
 interface cart_item {
     product: product;
     quantity: number;
+    color: productColor;
 }
 
 interface Wishlist_item {

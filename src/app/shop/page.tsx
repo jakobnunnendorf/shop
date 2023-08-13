@@ -44,8 +44,6 @@ export default function ShopPage() {
                         .select('*')
                         .textSearch('title', searchFilter)
                         .limit(30);
-                    console.log(searchFilter);
-                    console.log(products);
                     return products;
                 } else {
                     const { data: products } = await supabase

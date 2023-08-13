@@ -93,16 +93,6 @@ export default function ControlBar({
             <FiEdit2 className=' text-slate-500' />
         </button>
     );
-    console.log(status);
-    console.log(
-        status === 'showcase' || status === 'ready'
-            ? 'duringShowcase'
-            : status === 'edit'
-            ? 'duringEdit'
-            : 'duringPreview'
-    );
-    console.log(newProduct.imageURL_object[activeColorKey]?.color_name);
-    console.log(activeColorKey);
     return (
         newProduct.imageURL_object[activeColorKey]?.color_name && (
             <div className='absolute z-50 right-6 top-6'>

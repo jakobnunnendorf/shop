@@ -16,7 +16,6 @@ export default function GuestCheckout({ cart }: { cart: cart_item[] }) {
       });
       const { url, error } = await data.json();
       if (!error) {
-          console.log(url);
           router.push(url);
       } else {
           console.log(error);

@@ -25,7 +25,6 @@ export default function SearchResults() {
                         .textSearch('title', searchFilter)
                         .limit(3);
 
-                    console.log(searchResults);
                     return searchResults;
                 };
 
@@ -33,7 +32,6 @@ export default function SearchResults() {
                 setSearchProducts(products);
             };
             getProducts();
-            console.log(searchProducts);
         }
     }, [searchFilter, searchProducts, supabase]);
 
