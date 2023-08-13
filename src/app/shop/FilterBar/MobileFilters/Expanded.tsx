@@ -15,7 +15,7 @@ import {
 import {
     SearchResultsContext,
     SearchResultsContextType,
-} from '@globalState/SearchResults';
+} from '@globalState/SearchResultsContext';
 import DeviceTree from '../components/DeviceTree';
 import FilterSection from '../components/FilterSection';
 

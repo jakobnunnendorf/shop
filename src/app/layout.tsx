@@ -5,7 +5,7 @@ import { ActiveProductContextProvider } from '@globalState/ActiveProductCardCont
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
-import { SearchResultsContextProvider } from '@globalState/SearchResults';
+import { SearchResultsContextProvider } from '@globalState/SearchResultsContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
@@ -22,9 +22,9 @@ export default function RootLayout({
                 <link rel='icon' href='/favicon.ico' />
             </head>
             <body>
-                <SearchResultsContextProvider>
-                    <ProductCardContextProvider>
-                        <ActiveFiltersContextProvider>
+                <ProductCardContextProvider>
+                    <ActiveFiltersContextProvider>
+                        <SearchResultsContextProvider>
                             <ActiveProductContextProvider>
                                 <WishlistContextProvider>
                                     <CartContextProvider>
@@ -32,16 +32,16 @@ export default function RootLayout({
                                             <MobileMenuContextProvider>
                                                 <Header />
                                             </MobileMenuContextProvider>
-                                            <main className='relative w-full top-32 lg:top-24'>
+                                            <main className='relative top-32 w-full lg:top-24'>
                                                 {children}
                                             </main>
                                         </SessionContextProvider>
                                     </CartContextProvider>
                                 </WishlistContextProvider>
                             </ActiveProductContextProvider>
-                        </ActiveFiltersContextProvider>
-                    </ProductCardContextProvider>
-                </SearchResultsContextProvider>
+                        </SearchResultsContextProvider>
+                    </ActiveFiltersContextProvider>
+                </ProductCardContextProvider>
             </body>
         </html>
     );
