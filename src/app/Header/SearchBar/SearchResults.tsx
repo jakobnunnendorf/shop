@@ -27,12 +27,6 @@ export default function SearchResults() {
 
                     return searchResults;
                 };
-<<<<<<< HEAD
-                getProducts();
-                
-            }
-    }, [searchFilter]);
-=======
 
                 const products = (await getSearchProducts()) as product[];
                 setSearchProducts(products);
@@ -40,7 +34,6 @@ export default function SearchResults() {
             getProducts();
         }
     }, [searchFilter, searchProducts, supabase]);
->>>>>>> 17eaf8b731d53dea9244f137c96f7742f66a5d02
 
     return (
         <div>

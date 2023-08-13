@@ -20,11 +20,16 @@ export default async function AdminDashboardUsersList() {
 
     return (
         <>
-            <ul className="grid grid-cols-1 gap-2 p-2 md:grid-cols-1">
+            <ul className='grid grid-cols-1 gap-2 p-2 md:grid-cols-1'>
                 {profiles.map((profile, index) => (
-                    <li key={index} className='bg-white rounded-lg shadow-md p2 md:p-4'>
-                        <Link href={`/admin/benutzer/${profile.profile_id}`} >
-                            <p className='font-semibold text-coastal-blue text-x1'>{profile.firstName} {profile.lastName}</p>
+                    <li
+                        key={index}
+                        className='p2 rounded-lg bg-white shadow-md md:p-4'
+                    >
+                        <Link href={`/admin/benutzer/${profile.profile_id}`}>
+                            <p className='text-coastal-blue text-x1 font-semibold'>
+                                {profile.firstName} {profile.lastName}
+                            </p>
                         </Link>
                         <button
                             className='ml-auto'
@@ -38,7 +43,7 @@ export default async function AdminDashboardUsersList() {
                     </li>
                 ))}
             </ul>
-        </div>
+        </>
     );
 }
 
