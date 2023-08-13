@@ -1,5 +1,4 @@
 'use client';
-'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Link from 'next/link';
 import { FiTrash2 } from 'react-icons/fi';

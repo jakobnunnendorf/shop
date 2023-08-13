@@ -12,6 +12,7 @@ export default async function FilterBar() {
                 <Client modelTree={modelTree} />
             </div>
             <Pagination />
+            <Pagination />
         </div>
     );
 
