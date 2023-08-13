@@ -1,6 +1,10 @@
 'use client';
 
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import {
+    ActiveProductContext,
+    ActiveProductContextType,
+} from './ActiveProductCardContext';
 
 export type CartContextType = {
     cart: cart_item[];
@@ -22,6 +26,10 @@ export function CartContextProvider({
 }: {
     children: React.ReactNode;
 }) {
+    const { state } = useContext(
+        ActiveProductContext
+    ) as ActiveProductContextType;
+
     const [cart, setCart] = useState<cart_item[]>([]);
 
     const addCartItem = (cartItem: cart_item) => {
@@ -30,14 +38,23 @@ export function CartContextProvider({
 
     const addProductToCart = (product: product) => {
         const cartItem = cart.find(
-            (cartItemInCart) => cartItemInCart.product.id === product.id
+            (cartItemInCart) =>
+                cartItemInCart.product.id === product.id &&
+                cartItemInCart.color ===
+                    product.imageURL_object[state.activeColorKey]?.color_name
         );
-        if (cartItem) {
-            incrementQuantity(cartItem);
-        } else {
-            addCartItem({ product, quantity: 1 });
+
+        const selectedColor =
+            product.imageURL_object[state.activeColorKey]?.color_name;
+
+        if (selectedColor) {
+            if (cartItem) {
+                incrementQuantity(cartItem);
+            } else {
+                addCartItem({ product, quantity: 1, color: selectedColor });
+            }
         }
-    }
+    };
 
     const removeCartItem = (cartItem: cart_item) => {
         setCart(

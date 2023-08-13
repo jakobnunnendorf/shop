@@ -1,6 +1,6 @@
 import React from 'react';
 import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
-import CartButton from '@components/ProductCard/Expanded/CartButton';
+import CartButton from '@components/ProductCard/Expanded/CartButton/CartButton';
 import ColorRow from '@components/ProductCard/Expanded/ColorRow/ColorRow';
 import WishlistButton from '@components/ProductCard/Expanded/WishlistButton';
 import Price from '@components/ProductCard/Price';
