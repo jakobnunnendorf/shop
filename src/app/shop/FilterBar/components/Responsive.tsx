@@ -30,8 +30,6 @@ export default function Responsive({ modelTree }: { modelTree: modelTree }) {
     const { toggleDeviceFilter, deviceFilters, isDeviceInFilterArray } =
         useContext(ActiveFiltersContext) as FilterContextType;
 
-    console.log(categoryArray);
-
     const responsive = (
         <div className='grid grid-cols-3 lg:flex lg:flex-col'>
             <FilterSection heading='Kategorien' filters={categoryArray} />

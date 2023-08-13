@@ -77,21 +77,16 @@ export default function HeaderRow({
                 } as imageURL_object;
 
                 copyNewProduct.imageURL_object = newImageURLObject;
-                console.log('copyNewProduct', copyNewProduct);
             }
         };
         for (const colorKey of ColorsThatAreNotNullAndHaveAnImage) {
             await uploadAndReplaceImageForColor(colorKey);
-            console.log('copyNewProduct3', copyNewProduct);
         }
-        console.log('copyNewProduct4', copyNewProduct);
         return copyNewProduct;
     };
 
     const uploadProduct = async () => {
         setLoading(true);
-        console.log('uploadProduct');
-        console.log(await uploadAndReplaceImage());
         const product = await uploadAndReplaceImage();
         const { error } = await supabase.from('products').insert([product]);
         setLoading(false);
@@ -102,8 +97,6 @@ export default function HeaderRow({
             }, 2000);
         }
     };
-
-    console.log(loading);
 
     const headerRow = (
         <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>

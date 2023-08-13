@@ -27,9 +27,8 @@ export default function AddImages({
             : [];
     const defaultColorInitialised =
         newProduct.imageURL_object[activeColorKey]?.color_name;
-    console.log(defaultColorInitialised);
     const bigImageOrSayToAddColor = defaultColorInitialised ? (
-        <figure className='absolute z-10 h-full w-full '>
+        <figure className='absolute z-10 w-full h-full '>
             <Image
                 src={imageArray[activeIndex]}
                 fill
@@ -38,7 +37,7 @@ export default function AddImages({
             />
         </figure>
     ) : (
-        <div className='absolute grid h-full w-full place-content-center text-xl font-bold'>
+        <div className='absolute grid w-full h-full text-xl font-bold place-content-center'>
             Bitte wähle eine Farbe aus
         </div>
     );

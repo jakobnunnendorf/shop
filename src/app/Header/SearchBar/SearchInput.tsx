@@ -12,7 +12,6 @@ export default function SearchInput() {
     const router = useRouter();
     const pathNameRef = useRef(usePathname());
     const pathName = usePathname();
-    console.log('pathNameRef', pathNameRef.current);
 
     const { searchFilter, updateSearchFilter } = useContext(
         ActiveFiltersContext
@@ -31,7 +30,7 @@ export default function SearchInput() {
             updateSearchFilter('');
             pathNameRef.current = pathName;
         }
-    });
+    }, [pathName, updateSearchFilter]);
 
     return (
         <>
