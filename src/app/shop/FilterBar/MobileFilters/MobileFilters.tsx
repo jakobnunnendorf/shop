@@ -1,34 +1,13 @@
-'use client';
 import React from 'react';
 import Expanded from './Expanded';
-import { modelTree } from '../helperFunctions';
+import { modelTree, returnModelTree } from '../helperFunctions';
 
-export default function MobileFilters({ modelTree }: { modelTree: modelTree }) {
-    const [expanded, setExpanded] = React.useState(false);
+export default async function MobileFilters() {
+    const modelTree: modelTree = await returnModelTree();
+
     const mobileFilters = (
-        <div
-            className={`${
-                expanded
-                    ? 'fixed left-0 top-16 z-50 h-[calc(100vh-4rem)] w-full bg-white'
-                    : ''
-            }  flex flex-col items-center lg:hidden`}
-        >
-            {expanded && (
-                <Expanded
-                    close={() => setExpanded(false)}
-                    modelTree={modelTree}
-                />
-            )}
-            {!expanded && (
-                <div className='py-16'>
-                    <button
-                        onClick={() => setExpanded(true)}
-                        className='px-4 py-2 text-xl font-bold border rounded-full boarder boarder-coastal-blue-10 border-coastal-blue-10 text-coastal-blue-10'
-                    >
-                        Filter auswählen
-                    </button>
-                </div>
-            )}
+        <div className='w-full flex-col items-center bg-white '>
+            <Expanded modelTree={modelTree} />
         </div>
     );
     return mobileFilters;

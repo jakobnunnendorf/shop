@@ -14,7 +14,7 @@ import {
 import {
     SearchResultsContext,
     SearchResultsContextType,
-} from '@globalState/SearchResults';
+} from '@globalState/SearchResultsContext';
 
 export default function PreviewSearchResults() {
     const supabase = createClientComponentClient();

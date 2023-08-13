@@ -1,5 +1,4 @@
 import { FilterBarContextProvider } from '@app/shop/FilterBarContext';
-import { SearchResultsContextProvider } from '@globalState/SearchResults';
 import FilterBar from './FilterBar/FilterBar';
 
 export const metadata = {
@@ -16,10 +15,10 @@ export default function ShopLayout({
         <section className='flex flex-col lg:flex-row'>
             <FilterBarContextProvider>
                 <FilterBar />
+                <section className='  flex w-full justify-center pt-4 lg:w-[calc(100vw-14rem)]'>
+                    {children}
+                </section>
             </FilterBarContextProvider>
-            <section className='  flex w-full justify-center pt-4 lg:w-[calc(100vw-14rem)]'>
-                {children}
-            </section>
         </section>
     );
 }
