@@ -1,3 +1,6 @@
+/*
+    This component is used to display the user information for the current logged user or for a specific user by passing his/her ID as a prop.
+*/
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
@@ -16,6 +19,7 @@ export default async function UserInfoPanel({
 
     const { data: profile, error: profileFetchError } = await supabase
         .from('profiles')
+        .select('*')
         .select('*')
         .eq('profile_id', user_id)
         .single();
