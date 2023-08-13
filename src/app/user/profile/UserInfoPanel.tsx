@@ -10,19 +10,11 @@ export default async function UserInfoPanel({
     user_id?: string | undefined;
 }) {
     const supabase = createServerComponentClient({ cookies });
-export default async function UserInfoPanel({
-    user_id,
-}: {
-    user_id?: string | undefined;
-}) {
-    const supabase = createServerComponentClient({ cookies });
 
     const {
         data: { session: currentSession },
-        data: { session: currentSession },
     } = await supabase.auth.getSession();
 
-    if (user_id == undefined) user_id = currentSession?.user?.id; // if the prop hasn't been passed then use the current logged user's ID
     if (user_id == undefined) user_id = currentSession?.user?.id; // if the prop hasn't been passed then use the current logged user's ID
 
     const { data: profile, error: profileFetchError } = await supabase
@@ -93,7 +85,7 @@ export default async function UserInfoPanel({
         await fetchAddressData();
 
     const information_grid = (
-        <section className='relative grid w-full h-full grid-cols-12 gap-8 p-8 text-xl border rounded-3xl lg:w-fit'>
+        <section className='relative grid h-full w-full grid-cols-12 gap-8 rounded-3xl border p-8 text-xl lg:w-fit'>
             <div className='col-span-6 '>
                 <span className='font-bold'>Vorname: </span>
                 <br />
