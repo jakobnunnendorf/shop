@@ -15,7 +15,7 @@ export default function WishlistIcon() {
     ) as WishlistContextType;
 
     return (
-        <Link href='/Wishlist' className='relative flex h-full items-center '>
+        <Link href='/wunschliste' className='relative flex h-full items-center '>
             <FiHeart size={32} className='text-coastal-blue-10' />
             <p className='absolute left-full top-0 font-bold text-coastal-blue-8'>
                 {getTotalQuantity()}
