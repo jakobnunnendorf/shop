@@ -16,10 +16,10 @@ export default function ShopPage() {
 
     const section = (
         <section>
-            <div className='grid py-16 place-content-center'>
+            <div className='grid place-content-center py-16'>
                 <Link
                     href='/shop/filter'
-                    className='px-4 py-2 text-xl font-bold border rounded-full boarder boarder-coastal-blue-10 border-coastal-blue-10 text-coastal-blue-10'
+                    className='boarder boarder-coastal-blue-10 rounded-full border border-coastal-blue-10 px-4 py-2 text-xl font-bold text-coastal-blue-10'
                 >
                     Filter auswählen
                 </Link>

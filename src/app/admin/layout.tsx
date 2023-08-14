@@ -33,6 +33,12 @@ export default function AdminLayout({
             icon: <FiSmartphone className='text-slate-500' size={30} />,
         },
         {
+            route: '/admin/benutzer',
+            title: 'Benutzer',
+            key: 'benutzer',
+            icon: <FiSmartphone className='text-slate-500' size={30} />,
+        },
+        {
             route: '/admin/kunden',
             title: 'Kunden',
             key: 'kunden',
