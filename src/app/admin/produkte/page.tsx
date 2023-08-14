@@ -1,6 +1,9 @@
 import ProductCard from '@components/ProductCard/ProductCard';
 import supabase from '@utils/supabase';
 import Push2DB from './Push2DB/Push2DB';
+import Link from 'next/link';
+import ButtonCard from './Push2DB/ButtonCard';
+
 
 export const revalidate = 0;
 
@@ -17,7 +20,9 @@ export default async function ProductManagementPage() {
         <section className='w-full '>
             <h1 className='text-center text-3xl'>Produkte verwalten</h1>
             <div className='grid w-full grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4 '>
-                <Push2DB />
+                <Link href={'/admin/produkte/neues-produkt'}>
+                    <ButtonCard />
+                </Link>
                 {productsArray}
             </div>
         </section>
