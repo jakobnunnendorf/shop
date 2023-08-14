@@ -1,5 +1,7 @@
 'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FiArrowLeft } from 'react-icons/fi';
 import { FiCheck, FiUploadCloud } from 'react-icons/fi';
@@ -9,12 +11,9 @@ import {
     NewProductContextType,
 } from '@globalState/NewProductContext';
 
-export default function HeaderRow({
-    setActive,
-}: {
-    setActive: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+export default function HeaderRow() {
     const supabase = createClientComponentClient();
+    const router = useRouter();
     const { newProduct, fileStorage, setNewProduct } = React.useContext(
         NewProductContext
     ) as NewProductContextType;
@@ -93,20 +92,20 @@ export default function HeaderRow({
         if (!error) {
             setSuccess(true);
             setTimeout(() => {
-                setActive(false);
+                router.push('/admin/produkte');
             }, 2000);
         }
     };
 
     const headerRow = (
         <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
-            <button
+            <Link
                 className='gradient mr-2 flex text-3xl text-coastal-blue-7'
-                onClick={() => setActive(false)}
+                href='/admin/produkte'
             >
                 <FiArrowLeft />
                 <p className='text-xl'>Zurück</p>
-            </button>
+            </Link>
             <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
 
             <button
