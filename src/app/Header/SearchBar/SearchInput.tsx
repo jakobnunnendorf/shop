@@ -10,14 +10,8 @@ import {
 
 export default function SearchInput() {
     const router = useRouter();
-<<<<<<< HEAD
     const pathNameRef = useRef(usePathname());
     const pathName = usePathname();
-=======
-    // const pathNameRef = useRef(usePathname());
-    // const pathName = usePathname();
-    // console.log('pathNameRef', pathNameRef.current);
->>>>>>> 0ba3edf (style(preview&product): fix positioning)
 
     const { searchFilter, updateSearchFilter } = useContext(
         ActiveFiltersContext
@@ -31,21 +25,12 @@ export default function SearchInput() {
         }
     };
 
-<<<<<<< HEAD
     useEffect(() => {
         if (pathNameRef.current !== pathName) {
             updateSearchFilter('');
             pathNameRef.current = pathName;
         }
     }, [pathName, updateSearchFilter]);
-=======
-    // useEffect(() => {
-    //     if (pathNameRef.current !== pathName) {
-    //         updateSearchFilter('');
-    //         pathNameRef.current = pathName;
-    //     }
-    // });
->>>>>>> 0ba3edf (style(preview&product): fix positioning)
 
     return (
         <>

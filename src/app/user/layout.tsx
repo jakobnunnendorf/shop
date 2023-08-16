@@ -47,15 +47,7 @@ export default async function UserLayout({
             icon: <FiPackage className='text-slate-500' size={30} />,
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            route: '/wunschliste',
-=======
             route: '/Wishlist',
->>>>>>> 5a15c68 (Linked the wishlist page with wishlist button in side menu and user profile)
-=======
-            route: '/wunschliste',
->>>>>>> 4d20b35 (Fix wishlist links)
             title: 'Wunschliste',
             key: 'wishlist',
             icon: <FiHeart className='text-slate-500' size={30} />,
