@@ -1,5 +1,6 @@
 'use client'
-import React from 'react';
+
+import React, { useState } from 'react';
 import supabase from '@utils/supabase';
 import CartRow from '@app/warenkorb/CartRow';
 
@@ -11,33 +12,39 @@ type params = {
 
 export default async function OrderPage( {params: {orderID} } : params) {
 
-    const { data: order } = (await supabase
+    const { data: order } = await supabase
         .from('orders')
         .select('*')
-        .eq('order_id', orderID) as sb_fetchResponseObject<order[]>);
+        .eq('order_id', orderID)
+        .single();
     
-    const new_order_status = order ? order[0].status == 'paid' ? 'unpaid' : 'paid' : null;
-    const handleStatusChange = async () => {
-        const { data } = await supabase
-            .from('orders')
-            .update({status: new_order_status})
-            .eq('order_id', orderID);
+    const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { } = await supabase
+        .from('orders')
+        .update({ status: e.target.value })
+        .eq('order_id', orderID);
     };
 
-    return order ? (
+    return (
         <section className='w-full h-full'>
             <div className=''>
-                <CartRow cartItem={order[0].cart[0]}/>
+                <CartRow cartItem={order.cart[0]}/>
             </div>
             <div className='flex justify-end items-center'>
-                <button className='w-48 rounded-full border-2 p-2 font-bold text-1/2 text-coastal-blue-8 shadow-xl' onClick={handleStatusChange}>
-                    markieren als {new_order_status}
-                </button>
+                <span className='text-1/2 font-bold text-coastal-blue-8'>Status</span>
+                
+                <select className='w-48 rounded-full ml-4 border-2 p-2 font-bold text-1/2 text-coastal-blue-5' onChange={handleStatusChange} defaultValue={order.status}>
+                    <option value="paid">paid</option>
+                    <option value="unpaid">unpaid</option>
+                    <option value="shipped">shipped</option>
+                    <option value="dispatched">dispatched</option>
+                    <option value="review-written">review written</option>
+                </select>
             </div>
         </section>
     ) 
-        : 
-    (
-        <span>Error, product couldn't be found!</span>
-    ); 
+    //     : 
+    // (
+    //     <span>Error, product couldn't be found!</span>
+    // ); 
 };
