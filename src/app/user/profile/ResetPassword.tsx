@@ -7,7 +7,7 @@ import {
     ProfileInfoContext,
     ProfileInfoContextType,
 } from '@globalState/ProfileInfoContext';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ResetPassword() {
@@ -21,38 +21,38 @@ export default function ResetPassword() {
 
     const profile_inputs = (
         <div className='grid grid-cols-12 gap-8 '>
-            <h1 className='flex justify-center col-span-12 text-2xl font-medium'>
+            <h1 className='col-span-12 flex justify-center text-2xl font-medium'>
                 Reset Password
             </h1>
             <input
                 type='password'
                 name='password'
                 placeholder={'Neues Passwort eingeben'}
-                className='col-span-12 border rounded-lg px-2 py-2'
+                className='col-span-12 rounded-lg border px-2 py-2'
                 required
             />
             <input
                 type='password'
                 name='confirm_password'
                 placeholder={'Bestätige neues Passwort'}
-                className='col-span-12 border rounded-lg px-2 py-2'
+                className='col-span-12 rounded-lg border px-2 py-2'
                 required
             />
         </div>
     );
 
     const button_row = (
-        <div className='flex space-x-8 mt-2 justify-center'>
+        <div className='mt-2 flex justify-center space-x-8'>
             <button
                 type='button'
                 onClick={toggleResetPassword}
-                className='flex justify-center px-4 py-2 font-bold border w-36 rounded-xl border-coastal-blue-10 text-coastal-blue-10 '
+                className='flex w-36 justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10 '
             >
                 Abbrechen
             </button>
             <button
                 type='submit'
-                className={`flex justify-center px-4 py-2 space-x-2 font-bold text-white w-36 rounded-xl bg-coastal-blue-10`}
+                className={`flex w-36 justify-center space-x-2 rounded-xl bg-coastal-blue-10 px-4 py-2 font-bold text-white`}
             >
                 <span>Speichern</span>
             </button>
