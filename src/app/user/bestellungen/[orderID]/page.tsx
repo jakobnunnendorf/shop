@@ -33,11 +33,11 @@ export default async function OrderPage( {params: {orderID} } : params) {
             <div className=''>
                 <CartRow cartItem={order.cart[0]}/>
             </div>
-            <div className='flex justify-end items-center'>
-                <button className='w-48 rounded-full border-2 p-2 font-bold text-1/2 text-coastal-blue-8 shadow-xl' onClick={handleStatusChange}>
+            <div className='flex items-center justify-end'>
+                <button className='w-48 p-2 font-bold border-2 rounded-full shadow-xl text-1/2 text-coastal-blue-8' onClick={handleStatusChange}>
                     Bestellung stornieren
                 </button>
             </div>
         </section>
     );
-};
+}
