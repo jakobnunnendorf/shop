@@ -12,8 +12,8 @@ export default function page() {
                 <p className={styles.paragraph}>
                     Mit der folgenden Datenschutzerklärung möchten wir Sie
                     darüber aufklären, welche Arten Ihrer personenbezogenen
-                    Daten (nachfolgend auch kurz als "Daten“ bezeichnet) wir zu
-                    welchen Zwecken und in welchem Umfang im Rahmen der
+                    Daten (nachfolgend auch kurz als &quot;Daten“ bezeichnet)
+                    wir zu welchen Zwecken und in welchem Umfang im Rahmen der
                     Bereitstellung unserer Applikation verarbeiten.
                 </p>
                 <p className={styles.paragraph}>
@@ -206,13 +206,14 @@ export default function page() {
                     Anwendung und Verständlichkeit die Begriffe der DSGVO
                     verwendet werden. Insbesondere statt der im Schweizer DSG
                     verwendeten Begriffe „Bearbeitung“ von „Personendaten“,
-                    "überwiegendes Interesse" und "besonders schützenswerte
-                    Personendaten" werden die in der DSGVO verwendeten Begriffe
-                    „Verarbeitung“ von „personenbezogenen Daten“ sowie
-                    "berechtigtes Interesse" und "besondere Kategorien von
-                    Daten" verwendet. Die gesetzliche Bedeutung der Begriffe
-                    wird jedoch im Rahmen der Geltung des Schweizer DSG
-                    weiterhin nach dem Schweizer DSG bestimmt.
+                    &quot;überwiegendes Interesse&quot; und &quot;besonders
+                    schützenswerte Personendaten&quot; werden die in der DSGVO
+                    verwendeten Begriffe „Verarbeitung“ von „personenbezogenen
+                    Daten“ sowie &quot;berechtigtes Interesse&quot; und
+                    &quot;besondere Kategorien von Daten&quot; verwendet. Die
+                    gesetzliche Bedeutung der Begriffe wird jedoch im Rahmen der
+                    Geltung des Schweizer DSG weiterhin nach dem Schweizer DSG
+                    bestimmt.
                 </p>
                 <h2 className={styles.heading2} id='mOverview'>
                     Übersicht der Verarbeitungen
@@ -495,7 +496,7 @@ export default function page() {
                 <p className={styles.paragraph}>
                     <strong>
                         Allgemeine Hinweise zum Widerruf und Widerspruch (sog.
-                        "Opt-Out"):{' '}
+                        &quot;Opt-Out&quot;):{' '}
                     </strong>
                     Nutzer können die von ihnen abgegebenen Einwilligungen
                     jederzeit widerrufen und der Verarbeitung entsprechend den
@@ -569,10 +570,10 @@ export default function page() {
                 <p className={styles.paragraph}>
                     Wir verarbeiten Daten unserer Vertrags- und
                     Geschäftspartner, z.B. Kunden und Interessenten
-                    (zusammenfassend bezeichnet als "Vertragspartner") im Rahmen
-                    von vertraglichen und vergleichbaren Rechtsverhältnissen
-                    sowie damit verbundenen Maßnahmen und im Rahmen der
-                    Kommunikation mit den Vertragspartnern (oder
+                    (zusammenfassend bezeichnet als &quot;Vertragspartner&quot;)
+                    im Rahmen von vertraglichen und vergleichbaren
+                    Rechtsverhältnissen sowie damit verbundenen Maßnahmen und im
+                    Rahmen der Kommunikation mit den Vertragspartnern (oder
                     vorvertraglich), z.B., um Anfragen zu beantworten.
                 </p>
                 <p className={styles.paragraph}>
@@ -680,8 +681,8 @@ export default function page() {
                     <li>
                         <strong>Kundenkonto: </strong>Kunden können innerhalb
                         unseres Onlineangebotes ein Konto anlegen (z.B. Kunden-
-                        bzw. Nutzerkonto, kurz "Kundenkonto"). Falls die
-                        Registrierung eines Kundenkontos erforderlich ist,
+                        bzw. Nutzerkonto, kurz &quot;Kundenkonto&quot;). Falls
+                        die Registrierung eines Kundenkontos erforderlich ist,
                         werden Kunden hierauf ebenso hingewiesen wie auf die für
                         die Registrierung erforderlichen Angaben. Die
                         Kundenkonten sind nicht öffentlich und können von
@@ -740,7 +741,8 @@ export default function page() {
                     unserer berechtigten Interessen bieten wir den betroffenen
                     Personen effiziente und sichere Zahlungsmöglichkeiten an und
                     setzen hierzu neben Banken und Kreditinstituten weitere
-                    Dienstleister ein (zusammenfassend "Zahlungsdienstleister").
+                    Dienstleister ein (zusammenfassend
+                    &quot;Zahlungsdienstleister&quot;).
                 </p>
                 <p className={styles.paragraph}>
                     Zu den durch die Zahlungsdienstleister verarbeiteten Daten
@@ -814,11 +816,19 @@ export default function page() {
                             lit. b) DSGVO);{' '}
                         </span>
                         <strong>Website:</strong>
-                        <a href='https://stripe.com' target='_blank'>
+                        <a
+                            href='https://stripe.com'
+                            target='_blank'
+                            rel='noreferrer'
+                        >
                             https://stripe.com
                         </a>
                         ; <strong>Datenschutzerklärung:</strong>
-                        <a href='https://stripe.com/de/privacy' target='_blank'>
+                        <a
+                            href='https://stripe.com/de/privacy'
+                            target='_blank'
+                            rel='noreferrer'
+                        >
                             https://stripe.com/de/privacy
                         </a>
                         . <strong>Grundlage Drittlandübermittlung:</strong>
@@ -880,7 +890,8 @@ export default function page() {
                         Für die Bereitstellung unseres Onlineangebotes nutzen
                         wir Speicherplatz, Rechenkapazität und Software, die wir
                         von einem entsprechenden Serveranbieter (auch
-                        "Webhoster" genannt) mieten oder anderweitig beziehen;{' '}
+                        &quot;Webhoster&quot; genannt) mieten oder anderweitig
+                        beziehen;{' '}
                         <span className=''>
                             <strong>Rechtsgrundlagen:</strong> Berechtigte
                             Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO).{' '}
@@ -891,8 +902,8 @@ export default function page() {
                             Erhebung von Zugriffsdaten und Logfiles:{' '}
                         </strong>
                         Der Zugriff auf unser Onlineangebot wird in Form von so
-                        genannten "Server-Logfiles" protokolliert. Zu den
-                        Serverlogfiles können die Adresse und Name der
+                        genannten &quot;Server-Logfiles&quot; protokolliert. Zu
+                        den Serverlogfiles können die Adresse und Name der
                         abgerufenen Webseiten und Dateien, Datum und Uhrzeit des
                         Abrufs, übertragene Datenmengen, Meldung über
                         erfolgreichen Abruf, Browsertyp nebst Version, das
@@ -944,8 +955,8 @@ export default function page() {
                     </li>
                     <li>
                         <strong>Content-Delivery-Network: </strong>Wir setzen
-                        ein "Content-Delivery-Network" (CDN) ein. Ein CDN ist
-                        ein Dienst, mit dessen Hilfe Inhalte eines
+                        ein &quot;Content-Delivery-Network&quot; (CDN) ein. Ein
+                        CDN ist ein Dienst, mit dessen Hilfe Inhalte eines
                         Onlineangebotes, insbesondere große Mediendateien, wie
                         Grafiken oder Programm-Skripte, mit Hilfe regional
                         verteilter und über das Internet verbundener Server
@@ -968,13 +979,18 @@ export default function page() {
                             Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO);{' '}
                         </span>
                         <strong>Website:</strong>
-                        <a href='https://www.checkdomain.de/' target='_blank'>
+                        <a
+                            href='https://www.checkdomain.de/'
+                            target='_blank'
+                            rel='noreferrer'
+                        >
                             https://www.checkdomain.de/
                         </a>
                         ; <strong>Datenschutzerklärung:</strong>
                         <a
                             href='https://www.checkdomain.de/agb/datenschutz'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             https://www.checkdomain.de/agb/datenschutz
                         </a>
@@ -1079,9 +1095,10 @@ export default function page() {
                     Single-Sign-On-Anmeldung
                 </h2>
                 <p className={styles.paragraph}>
-                    Als "Single-Sign-On“ oder "Single-Sign-On-Anmeldung bzw.
-                    "-Authentifizierung“ werden Verfahren bezeichnet, die es
-                    Nutzern erlauben, sich mit Hilfe eines Nutzerkontos bei
+                    Als &quot;Single-Sign-On“ oder
+                    &quot;Single-Sign-On-Anmeldung bzw.
+                    &quot;-Authentifizierung“ werden Verfahren bezeichnet, die
+                    es Nutzern erlauben, sich mit Hilfe eines Nutzerkontos bei
                     einem Anbieter von Single-Sign-On-Verfahren (z.B. einem
                     sozialen Netzwerk), auch bei unserem Onlineangebot,
                     anzumelden. Voraussetzung der
@@ -1099,18 +1116,18 @@ export default function page() {
                     Information, dass der Nutzer unter dieser Nutzer-ID beim
                     jeweiligen Single-Sign-On-Anbieter eingeloggt ist und eine
                     für uns für andere Zwecke nicht weiter nutzbare ID (sog
-                    "User Handle“). Ob uns zusätzliche Daten übermittelt werden,
-                    hängt allein von dem genutzten Single-Sign-On-Verfahren ab,
-                    von den gewählten Datenfreigaben im Rahmen der
-                    Authentifizierung und zudem davon, welche Daten Nutzer in
-                    den Privatsphäre- oder sonstigen Einstellungen des
-                    Nutzerkontos beim Single-Sign-On-Anbieter freigegeben haben.
-                    Es können je nach Single-Sign-On-Anbieter und der Wahl der
-                    Nutzer verschiedene Daten sein, in der Regel sind es die
-                    E-Mail-Adresse und der Benutzername. Das im Rahmen des
-                    Single-Sign-On-Verfahrens eingegebene Passwort bei dem
-                    Single-Sign-On-Anbieter ist für uns weder einsehbar, noch
-                    wird es von uns gespeichert.{' '}
+                    &quot;User Handle“). Ob uns zusätzliche Daten übermittelt
+                    werden, hängt allein von dem genutzten
+                    Single-Sign-On-Verfahren ab, von den gewählten
+                    Datenfreigaben im Rahmen der Authentifizierung und zudem
+                    davon, welche Daten Nutzer in den Privatsphäre- oder
+                    sonstigen Einstellungen des Nutzerkontos beim
+                    Single-Sign-On-Anbieter freigegeben haben. Es können je nach
+                    Single-Sign-On-Anbieter und der Wahl der Nutzer verschiedene
+                    Daten sein, in der Regel sind es die E-Mail-Adresse und der
+                    Benutzername. Das im Rahmen des Single-Sign-On-Verfahrens
+                    eingegebene Passwort bei dem Single-Sign-On-Anbieter ist für
+                    uns weder einsehbar, noch wird es von uns gespeichert.{' '}
                 </p>
                 <p className={styles.paragraph}>
                     Die Nutzer werden gebeten, zu beachten, dass deren bei uns
@@ -1179,13 +1196,18 @@ export default function page() {
                             Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO);{' '}
                         </span>
                         <strong>Website:</strong>
-                        <a href='https://www.google.de' target='_blank'>
+                        <a
+                            href='https://www.google.de'
+                            target='_blank'
+                            rel='noreferrer'
+                        >
                             https://www.google.de
                         </a>
                         ; <strong>Datenschutzerklärung:</strong>
                         <a
                             href='https://policies.google.com/privacy'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             https://policies.google.com/privacy
                         </a>
@@ -1202,6 +1224,7 @@ export default function page() {
                         <a
                             href='https://adssettings.google.com/authenticated'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             https://adssettings.google.com/authenticated
                         </a>
@@ -1324,33 +1347,33 @@ export default function page() {
                 <ul className='m-elements'>
                     <li>
                         <strong>Bewertungs-Widget: </strong>Wir binden in unser
-                        Onlineangebot sogenannte "Bewertungs-Widgets“ ein. Ein
-                        Widget ist ein in unser Onlineangebot eingebundenes
+                        Onlineangebot sogenannte &quot;Bewertungs-Widgets“ ein.
+                        Ein Widget ist ein in unser Onlineangebot eingebundenes
                         Funktions- und Inhaltselement, das veränderliche
                         Informationen anzeigt. Es kann z.B. in Form eines
                         Siegels oder vergleichbaren Elements, zum Teil auch
-                        "Badge" genannt, dargestellt werden. Dabei wird der
-                        entsprechende Inhalt des Widgets zwar innerhalb unseres
-                        Onlineangebotes dargestellt, er wird aber in diesem
-                        Moment von den Servern des jeweiligen Widgets-Anbieters
-                        abgerufen. Nur so kann immer der aktuelle Inhalt gezeigt
-                        werden, vor allem die jeweils aktuelle Bewertung. Dafür
-                        muss eine Datenverbindung von der innerhalb unseres
-                        Onlineangebotes aufgerufenen Webseite zu dem Server des
-                        Widgets-Anbieters aufgebaut werden und der
-                        Widgets-Anbieter erhält gewisse technische Daten
-                        (Zugriffsdaten, inklusive IP-Adresse), die nötig sind,
-                        damit der Inhalt des Widgets an den Browser des Nutzers
-                        ausgeliefert werden kann. Des Weiteren erhält der
-                        Widgets-Anbieter Informationen darüber, dass Nutzer
-                        unser Onlineangebot besucht haben. Diese Informationen
-                        können in einem Cookie gespeichert und von dem
-                        Widgets-Anbieter verwendet werden, um zu erkennen,
-                        welche Onlineangebote, die am dem Bewertungsverfahren
-                        teilnehmen, von dem Nutzer besucht worden sind. Die
-                        Informationen können in einem Nutzerprofil gespeichert
-                        und für Werbe- oder Marktforschungszwecke verwendet
-                        werden;{' '}
+                        &quot;Badge&quot; genannt, dargestellt werden. Dabei
+                        wird der entsprechende Inhalt des Widgets zwar innerhalb
+                        unseres Onlineangebotes dargestellt, er wird aber in
+                        diesem Moment von den Servern des jeweiligen
+                        Widgets-Anbieters abgerufen. Nur so kann immer der
+                        aktuelle Inhalt gezeigt werden, vor allem die jeweils
+                        aktuelle Bewertung. Dafür muss eine Datenverbindung von
+                        der innerhalb unseres Onlineangebotes aufgerufenen
+                        Webseite zu dem Server des Widgets-Anbieters aufgebaut
+                        werden und der Widgets-Anbieter erhält gewisse
+                        technische Daten (Zugriffsdaten, inklusive IP-Adresse),
+                        die nötig sind, damit der Inhalt des Widgets an den
+                        Browser des Nutzers ausgeliefert werden kann. Des
+                        Weiteren erhält der Widgets-Anbieter Informationen
+                        darüber, dass Nutzer unser Onlineangebot besucht haben.
+                        Diese Informationen können in einem Cookie gespeichert
+                        und von dem Widgets-Anbieter verwendet werden, um zu
+                        erkennen, welche Onlineangebote, die am dem
+                        Bewertungsverfahren teilnehmen, von dem Nutzer besucht
+                        worden sind. Die Informationen können in einem
+                        Nutzerprofil gespeichert und für Werbe- oder
+                        Marktforschungszwecke verwendet werden;{' '}
                         <span className=''>
                             <strong>Rechtsgrundlagen:</strong> Berechtigte
                             Interessen (Art. 6 Abs. 1 S. 1 lit. f) DSGVO).{' '}
@@ -1363,10 +1386,10 @@ export default function page() {
                 <p className={styles.paragraph}>
                     Wir binden in unser Onlineangebot Funktions- und
                     Inhaltselemente ein, die von den Servern ihrer jeweiligen
-                    Anbieter (nachfolgend bezeichnet als "Drittanbieter”)
+                    Anbieter (nachfolgend bezeichnet als &quot;Drittanbieter”)
                     bezogen werden. Dabei kann es sich zum Beispiel um Grafiken,
                     Videos oder Stadtpläne handeln (nachfolgend einheitlich
-                    bezeichnet als "Inhalte”).
+                    bezeichnet als &quot;Inhalte”).
                 </p>
                 <p className={styles.paragraph}>
                     Die Einbindung setzt immer voraus, dass die Drittanbieter
@@ -1377,17 +1400,18 @@ export default function page() {
                     uns, nur solche Inhalte zu verwenden, deren jeweilige
                     Anbieter die IP-Adresse lediglich zur Auslieferung der
                     Inhalte verwenden. Drittanbieter können ferner sogenannte
-                    Pixel-Tags (unsichtbare Grafiken, auch als "Web Beacons"
-                    bezeichnet) für statistische oder Marketingzwecke verwenden.
-                    Durch die "Pixel-Tags" können Informationen, wie der
-                    Besucherverkehr auf den Seiten dieser Webseite, ausgewertet
-                    werden. Die pseudonymen Informationen können ferner in
-                    Cookies auf dem Gerät der Nutzer gespeichert werden und
-                    unter anderem technische Informationen zum Browser und zum
-                    Betriebssystem, zu verweisenden Webseiten, zur Besuchszeit
-                    sowie weitere Angaben zur Nutzung unseres Onlineangebotes
-                    enthalten als auch mit solchen Informationen aus anderen
-                    Quellen verbunden werden.
+                    Pixel-Tags (unsichtbare Grafiken, auch als &quot;Web
+                    Beacons&quot; bezeichnet) für statistische oder
+                    Marketingzwecke verwenden. Durch die &quot;Pixel-Tags&quot;
+                    können Informationen, wie der Besucherverkehr auf den Seiten
+                    dieser Webseite, ausgewertet werden. Die pseudonymen
+                    Informationen können ferner in Cookies auf dem Gerät der
+                    Nutzer gespeichert werden und unter anderem technische
+                    Informationen zum Browser und zum Betriebssystem, zu
+                    verweisenden Webseiten, zur Besuchszeit sowie weitere
+                    Angaben zur Nutzung unseres Onlineangebotes enthalten als
+                    auch mit solchen Informationen aus anderen Quellen verbunden
+                    werden.
                 </p>
                 <ul className='m-elements'>
                     <li>
@@ -1475,6 +1499,7 @@ export default function page() {
                         <a
                             href='https://mapsplatform.google.com/'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             https://mapsplatform.google.com/
                         </a>
@@ -1482,6 +1507,7 @@ export default function page() {
                         <a
                             href='https://policies.google.com/privacy'
                             target='_blank'
+                            rel='noreferrer'
                         >
                             https://policies.google.com/privacy
                         </a>
