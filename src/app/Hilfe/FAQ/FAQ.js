@@ -6,6 +6,9 @@ import './FAQ.css';
 // import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 
 // library.add(faQuestionCircle);
+
+//TODO: Add real  questions and answers
+
 import { FiHelpCircle } from 'react-icons/fi';
 
 const questions = [
