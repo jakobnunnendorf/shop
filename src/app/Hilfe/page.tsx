@@ -14,11 +14,9 @@ export default function Help() {
     return (
         <div className='help'>
             <HelpCenterBanner />
-            <div className='help__section'>
-                <FAQ />H
-            </div>
+            <FAQ />
 
-            <div className='help__section'>
+            {/* <div className='help__section'>
                 <h2>
                     <FiPhone /> Kontaktiere uns
                 </h2>
@@ -53,7 +51,7 @@ export default function Help() {
 
             <div className='help__section'>
                 <PrivacyPolicy />
-            </div>
+            </div> */}
         </div>
     );
 }
