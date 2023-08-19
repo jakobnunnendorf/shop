@@ -16,10 +16,12 @@ export default function ContactForm(props) {
             {submitted ? (
                 <Dank version={props.version} />
             ) : (
-                <FormInput
-                    version={props.version}
-                    handleToggle={handleToggle}
-                />
+                <div>
+                    <FormInput
+                        version={props.version}
+                        handleToggle={handleToggle}
+                    />
+                </div>
             )}
         </div>
     );
