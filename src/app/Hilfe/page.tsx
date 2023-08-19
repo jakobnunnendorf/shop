@@ -9,34 +9,15 @@ import ReturnRefund from './ReturnRefund/ReturnRefund';
 import ShippingInfo from './ShippingInfo/ShippingInfo';
 import './Help.css';
 import HelpCenterBanner from './HelpCenterBanner';
+import Contact from './Contact';
 
 export default function Help() {
     return (
         <div className='help'>
             <HelpCenterBanner />
             <FAQ />
-
-            {/* <div className='help__section'>
-                <h2>
-                    <FiPhone /> Kontaktiere uns
-                </h2>
-                <div className='help__contact-form'>
-                    <ContactForm />
-                </div>
-                <div className='help__contact-info'>
-                    <p>
-                        <span className='phone'>
-                            {' '}
-                            <FiPhone /> +65 95045938{' '}
-                        </span>
-                        <a href='mailto:Phone2Door@gmail.com' className='email'>
-                            {' '}
-                            <FiMail /> Phone2Door@gmail.com{' '}
-                        </a>
-                    </p>
-                </div>
-            </div>
-
+            <Contact />
+            {/*
             <div className='help__section'>
                 <PaymentMethodsAndSecurity />
             </div>
