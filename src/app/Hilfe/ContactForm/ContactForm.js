@@ -12,7 +12,7 @@ export default function ContactForm(props) {
         toggleSubmitted(!submitted);
     };
     return (
-        <div className='mx-auto'>
+        <div className='px-8 mx-auto lg:w-1/3'>
             {submitted ? (
                 <Dank version={props.version} />
             ) : (

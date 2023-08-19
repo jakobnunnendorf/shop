@@ -1,0 +1,57 @@
+/* Haupttitel */
+.title {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Überschriften */
+.heading2 {
+    font-size: 2em;
+    color: #444;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.heading3 {
+    font-size: 1.75em;
+    color: #555;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Absätze */
+.paragraph {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* Inhaltsübersicht */
+.index {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.index_li {
+    margin-bottom: 10px;
+}
+
+.index_link {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.index_link:hover {
+    text-decoration: underline;
+}
+
+/* Hervorhebungen */
+.bold {
+    font-weight: bold;
+}
