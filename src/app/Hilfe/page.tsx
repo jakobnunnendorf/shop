@@ -17,10 +17,10 @@ export default function Help() {
             <HelpCenterBanner />
             <FAQ />
             <Contact />
-            {/*
-            <div className='help__section'>
+
                 <PaymentMethodsAndSecurity />
-            </div>
+            {/*
+            
 
             <div className='help__section'>
                 <ShippingInfo />
