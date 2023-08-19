@@ -13,27 +13,27 @@ export default function Input({
 }) {
     const randomId = Math.random().toString(36).substring(7);
     return (
-        <label
-            htmlFor={randomId}
-            className={`w-full  ${colspan} ${rowspan} h-full`}
-        >
-            <p className='relative px-2 bg-white -translate-y-1/3 left-4 top-1/3 w-fit text-coastal-blue-10'>
+        <div className={`relative w-full  ${colspan} ${rowspan} h-full `}>
+            <label
+                htmlFor={randomId}
+                className='relative px-2 bg-white top-4 left-4 w-fit text-coastal-blue-10 '
+            >
                 {label}
-            </p>
+            </label>
             {inputType === 'textarea' ? (
                 <textarea
                     id={randomId}
                     name={label}
-                    className='w-full py-2 bg-white border-2 lg:px-4 rounded-xl border-coastal-blue-6'
+                    className='w-full py-2 bg-white border-2 h-4/5 lg:px-4 rounded-xl border-coastal-blue-6'
                 />
             ) : (
                 <input
                     type={inputType}
                     id={randomId}
                     name={label}
-                    className='w-full py-2 bg-white border-2 lg:px-4 rounded-xl border-coastal-blue-6'
+                    className='top-0 w-full py-2 bg-white border-2 lg:px-4 rounded-xl border-coastal-blue-6'
                 />
             )}
-        </label>
+        </div>
     );
 }

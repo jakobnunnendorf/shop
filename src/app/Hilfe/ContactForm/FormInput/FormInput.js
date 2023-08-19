@@ -40,14 +40,17 @@ export default function FormInput(props) {
                 <Input label='Email' colspan='col-span-2' />
                 <Input
                     label='Deine Nachricht'
-                    inputType='text-area'
+                    inputType='textarea'
                     colspan='col-span-2'
                     rowspan='row-span-2'
                 />
-                {/* <div className='w-full h-full col-span-2 row-span-2 border'></div> */}
-
-                <div className='col-span-2'>
-                    <button type='submit'>Abschicken</button>
+                <div className='grid col-span-2 place-content-center'>
+                    <button
+                        type='submit'
+                        className='px-4 py-2 font-bold text-white shadow-xl bg-coastal-blue-10 rounded-xl'
+                    >
+                        Abschicken
+                    </button>
                 </div>
             </form>
         </div>
