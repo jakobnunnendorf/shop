@@ -8,43 +8,16 @@ import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy';
 import ReturnRefund from './ReturnRefund/ReturnRefund';
 import ShippingInfo from './ShippingInfo/ShippingInfo';
 import './Help.css';
+import HelpCenterBanner from './HelpCenterBanner';
+import Contact from './Contact';
 
 export default function Help() {
     return (
         <div className='help'>
-            <figure className='relative'>
-                <Image
-                    src='https://dominionpayroll.com/wp-content/uploads/HelpCenter.png'
-                    alt='Hilfezentrum'
-                    className='help__image'
-                    fill={true}
-                />
-            </figure>
-            <div className='help__section'>
-                <FAQ />
-            </div>
-
-            <div className='help__section'>
-                <h2>
-                    <FiPhone /> Kontaktiere uns
-                </h2>
-                <div className='help__contact-form'>
-                    <ContactForm />
-                </div>
-                <div className='help__contact-info'>
-                    <p>
-                        <span className='phone'>
-                            {' '}
-                            <FiPhone /> +65 95045938{' '}
-                        </span>
-                        <a href='mailto:Phone2Door@gmail.com' className='email'>
-                            {' '}
-                            <FiMail /> Phone2Door@gmail.com{' '}
-                        </a>
-                    </p>
-                </div>
-            </div>
-
+            <HelpCenterBanner />
+            <FAQ />
+            <Contact />
+            {/*
             <div className='help__section'>
                 <PaymentMethodsAndSecurity />
             </div>
@@ -59,7 +32,7 @@ export default function Help() {
 
             <div className='help__section'>
                 <PrivacyPolicy />
-            </div>
+            </div> */}
         </div>
     );
 }

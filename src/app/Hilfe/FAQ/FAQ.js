@@ -7,6 +7,10 @@ import './FAQ.css';
 
 // library.add(faQuestionCircle);
 
+//TODO: Add real  questions and answers
+
+import { FiHelpCircle } from 'react-icons/fi';
+
 const questions = [
     {
         question: 'Was sind die Lieferoptionen?',
@@ -43,15 +47,16 @@ export default function FAQ() {
     };
 
     return (
-        <div className='faq'>
-            <h2 className='heading_faq'>
+        <div className='w-full px-4 py-16 break-words lg:mx-auto lg:w-1/2'>
+            <h2 className='pb-8 text-xl font-bold'>
                 {' '}
                 Häufig gestellte Fragen{' '}
+                <FiHelpCircle className='inline-block ml-2 text-2xl' />
                 {/* <FontAwesomeIcon icon='question-circle' />{' '} */}
             </h2>
-            {questions.map((q, index) => (
-                <div key={index} className='faq__item'>
-                    <div className='faq__question-wrapper'>
+            <ul className='px-4'>
+                {questions.map((q, index) => (
+                    <li key={index}>
                         <button
                             className={`faq__question ${
                                 activeIndices.includes(index)
@@ -60,24 +65,26 @@ export default function FAQ() {
                             }`}
                             onClick={() => toggleQuestion(index)}
                         >
-                            {q.question}
+                            <div className='flex justify-between py-2 faq__question-wrapper'>
+                                {q.question}
+                                <span
+                                    className={`faq__arrow ${
+                                        activeIndices.includes(index)
+                                            ? 'faq__arrow--active'
+                                            : ''
+                                    }`}
+                                    onClick={() => toggleQuestion(index)}
+                                >
+                                    &#9660;
+                                </span>
+                            </div>
                         </button>
-                        <span
-                            className={`faq__arrow ${
-                                activeIndices.includes(index)
-                                    ? 'faq__arrow--active'
-                                    : ''
-                            }`}
-                            onClick={() => toggleQuestion(index)}
-                        >
-                            &#9660;
-                        </span>
-                    </div>
-                    {activeIndices.includes(index) && (
-                        <div className='faq__answer'>{q.answer}</div>
-                    )}
-                </div>
-            ))}
+                        {activeIndices.includes(index) && (
+                            <div className='faq__answer'>{q.answer}</div>
+                        )}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
