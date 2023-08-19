@@ -9,26 +9,32 @@ export default function ContactInfo() {
                 <h2 className='py-4 text-3xl font-bold text-center text-white'>
                     Kontakt
                 </h2>
-                <div className='block text-lg font-bold text-white lg:flex'>
-                    <a
-                        href='tel:  +65 84250580'
-                        className='flex items-center py-4 gap-x-2'
-                    >
-                        <div className='p-2 border border-white rounded-full aspect-square'>
-                            <FiPhone className='m-auto' />
-                        </div>
-                        <p> +65 84250580</p>
-                    </a>
-                    <a
-                        href='mailto:Phone2Door@gmail.com'
-                        className='flex items-center py-4 gap-x-2'
-                    >
-                        <div className='p-2 border border-white rounded-full aspect-square'>
-                            <FiMail />
-                        </div>
-                        <p>Phone2Door@gmail.com</p>
-                    </a>
-                </div>
+                <ul className='block px-16 space-y-4 text-lg font-bold text-white'>
+                    <li>
+                        <h3>Ruf bei uns an:</h3>
+                        <a
+                            href='tel:  +65 84250580'
+                            className='flex items-center py-4 gap-x-2'
+                        >
+                            <div className='p-2 border border-white rounded-full aspect-square'>
+                                <FiPhone className='m-auto' />
+                            </div>
+                            <p> +65 84250580</p>
+                        </a>
+                    </li>
+                    <li>
+                        <h3>Schreib uns eine Email</h3>
+                        <a
+                            href='mailto:Phone2Door@gmail.com'
+                            className='flex items-center py-4 gap-x-2'
+                        >
+                            <div className='p-2 border border-white rounded-full aspect-square'>
+                                <FiMail />
+                            </div>
+                            <p>Phone2Door@gmail.com</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
             <MapComponent />
         </div>
