@@ -14,47 +14,62 @@ import { FiDollarSign } from 'react-icons/fi';
 
 const PaymentMethodsAndSecurity = () => {
     return (
-        <section className='p-6 bg-gray-100 rounded-md shadow-md'>
-            <h2 className='mb-4 text-2xl font-bold'>
-                Stripe Checkout-Zahlungsmodul
-            </h2>
-            <p className='mb-4'>
-                Wir verwenden Stripe Checkout, um Ihnen eine sichere, schnelle
-                und zuverlässige Zahlungserfahrung zu bieten. Stripe ist ein
-                weltweit führender Zahlungsanbieter, dem Millionen von
-                Unternehmen vertrauen.
-            </p>
-            <p className='mb-4'>
-                Mit Stripe Checkout können Sie bequem mit Ihrer Kreditkarte,
-                Debitkarte oder über andere beliebte Zahlungsmethoden bezahlen.
-                Der gesamte Zahlungsprozess ist verschlüsselt und sicher, sodass
-                Sie mit Vertrauen einkaufen können.
-            </p>
-            <ul className='pl-5 mb-4 list-disc'>
-                <li>Schnelle und einfache Zahlung</li>
-                <li>Unterstützt viele Zahlungsmethoden</li>
-                <li>100% sichere und verschlüsselte Transaktionen</li>
-            </ul>
-            <p>
-                Wenn Sie Fragen zum Zahlungsprozess oder zu Stripe haben, zögern
-                Sie bitte nicht, uns zu kontaktieren.
-            </p>
-            <section className='p-6 bg-white rounded-md shadow-md'>
-                <h2 className='mb-4 text-2xl font-bold text-center'>
-                    Vertrauenswürdige Unternehmen, die Stripe verwenden
-                </h2>
-                <p className='mb-4 text-center'>
-                    Viele weltbekannte Unternehmen vertrauen auf Stripe für ihre
-                    Zahlungsabwicklungen. Sie sind in guter Gesellschaft.
-                </p>
-                <div className='flex items-center justify-center space-x-10'>
-                    {/* You'll need to replace the src attributes with the actual paths or URLs to the logos */}
-                    <embed
-                        src='https://stripe.com/en-sg/customers'
-                        style={{ width: '500px', height: '300px' }}
-                    />
+        <section className='grid grid-cols-2 py-16 rounded-md shadow-md'>
+            <article className='grid grid-rows-2 p-6 rounded-md '>
+                <div className=''>
+                    <figure className='relative w-full h-full '>
+                        <Image
+                            src={'/stripe/wordmark-blurple-large.png'}
+                            fill
+                            className='object-contain'
+                            alt='Stripe Logo'
+                        />
+                    </figure>
                 </div>
-            </section>
+                <div>
+                    <h2 className='mb-4 text-2xl font-bold text-center'>
+                        Vertrauenswürdige Unternehmen, <br />
+                        die Stripe verwenden{' '}
+                        <a href='https://stripe.com/en-sg/customers'>
+                            <span className='font-bold text-blue-800 underlined'>
+                                (Mehr erfahren)
+                            </span>
+                        </a>
+                    </h2>
+
+                    <p className='mb-4 text-center'>
+                        Viele weltbekannte Unternehmen vertrauen auf Stripe für
+                        ihre Zahlungsabwicklungen. Sie sind in guter
+                        Gesellschaft.
+                    </p>
+                </div>
+            </article>
+            <article>
+                <h2 className='mb-4 text-2xl font-bold'>
+                    Stripe Checkout-Zahlungsmodul
+                </h2>
+                <p className='mb-4'>
+                    Wir verwenden Stripe Checkout, um Ihnen eine sichere,
+                    schnelle und zuverlässige Zahlungserfahrung zu bieten.
+                    Stripe ist ein weltweit führender Zahlungsanbieter, dem
+                    Millionen von Unternehmen vertrauen.
+                </p>
+                <p className='mb-4'>
+                    Mit Stripe Checkout können Sie bequem mit Ihrer Kreditkarte,
+                    Debitkarte oder über andere beliebte Zahlungsmethoden
+                    bezahlen. Der gesamte Zahlungsprozess ist verschlüsselt und
+                    sicher, sodass Sie mit Vertrauen einkaufen können.
+                </p>
+                <ul className='pl-5 mb-4 list-disc'>
+                    <li>Schnelle und einfache Zahlung</li>
+                    <li>Unterstützt viele Zahlungsmethoden</li>
+                    <li>100% sichere und verschlüsselte Transaktionen</li>
+                </ul>
+                <p>
+                    Wenn Sie Fragen zum Zahlungsprozess oder zu Stripe haben,
+                    zögern Sie bitte nicht, uns zu kontaktieren.
+                </p>
+            </article>
         </section>
     );
 };

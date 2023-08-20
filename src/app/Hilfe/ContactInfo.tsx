@@ -4,9 +4,9 @@ import MapComponent from './MapComponent';
 
 export default function ContactInfo() {
     return (
-        <div className='grid grid-rows-2 px-8 py-8 lg:grid-cols-2 lg:grid-rows-none '>
-            <div className='bg-coastal-blue-10'>
-                <h2 className='py-4 text-3xl font-bold text-center text-white'>
+        <div className='grid grid-rows-2 py-8 lg:grid-cols-2 lg:grid-rows-none '>
+            <div className='py-16 bg-coastal-blue-10'>
+                <h2 className='text-3xl font-bold text-center text-white '>
                     Kontakt
                 </h2>
                 <ul className='block px-16 space-y-4 text-lg font-bold text-white'>
