@@ -19,12 +19,9 @@ export default function Help() {
             <Contact />
 
             <PaymentMethodsAndSecurity />
-            {/*
-            
 
-            <div className='help__section'>
                 <ShippingInfo />
-            </div>
+            {/*
 
             <div className='help__section'>
                 <ReturnRefund />

@@ -14,14 +14,14 @@ import { FiDollarSign } from 'react-icons/fi';
 
 const PaymentMethodsAndSecurity = () => {
     return (
-        <section className='grid grid-cols-2 rounded-md shadow-md'>
-            <article className='grid grid-rows-2 p-6 rounded-md shadow-md'>
+        <section className='grid grid-cols-2 py-16 rounded-md shadow-md'>
+            <article className='grid grid-rows-2 p-6 rounded-md '>
                 <div className=''>
                     <figure className='relative w-full h-full '>
                         <Image
                             src={'/stripe/wordmark-blurple-large.png'}
                             fill
-                            objectFit='contain'
+                            className='object-contain'
                             alt='Stripe Logo'
                         />
                     </figure>
