@@ -17,14 +17,12 @@ export default function Help() {
             <HelpCenterBanner />
             <FAQ />
             <Contact />
-
             <PaymentMethodsAndSecurity />
-
             <ShippingInfo />
-
-            <ReturnRefund />
-
-            <PrivacyPolicy />
+            <div className='grid grid-cols-2'>
+                <ReturnRefund />
+                <PrivacyPolicy />
+            </div>
         </div>
     );
 }
