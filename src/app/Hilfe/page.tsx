@@ -13,12 +13,12 @@ import Contact from './Contact';
 
 export default function Help() {
     return (
-        <div className='help'>
+        <div className='help '>
             <HelpCenterBanner />
             <FAQ />
             <Contact />
 
-                <PaymentMethodsAndSecurity />
+            <PaymentMethodsAndSecurity />
             {/*
             
 
