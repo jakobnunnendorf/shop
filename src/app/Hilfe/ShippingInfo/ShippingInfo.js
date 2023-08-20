@@ -15,7 +15,7 @@ import TimeLineNode from './TimeLineNode';
 const ShippingInfo = () => {
     return (
         <div>
-            <div className='w-full py-16 bg-coastal-blue-10'>
+            <div className='w-full py-16 shadow-2xl bg-coastal-blue-10'>
                 <h2 className='text-3xl font-bold text-center text-sandy-beige-10'>
                     Danke, dass Sie bei Phone 2 Door einkaufen.
                 </h2>

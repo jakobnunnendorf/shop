@@ -20,16 +20,11 @@ export default function Help() {
 
             <PaymentMethodsAndSecurity />
 
-                <ShippingInfo />
-            {/*
+            <ShippingInfo />
 
-            <div className='help__section'>
-                <ReturnRefund />
-            </div>
+            <ReturnRefund />
 
-            <div className='help__section'>
-                <PrivacyPolicy />
-            </div> */}
+            <PrivacyPolicy />
         </div>
     );
 }
