@@ -9,6 +9,7 @@ import { SearchResultsContextProvider } from '@globalState/SearchResultsContext'
 import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 export const dynamic = 'force-dynamic';
 export default function RootLayout({
@@ -30,11 +31,16 @@ export default function RootLayout({
                                     <CartContextProvider>
                                         <SessionContextProvider>
                                             <MobileMenuContextProvider>
-                                                <Header />
+                                                <header>
+                                                    <Header />
+                                                </header>
                                             </MobileMenuContextProvider>
                                             <main className='relative top-32 w-full lg:top-24'>
                                                 {children}
                                             </main>
+                                            <footer className='relative w-full top-32 lg:top-24'>
+                                                <Footer />
+                                            </footer>
                                         </SessionContextProvider>
                                     </CartContextProvider>
                                 </WishlistContextProvider>
