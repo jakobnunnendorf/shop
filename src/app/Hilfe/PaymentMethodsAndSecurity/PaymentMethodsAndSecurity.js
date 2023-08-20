@@ -14,7 +14,7 @@ import { FiDollarSign } from 'react-icons/fi';
 
 const PaymentMethodsAndSecurity = () => {
     return (
-        <section className='grid grid-cols-2 py-16 rounded-md shadow-md'>
+        <section className='grid grid-rows-2 py-16 rounded-md shadow-md lg:grid-rows-none lg:grid-cols-2'>
             <article className='grid grid-rows-2 p-6 rounded-md '>
                 <div className=''>
                     <figure className='relative w-full h-full '>
@@ -27,7 +27,7 @@ const PaymentMethodsAndSecurity = () => {
                     </figure>
                 </div>
                 <div>
-                    <h2 className='mb-4 text-2xl font-bold text-center'>
+                    <h2 className='mb-4 text-2xl font-bold lg:text-center'>
                         Vertrauenswürdige Unternehmen, <br />
                         die Stripe verwenden{' '}
                         <a href='https://stripe.com/en-sg/customers'>
@@ -44,7 +44,7 @@ const PaymentMethodsAndSecurity = () => {
                     </p>
                 </div>
             </article>
-            <article>
+            <article className='px-8'>
                 <h2 className='mb-4 text-2xl font-bold'>
                     Stripe Checkout-Zahlungsmodul
                 </h2>

@@ -14,56 +14,55 @@ import TimeLineNode from './TimeLineNode';
 
 const ShippingInfo = () => {
     return (
-        <div>
-            <div className='w-full py-16 shadow-2xl bg-coastal-blue-10'>
-                <h2 className='text-3xl font-bold text-center text-sandy-beige-10'>
+        <div className='w-screen '>
+            <div className='w-screen py-16 shadow-2xl bg-coastal-blue-10 '>
+                <h2 className='px-4 text-3xl text-center lg:font-bold text-sandy-beige-10'>
                     Danke, dass Sie bei Phone 2 Door einkaufen.
                 </h2>
-                <ul className='grid grid-cols-4 py-32 mx-auto w-fit text-sandy-beige-10'>
-                    <li className='px-6 font-bold'>
-                        <FiShoppingCart className='w-8 h-8 mx-auto' />
+                <ul className='grid w-screen grid-flow-col grid-cols-2 grid-rows-4 px-4 pt-16 mx-auto lg:py-32 lg:grid-rows-2 lg:grid-cols-4 lg:grid-flow-row lg:w-fit text-sandy-beige-10 '>
+                    <li className='order-8 w-full p-4 lg:font-bold lg:px-6 lg:order-1'>
+                        <FiShoppingCart className='w-6 h-6 mx-auto lg:h-8 lg:w-8' />
                         <p className='py-2 text-center'>Ihre Bestellung</p>
                     </li>
-                    <li className='px-6 font-bold'>
-                        <FiMail className='w-8 h-8 mx-auto' />
+                    <li className='order-7 w-full lg:font-bold lg:px-6 lg:order-2'>
+                        <FiMail className='w-6 h-6 mx-auto lg:h-8 lg:w-8' />
                         <p className='py-2 text-center'>Wir danken</p>
                     </li>
-                    <li className='px-6 font-bold'>
-                        <FiTruck className='w-8 h-8 mx-auto' />
+                    <li className='order-6 w-full lg:font-bold lg:px-6 lg:order-3'>
+                        <FiTruck className='w-6 h-6 mx-auto lg:h-8 lg:w-8' />
                         <p className='py-2 text-center'>Lieferung</p>
                     </li>
-                    <li className='px-6 font-bold'>
-                        <FiHome className='w-8 h-8 mx-auto' />
+                    <li className='order-5 w-full lg:font-bold lg:px-6 lg:order-4'>
+                        <FiHome className='w-6 h-6 mx-auto lg:h-8 lg:w-8' />
                         <p className='py-2 text-center'>Zugestellt</p>
                     </li>
-
-                    <li className='flex items-center py-2'>
+                    <li className='flex flex-col items-center order-1 w-full lg:py-2 lg:order-8 lg:flex-row '>
                         <TimeLineSection />
                         <TimeLineNode stepNumber={1} />
                         <TimeLineSection label='Sofort' />
                     </li>
-                    <li className='flex items-center py-2'>
+                    <li className='flex flex-col items-center order-1 w-full lg:py-2 lg:order-8 lg:flex-row '>
                         <TimeLineSection />
                         <TimeLineNode stepNumber={2} />
                         <TimeLineSection label='1 Werktag' />
                     </li>
-                    <li className='flex items-center py-2'>
+                    <li className='flex flex-col items-center order-1 w-full lg:py-2 lg:order-8 lg:flex-row '>
                         <TimeLineSection />
                         <TimeLineNode stepNumber={3} />
                         <TimeLineSection
                             label='24&nbsp;Stunden&#10;(express)'
                         />
                     </li>
-                    <li className='flex items-center py-2'>
+                    <li className='flex flex-col items-center order-1 w-full lg:py-2 lg:order-8 lg:flex-row '>
                         <TimeLineSection />
                         <TimeLineNode stepNumber={4} />
                         <TimeLineSection />
                     </li>
                 </ul>
             </div>
-            <div className='w-full p-8 py-16 mt-0 rounded-md bg-sandy-beige-6'>
-                <div className='w-2/3 mx-auto'>
-                    <h1 className='mb-8 text-3xl font-bold text-center text-coastal-blue-10'>
+            <div className='w-full py-16 mt-0 rounded-md lg:p-8 bg-sandy-beige-6'>
+                <div className='mx-auto lg:w-2/3'>
+                    <h1 className='mb-8 text-3xl text-center lg:font-bold text-coastal-blue-10'>
                         {/* <FontAwesomeIcon icon={faShippingFast} /> */}
                         Versand- und Lieferinformationen
                     </h1>
@@ -72,7 +71,7 @@ const ShippingInfo = () => {
                         Versandoptionen:
                     </h3>
 
-                    <div className='w-7/12 mx-auto mt-8'>
+                    <div className='w-full mx-auto mt-8 '>
                         <table className='w-full bg-gray-200 border-collapse'>
                             <thead>
                                 <tr>
@@ -138,7 +137,7 @@ const ShippingInfo = () => {
                         </table>
                     </div>
 
-                    <h2 className='mt-10 mb-5 text-lg font-bold text-justify'>
+                    <h2 className='mt-10 mb-5 text-lg text-justify lg:font-bold'>
                         {/* <FontAwesomeIcon icon={faMapMarkedAlt} /> */}
                         Bestellverfolgung
                     </h2>
@@ -147,7 +146,7 @@ const ShippingInfo = () => {
                         Sendungsverfolgungsnummer per E-Mail.
                     </p>
 
-                    <h2 className='mt-10 mb-5 text-lg font-bold text-justify'>
+                    <h2 className='mt-10 mb-5 text-lg text-justify lg:font-bold'>
                         {/* <FontAwesomeIcon icon={faTools} /> */}
                         Lieferprobleme
                     </h2>
