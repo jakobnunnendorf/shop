@@ -55,7 +55,16 @@ export default function HeaderRow() {
                     imageArray.map(async (previewURL) => {
                         const fileForPreviewURL: File =
                             returnFileForPreviewURL(previewURL);
-                        const filePath = `${newProduct.title}/${colorKey}/${productID}`;
+                        const filePath =
+                            `${newProduct.title}/${colorKey}/${productID}`
+                                .replace('ü', 'ue')
+                                .replace('ä', 'ae')
+                                .replace('ö', 'oe')
+                                .replace('ß', 'ss')
+                                .replace('Ü', 'Ue')
+                                .replace('Ä', 'Ae')
+                                .replace('Ö', 'Oe')
+                                .replace('ß', 'Ss');
                         await supabase.storage
                             .from('productImageBucket')
                             .upload(filePath, fileForPreviewURL);
@@ -81,6 +90,7 @@ export default function HeaderRow() {
         for (const colorKey of ColorsThatAreNotNullAndHaveAnImage) {
             await uploadAndReplaceImageForColor(colorKey);
         }
+        setNewProduct(copyNewProduct);
         return copyNewProduct;
     };
 
@@ -98,9 +108,9 @@ export default function HeaderRow() {
     };
 
     const headerRow = (
-        <div className='mt-2 flex h-20 items-center justify-between px-12 lg:mt-4'>
+        <div className='flex items-center justify-between h-20 px-12 mt-2 lg:mt-4'>
             <Link
-                className='gradient mr-2 flex text-3xl text-coastal-blue-7'
+                className='flex mr-2 text-3xl gradient text-coastal-blue-7'
                 href='/admin/produkte'
             >
                 <FiArrowLeft />
@@ -116,7 +126,7 @@ export default function HeaderRow() {
                         uploadProduct();
                     }, 10);
                 }}
-                className='flex items-center space-x-2 rounded-xl border-2 border-green-400 px-2 py-1'
+                className='flex items-center px-2 py-1 space-x-2 border-2 border-green-400 rounded-xl'
             >
                 <div className='text-green-800'>
                     <span className='hidden lg:inline'>Hochladen</span>
