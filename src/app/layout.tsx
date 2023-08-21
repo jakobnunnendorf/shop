@@ -35,7 +35,7 @@ export default function RootLayout({
                                                     <Header />
                                                 </header>
                                             </MobileMenuContextProvider>
-                                            <main className='relative top-32 w-full lg:top-24'>
+                                            <main className='relative w-full min-h-screen top-32 lg:top-24'>
                                                 {children}
                                             </main>
                                             <footer className='relative w-full top-32 lg:top-24'>
