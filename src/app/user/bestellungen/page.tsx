@@ -1,33 +1,45 @@
-// import { Metadata } from 'next';
+
+import React from 'react';
 import Link from 'next/link';
-import supabase from '@utils/supabase';
-export const metadata = {
-    title: '',
-    description: '',
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+
+type params = {
+    params: {
+        orderID: string;
+    };
 };
 
-export default async function OrderManagementPage() {
+export default async function UseOrdersPage( {params: {orderID} } : params) {
+    const supabase = createServerComponentClient({ cookies });
+
+    const {
+        data: { session: currenSession },
+    } = await supabase.auth.getSession();
+
+    const user_id = currenSession?.user?.id;
 
     const getOrders = async () => {
         const { data: orders } = (await supabase
             .from('orders')
-            .select('*')) as sb_fetchResponseObject<order[]>;
+            .select('*')
+            .eq('user_id', user_id)) as sb_fetchResponseObject<order[]>;
         return orders;
-    }
-    const orders = await getOrders() as order[];
-    
+    };
+    const orders = (await getOrders()) as order[];
+
     const ordersList = orders.map((order, index) => (
         <ul
             key={index}
             className='grid grid-cols-4 py-2 font-semibold text-center border-b shadow-sm text-1/2 lg:shadow-none'
         >
-            <Link href={`/admin/bestellungen/${order.order_id}`}>
+            <Link href={`/user/bestellungen/${order.order_id}`}>
                 <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
                     {order.cart[0].product.title}
                 </li>
             </Link>
 
-            <Link href={`/admin/bestellungen/${order.order_id}`}>
+            <Link href={`/user/bestellungen/${order.order_id}`}>
                 <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
                     {order.created_at.split('T')[0] +
                         ' ' +
@@ -57,5 +69,5 @@ export default async function OrderManagementPage() {
             </ul>
             {ordersList}
         </section>
-    ); 
+    );
 }
