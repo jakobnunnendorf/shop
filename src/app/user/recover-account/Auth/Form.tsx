@@ -1,7 +1,7 @@
 'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React, { FormEvent, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -97,23 +97,23 @@ export default function Form() {
                 <input // email
                     type='email'
                     placeholder='E-Mail'
-                    className='set-height col-span-12 row-start-1 rounded-3xl px-4'
+                    className='col-span-12 row-start-1 px-4 set-height rounded-3xl'
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
             }
 
-            <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center row-start-2'>
+            <div className='flex flex-col items-center col-span-12 col-start-1 row-span-2 row-start-2'>
                 <button
                     type='submit'
-                    className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
+                    className='w-2/3 h-12 font-bold bg-green-300 rounded-3xl'
                 >
                     Einreichen
                 </button>
                 <Link href='/user'>
                     <button
                         type='button'
-                        className='mt-2 text-slate-500 underline outline-none'
+                        className='mt-2 underline outline-none text-slate-500'
                     >
                         Ich habe noch keinen Account?
                         <br />

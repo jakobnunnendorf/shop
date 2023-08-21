@@ -16,43 +16,46 @@ export default async function OrderManagementPage() {
     }
     const orders = await getOrders() as order[];
     
-    const ordersList = (
-        orders.map((order, index) => (
-            <ul className="grid grid-cols-4 py-2 border-b shadow-sm font-semibold text-1/2 text-center lg:shadow-none">
-                <Link href={`/admin/bestellungen/${order.order_id}`} key={index}>
-                    <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
-                        {order.cart[0].product.title}
-                    </li>
-                </Link>
+    const ordersList = orders.map((order, index) => (
+        <ul
+            key={index}
+            className='grid grid-cols-4 py-2 font-semibold text-center border-b shadow-sm text-1/2 lg:shadow-none'
+        >
+            <Link href={`/admin/bestellungen/${order.order_id}`}>
+                <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
+                    {order.cart[0].product.title}
+                </li>
+            </Link>
 
-                <Link href={`/admin/bestellungen/${order.order_id}`} key={index}>
-                    <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
-                        {order.created_at.split('T')[0] + ' ' + order.created_at.split('T')[1].split('.')[0]}
-                    </li>
-                </Link>
-                <li 
-                    key={index}
-                    className={`${order.status == 'paid' ? 'text-multicolore-green' : 'text-multicolore-pink'}`}
-                >
-                    {order.status}
+            <Link href={`/admin/bestellungen/${order.order_id}`}>
+                <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
+                    {order.created_at.split('T')[0] +
+                        ' ' +
+                        order.created_at.split('T')[1].split('.')[0]}
                 </li>
-                <li key={index}>
-                    {`${order.cart[0].product.price} ${' €'}`}
-                </li>
-            </ul>
-        ))
-    );
+            </Link>
+            <li
+                className={`${
+                    order.status == 'paid'
+                        ? 'text-multicolore-green'
+                        : 'text-multicolore-pink'
+                }`}
+            >
+                {order.status}
+            </li>
+            <li>{`${order.cart[0].product.price} ${' €'}`}</li>
+        </ul>
+    ));
 
     return (
-        <section className="w-full h-full">
-            <ul className="grid grid-cols-4 py-2 border-b shadow-sm bg-sandy-beige-5 font-bold text-coastal-blue-10 text-xl text-center lg:shadow-none">
+        <section className='w-full h-full'>
+            <ul className='grid grid-cols-4 py-2 text-xl font-bold text-center border-b shadow-sm bg-sandy-beige-5 text-coastal-blue-10 lg:shadow-none'>
                 <li>Order</li>
                 <li>Date</li>
                 <li>Status</li>
                 <li>Price</li>
             </ul>
             {ordersList}
-
         </section>
     ); 
-};
+}

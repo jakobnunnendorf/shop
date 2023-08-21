@@ -7,7 +7,7 @@ async function PasswordReset() {
     const router = useRouter();
     const [loading, setLoading] = React.useState(true);
     const supabase = createClientComponentClient();
-    var {
+    const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
      if (currentSession !== null) {
