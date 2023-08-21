@@ -33,12 +33,6 @@ export default function AdminLayout({
             icon: <FiSmartphone className='text-slate-500' size={30} />,
         },
         {
-            route: '/admin/benutzer',
-            title: 'Benutzer',
-            key: 'benutzer',
-            icon: <FiSmartphone className='text-slate-500' size={30} />,
-        },
-        {
             route: '/admin/kunden',
             title: 'Kunden',
             key: 'kunden',
@@ -58,7 +52,7 @@ export default function AdminLayout({
         },
     ];
     const navigationMenu = (
-        <ul className='mt-8 flex h-fit w-full flex-col items-center justify-around space-y-8 lg:items-start'>
+        <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
             {linkedPages.map((page) => (
                 <Link href={page.route} key={page.route}>
                     <li className='flex items-center space-x-2 '>
@@ -72,14 +66,14 @@ export default function AdminLayout({
         </ul>
     );
     const AdminLayout = (
-        <section className='flex w-full '>
-            <aside className='fixed h-screen w-12 space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
-                <h2 className='mb-8 hidden text-center text-xl font-bold text-slate-400 lg:block'>
+        <section className='flex w-full bborder'>
+            <aside className='w-12 h-screen space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
+                <h2 className='hidden mb-8 text-xl font-bold text-center text-slate-400 lg:block'>
                     Admin Panel
                 </h2>
                 {navigationMenu}
             </aside>
-            <section className='relative left-12 w-[calc(100vw-3rem)] px-2 py-8 lg:left-44 lg:w-[calc(100vw-11rem)] lg:px-16'>
+            <section className='rborder relative w-[calc(100vw-3rem)] py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
                 {children}
             </section>
         </section>

@@ -1,3 +1,4 @@
-export default function CustomerManagementLayout({ children }: { children: React.ReactNode }) {
-  return <section>{children}</section>;
-}
+export default function UserViewLayout({ children }: { children: React.ReactNode }) {
+    return <section>{children}</section>;
+  }
+  
