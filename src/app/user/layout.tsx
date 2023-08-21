@@ -47,7 +47,7 @@ export default async function UserLayout({
             icon: <FiPackage className='text-slate-500' size={30} />,
         },
         {
-            route: '/wunschliste',
+            route: '/Wishlist',
             title: 'Wunschliste',
             key: 'wishlist',
             icon: <FiHeart className='text-slate-500' size={30} />,

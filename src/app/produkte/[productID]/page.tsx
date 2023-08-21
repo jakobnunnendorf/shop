@@ -13,5 +13,6 @@ export default async function ProductPage({ params: { productID } }: params) {
         .from('products')
         .select('*')
         .eq('id', productID)) as sb_fetchResponseObject<product[]>;
+
     return product ? <Expanded product={product[0]} /> : null;
 }

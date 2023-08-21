@@ -4,14 +4,12 @@ import Login from './Login/Login';
 import Greeting from './profile/Greeting';
 import Profile from './profile/Profile';
 import UserInfoPanel from './profile/UserInfoPanel';
-
 export default async function UserPage() {
     const supabase = createServerComponentClient({ cookies });
-
     const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
-
+    
     if (!currentSession) {
         return <Login />;
     } else {

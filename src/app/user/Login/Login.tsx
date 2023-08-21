@@ -15,7 +15,6 @@ export default function Login() {
         setHasAccount(!hasAccount);
     };
     const [loading, setLoading] = useState<boolean>(false);
-
     const main_content_wrapper = (
         <div className='grid min-h-[80vh] w-10/12 overflow-hidden rounded-3xl bg-slate-100 shadow-2xl lg:h-2/3 lg:min-h-0 lg:w-2/3 lg:grid-cols-2'>
             <Info hasAccount={hasAccount} registrationInfo={registrationInfo} />

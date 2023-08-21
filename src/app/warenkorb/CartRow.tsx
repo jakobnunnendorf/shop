@@ -25,8 +25,8 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
     };
 
     return (
-        <div className='mb-6 justify-between rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start'>
-            <figure className='relative h-20 w-24 rounded-lg sm:w-40'>
+      <div className='justify-between p-6 mb-6 bg-white rounded-lg shadow-md sm:flex sm:justify-start'>
+            <figure className='relative w-24 h-20 rounded-lg sm:w-40'>
                 <Image
                     src={returnFirstPicture()}
                     alt='product-image'
@@ -49,7 +49,7 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                         )}
                     </p>
                 </div>
-                <div className='mt-4 flex justify-between sm:mt-0 sm:block sm:space-x-6 sm:space-y-6'>
+                <div className='flex justify-between mt-4 sm:mt-0 sm:block sm:space-x-6 sm:space-y-6'>
                     <div className='flex items-center border-gray-100'>
                         <span
                             onClick={decrementThisQuantity}
@@ -59,14 +59,14 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                             -{' '}
                         </span>
                         <input
-                            className='h-8 w-8 border bg-white text-center text-xs outline-none'
+                            className='w-8 h-8 text-xs text-center bg-white border outline-none'
                             type='number'
                             value={cartItem.quantity}
                             min='1'
                         />
                         <span
                             onClick={incrementThisQuantity}
-                            className='cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-blue-500 hover:text-blue-50'
+                            className='px-3 py-1 duration-100 bg-gray-100 rounded-r cursor-pointer hover:bg-blue-500 hover:text-blue-50'
                         >
                             {' '}
                             +{' '}
@@ -81,7 +81,7 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                             viewBox='0 0 24 24'
                             stroke-width='1.5'
                             stroke='currentColor'
-                            className='h-5 w-5 cursor-pointer duration-150 hover:text-red-500'
+                            className='w-5 h-5 duration-150 cursor-pointer hover:text-red-500'
                         >
                             <path
                                 stroke-linecap='round'
@@ -92,6 +92,6 @@ export default function CartRow({ cartItem }: { cartItem: cart_item }) {
                     </div>
                 </div>
             </div>
-        </div>
+                        </div>
     );
 }

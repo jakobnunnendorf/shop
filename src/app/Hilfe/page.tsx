@@ -7,7 +7,6 @@ import PaymentMethodsAndSecurity from './PaymentMethodsAndSecurity/PaymentMethod
 import PrivacyPolicy from './PrivacyPolicy/PrivacyPolicy';
 import ReturnRefund from './ReturnRefund/ReturnRefund';
 import ShippingInfo from './ShippingInfo/ShippingInfo';
-import './Help.css';
 import HelpCenterBanner from './HelpCenterBanner';
 import Contact from './Contact';
 
@@ -17,14 +16,14 @@ export default function Help() {
             <HelpCenterBanner />
             <FAQ />
             <Contact />
-
             <PaymentMethodsAndSecurity />
-
             <ShippingInfo />
-
-            <ReturnRefund />
-
-            <PrivacyPolicy />
+            {/* 
+            <div className='grid grid-rows-2  lg:grid-rows-none lg:grid-cols-2'>
+                <ReturnRefund />
+                <PrivacyPolicy />
+            </div> 
+            */}
         </div>
     );
 }

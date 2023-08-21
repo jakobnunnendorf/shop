@@ -1,15 +1,22 @@
+import Link from 'next/link';
 import React from 'react';
 import './PrivacyPolicy.css';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faLock, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+import Privacy from '../datenschutz/Privacy';
 
 export default function PrivacyPolicy() {
     return (
-        <iframe
-            title='ds'
-            src='https://www.phone2door.com/hilfe/datenschutz'
-            width='600'
-            height='400'
-        ></iframe>
+        <div className='w-screen py-16'>
+            <h2 className='py-16 text-center lg:text-3xl'>
+                Datenschutz
+                <Link href='/Hilfe/datenschutz'>
+                    <span className='text-lg font-bold text-blue-800 underline'>
+                        &nbsp;(Mehr erfahren)
+                    </span>
+                </Link>
+            </h2>
+            <div className='w-full overflow-y-auto h-96'>
+                <Privacy />
+            </div>
+        </div>
     );
 }

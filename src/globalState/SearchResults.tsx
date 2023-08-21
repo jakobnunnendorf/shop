@@ -19,6 +19,7 @@ export function SearchResultsContextProvider({
     const [searchResults, setSearchResults] = useState<product[]>([]);
 
     const numberOfResults = searchResults.length ? searchResults.length : 0;
+    // console.log('numberOfResults', numberOfResults);
 
     return (
         <SearchResultsContext.Provider

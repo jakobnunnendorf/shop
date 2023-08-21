@@ -1,4 +1,6 @@
 'use client';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useContext } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { modelTree } from '@app/shop/FilterBar/helperFunctions';
@@ -13,20 +15,15 @@ import {
 import {
     SearchResultsContext,
     SearchResultsContextType,
-} from '@globalState/SearchResults';
+} from '@globalState/SearchResultsContext';
 import DeviceTree from '../components/DeviceTree';
 import FilterSection from '../components/FilterSection';
 
-export default function Expanded({
-    close,
-    modelTree,
-}: {
-    close: () => void;
-    modelTree: modelTree;
-}) {
+export default function Expanded({ modelTree }: { modelTree: modelTree }) {
     const { categoryArray, priceArray } = useContext(
         FilterBarContext
     ) as FilterBarContextType;
+    
     const {
         toggleDeviceFilter,
         deviceFilters,
@@ -38,15 +35,17 @@ export default function Expanded({
         SearchResultsContext
     ) as SearchResultsContextType;
 
+    const router = useRouter();
+
     const expandedMobileFilters = (
         <div className='flex flex-col w-full h-full justify-evenly'>
             <div className='flex items-center justify-end w-full h-16 px-8 '>
-                <button
+                <Link
+                    href='/shop'
                     className='flex items-center h-8 underline w-fit border-coastal-blue-10 text-coastal-blue-10'
-                    onClick={close}
                 >
                     Schließen <FiX size={20} />
-                </button>
+                </Link>
             </div>
             <div className='flex-grow px-4 py-8'>
                 <h2 className='text-3xl font-bold text-center'>Deine Filter</h2>
@@ -82,18 +81,21 @@ export default function Expanded({
             </div>
             <div className='grid w-full grid-cols-2 py-16 justify-evenly'>
                 <button
-                    onClick={clearAllFilters}
+                    onClick={() => {
+                        clearAllFilters();
+                        router.push('/shop');
+                    }}
                     className='w-4/5 px-2 py-2 mx-auto mr-2 border rounded-full border-coastal-blue-10 '
                 >
                     Filter löschen
                 </button>
-                <button
-                    onClick={close}
+                <Link
+                    href='/shop'
                     className='flex items-center w-4/5 px-2 py-2 mx-auto ml-2 text-white border rounded-full justify-evenly bg-coastal-blue-10 hover:bg-coastal-blue-10'
                 >
                     ({numberOfResults}) Treffer
                     <FiSearch size={20} />
-                </button>
+                </Link>
             </div>
         </div>
     );

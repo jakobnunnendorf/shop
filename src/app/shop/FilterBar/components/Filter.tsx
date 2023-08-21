@@ -1,11 +1,6 @@
 'use client';
-import React, { useContext } from 'react';
+import React from 'react';
 import { FiCheck, FiSquare } from 'react-icons/fi';
-import { categories } from '@app/shop/FilterBarContext';
-import {
-    ActiveFiltersContext,
-    FilterContextType,
-} from '@globalState/ActiveFiltersContext';
 
 export default function Filter({
     filter,
@@ -16,12 +11,8 @@ export default function Filter({
     active: boolean;
     toggleFilter: () => void;
 }) {
-    const { categoryFilters, priceFilters, deviceFilters } = useContext(
-        ActiveFiltersContext
-    ) as FilterContextType;
-
     const filterElement = (
-        <article className='flex justify-between w-full '>
+        <article className='flex w-full justify-between '>
             <h3 className='text-sm'>{filter}</h3>
             <button onClick={toggleFilter}>
                 {active ? <FiCheck /> : <FiSquare />}

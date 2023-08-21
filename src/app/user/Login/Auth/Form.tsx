@@ -7,7 +7,7 @@ import {
     SessionContextType,
 } from '@globalState/SessionContext';
 import { UserContext, UserContextType } from '@globalState/UserContext';
-
+import Reset_button from './reset_button';
 export default function Form({
     hasAccount,
     toggleHasAccount,
@@ -73,6 +73,7 @@ export default function Form({
             email: registrationInfo.email,
             password: registrationInfo.password,
         });
+
         const { session, user } = data;
         if (!error) {
             setSession(session);
@@ -183,8 +184,8 @@ export default function Form({
                 >
                     Ich habe {hasAccount ? 'noch keinen' : 'schon einen'}{' '}
                     Account? <br />
-                    {/* {hasAccount ? 'jetzt registrieren' : 'zum login'} */}
                 </button>
+                {hasAccount ? <Reset_button /> : null}
             </div>
         </form>
     );

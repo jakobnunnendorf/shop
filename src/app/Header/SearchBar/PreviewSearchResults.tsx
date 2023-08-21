@@ -14,7 +14,7 @@ import {
 import {
     SearchResultsContext,
     SearchResultsContextType,
-} from '@globalState/SearchResults';
+} from '@globalState/SearchResultsContext';
 
 export default function PreviewSearchResults() {
     const supabase = createClientComponentClient();
@@ -58,7 +58,7 @@ export default function PreviewSearchResults() {
                 !isShopPage
                     ? 'fixed'
                     : 'hidden'
-            } left-0 top-12 h-fit w-full bg-white`}
+            } left-0 top-32 h-fit w-full bg-white`}
         >
             <ul className='pt-4 space-y-2'>
                 {topThreeResults.map((searchResult, index) => {

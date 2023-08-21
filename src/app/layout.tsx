@@ -5,10 +5,11 @@ import { ActiveProductContextProvider } from '@globalState/ActiveProductCardCont
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
-import { SearchResultsContextProvider } from '@globalState/SearchResults';
+import { SearchResultsContextProvider } from '@globalState/SearchResultsContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 
 export const dynamic = 'force-dynamic';
 export default function RootLayout({
@@ -22,26 +23,31 @@ export default function RootLayout({
                 <link rel='icon' href='/favicon.ico' />
             </head>
             <body>
-                <SearchResultsContextProvider>
-                    <ProductCardContextProvider>
-                        <ActiveFiltersContextProvider>
+                <ProductCardContextProvider>
+                    <ActiveFiltersContextProvider>
+                        <SearchResultsContextProvider>
                             <ActiveProductContextProvider>
                                 <WishlistContextProvider>
                                     <CartContextProvider>
                                         <SessionContextProvider>
                                             <MobileMenuContextProvider>
-                                                <Header />
+                                                <header>
+                                                    <Header />
+                                                </header>
                                             </MobileMenuContextProvider>
-                                            <main className='relative w-full top-32 lg:top-24'>
+                                            <main className='relative w-full min-h-screen top-32 lg:top-24'>
                                                 {children}
                                             </main>
+                                            <footer className='relative w-full top-32 lg:top-24'>
+                                                <Footer />
+                                            </footer>
                                         </SessionContextProvider>
                                     </CartContextProvider>
                                 </WishlistContextProvider>
                             </ActiveProductContextProvider>
-                        </ActiveFiltersContextProvider>
-                    </ProductCardContextProvider>
-                </SearchResultsContextProvider>
+                        </SearchResultsContextProvider>
+                    </ActiveFiltersContextProvider>
+                </ProductCardContextProvider>
             </body>
         </html>
     );

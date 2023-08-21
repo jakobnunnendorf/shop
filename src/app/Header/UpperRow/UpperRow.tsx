@@ -7,7 +7,6 @@ import UserHeaderLink from './UserHeaderLink';
 import WishlistIcon from './WishlistIcon';
 import SearchBar from '../SearchBar/SearchBar';
 
-
 export default function UpperRow() {
     const upper_row = (
         <section className='top-0 w-full h-20 py-2 border-b shadow-sm bg-sandy-beige-5 backdrop-blur-3xl lg:h-16 lg:shadow-none'>
