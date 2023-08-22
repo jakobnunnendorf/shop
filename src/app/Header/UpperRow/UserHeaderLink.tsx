@@ -12,12 +12,12 @@ export default async function UserHeaderLink() {
     return (
         <Link
             href='/user'
-            className='flex h-full flex-col items-center justify-center overflow-visible '
+            className='flex flex-col items-center justify-center h-full overflow-visible '
         >
             <FiUser size={32} className='text-coastal-blue-10' />
             {!currentSession && (
-                <p className='whitespace-nowrap text-center text-xs text-coastal-blue-10 '>
-                    Login in
+                <p className='text-xs text-center whitespace-nowrap text-coastal-blue-10 '>
+                    Login
                 </p>
             )}
         </Link>

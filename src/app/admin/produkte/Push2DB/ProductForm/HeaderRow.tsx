@@ -118,6 +118,7 @@ export default function HeaderRow() {
             </Link>
             <h2 className='text-2xl text-center '>Neues Produkt hinzufügen</h2>
 
+
             <button
                 type='button'
                 onClick={() => {
