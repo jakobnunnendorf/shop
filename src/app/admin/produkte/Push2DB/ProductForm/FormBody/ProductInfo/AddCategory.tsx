@@ -42,7 +42,7 @@ export default function AddCategory() {
             className='flex items-center w-full space-x-2'
             onSubmit={addCategoryToNewProduct}
         >
-            <div className='flex flex-col  bborder'>
+            <div className='flex flex-col '>
                 <label htmlFor='category'>Kategorie:</label>
                 <select
                     id='category'
