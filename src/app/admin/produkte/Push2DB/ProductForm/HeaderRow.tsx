@@ -108,15 +108,15 @@ export default function HeaderRow() {
     };
 
     const headerRow = (
-        <div className='flex items-center justify-between h-20 px-12 mt-2 lg:mt-4'>
+        <div className='flex items-center justify-between h-20 px-4 lg:px-12 lg:mt-4 rborder'>
             <Link
-                className='flex mr-2 text-3xl gradient text-coastal-blue-7'
+                className='flex items-center mr-2 text-xl gradient text-coastal-blue-7 '
                 href='/admin/produkte'
             >
                 <FiArrowLeft />
-                <p className='text-xl'>Zurück</p>
+                <p className='text-lg lg:text-xl'>Zurück</p>
             </Link>
-            <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
+            <h2 className='text-2xl text-center '>Neues Produkt hinzufügen</h2>
 
             <button
                 type='button'
