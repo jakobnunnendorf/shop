@@ -99,7 +99,7 @@ export default function Form({
                 <input // first name
                     type='text'
                     placeholder='Vorname'
-                    className='set-height col-span-12 row-start-1 rounded-3xl px-4'
+                    className='col-span-12 row-start-1 px-4 set-height rounded-3xl'
                     name='firstName'
                     value={registrationInfo.firstName}
                     onChange={handleInputChange}
@@ -110,11 +110,10 @@ export default function Form({
                 <input // last name
                     type='text'
                     placeholder='Nachname'
-                    className='set-height col-span-12 col-start-1 row-start-2 rounded-3xl px-4'
+                    className='col-span-12 col-start-1 row-start-2 px-4 set-height rounded-3xl'
                     name='lastName'
                     value={registrationInfo.lastName}
                     onChange={handleInputChange}
-                    required
                 />
             )}
             <input // email
@@ -134,11 +133,10 @@ export default function Form({
                 <input // phone
                     type='text'
                     placeholder='Telefon'
-                    className='set-height col-span-12 row-start-4 rounded-3xl px-4'
+                    className='col-span-12 row-start-4 px-4 set-height rounded-3xl'
                     name='phone'
                     value={registrationInfo.phone}
                     onChange={handleInputChange}
-                    required
                 />
             )}
             <input // password
@@ -170,16 +168,16 @@ export default function Form({
                     required
                 />
             )}
-            <div className='col-span-12 col-start-1 row-span-2 flex flex-col items-center '>
+            <div className='flex flex-col items-center col-span-12 col-start-1 row-span-2 '>
                 <button
                     type='submit'
-                    className='h-12 w-2/3 rounded-3xl bg-green-300 font-bold'
+                    className='w-2/3 h-12 font-bold bg-green-300 rounded-3xl'
                 >
                     {hasAccount ? 'Jetzt einloggen' : 'Jetzt Registrieren'}
                 </button>
                 <button
                     type='button'
-                    className='mt-2 text-slate-500 underline outline-none'
+                    className='mt-2 underline outline-none text-slate-500'
                     onClick={() => toggleHasAccount(!hasAccount)}
                 >
                     Ich habe {hasAccount ? 'noch keinen' : 'schon einen'}{' '}
