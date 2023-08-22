@@ -54,27 +54,28 @@ export default function UpdateProfile() {
     const { toggleEditProfile } = useContext(
         ProfileInfoContext
     ) as ProfileInfoContextType;
-
+    {
+        /*
     const profile_inputs = (
-        <div className='grid grid-cols-12 gap-8 '>
+        <div className='grid w-screen grid-cols-12 lg:gap-8 '>
             <div className='col-span-6'>
                 <span className='font-bold'>Vorname: </span>
                 <br />
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.firstName || 'Vorname'}
-                    className='px-2 border rounded-lg'
+                    className='w-full px-2 border rounded-lg'
                     name='newFirstName'
                 />
             </div>
-            <div className='col-span-6'>
+            <div className='col-span-6 '>
                 <span className='font-bold'>
                     Nachname: <br />
                 </span>
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.lastName || 'Nachname'}
-                    className='px-2 border rounded-lg'
+                    className='w-full pl-2 border rounded-lg'
                     name='newLastName'
                 />
             </div>
@@ -85,7 +86,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.email}
-                    className='px-2 border rounded-lg'
+                    className='w-full px-2 border rounded-lg'
                     name='newEmail'
                 />
             </div>
@@ -96,7 +97,7 @@ export default function UpdateProfile() {
                 <input
                     type='text'
                     placeholder={currentProfileInfo?.phone || 'Telefon'}
-                    className='px-2 border rounded-lg'
+                    className='w-full px-2 border rounded-lg'
                     name='newPhone'
                 />
             </div>
@@ -111,7 +112,7 @@ export default function UpdateProfile() {
                 type='text'
                 name='newDeliveryAddress_street'
                 placeholder={currentAddresses?.deliveryAddress?.street}
-                className='col-span-4 border rounded-lg'
+                className='w-full col-span-4 border rounded-lg'
             />
             <input
                 type='text'
@@ -123,7 +124,7 @@ export default function UpdateProfile() {
                 type='text'
                 name='newDeliveryAddress_zip_code'
                 placeholder={currentAddresses?.deliveryAddress?.zip_code}
-                className='w-24 col-span-2 border rounded-lg'
+                className='w-full col-span-2 border rounded-lg lg:w-24'
             />
             <input
                 type='text'
@@ -184,9 +185,10 @@ export default function UpdateProfile() {
             {deliveryAddress_inputs}
             {billingAddress_inputs}
         </div>
-    );
+    );*/
+    }
     const button_row = (
-        <div className='flex space-x-8 mt-2 justify-center'>
+        <div className='flex justify-center mt-2 space-x-8'>
             <button
                 type='button'
                 onClick={toggleEditProfile}
@@ -208,12 +210,75 @@ export default function UpdateProfile() {
         toggleEditProfile();
     }
 
+    const information_grid = (
+        <section className='relative grid w-full grid-cols-12 gap-8 p-8 text-xl border h-fit rounded-3xl lg:w-fit'>
+            <div className='col-span-6 '>
+                <span className='font-bold'>Vorname: </span>
+                <br />
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.firstName || ''}
+                    className='w-full'
+                />
+            </div>
+            <div className='col-span-6 '>
+                <span className='font-bold'>
+                    Nachname: <br />
+                </span>
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.lastName || ''}
+                    className='w-full'
+                />
+            </div>
+            <div className='col-span-12 lg:col-span-6 '>
+                <span className='font-bold'>
+                    Email: <br />
+                </span>
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.email || ''}
+                    className='w-full'
+                />
+            </div>
+            <div className='col-span-6 '>
+                <span className='font-bold'>
+                    Telefon: <br />
+                </span>
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.phone || ''}
+                    className='w-full'
+                />
+            </div>
+            <div className='col-span-12 '>
+                <span className='font-bold'>Lieferadresse:</span>
+                <br />
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.delivery || ''}
+                    className='w-full'
+                />
+            </div>
+            <div className='col-span-12 '>
+                <span className='font-bold'>Rechnungsadresse:</span>
+                <br />{' '}
+                <input
+                    type='text'
+                    placeholder={currentProfileInfo?.billing || ''}
+                    className='w-full'
+                />
+            </div>
+        </section>
+    );
+
     const content = (
         <form action={handleSubmit}>
-            <section className='w-full h-full p-8 space-y-4 text-xl border rounded-3xl lg:w-fit'>
+            {/* <section className='w-full h-full p-8 space-y-4 text-xl border rounded-3xl lg:w-fit'>
                 {profile_inputs}
                 {address_inputs}
-            </section>
+            </section> */}
+            {information_grid}
             {button_row}
         </form>
     );

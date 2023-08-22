@@ -52,11 +52,11 @@ export default function HeaderRow() {
 
                 const newImageArray = await Promise.all(
                     // create an array with the new image URLs
-                    imageArray.map(async (previewURL) => {
+                    imageArray.map(async (previewURL, index) => {
                         const fileForPreviewURL: File =
                             returnFileForPreviewURL(previewURL);
                         const filePath =
-                            `${newProduct.title}/${colorKey}/${productID}`
+                            `${newProduct.title}/${colorKey}/${productID}/${index}`
                                 .replace('ü', 'ue')
                                 .replace('ä', 'ae')
                                 .replace('ö', 'oe')

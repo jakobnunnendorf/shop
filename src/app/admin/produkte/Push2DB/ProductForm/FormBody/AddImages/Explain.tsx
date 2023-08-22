@@ -12,7 +12,7 @@ export default function Explain({
         setStatus('showcase');
     };
     const explain = (
-        <div className='relative w-full h-full p-16 '>
+        <div className='relative w-full h-full p-2 lg:p-16 '>
             <div className='space-y-4'>
                 <h2 className='text-2xl font-bold'>Anleitung</h2>
                 <div className='flex items-center space-x-4'>
@@ -79,7 +79,7 @@ export default function Explain({
                 </div>
             </div>
             <button
-                className='absolute flex items-center px-2 py-1 text-green-700 border border-green-400 rounded-lg bottom-6 right-6'
+                className='flex items-center px-2 py-1 ml-auto text-green-700 border border-green-400 rounded-lg lg:absolute bottom-6 right-6'
                 onClick={launchShowcase}
             >
                 <p> Los geht&apos;s</p>

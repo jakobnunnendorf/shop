@@ -28,25 +28,33 @@ export default function Profile({
         router.refresh();
     };
     const wrapper = (
-        <section className='flex h-fit flex-col items-center justify-center space-y-8'>
+        <section className='flex flex-col items-center justify-center w-full space-y-8 h-fit '>
             {Greeting}
-            {(editProfile||resetPassword) ? ((editProfile)?  <UpdateProfile /> : <ResetPassword />) : UserInfoPanel}
+            {editProfile || resetPassword ? (
+                editProfile ? (
+                    <UpdateProfile />
+                ) : (
+                    <ResetPassword />
+                )
+            ) : (
+                UserInfoPanel
+            )}
             {!editProfile && !resetPassword && (
-                <div className='md:flex grid grid-rows-3 grid-cols-1 gap-2'>
+                <div className='grid grid-cols-1 grid-rows-3 gap-2 md:flex'>
                     <button
                         onClick={HandleLogout}
-                        className='flex md:w-36 justify-center rounded-xl border border-coastal-blue-10 px-4 py-2 font-bold text-coastal-blue-10 items-center row-start-1'
+                        className='flex items-center justify-center row-start-1 px-4 py-2 font-bold border md:w-36 rounded-xl border-coastal-blue-10 text-coastal-blue-10'
                     >
                         ausloggen
                     </button>
                     <button
-                        className='flex md:w-36 justify-center md:space-x-2 rounded-xl bg-coastal-blue-10 px-4 py-2 font-bold text-white row-start-2'
+                        className='flex justify-center row-start-2 px-4 py-2 font-bold text-white md:w-36 md:space-x-2 rounded-xl bg-coastal-blue-10'
                         onClick={toggleResetPassword}
                     >
                         <span>Passwort zurücksetzen</span>
                     </button>
                     <button
-                        className='flex md:w-36 justify-center md:space-x-2 rounded-xl px-4 py-2 font-bold border border-coastal-blue-10 items-center text-coastal-blue-10 row-start-3'
+                        className='flex items-center justify-center row-start-3 px-4 py-2 font-bold border md:w-36 md:space-x-2 rounded-xl border-coastal-blue-10 text-coastal-blue-10'
                         onClick={toggleEditProfile}
                     >
                         <span>bearbeiten</span>

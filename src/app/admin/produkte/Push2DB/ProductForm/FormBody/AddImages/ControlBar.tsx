@@ -95,7 +95,7 @@ export default function ControlBar({
     );
     return (
         newProduct.imageURL_object[activeColorKey]?.color_name && (
-            <div className='absolute z-20 right-6 top-6'>
+            <div className='absolute z-50 right-6 top-6'>
                 {status === 'showcase' || status === 'ready'
                     ? duringShowcase
                     : status === 'edit'
