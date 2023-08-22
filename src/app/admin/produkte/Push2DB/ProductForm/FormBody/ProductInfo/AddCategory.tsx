@@ -39,24 +39,31 @@ export default function AddCategory() {
     ];
     const addCategory = (
         <div
-            className='flex items-center space-x-2'
+            className='flex items-center w-full space-x-2'
             onSubmit={addCategoryToNewProduct}
         >
-            <label htmlFor='category'>Kategorie:</label>
-            <select
-                id='category'
-                value={categoryDraft ?? ''}
-                onChange={handleCategorySelected}
-            >
-                <option className='text-xs' value=''>
-                    -- auswählen --
-                </option>
-                {categories.map((category) => (
-                    <option key={category[0]} value={category[1]}>
-                        {category[0]}
+            <div className='flex flex-col  bborder'>
+                <label htmlFor='category'>Kategorie:</label>
+                <select
+                    id='category'
+                    value={categoryDraft ?? ''}
+                    onChange={handleCategorySelected}
+                    className='w-full'
+                >
+                    <option className='w-full text-xs' value=''>
+                        -- auswählen --
                     </option>
-                ))}
-            </select>
+                    {categories.map((category) => (
+                        <option
+                            className='w-full'
+                            key={category[0]}
+                            value={category[1]}
+                        >
+                            {category[0]}
+                        </option>
+                    ))}
+                </select>
+            </div>
             <button
                 onClick={addCategoryToNewProduct}
                 className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'

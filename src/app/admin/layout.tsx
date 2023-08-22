@@ -73,7 +73,7 @@ export default function AdminLayout({
                 </h2>
                 {navigationMenu}
             </aside>
-            <section className=' relative w-[calc(100vw-3rem)] py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
+            <section className=' relative w-[calc(100vw-3rem)] lg:py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
                 {children}
             </section>
         </section>
