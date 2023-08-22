@@ -10,6 +10,7 @@ import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
+import NextTopLoader from 'nextjs-toploader';
 
 export const dynamic = 'force-dynamic';
 export default function RootLayout({
@@ -36,6 +37,10 @@ export default function RootLayout({
                                                 </header>
                                             </MobileMenuContextProvider>
                                             <main className='relative w-full min-h-screen top-32 lg:top-24'>
+                                                <NextTopLoader
+                                                    showSpinner={false}
+                                                    color='#0388A6'
+                                                />
                                                 {children}
                                             </main>
                                             <footer className='relative w-full top-32 lg:top-24'>
