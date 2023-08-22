@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function AddProductPage() {
     return (
-        <div className='rborder'>
+        <div className=''>
             <Push2DB />
         </div>
     );

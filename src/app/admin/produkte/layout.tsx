@@ -6,7 +6,7 @@ export default function ProductManagementLayout({
     children: React.ReactNode;
 }) {
     const layout = (
-        <section className='w-full bborder'>
+        <section className='w-full '>
             <NewProductContextProvider>{children}</NewProductContextProvider>
         </section>
     );
