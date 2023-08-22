@@ -16,7 +16,7 @@ export default function ProductPicture({
                     src={imageURL}
                     alt={imageURL}
                     fill
-                    className='object-contain'
+                    className='object-cover'
                 />
             </Link>
         </figure>
