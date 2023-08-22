@@ -27,7 +27,7 @@ export default function SearchBar() {
     return (
         <div
             ref={searchBarRef}
-            className='flex w-full h-8 overflow-hidden border rounded-3xl border-coastal-blue-2 bg-sandy-beige-5 lg:col-span-6 lg:h-full lg:w-full'
+            className='flex w-full h-8 overflow-hidden rounded-3xl border-coastal-blue-2 bg-sandy-beige-5 lg:col-span-6 lg:h-full lg:w-full'
         >
             <LogoButton />
             <SearchInput />
