@@ -16,7 +16,7 @@ export default function ThumbnailRow({
     const amountOfImages = imageURL_array.length;
     // const fillUp = new Array(5 - amountOfImages).fill(null);
     const thumbnailRow = (
-        <ul className='z-50 grid h-24 w-full grid-cols-4 lg:mb-4 lg:w-4/5'>
+        <ul className='z-20 grid w-full h-24 grid-cols-4 lg:mb-4 lg:w-4/5'>
             {imageURL_array.map((imageURL, index) => {
                 const setThisIndexActive = () => {
                     setActiveIndex(index);
@@ -34,7 +34,7 @@ export default function ThumbnailRow({
                                     : ''
                             }`}
                         >
-                            <figure className='relative aspect-square h-full'>
+                            <figure className='relative h-full aspect-square'>
                                 <Image
                                     src={imageURL}
                                     fill
@@ -51,7 +51,7 @@ export default function ThumbnailRow({
                     type='button'
                     onClick={() => setActiveIndex(amountOfImages)}
                 >
-                    <figure className='relative aspect-square h-full'>
+                    <figure className='relative h-full aspect-square'>
                         <FiPlus />
                     </figure>
                 </button>

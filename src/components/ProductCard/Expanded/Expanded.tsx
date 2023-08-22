@@ -25,7 +25,7 @@ export default function Expanded({ product }: { product: product }) {
     };
 
     const expanded = (
-        <div className='grid w-full grid-rows-2 h-4/5 lg:h-full lg:grid-cols-5 lg:grid-rows-none'>
+        <div className='grid w-full grid-rows-2 h-4/5 lg:grid-cols-5 lg:grid-rows-none '>
             <button
                 className='absolute z-10 flex items-center justify-center w-20 h-8 text-sm font-bold text-white left-4 top-4 rounded-3xl bg-coastal-blue-3 lg:hidden'
                 onClick={router.back}
@@ -38,6 +38,10 @@ export default function Expanded({ product }: { product: product }) {
                 setActiveIndex={setActiveIndex}
             />
             <ExpandedInfo product={product} />
+            <div className='hidden py-16 lg:block lg:col-span-5'>
+                <h2 className='px-8 text-2xl font-bold'>Beschreibung</h2>
+                <p className='px-8'>{product.description}</p>
+            </div>
         </div>
     );
 

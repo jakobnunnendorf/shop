@@ -38,7 +38,7 @@ export default function AddCategory() {
         ['Handy-Halterungen', 'phone holder'],
     ];
     const addCategory = (
-        <form
+        <div
             className='flex items-center space-x-2'
             onSubmit={addCategoryToNewProduct}
         >
@@ -63,7 +63,7 @@ export default function AddCategory() {
             >
                 <FiCheck />
             </button>
-        </form>
+        </div>
     );
 
     const category = (
