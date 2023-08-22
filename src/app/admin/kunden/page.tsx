@@ -25,7 +25,7 @@ export default function AdminDashboardUsersList() {
 
     return (
         <>
-            <ul className='grid grid-cols-1 gap-2 p-2 md:grid-cols-1 rborder'>
+            <ul className='grid grid-cols-1 gap-2 p-2 md:grid-cols-1 '>
                 {profiles.map((profile, index) => (
                     <li
                         key={index}

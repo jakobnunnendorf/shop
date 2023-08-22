@@ -66,14 +66,14 @@ export default function AdminLayout({
         </ul>
     );
     const AdminLayout = (
-        <section className='flex w-full bborder'>
+        <section className='flex w-full '>
             <aside className='w-12 h-screen space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
                 <h2 className='hidden mb-8 text-xl font-bold text-center text-slate-400 lg:block'>
                     Admin Panel
                 </h2>
                 {navigationMenu}
             </aside>
-            <section className='rborder relative w-[calc(100vw-3rem)] py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
+            <section className=' relative w-[calc(100vw-3rem)] py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
                 {children}
             </section>
         </section>

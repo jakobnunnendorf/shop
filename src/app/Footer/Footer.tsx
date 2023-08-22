@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Footer() {
     return (
-        <div className='rborder max-w-screen'>
+        <div className=' max-w-screen'>
             <footer className='text-center bg-sandy-beige-4 text-coastal-blue-10 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left'>
                 <div className='flex items-center justify-center p-6 border-b-2 border-neutral-200 dark:border-neutral-500 lg:justify-between'>
                     <div className='hidden mr-12 lg:block'>
