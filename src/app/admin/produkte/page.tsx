@@ -18,8 +18,8 @@ export default async function ProductManagementPage() {
 
     const ProductManagementPageContent = (
         <section className='w-full '>
-            <h1 className='text-center text-3xl'>Produkte verwalten</h1>
-            <div className='grid w-full grid-cols-2 gap-2 lg:grid-cols-4 lg:gap-4 '>
+            <h1 className='py-8 text-3xl text-center'>Produkte verwalten</h1>
+            <div className='grid w-full grid-cols-2 gap-2 px-2 lg:grid-cols-4 lg:gap-4'>
                 <Link href={'/admin/produkte/neues-produkt'}>
                     <ButtonCard />
                 </Link>
