@@ -16,9 +16,7 @@ export default function Push2DB() {
         setNewProduct(blankNewProduct);
     }, [setNewProduct]);
 
-    return (
-        <div className=' h-fit'>
-            <ProductForm />
-        </div>
-    );
+
+    return <ProductForm />;
+
 }

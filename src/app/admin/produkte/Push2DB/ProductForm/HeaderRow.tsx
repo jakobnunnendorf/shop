@@ -116,7 +116,7 @@ export default function HeaderRow() {
                 <FiArrowLeft />
                 <p className='text-lg lg:text-xl'>Zurück</p>
             </Link>
-            <h2 className='text-2xl text-center '>Neues Produkt hinzufügen</h2>
+            <h2 className='text-2xl '>Neues Produkt hinzufügen</h2>
 
             <button
                 type='button'
