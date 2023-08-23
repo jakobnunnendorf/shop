@@ -16,5 +16,7 @@ export default function Push2DB() {
         setNewProduct(blankNewProduct);
     }, [setNewProduct]);
 
+
     return <ProductForm />;
+
 }

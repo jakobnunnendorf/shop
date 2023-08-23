@@ -44,12 +44,12 @@ export default function AdminLayout({
             key: 'bestellungen',
             icon: <FiPackage className='text-slate-500' size={30} />,
         },
-        {
-            route: '/admin/settings',
-            title: 'Settings',
-            key: 'settings',
-            icon: <FiSettings className='text-slate-500' size={30} />,
-        },
+        // {
+        //     route: '/admin/settings',
+        //     title: 'Settings',
+        //     key: 'settings',
+        //     icon: <FiSettings className='text-slate-500' size={30} />,
+        // },
     ];
     const navigationMenu = (
         <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
@@ -73,7 +73,7 @@ export default function AdminLayout({
                 </h2>
                 {navigationMenu}
             </aside>
-            <section className=' relative w-[calc(100vw-3rem)] py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
+            <section className=' relative w-[calc(100vw-3rem)] lg:py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
                 {children}
             </section>
         </section>

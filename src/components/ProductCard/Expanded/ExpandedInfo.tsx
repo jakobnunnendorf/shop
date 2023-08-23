@@ -15,7 +15,7 @@ export default function ExpandedInfo({ product }: { product: product }) {
                 compatibleModels_array={product.compatibleModels}
                 expanded={true}
             />
-            <div>
+            <div className='lg:hidden'>
                 <h3 className='px-8 text-lg font-bold'>Beschreibung</h3>
                 <p className='px-8'>{product.description}</p>
             </div>

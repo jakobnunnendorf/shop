@@ -23,9 +23,9 @@ export default function AddCompatibleModels() {
     };
 
     const addCompatibleModels = (
-        <div>
+        <div className='py-4'>
             <h2>kompatible Modelle</h2>
-            <div className='relative flex items-center w-full space-x-2 '>
+            <div className='relative flex items-center w-full py-2 space-x-2 '>
                 <button
                     type='button'
                     onClick={() => setShowModelDialogue(true)}

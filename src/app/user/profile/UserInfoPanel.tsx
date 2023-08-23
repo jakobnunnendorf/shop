@@ -85,7 +85,7 @@ export default async function UserInfoPanel({
         await fetchAddressData();
 
     const information_grid = (
-        <section className='relative grid h-full w-full grid-cols-12 gap-8 rounded-3xl border p-8 text-xl lg:w-fit'>
+        <section className='relative grid w-full grid-cols-12 gap-8 p-8 text-xl border h-fit rounded-3xl lg:w-fit'>
             <div className='col-span-6 '>
                 <span className='font-bold'>Vorname: </span>
                 <br />
