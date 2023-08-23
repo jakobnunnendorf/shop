@@ -7,5 +7,7 @@ export const metadata = {
 };
 
 export default function AddProductPage() {
+
     return <Push2DB />;
+
 }

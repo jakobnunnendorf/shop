@@ -11,16 +11,18 @@ import AddCompatibleModels from './CompatibleModels/AddCompatibleModels';
 
 export default function ProductInfo() {
     const productInfo = (
-        <div className='p-8 lg:col-span-2'>
+        <div className='px-4 pb-32 lg:p-8 lg:col-span-2'>
             <div>
                 <AddTitle />
-                <AddCategory />
-                <AddStockQuantity />
+                <div className='grid grid-cols-2'>
+                    <AddCategory />
+                    <AddStockQuantity />
+                </div>
                 <AddCompatibleModels />
             </div>
             <AddColors />
             <AddDescription />
-            <div className='flex h-12 items-center justify-around rounded-full '>
+            <div className='flex items-center justify-around h-12 rounded-full '>
                 <Reviews productReviews={[]} />
                 <AddPrice />
             </div>

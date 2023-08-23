@@ -36,11 +36,15 @@ export default function RootLayout({
                                                     <Header />
                                                 </header>
                                             </MobileMenuContextProvider>
+
+                                           
+
                                             <main className='relative w-full min-h-screen top-32 lg:top-24'>
                                                 <NextTopLoader
                                                     showSpinner={false}
                                                     color='#0388A6'
                                                 />
+
                                                 {children}
                                             </main>
                                             <footer className='relative w-full top-32 lg:top-24'>

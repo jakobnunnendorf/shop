@@ -28,7 +28,7 @@ export default function AddImages({
     const defaultColorInitialised =
         newProduct.imageURL_object[activeColorKey]?.color_name;
     const bigImageOrSayToAddColor = defaultColorInitialised ? (
-        <figure className='absolute z-10 w-full h-full '>
+        <figure className='absolute z-0 w-full h-full '>
             <Image
                 src={imageArray[activeIndex]}
                 fill
@@ -70,7 +70,7 @@ export default function AddImages({
 
     const addImages = (
         <div
-            className={`relative lg:col-span-3 ${borderStyle} flex items-end justify-center overflow-hidden rounded-l-3xl`}
+            className={`w-full aspect-square lg:h-full relative lg:col-span-3 ${borderStyle} flex items-end justify-center overflow-hidden lg:rounded-l-3xl `}
         >
             {status !== 'explain' && <StatusBar status={status} />}
             {status !== 'explain' && (

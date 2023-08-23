@@ -45,7 +45,7 @@ export default function ModelDialogue({
     };
 
     const ModelDialogue = (
-        <div className='absolute top-0 z-50 p-2 bg-white border rounded-lg h-fit w-fit '>
+        <div className='absolute top-0 z-20 p-2 bg-white border rounded-lg h-fit w-fit '>
             <h2>Hinzufügen</h2>
 
             <div className='grid grid-cols-2'>

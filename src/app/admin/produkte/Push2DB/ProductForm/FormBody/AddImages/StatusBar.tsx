@@ -24,7 +24,7 @@ export default function StatusBar({ status }: { status: string }) {
      );
 
     return (
-        <div className='absolute right-1/2 top-2 z-50 translate-x-1/2'>
+        <div className='absolute z-10 translate-x-1/2 right-1/2 top-2'>
             {status === 'showcase'
                 ? showcase
                 : status === 'preview'

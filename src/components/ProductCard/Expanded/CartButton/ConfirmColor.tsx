@@ -19,7 +19,7 @@ export default function ConfirmColor({
     };
 
     const confirmColor = (
-        <div className='fixed right-1/2 top-[50vh] z-50 h-fit w-64 -translate-y-1/2 translate-x-1/2 rounded-3xl bg-white shadow-2xl'>
+        <div className='fixed right-1/2 top-[50vh] z-40 h-fit w-64 -translate-y-1/2 translate-x-1/2 rounded-3xl bg-white shadow-2xl'>
             <h2 className='p-4 px-8 text-xl text-center'>
                 Möchtest du das Produkt in {color?.color_name}?
             </h2>

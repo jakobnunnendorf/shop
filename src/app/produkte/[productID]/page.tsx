@@ -14,5 +14,9 @@ export default async function ProductPage({ params: { productID } }: params) {
         .select('*')
         .eq('id', productID)) as sb_fetchResponseObject<product[]>;
 
-    return product ? <Expanded product={product[0]} /> : null;
+    return product ? (
+        <div className='min-h-screen lg:p-16 '>
+            <Expanded product={product[0]} />
+        </div>
+    ) : null;
 }
