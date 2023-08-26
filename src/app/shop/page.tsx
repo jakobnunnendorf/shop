@@ -15,16 +15,16 @@ export default function ShopPage() {
     ) as SearchResultsContextType;
 
     const section = (
-        <section>
-            <div className='grid place-content-center py-16'>
+        <section className='w-full '>
+            <div className='grid py-16 place-content-center lg:hidden'>
                 <Link
                     href='/shop/filter'
-                    className='boarder boarder-coastal-blue-10 rounded-full border border-coastal-blue-10 px-4 py-2 text-xl font-bold text-coastal-blue-10'
+                    className='px-4 py-2 text-xl font-bold border rounded-full boarder boarder-coastal-blue-10 border-coastal-blue-10 text-coastal-blue-10'
                 >
                     Filter auswählen
                 </Link>
             </div>
-            <ul className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>
+            <ul className='grid w-full grid-cols-2 gap-0 lg:grid-cols-5 lg:gap-4 lg:p-4 '>
                 {searchResults?.map((product, index) => {
                     return (
                         <li key={index} className='w-full pb-4'>
