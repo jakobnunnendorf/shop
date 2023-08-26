@@ -18,6 +18,8 @@ export default function ConfirmColor({
         closeConfirmColor();
     };
 
+    console.log(color);
+
     const confirmColor = (
         <div className='fixed right-1/2 top-[50vh] z-40 h-fit w-64 -translate-y-1/2 translate-x-1/2 rounded-3xl bg-white shadow-2xl'>
             <h2 className='p-4 px-8 text-xl text-center'>
@@ -26,7 +28,7 @@ export default function ConfirmColor({
             <div className='grid py-4 place-content-center'>
                 <div>
                     <div
-                        className={`h-8 w-8 rounded-full bg-${color?.tailwind_color}`}
+                        className={`mx-auto h-8 w-8 rounded-full ${color?.tailwind_color}`}
                     ></div>
                     <h3 className='pt-1'>{color?.color_name}</h3>
                 </div>

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { Dispatch, SetStateAction } from 'react';
 import ThumbnailRow from './ThumbnailRow';
-
+//TODO: improve performance for looking at different colors
 export default function ExpandedPicture({
     activeIndex,
     imageURL_array,
