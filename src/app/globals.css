@@ -56,3 +56,11 @@
     text-decoration: transparent;
     background-clip: text;
 }
+
+:root {
+  --coastal-blue: #0388A6;
+  --seafoam-green: #32D9C8;
+  --aquamarine-serenity: #0FBFBF;
+  --turquoise-mist: #0BADBF;
+  --sandy-beige: #F2D5C4;
+}
