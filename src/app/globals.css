@@ -58,9 +58,9 @@
 }
 
 :root {
-  --clr-1: #fff;
-  --clr-2: #073438;
-  --clr-3: #0388A6;
-  --clr-4: #32D9C8;
-  --clr-5: #0FBFBF;
+  --coastal-blue: #0388A6;
+  --seafoam-green: #32D9C8;
+  --aquamarine-serenity: #0FBFBF;
+  --turquoise-mist: #0BADBF;
+  --sandy-beige: #F2D5C4;
 }
