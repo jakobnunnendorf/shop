@@ -5,7 +5,7 @@ export const returnTotalLineItems = (body: checkoutBody): stripeLineItem[] => {
                 price_data: {
                     currency: 'eur',
                     product_data: {
-                        name: item.product.title,
+                        name: `${item.product.title} - ${item.color}`,
                         images: [
                             item.product.imageURL_object.default_color
                                 .imageURL_array[0],

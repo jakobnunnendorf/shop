@@ -1,9 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-    ProductCardContext,
-    ProductCardContextType,
-} from '@globalState/ProductCardContext';
+    ActiveProductContext,
+    ActiveProductContextType,
+} from '@globalState/ActiveProductCardContext';
 import ColorMap from './ColorMap';
 
 export default function ColorRow({
@@ -11,13 +11,18 @@ export default function ColorRow({
 }: {
     imageURL_object: imageURL_object;
 }) {
-    const { activeColorKey, setActiveColorKey } = React.useContext(
-        ProductCardContext
-    ) as ProductCardContextType;
+    const { state, dispatch } = useContext(
+        ActiveProductContext
+    ) as ActiveProductContextType;
+
+    const setActiveColorKey = (color: colorKey) => {
+        dispatch({ type: 'setActiveColorKey', payload: color });
+    };
+
     const colors = Object.values(imageURL_object).filter(
         (color) => color !== null
     ) as ProductInColor[];
-    const activeColor = imageURL_object[activeColorKey];
+    const activeColor = imageURL_object[state.activeColorKey];
     const selectKeyFromColor = (color: ProductInColor): void => {
         const newColorKey = Object.keys(imageURL_object).find(
             (colorKey): colorKey is colorKey => {

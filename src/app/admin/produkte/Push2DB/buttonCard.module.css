@@ -21,11 +21,11 @@
   z-index: -1;
   background: conic-gradient(
     from var(--gradient-angle),
-    var(--clr-3),
-    var(--clr-4),
-    var(--clr-5),
-    var(--clr-4),
-    var(--clr-3)
+    var(--coastal-blue),
+    var(--seafoam-green),
+    var(--aquamarine-serenity),
+    var(--seafoam-green),
+    var(--coastal-blue)
   );
   border-radius: inherit;
   animation: rotation 5s linear infinite;
