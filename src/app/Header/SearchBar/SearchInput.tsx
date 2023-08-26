@@ -37,8 +37,8 @@ export default function SearchInput() {
             <div className='relative flex w-full h-full '>
                 <input
                     type='text'
-                    placeholder='Suche...'
-                    className='w-full h-full px-2 border-l border-coastal-blue-3 bg-sandy-beige-3 text-coastal-blue-10 placeholder-coastal-blue-8 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-coastal-blue-3'
+                    placeholder='Produktsuche...'
+                    className='w-full h-full px-4 text-sm font-bold bg-sandy-beige-3 text-coastal-blue-10 placeholder-coastal-blue-4 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-coastal-blue-3'
                     value={searchFilter}
                     onChange={(e) => updateSearchFilter(e.target.value)}
                     onKeyDown={handleKeyEvent}

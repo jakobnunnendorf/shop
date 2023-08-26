@@ -10,9 +10,9 @@ export default function CartIcon() {
     const { getTotalQuantity } = useContext(CartContext) as CartContextType;
 
     return (
-        <Link href='/warenkorb' className='relative flex h-full items-center '>
+        <Link href='/warenkorb' className='relative flex items-center h-full '>
             <FiShoppingCart size={32} className='text-coastal-blue-10' />
-            <p className='absolute left-full top-0 font-bold text-coastal-blue-8'>
+            <p className='absolute font-bold left-full bottom-1/2 text-coastal-blue-8'>
                 {getTotalQuantity()}
             </p>
         </Link>
