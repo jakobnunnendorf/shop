@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-import supabase from "@utils/supabase"
+import supabase from '@utils/supabase';
 
 interface uploadProduct {
     id: UUID;
@@ -13,6 +13,26 @@ interface uploadProduct {
     dimensions: dimensions;
     imageURL_object: imageURL_object;
 }
+
+export const toggleQueryParam = (
+    currentUrl: string,
+    key: string,
+    value: string
+): string => {
+    const url = new URL(currentUrl);
+    const params = new URLSearchParams(url.search);
+
+    if (params.getAll(key).includes(value)) {
+        const removeValue = params.getAll(key).filter((v) => v !== value);
+        params.delete(key);
+        removeValue.forEach((v) => params.append(key, v));
+    } else {
+        params.append(key, value);
+    }
+
+    url.search = params.toString();
+    return url.toString();
+};
 
 export const fetchProductsFromCategory = async (
     amount: number,

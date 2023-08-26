@@ -1,24 +1,18 @@
-'use client';
 import React from 'react';
-import { FiCheck, FiSquare } from 'react-icons/fi';
-
+import CheckBox from './CheckBox';
 export default function Filter({
+    filterTitle,
     filter,
-    active,
-    toggleFilter,
 }: {
-    filter: string | JSX.Element;
-    active: boolean;
-    toggleFilter: () => void;
+    filterTitle: string;
+    filter: string;
 }) {
+    //Add a second foo parameter.
     const filterElement = (
-        <article className='flex w-full justify-between '>
-            <h3 className='text-sm'>{filter}</h3>
-            <button onClick={toggleFilter}>
-                {active ? <FiCheck /> : <FiSquare />}
-            </button>
+        <article className='flex justify-between w-full '>
+            <h3 className='text-sm'>{filterTitle}</h3>
+            <CheckBox filter={filter} />
         </article>
     );
     return filterElement;
 }
-

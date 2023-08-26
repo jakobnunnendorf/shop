@@ -13,6 +13,7 @@ import {
     FilterContextType,
 } from '@globalState/ActiveFiltersContext';
 import { eur } from '@lib/helperFunctions';
+import { productCategories } from '@lib/helperFunctions';
 
 export type categoryWithTranslation = [productCategory, string];
 export type filterHeading = 'Kategorien' | 'Modelle' | 'Preise' | null;
@@ -63,15 +64,15 @@ export function FilterBarContextProvider({
             />
         );
     });
-    const categoryArray = categories.map((category, index) => {
+    console.log(productCategories);
+    const categoryArray = productCategories.map((category, index) => {
         const toggleThisCategory = () => {
-            toggleCategoryFilter(category[0]);
+            toggleCategoryFilter(category[1]);
         };
         return (
             <Filter
+                filterTitle={category[0]}
                 filter={category[1]}
-                active={categoryFilters.includes(category[0])}
-                toggleFilter={toggleThisCategory}
                 key={index}
             />
         );
@@ -103,14 +104,6 @@ const isPriceFilterActive = (
             activePriceFilter[1] === priceFilter[1]
     );
 };
-export const categories: categoryWithTranslation[] = [
-    ['phone case', 'Handyhüllen'],
-    ['screen protector', 'Panzergläser'],
-    ['charging cable', 'Ladekabel'],
-    ['charging adapter', 'Lade Adapter'],
-    ['tablet case', 'Tablet Hülle'],
-    ['phone holder', 'Handy Halterung'],
-];
 
 const prices = [
     [0, 4.99],
