@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function GuestCheckout({ cart }: { cart: cart_item[] }) {
+    console.log(process.env.NEXT_PUBLIC_URL);
     const router = useRouter();
   const handle_guest_checkout = async () => {
       const data: any = await fetch('/api/checkout/guest', {
