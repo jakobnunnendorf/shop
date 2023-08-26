@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
-import './Home.css';
-import BgBanner from './SlidingAds/BgBanner';
-import LogoGlass from './SlidingAds/LogoGlass';
+import BgBanner from './BgBanner';
+import LogoGlass from './LogoGlass';
 
 export default function Home() {
     const imageLinks = [
