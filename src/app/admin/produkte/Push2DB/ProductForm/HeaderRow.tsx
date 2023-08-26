@@ -23,14 +23,13 @@ export default function HeaderRow() {
 
     const uploadAndReplaceImage = async () => {
         // iterate through each image in the imageURL array of each color
-        const generateUUIDforProduct = () => {
-            const productId = uuidv4() as UUID;
-            setNewProduct({ ...newProduct, id: productId });
-            return productId;
-        };
-        const productID = generateUUIDforProduct(); // create a new UUID for the product
+        const copyOfNewProduct = { ...newProduct };
 
-        const colorKeys = Object.keys(newProduct.imageURL_object) as colorKey[];
+        const productId = uuidv4() as UUID;
+        copyOfNewProduct.id = productId;
+        const colorKeys = Object.keys(
+            copyOfNewProduct.imageURL_object
+        ) as colorKey[];
         const ColorsThatAreNotNullAndHaveAnImage = colorKeys.filter((color) => {
             // create array of all keys where the color is not null
             const colorObject = newProduct.imageURL_object[color];
@@ -39,64 +38,48 @@ export default function HeaderRow() {
             );
         });
 
-        const copyNewProduct = { ...newProduct };
-
         const uploadAndReplaceImageForColor = async (colorKey: colorKey) => {
             const imageArray =
-                newProduct.imageURL_object[colorKey]?.imageURL_array;
-            if (imageArray) {
-                const returnFileForPreviewURL = (previewURL: string): File => {
-                    const fileForPreviewURL = fileStorage[previewURL];
-                    return fileForPreviewURL;
-                };
+                newProduct.imageURL_object[colorKey]?.imageURL_array || [];
 
-                const newImageArray = await Promise.all(
-                    // create an array with the new image URLs
-                    imageArray.map(async (previewURL, index) => {
-                        const fileForPreviewURL: File =
-                            returnFileForPreviewURL(previewURL);
-                        const filePath =
-                            `${newProduct.title}/${colorKey}/${productID}/${index}`
-                                .replace('ü', 'ue')
-                                .replace('ä', 'ae')
-                                .replace('ö', 'oe')
-                                .replace('ß', 'ss')
-                                .replace('Ü', 'Ue')
-                                .replace('Ä', 'Ae')
-                                .replace('Ö', 'Oe')
-                                .replace('ß', 'Ss');
-                        await supabase.storage
-                            .from('productImageBucket')
-                            .upload(filePath, fileForPreviewURL);
-                        const { data } = await supabase.storage
-                            .from('productImageBucket')
-                            .getPublicUrl(filePath);
-                        const publicUrl = data?.publicUrl;
-                        return publicUrl;
-                    })
-                );
-
-                const newImageURLObject = {
-                    ...newProduct.imageURL_object,
-                    [colorKey]: {
-                        ...newProduct.imageURL_object[colorKey],
-                        imageURL_array: newImageArray,
-                    },
-                } as imageURL_object;
-
-                copyNewProduct.imageURL_object = newImageURLObject;
+            let imageIndex = 0;
+            while (imageIndex < imageArray.length) {
+                const previewURL = imageArray[imageIndex];
+                const file = fileStorage[previewURL];
+                const colorName =
+                    newProduct.imageURL_object[colorKey]?.color_name || '';
+                const filePath =
+                    `${newProduct.title}-${productId}/${colorName}/${imageIndex}`
+                        .replace('ü', 'ue')
+                        .replace('ä', 'ae')
+                        .replace('ö', 'oe')
+                        .replace('ß', 'ss')
+                        .replace('Ü', 'Ue')
+                        .replace('Ä', 'Ae')
+                        .replace('Ö', 'Oe')
+                        .replace('ß', 'Ss')
+                        .replace(' ', '-');
+                await supabase.storage
+                    .from('productImageBucket')
+                    .upload(filePath, file);
+                const { data } = await supabase.storage
+                    .from('productImageBucket')
+                    .getPublicUrl(filePath);
+                const publicUrl = data?.publicUrl;
+                imageArray[imageIndex] = publicUrl;
+                imageIndex++;
             }
         };
         for (const colorKey of ColorsThatAreNotNullAndHaveAnImage) {
             await uploadAndReplaceImageForColor(colorKey);
         }
-        setNewProduct(copyNewProduct);
-        return copyNewProduct;
+        return copyOfNewProduct;
     };
 
     const uploadProduct = async () => {
         setLoading(true);
         const product = await uploadAndReplaceImage();
+
         const { error } = await supabase.from('products').insert([product]);
         setLoading(false);
         if (!error) {
@@ -121,7 +104,7 @@ export default function HeaderRow() {
             <button
                 type='button'
                 onClick={() => {
-                    setLoading(true);
+                    // setLoading(true);
                     setTimeout(() => {
                         uploadProduct();
                     }, 10);
@@ -170,3 +153,4 @@ export default function HeaderRow() {
     );
     return headerRow;
 }
+
