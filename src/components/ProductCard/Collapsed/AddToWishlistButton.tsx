@@ -23,12 +23,18 @@ export default function AddToWishlistButton({ product }: { product: product }) {
             onClick={() => {
                 toggleToWishlist();
             }}
-            className={`rounded-full border-2  p-2 shadow-xl hover:bg-pink-400 ${
-                isInWishlist(product) ? `bg-pink-400` : `bg-white`
+            className={`rounded-full border-2  p-2 shadow-xl text-slate-400 hover:text-pink-400 ${
+                isInWishlist(product)
+                    ? ` border-pink-400`
+                    : `bg-white border-white`
             } `}
         >
             <FiHeart
-                className={`${isInWishlist(product) ? `text-white` : ``}`}
+                className={`${
+                    isInWishlist(product)
+                        ? `text-pink-400`
+                        : `text-coastal-blue-10`
+                }`}
             />
         </button>
     );
