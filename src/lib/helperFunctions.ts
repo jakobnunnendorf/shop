@@ -43,7 +43,7 @@ export const fetchProductsFromCategory = async (
             .from('products')
             .select('*')
             .eq('category', category)
-            .limit(amount );
+            .limit(amount);
         return data as product[];
     } else {
         const { data } = await supabase
@@ -119,7 +119,6 @@ export const filterProductArrayByPriceFilters = (
     return filteredProducts;
 };
 
-
 export async function uploadFile_to_supabase_storage(
     bucket: string,
     pathName: string,
@@ -127,15 +126,16 @@ export async function uploadFile_to_supabase_storage(
     success_callback?: () => void,
     error_callback?: () => void
 ) {
-        const { data, error } = await supabase.storage.from(bucket).upload(pathName, file)
-        if (error && error_callback) {
-            error_callback()
-        } else if (success_callback) {
-            success_callback()
-        }
-        return data
+    const { data, error } = await supabase.storage
+        .from(bucket)
+        .upload(pathName, file);
+    if (error && error_callback) {
+        error_callback();
+    } else if (success_callback) {
+        success_callback();
+    }
+    return data;
 }
-
 
 export async function addProduct_to_database(
     newProduct: uploadProduct,
@@ -144,19 +144,20 @@ export async function addProduct_to_database(
     newProduct.id = uuidv4() as UUID;
     const filePath = `image_${newProduct.title}_${newProduct.id}`;
     if (imageFile) {
-            await supabase.storage
-                .from('productImageBucket')
-                .upload(filePath, imageFile);
+        await supabase.storage
+            .from('productImageBucket')
+            .upload(filePath, imageFile);
         const { data: urlResponse } = await supabase.storage
             .from('productImageBucket')
             .getPublicUrl(filePath);
-        const image_url = urlResponse.publicUrl as bucketURL<'ProductImageBucket'>;
+        const image_url =
+            urlResponse.publicUrl as bucketURL<'ProductImageBucket'>;
         newProduct.imageURL_object.default_color.imageURL_array.push(image_url);
-    } 
+    }
     const { data } = await supabase
         .from('products')
         .insert([newProduct as uploadProduct]);
-   
+
     return data;
 }
 
@@ -168,7 +169,8 @@ export function convert_price_string_to_float(price: string) {
 
 export const extractDefaultImage = (product: product) => {
     if (product && product.imageURL_object) {
-        const default_image = product.imageURL_object.default_color.imageURL_array[0];
+        const default_image =
+            product.imageURL_object.default_color.imageURL_array[0];
         return default_image;
     } else {
         return '';
@@ -177,11 +179,128 @@ export const extractDefaultImage = (product: product) => {
 
 export const eur = (price: number): string => {
     return String(price).replace('.', ',') + ' €';
-}
+};
 
-export const returnDefaultPicture = (product:product): string => {
+export const returnDefaultPicture = (product: product): string => {
     const getDefaultImage = (product: product) => {
         return product.imageURL_object.default_color.imageURL_array[0];
     };
     return getDefaultImage(product);
+};
+
+export const getProducts = async (searchParams: {
+    [key: string]: string | string[] | undefined;
+}) => {
+    const categories: string[] = [];
+    switch (typeof searchParams['category']) {
+        case 'string':
+            categories.push(searchParams['category']);
+            break;
+        case 'object':
+            searchParams['category'].forEach((category) =>
+                categories.push(category)
+            );
+        case 'undefined':
+            productCategories.forEach((productCategory) =>
+                categories.push(productCategory[1])
+            );
+            break;
+    }
+    let priceFilters: number[][] = [];
+    switch (typeof searchParams['price']) {
+        case 'string':
+            priceFilters = [
+                searchParams['price'].split('-').map((price) => Number(price)),
+            ];
+            break;
+        case 'object':
+            priceFilters = searchParams['price'].map((priceFilter) =>
+                priceFilter.split('-').map((price) => Number(price))
+            );
+            break;
+        case 'undefined':
+            priceFilters = [[0, 100000]];
+            break;
+    }
+    let colorFilters: string[] = [];
+    switch (typeof searchParams['color']) {
+        case 'string':
+            colorFilters = [searchParams['color']];
+            break;
+        case 'object':
+            colorFilters = searchParams['color'];
+            break;
+        case 'undefined':
+            colorFilters = [];
+            break;
+    }
+    const { data } = (await supabase
+        .from('products')
+        .select('*')
+        .in('category', categories)
+        .limit(30)) as sb_fetchResponseObject<product[]>;
+
+    const applyColourFilter = data?.filter((product) => {
+        if (searchParams['color'] === undefined) return true;
+        const colorKeys = Object.keys(product.imageURL_object);
+        const containsTheColour = colorKeys.some((colorKey) => {
+            const colorName =
+                product.imageURL_object[colorKey]?.color_name || '';
+            return colorFilters.includes(colorName);
+        });
+        return containsTheColour;
+    });
+
+    const products = applyColourFilter?.filter((product) => {
+        return priceFilters.some((priceFilter) => {
+            return (
+                product.price >= priceFilter[0] &&
+                product.price <= priceFilter[1]
+            );
+        });
+    });
+
+    return products;
+};
+
+export const paramString = (searchParams: {
+    [key: string]: string | string[] | undefined;
+}): string => {
+    const sortedParams: string[][] = [];
+    for (const key in searchParams) {
+        if (searchParams[key] !== undefined) {
+            const param = searchParams[key];
+            if (typeof param === 'string') {
+                sortedParams.push([key, param]);
+            }
+            if (Array.isArray(param)) {
+                param.forEach((param) => sortedParams.push([key, param]));
+            }
+        }
+    }
+
+    const params = new URLSearchParams(sortedParams);
+    const searchParamString =
+        params.toString().length > 0 ? params.toString() : '';
+
+    return searchParamString;
+};
+
+export const valuesFromParamString = (paramString: string): string[][] => {
+    const params = new URLSearchParams(paramString);
+    const values: string[][] = [];
+    for (const [key, value] of params.entries()) {
+        values.push([key, value]);
+    }
+    return values;
+};
+
+export const convertCategoryToGerman = (category: string): string => {
+    const categoryInGerman = productCategories.find((productCategory) => {
+        if (productCategory[1] === category) {
+            return productCategory[0];
+        }
+    });
+    if (!categoryInGerman) throw new Error('Category not found');
+    return categoryInGerman[0];
 };
