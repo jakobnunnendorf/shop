@@ -1,35 +1,32 @@
-import Link from 'next/link';
 import ShopGrid from './ShopGrid';
-import { productCategories } from '@lib/helperFunctions';
-export default function ShopPage({
+import { Suspense } from 'react';
+import MobileFilters from './FilterBar/MobileFilters/MobileFilters';
+import { getProducts } from '@lib/helperFunctions';
+import { paramString } from '@lib/helperFunctions';
+import SkeletonGrid from '@components/skeletons/SkeletonGrid';
+import FilterButtons from './FilterBar/FilterButtons';
+
+export default async function ShopPage({
     searchParams,
 }: {
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
-    switch (typeof searchParams['category']) {
-        case 'string':
-            searchParams['category'] = [searchParams['category']];
-            break;
-        case 'undefined':
-            searchParams['category'] = productCategories.map(
-                (productCategory) => productCategory[1]
-            );
-            break;
-    }
+    const products = await getProducts(searchParams);
+
     const section = (
-        <section className='w-full '>
-            <div className='grid py-16 place-content-center lg:hidden'>
-                <Link
-                    href='/shop/filter'
-                    className='px-4 py-2 text-xl font-bold border rounded-full border-coastal-blue-10 text-coastal-blue-10'
-                >
-                    Filter auswählen
-                </Link>
-            </div>
-            <ShopGrid
-                categoryFilters={searchParams['category']}
-                // priceFilters={searchParams['price']}
+        <section className='w-full'>
+            <MobileFilters
+                open={searchParams.filter !== undefined}
+                nOfResults={products?.length ? products.length : 0}
+                paramString={paramString(searchParams)}
             />
+            <FilterButtons searchParams={searchParams} />
+            <h1 className='hidden py-16 text-6xl font-bold text-center gradient-text lg:block text-coastal-blue-10'>
+                Entdecke unsere Produkte
+            </h1>
+            <Suspense fallback={<SkeletonGrid numberOfSkeletons={10} />}>
+                <ShopGrid products={products || []} />
+            </Suspense>
         </section>
     );
     return section;
