@@ -2,6 +2,7 @@
 import React from 'react';
 import ProductCard from '@components/ProductCard/ProductCard';
 import { fetchProductsFromCategory } from '@lib/helperFunctions';
+import Link from 'next/link';
 
 export async function ProductCarousel({
     heading,
@@ -23,9 +24,16 @@ export async function ProductCarousel({
                 products.length > 0 ? 'flex' : 'hidden'
             }`}
         >
-            <h2 className='m-8 text-5xl font-bold gradient-text text-coastal-blue-10 hover:underline'>
-                {heading}
-            </h2>
+            <Link
+                href={{
+                    pathname: '/shop',
+                    query: { category: productCategory },
+                }}
+            >
+                <h2 className='m-8 text-5xl font-bold gradient-text text-coastal-blue-10 hover:underline'>
+                    {heading}
+                </h2>
+            </Link>
             <ul className='flex px-8 pb-8 space-x-4 overflow-x-auto h-fit w-96 snap-x scrollbar-hide lg:w-2/3'>
                 {products?.map((product, index) => {
                     return (

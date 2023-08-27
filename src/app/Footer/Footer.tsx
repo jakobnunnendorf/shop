@@ -1,3 +1,4 @@
+import { productCategories } from '@lib/helperFunctions';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -61,54 +62,23 @@ export default function Footer() {
                                 Produkte
                             </h6>
                             <ul>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Handyhüllen
-                                    </Link>
-                                </li>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Panzergläser
-                                    </Link>
-                                </li>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Ladekabel
-                                    </Link>
-                                </li>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Ladestecker
-                                    </Link>
-                                </li>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Tablet-Taschen
-                                    </Link>
-                                </li>
-                                <li className='mb-4'>
-                                    <Link
-                                        href='/shop'
-                                        className='text-neutral-600 dark:text-neutral-200'
-                                    >
-                                        Handyhalterungen
-                                    </Link>
-                                </li>
+                                {productCategories.map((category, index) => {
+                                    return (
+                                        <li className='mb-4' key={index}>
+                                            <Link
+                                                href={{
+                                                    pathname: '/shop',
+                                                    query: {
+                                                        category: category[1],
+                                                    },
+                                                }}
+                                                className='text-neutral-600 dark:text-neutral-200'
+                                            >
+                                                {category[0]}
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
                         <div className=''>
@@ -224,7 +194,7 @@ export default function Footer() {
                     <span className='text-neutral-600'>© 2023 Copyright:</span>
                     <Link
                         className='font-semibold dark:text-neutral-400'
-                        href='https://tailwind-elements.com/'
+                        href='https://phone2door.com/'
                     >
                         &nbsp;Phone2Door.com
                     </Link>
