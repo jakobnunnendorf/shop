@@ -38,7 +38,7 @@ export function SearchContextProvider({
                 product[]
             >;
             if (error) console.log(error);
-            if (data && data.length > 0) {
+            if (data && data.length > searchResults.length) {
                 setSearchResults(data);
             }
             console.log(data?.length, searchFilter, data);
