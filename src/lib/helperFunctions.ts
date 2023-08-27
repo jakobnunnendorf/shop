@@ -304,3 +304,11 @@ export const convertCategoryToGerman = (category: string): string => {
     if (!categoryInGerman) throw new Error('Category not found');
     return categoryInGerman[0];
 };
+
+export const replaceSpecialCharacters = (string: string): string => {
+    return string
+        .replace('ä', 'ae')
+        .replace('ö', 'oe')
+        .replace('ü', 'ue')
+        .replace('ß', 'ss')
+};

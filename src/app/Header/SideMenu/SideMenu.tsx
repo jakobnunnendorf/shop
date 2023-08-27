@@ -11,9 +11,9 @@ import {
     MobileMenuContext,
     MobileMenuContextType,
 } from '@globalState/MobileMenuContext';
+import { productCategories } from '@lib/helperFunctions';
 
 export default function SideMenu() {
-
     const { isOpen, toggleOpen } = useContext(
         MobileMenuContext
     ) as MobileMenuContextType;
@@ -60,58 +60,22 @@ export default function SideMenu() {
                                 showShopLinks ? 'block' : 'hidden'
                             } h-full w-full text-lg`}
                         >
-                            <Link
-                                href='/shop'
-                                onClick={() =>
-                                    setFilterAndRouteToShop('phone case')
-                                }
-                            >
-                                <li>Handyhüllen</li>
-                            </Link>
-                            <Link
-                                onClick={() =>
-                                    setFilterAndRouteToShop('screen protector')
-                                }
-                                href='/shop'
-                            >
-                                <li>Panzergläser</li>
-                            </Link>
-                            <Link
-                                onClick={() =>
-                                    setFilterAndRouteToShop('charging cable')
-                                }
-                                href='/shop'
-                            >
-                                {' '}
-                                <li>Ladekabel</li>
-                            </Link>
-                            <Link
-                                onClick={() =>
-                                    setFilterAndRouteToShop('charging adapter')
-                                }
-                                href='/shop'
-                            >
-                                {' '}
-                                <li>Ladestecker</li>
-                            </Link>
-                            <Link
-                                onClick={() =>
-                                    setFilterAndRouteToShop('tablet case')
-                                }
-                                href='/shop'
-                            >
-                                {' '}
-                                <li>Tablet-Taschen</li>
-                            </Link>
-                            <Link
-                                onClick={() =>
-                                    setFilterAndRouteToShop('phone holder')
-                                }
-                                href='/shop'
-                            >
-                                {' '}
-                                <li>Handy-Halterungen</li>
-                            </Link>
+                            {productCategories.map((category) => {
+                                return (
+                                    <li>
+                                        <Link
+                                            href={{
+                                                pathname: '/shop',
+                                                query: {
+                                                    category: category[1],
+                                                },
+                                            }}
+                                        >
+                                            {category[0]}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </li>
                     <li className='py-4 '>

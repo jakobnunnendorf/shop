@@ -13,7 +13,6 @@ export function CategoryBlock({
 }: {
     categoryData: CategoryBlockProps;
 }) {
-    console.log(categoryData);
     return (
         <Link
             href={{

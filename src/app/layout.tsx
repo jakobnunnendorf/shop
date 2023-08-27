@@ -5,7 +5,7 @@ import { ActiveProductContextProvider } from '@globalState/ActiveProductCardCont
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
 import { ProductCardContextProvider } from '@globalState/ProductCardContext';
-import { SearchResultsContextProvider } from '@globalState/SearchResultsContext';
+import { SearchContextProvider } from '@globalState/SearchContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
 import { WishlistContextProvider } from '@globalState/WishlistContext';
 import Header from './Header/Header';
@@ -26,33 +26,33 @@ export default function RootLayout({
             <body>
                 <ProductCardContextProvider>
                     <ActiveFiltersContextProvider>
-                        <SearchResultsContextProvider>
-                            <ActiveProductContextProvider>
-                                <WishlistContextProvider>
-                                    <CartContextProvider>
-                                        <SessionContextProvider>
-                                            <MobileMenuContextProvider>
+                        <ActiveProductContextProvider>
+                            <WishlistContextProvider>
+                                <CartContextProvider>
+                                    <SessionContextProvider>
+                                        <MobileMenuContextProvider>
+                                            <SearchContextProvider>
                                                 <header>
                                                     <Header />
                                                 </header>
-                                            </MobileMenuContextProvider>
+                                            </SearchContextProvider>
+                                        </MobileMenuContextProvider>
 
-                                            <main className='relative w-full min-h-screen top-36 lg:top-24'>
-                                                <NextTopLoader
-                                                    showSpinner={false}
-                                                    color='#0388A6'
-                                                />
+                                        <main className='relative w-full min-h-screen top-36 lg:top-24'>
+                                            <NextTopLoader
+                                                showSpinner={false}
+                                                color='#0388A6'
+                                            />
 
-                                                {children}
-                                            </main>
-                                            <footer className='relative w-full top-36 lg:top-24'>
-                                                <Footer />
-                                            </footer>
-                                        </SessionContextProvider>
-                                    </CartContextProvider>
-                                </WishlistContextProvider>
-                            </ActiveProductContextProvider>
-                        </SearchResultsContextProvider>
+                                            {children}
+                                        </main>
+                                        <footer className='relative w-full top-36 lg:top-24'>
+                                            <Footer />
+                                        </footer>
+                                    </SessionContextProvider>
+                                </CartContextProvider>
+                            </WishlistContextProvider>
+                        </ActiveProductContextProvider>
                     </ActiveFiltersContextProvider>
                 </ProductCardContextProvider>
             </body>
