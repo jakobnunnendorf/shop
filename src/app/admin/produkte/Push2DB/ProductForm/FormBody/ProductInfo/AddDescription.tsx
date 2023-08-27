@@ -1,7 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
 import { FiCheck } from 'react-icons/fi';
-import Description from '@components/ProductCase/ExtendedCard/ProductInfo/Description';
 import {
     NewProductContext,
     NewProductContextType,
@@ -23,9 +22,9 @@ export default function AddDescription() {
     };
 
     const addDescription = (
-        <div className='flex justify-center space-x-2 p-4 '>
+        <div className='flex justify-center p-4 space-x-2 '>
             <textarea
-                className='rounded-lg border px-2 py-1'
+                className='px-2 py-1 border rounded-lg'
                 value={descriptionDraft}
                 onChange={(event) => setDescriptionDraft(event.target.value)}
                 placeholder='Produkt Beschreibung eingeben'
@@ -33,7 +32,7 @@ export default function AddDescription() {
 
             <button
                 onClick={addDraftToNewProduct}
-                className='grid h-8 w-8 place-content-center rounded-full border border-green-400'
+                className='grid w-8 h-8 border border-green-400 rounded-full place-content-center'
             >
                 <FiCheck />
             </button>
@@ -42,7 +41,10 @@ export default function AddDescription() {
     return newProduct.description ? (
         <div className='flex space-x-4'>
             <button type='button' onClick={editDescription}>
-                <Description productDescription={newProduct.description} />
+                <div className='lg:hidden'>
+                    <h3 className='px-8 text-lg font-bold'>Beschreibung</h3>
+                    <p className='px-8'>{newProduct.description}</p>
+                </div>
             </button>
         </div>
     ) : (

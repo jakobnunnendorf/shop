@@ -57,14 +57,13 @@ export function FilterBarContextProvider({
         };
         return (
             <Filter
-                filter={`${eur(price[0])} - ${eur(price[1])}`}
-                active={isPriceFilterActive(price, priceFilters)}
-                toggleFilter={toggleThisPriceFilter}
+                filterTitle={`${eur(price[0])} - ${eur(price[1])}`}
+                filterKey='price'
+                filter={`${String(price[0])}-${String(price[1])}`}
                 key={index}
             />
         );
     });
-    console.log(productCategories);
     const categoryArray = productCategories.map((category, index) => {
         const toggleThisCategory = () => {
             toggleCategoryFilter(category[1]);
@@ -72,6 +71,7 @@ export function FilterBarContextProvider({
         return (
             <Filter
                 filterTitle={category[0]}
+                filterKey='category'
                 filter={category[1]}
                 key={index}
             />

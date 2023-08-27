@@ -1,11 +1,9 @@
-import React, { useContext } from 'react';
+'use client';
+import React, { useContext, useState } from 'react';
 import FilterHeading from './FilterHeading';
 import FilterList from './FilterList';
-import {
-    FilterBarContext,
-    FilterBarContextType,
-    filterHeading,
-} from '../../FilterBarContext';
+
+export type filterHeading = 'Kategorien' | 'Modelle' | 'Preise' | null;
 
 export default function FilterSection({
     heading,
@@ -14,30 +12,19 @@ export default function FilterSection({
     heading: filterHeading;
     filters: JSX.Element[] | JSX.Element;
 }) {
-    const { expanded, setExpanded, setMobileSlot } = useContext(
-        FilterBarContext
-    ) as FilterBarContextType;
-
+    const [expanded, setExpanded] = useState<boolean>(false);
     const handleToggleExpanded = () => {
-        if (expanded === heading) {
-            setExpanded(null);
-            setMobileSlot(null);
-            return;
-        } else {
-            setExpanded(heading);
-            setMobileSlot(filters);
-        }
+        setExpanded(!expanded);
     };
-
     const filterSection = (
         <section>
             <FilterHeading
                 heading={heading}
-                expanded={heading === expanded}
+                expanded={expanded}
                 toggleExpanded={handleToggleExpanded}
             />
             <div>
-                {expanded === heading && (
+                {expanded && (
                     <div className=''>
                         {Array.isArray(filters) ? (
                             <FilterList filters={filters} />

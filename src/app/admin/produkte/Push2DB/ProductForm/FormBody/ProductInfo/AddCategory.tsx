@@ -5,7 +5,7 @@ import {
     NewProductContext,
     NewProductContextType,
 } from '@globalState/NewProductContext';
-
+import { productCategories } from '@lib/helperFunctions';
 export default function AddCategory() {
     const { newProduct, setNewProduct } = useContext(
         NewProductContext
@@ -28,15 +28,7 @@ export default function AddCategory() {
             setNewProduct({ ...newProduct, category: null });
         }
     };
-    type categoryType = [string, productCategory][];
-    const categories: categoryType = [
-        ['Handyhüllen', 'phone case'],
-        ['Panzergläser', 'screen protector'],
-        ['Ladekabel', 'charging cable'],
-        ['Ladestecker', 'charging adapter'],
-        ['Tablet-Taschen', 'tablet case'],
-        ['Handy-Halterungen', 'phone holder'],
-    ];
+
     const addCategory = (
         <div
             className='flex items-center w-full space-x-2'
@@ -53,7 +45,7 @@ export default function AddCategory() {
                     <option className='w-full text-xs' value=''>
                         -- auswählen --
                     </option>
-                    {categories.map((category) => (
+                    {productCategories.map((category) => (
                         <option
                             className='w-full'
                             key={category[0]}
