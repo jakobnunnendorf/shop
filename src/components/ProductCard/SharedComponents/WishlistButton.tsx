@@ -1,11 +1,22 @@
 'use client';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import {
     WishlistContext,
     WishlistContextType,
 } from '@globalState/WishlistContext';
-export default function AddToWishlistButton({ product }: { product: product }) {
+
+export default function WishlistButton({
+    product,
+    small,
+}: {
+    product: product;
+    small?: boolean;
+}) {
+    const addThisItemToWishlist = () => {
+        addProductToWishlist(product);
+    };
+
     const {
         addProductToWishlist,
         isInWishlist,
@@ -18,7 +29,16 @@ export default function AddToWishlistButton({ product }: { product: product }) {
             : addProductToWishlist(product);
     };
 
-    return (
+    const wishlistButton = (
+        <button
+            onClick={addThisItemToWishlist}
+            className='flex items-center row-span-1 px-4 py-2 space-x-2 font-bold rounded-full bg-seafoam-green-8 text-coastal-blue-10'
+        >
+            <FiHeart className='font-bold' />
+        </button>
+    );
+
+    const smallWishlistButton = (
         <button
             onClick={() => {
                 toggleToWishlist();
@@ -38,4 +58,6 @@ export default function AddToWishlistButton({ product }: { product: product }) {
             />
         </button>
     );
+
+    return small ? smallWishlistButton : wishlistButton;
 }

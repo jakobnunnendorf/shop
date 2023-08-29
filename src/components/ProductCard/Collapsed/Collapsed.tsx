@@ -1,7 +1,7 @@
 import React from 'react';
-import AddToWishlistButton from './AddToWishlistButton';
 import CollapsedInfo from './CollapsedInfo';
 import CollapsedPicture from './CollapsedPicture';
+import WishlistButton from '../SharedComponents/WishlistButton';
 export default function Collapsed({
     product,
     grid,
@@ -23,7 +23,7 @@ export default function Collapsed({
             <div className='grid w-full h-full grid-rows-5 lg:grid-rows-2'>
                 <CollapsedPicture imageURL={imageURL} productId={product.id} />
                 <div className='absolute mt-1 ml-1'>
-                    <AddToWishlistButton product={product} />
+                    <WishlistButton small product={product} />
                 </div>
                 <CollapsedInfo product={product} />
             </div>

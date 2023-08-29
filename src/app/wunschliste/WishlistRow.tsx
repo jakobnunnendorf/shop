@@ -6,6 +6,7 @@ import {
     WishlistContextType,
 } from '../../globalState/WishlistContext';
 import AddToCartButton from '@components/ProductCard/Collapsed/AddToCartButton';
+import CartButton from '@components/ProductCard/SharedComponents/CartButton/CartButton';
 
 export default function WishlistRow({
     WishlistItem,
@@ -69,7 +70,7 @@ export default function WishlistRow({
                             />
                         </svg>
                     </div>
-                    <AddToCartButton product={WishlistItem.product} />
+                    <CartButton small product={WishlistItem.product} />
                 </div>
             </div>
         </div>
