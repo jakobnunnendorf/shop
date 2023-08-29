@@ -1,8 +1,8 @@
 // src/components/ProductCarousel/ProductCarousel.tsx
 import React from 'react';
-import ProductCard from '@components/ProductCard/ProductCard';
 import { fetchProductsFromCategory } from '@lib/helperFunctions';
 import Link from 'next/link';
+import Collapsed from '@components/ProductCard/Collapsed/Collapsed';
 
 export async function ProductCarousel({
     heading,
@@ -39,7 +39,7 @@ export async function ProductCarousel({
                     return (
                         <li className=' snap-center' key={index}>
                             <div className='w-48 lg:w-64'>
-                                <ProductCard product={product} />
+                                <Collapsed product={product} />
                             </div>
                         </li>
                     );

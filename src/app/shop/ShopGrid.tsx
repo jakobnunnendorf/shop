@@ -1,7 +1,5 @@
 import React from 'react';
-import ProductCard from '@components/ProductCard/ProductCard';
-import supabase from '@utils/supabase';
-import { productCategories } from '@lib/helperFunctions';
+import Collapsed from '@components/ProductCard/Collapsed/Collapsed';
 
 export default async function ShopGrid({ products }: { products: product[] }) {
     return (
@@ -9,7 +7,7 @@ export default async function ShopGrid({ products }: { products: product[] }) {
             {products?.map((product, index) => {
                 return (
                     <li key={index} className='w-full pb-4'>
-                        <ProductCard product={product} grid={true} />
+                        <Collapsed product={product} grid={true} />
                     </li>
                 );
             })}
