@@ -1,55 +1,19 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import Expanded from '@components/ProductCard/Expanded/Expanded';
-import {
-    ActiveFiltersContext,
-    FilterContextType,
-} from '@globalState/ActiveFiltersContext';
-import {
-    SearchResultsContext,
-    SearchResultsContextType,
-} from '@globalState/SearchResultsContext';
+import { SearchContext, SearchContextType } from '@globalState/SearchContext';
 
 export default function PreviewSearchResults() {
-    const supabase = createClientComponentClient();
     const isShopPage = usePathname() === '/shop';
 
-    const { searchFilter } = useContext(
-        ActiveFiltersContext
-    ) as FilterContextType;
+    const { searchResults, searchFilter } = useContext(
+        SearchContext
+    ) as SearchContextType;
 
-    const { searchResults, setSearchResults } = useContext(
-        SearchResultsContext
-    ) as SearchResultsContextType;
-
-    useEffect(() => {
-        if (searchFilter !== '') {
-            const getProducts = async () => {
-                const getSearchProducts = async () => {
-                    const { data: searchResults } = await supabase
-                        .from('products')
-                        .select('*')
-                        .textSearch('title', searchFilter)
-                        .limit(3);
-
-                    return searchResults;
-                };
-
-                const products = (await getSearchProducts()) as product[];
-                setSearchResults(products);
-            };
-            getProducts();
-        }
-    }, [searchFilter, supabase, setSearchResults]);
-
-    const topThreeResults = searchResults.slice(0, 3);
-    const [selectedProduct] = useState<product | null>(null);
     const previewSearchResults = (
         <div
             className={`${
@@ -58,14 +22,17 @@ export default function PreviewSearchResults() {
                 !isShopPage
                     ? 'fixed'
                     : 'hidden'
-            } left-0 top-32 h-fit w-full bg-white`}
+            } left-0 top-16 h-fit w-full lg:h-[calc(100vh-6rem)] lg:top-24 bg-white `}
         >
-            <ul className='pt-4 space-y-2'>
-                {topThreeResults.map((searchResult, index) => {
+            <h2 className='hidden px-4 py-16 text-3xl font-bold text-center text-coastal-blue-10 lg:block'>
+                {searchResults.length} Ergebnisse für "{searchFilter}"
+            </h2>
+            <ul className='pt-4 space-y-2 lg:w-1/2 lg:mx-auto'>
+                {searchResults.map((searchResult, index: number) => {
                     return (
                         <Link href={`/produkte/${searchResult.id}`} key={index}>
                             <li className='grid h-24 grid-cols-5 border-b'>
-                                <figure className='relative w-3/5 m-auto aspect-square'>
+                                <figure className='relative w-3/5 m-auto lg:h-full lg:w-auto aspect-square'>
                                     <Image
                                         src={
                                             searchResult.imageURL_object
@@ -86,7 +53,6 @@ export default function PreviewSearchResults() {
                     );
                 })}
             </ul>
-            {selectedProduct && <Expanded product={selectedProduct} />}
         </div>
     );
     return previewSearchResults;

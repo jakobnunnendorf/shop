@@ -106,18 +106,3 @@ export const blankNewProduct: uploadProductDraft = {
         color_6: null,
     },
 };
-// const colorToTailwind: Record<productColor, tailwind_productColor> = {
-//     schwarz: 'bg-black',
-//     weiß: 'bg-white',
-//     rot: 'bg-red-500',
-//     blau: 'bg-blue-500',
-//     grün: 'bg-green-500',
-//     gelb: 'bg-yellow-500',
-//     lila: 'bg-purple-500',
-//     rosa: 'bg-pink-500',
-//     orange: 'bg-orange-500',
-//     braun: 'bg-[#965a3e]',
-//     grau: 'bg-gray-500',
-//     silber: 'bg-slate-300',
-//     transparent: 'border',
-// };

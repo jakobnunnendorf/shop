@@ -1,9 +1,9 @@
 import React from 'react';
-import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
-import Price from '@components/ProductCard/Price';
-import AddToCartButton from './AddToCartButton';
+import CompatibleModelTags from '@components/ProductCard/SharedComponents/CompatibleModelTags';
+import Price from '@components/ProductCard/SharedComponents/Price';
 import styles from './collapsedInfo.module.css';
 import Link from 'next/link';
+import CartButton from '../SharedComponents/CartButton/CartButton';
 export default function CollapsedInfo({ product }: { product: product }) {
     const collapsedInfo = (
         <div className='flex flex-col justify-between w-full row-span-3 lg:row-span-1'>
@@ -19,7 +19,7 @@ export default function CollapsedInfo({ product }: { product: product }) {
 
             <div className='flex items-center pb-4 justify-evenly'>
                 <Price productPrice={product.price} />
-                <AddToCartButton product={product} />
+                <CartButton product={product} small />
             </div>
         </div>
     );

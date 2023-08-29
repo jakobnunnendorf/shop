@@ -1,9 +1,7 @@
-import ProductCard from '@components/ProductCard/ProductCard';
 import supabase from '@utils/supabase';
-import Push2DB from './Push2DB/Push2DB';
 import Link from 'next/link';
 import ButtonCard from './Push2DB/ButtonCard';
-
+import Collapsed from '@components/ProductCard/Collapsed/Collapsed';
 
 export const revalidate = 0;
 
@@ -13,7 +11,7 @@ export default async function ProductManagementPage() {
         .select()) as sb_fetchResponseObject<product[]>;
 
     const productsArray = products?.map((product, index) => {
-        return <ProductCard key={index} product={product} />;
+        return <Collapsed key={index} product={product} />;
     });
 
     const ProductManagementPageContent = (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { filterHeading } from '@app/shop/FilterBarContext';
+export type filterHeading = 'Kategorien' | 'Modelle' | 'Preise' | null;
+
 
 export default function FilterHeading({
     heading,

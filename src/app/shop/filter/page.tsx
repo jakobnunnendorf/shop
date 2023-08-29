@@ -7,9 +7,5 @@ export const metadata = {
 };
 
 export default function MobileFilterPage() {
-    return (
-        <section className='w-full '>
-            <MobileFilters />
-        </section>
-    );
+    return <section className='w-full '>{/* <MobileFilters /> */}</section>;
 }

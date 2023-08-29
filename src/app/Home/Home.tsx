@@ -1,10 +1,8 @@
-'use client';
+import Image from 'next/image';
+import React from 'react';
 
-import React, { useEffect, useState } from 'react';
-
-import './Home.css';
-import BgBanner from './SlidingAds/BgBanner';
-import LogoGlass from './SlidingAds/LogoGlass';
+import BgBanner from './BgBanner';
+import LogoGlass from './LogoGlass';
 
 export default function Home() {
     const imageLinks = [
@@ -12,24 +10,19 @@ export default function Home() {
         '/hero_sea_shore.png',
         '/hero_extended_yellow.png',
     ];
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex(
-                currentImageIndex === imageLinks.length - 1
-                    ? 0
-                    : currentImageIndex + 1
-            );
-        }, 6000);
-        return () => clearInterval(interval);
-    }, [currentImageIndex, imageLinks.length]);
-
+    const images = imageLinks.map((imageLink) => (
+        <Image
+            src={imageLink}
+            alt='Handyhüllebanner'
+            fill={true}
+            className='object-cover'
+        />
+    ));
     return (
         <div className='relative h-[80vh] lg:h-[500px]'>
             <LogoGlass />
-            <BgBanner image={imageLinks[currentImageIndex]} />
-            <div className='sliding-gradient absolute bottom-0 z-30 h-1 w-full'></div>
+            <BgBanner images={images} />
+            <div className='absolute bottom-0 z-30 w-full h-1 sliding-gradient'></div>
         </div>
     );
 }
-

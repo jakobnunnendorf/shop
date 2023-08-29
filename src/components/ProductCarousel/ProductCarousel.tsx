@@ -1,26 +1,45 @@
 // src/components/ProductCarousel/ProductCarousel.tsx
-'use client';
 import React from 'react';
-import ProductCard from '@components/ProductCard/ProductCard';
+import { fetchProductsFromCategory } from '@lib/helperFunctions';
+import Link from 'next/link';
+import Collapsed from '@components/ProductCard/Collapsed/Collapsed';
 
-export function ProductCarousel({
+export async function ProductCarousel({
     heading,
-    productData,
+    productCategory,
+    amountOfProducts = 10,
 }: {
     heading: string;
-    productData: product[];
+    productCategory?: string;
+    amountOfProducts?: number;
 }) {
+    const products = await fetchProductsFromCategory(
+        amountOfProducts,
+        productCategory
+    );
+
     return (
-        <div className='flex flex-col items-center py-8 lg:py-16 '>
-            <h2 className='m-8 text-5xl font-bold gradient-text text-coastal-blue-10 hover:underline'>
-                {heading}
-            </h2>
+        <div
+            className={`flex-col items-center py-8 lg:py-16 ${
+                products.length > 0 ? 'flex' : 'hidden'
+            }`}
+        >
+            <Link
+                href={{
+                    pathname: '/shop',
+                    query: { category: productCategory },
+                }}
+            >
+                <h2 className='m-8 text-5xl font-bold gradient-text text-coastal-blue-10 hover:underline'>
+                    {heading}
+                </h2>
+            </Link>
             <ul className='flex px-8 pb-8 space-x-4 overflow-x-auto h-fit w-96 snap-x scrollbar-hide lg:w-2/3'>
-                {productData?.map((product, index) => {
+                {products?.map((product, index) => {
                     return (
                         <li className=' snap-center' key={index}>
                             <div className='w-48 lg:w-64'>
-                                <ProductCard product={product} />
+                                <Collapsed product={product} />
                             </div>
                         </li>
                     );

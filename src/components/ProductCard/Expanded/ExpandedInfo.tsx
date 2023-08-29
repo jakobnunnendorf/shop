@@ -1,9 +1,9 @@
 import React from 'react';
-import CompatibleModelTags from '@components/ProductCard/CompatibleModelTags';
-import CartButton from '@components/ProductCard/Expanded/CartButton/CartButton';
+import CompatibleModelTags from '@components/ProductCard/SharedComponents/CompatibleModelTags';
+import CartButton from '@components/ProductCard/SharedComponents/CartButton/CartButton';
 import ColorRow from '@components/ProductCard/Expanded/ColorRow/ColorRow';
-import WishlistButton from '@components/ProductCard/Expanded/WishlistButton';
-import Price from '@components/ProductCard/Price';
+import WishlistButton from '@components/ProductCard/SharedComponents/WishlistButton';
+import Price from '@components/ProductCard/SharedComponents/Price';
 
 export default function ExpandedInfo({ product }: { product: product }) {
     const expandedInfo = (

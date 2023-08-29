@@ -1,38 +1,32 @@
-'use client';
+import ShopGrid from './ShopGrid';
+import { Suspense } from 'react';
+import MobileFilters from './FilterBar/MobileFilters/MobileFilters';
+import { getProducts } from '@lib/helperFunctions';
+import { paramString } from '@lib/helperFunctions';
+import SkeletonGrid from '@components/skeletons/SkeletonGrid';
+import FilterButtons from './FilterBar/FilterButtons';
 
-import Link from 'next/link';
-import { useContext } from 'react';
-import ProductCard from '@components/ProductCard/ProductCard';
-import {
-    SearchResultsContext,
-    SearchResultsContextType,
-} from '@globalState/SearchResultsContext';
-
-export default function ShopPage() {
-    // const [products, setProducts] = useState<product[]>([]);
-    const { searchResults } = useContext(
-        SearchResultsContext
-    ) as SearchResultsContextType;
+export default async function ShopPage({
+    searchParams,
+}: {
+    searchParams: { [key: string]: string | string[] | undefined };
+}) {
+    const products = await getProducts(searchParams);
 
     const section = (
-        <section>
-            <div className='grid place-content-center py-16'>
-                <Link
-                    href='/shop/filter'
-                    className='boarder boarder-coastal-blue-10 rounded-full border border-coastal-blue-10 px-4 py-2 text-xl font-bold text-coastal-blue-10'
-                >
-                    Filter auswählen
-                </Link>
-            </div>
-            <ul className='grid w-full grid-cols-2 gap-0 lg:w-fit lg:grid-cols-5 lg:gap-4 lg:p-4'>
-                {searchResults?.map((product, index) => {
-                    return (
-                        <li key={index} className='w-full pb-4'>
-                            <ProductCard product={product} grid={true} />
-                        </li>
-                    );
-                })}
-            </ul>
+        <section className='w-full'>
+            <MobileFilters
+                open={searchParams.filter !== undefined}
+                nOfResults={products?.length ? products.length : 0}
+                paramString={paramString(searchParams)}
+            />
+            <FilterButtons searchParams={searchParams} />
+            <h1 className='hidden py-16 text-6xl font-bold text-center gradient-text lg:block text-coastal-blue-10'>
+                Entdecke unsere Produkte
+            </h1>
+            <Suspense fallback={<SkeletonGrid numberOfSkeletons={10} />}>
+                <ShopGrid products={products || []} />
+            </Suspense>
         </section>
     );
     return section;

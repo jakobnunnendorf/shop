@@ -107,10 +107,10 @@ type availableColorsType = [productColor, tailwind_productColor][];
 
 const availableColors: availableColorsType = [
     ['schwarz', 'bg-black'],
-    ['weiß', 'bg-white'],
+    ['weiss', 'bg-white'],
     ['rot', 'bg-red-500'],
     ['blau', 'bg-blue-500'],
-    ['grün', 'bg-green-500'],
+    ['gruen', 'bg-green-500'],
     ['gelb', 'bg-yellow-500'],
     ['lila', 'bg-purple-500'],
     ['rosa', 'bg-pink-500'],

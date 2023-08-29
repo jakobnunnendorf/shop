@@ -68,10 +68,10 @@ type deviceCategory =
 
 type productColor =
     | 'schwarz'
-    | 'weiß'
+    | 'weiss'
     | 'rot'
     | 'blau'
-    | 'grün'
+    | 'gruen'
     | 'gelb'
     | 'lila'
     | 'rosa'

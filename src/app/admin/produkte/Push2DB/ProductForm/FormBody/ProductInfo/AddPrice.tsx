@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { FiCheck } from 'react-icons/fi';
-import Price from '@components/ProductCard/Price';
+import Price from '@components/ProductCard/SharedComponents/Price';
 import {
     NewProductContext,
     NewProductContextType,
