@@ -88,7 +88,7 @@
         "msw": "^1.2.1",
         "next-compose-plugins": "^2.2.1",
         "patch-package": "^8.0.0",
-        "postcss": "^8.4.21",
+        "postcss": "^8.4.31",
         "postinstall-postinstall": "^2.1.0",
         "prettier": "latest",
         "prettier-plugin-tailwindcss": "^0.5.3",
