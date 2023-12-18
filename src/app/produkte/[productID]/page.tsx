@@ -4,15 +4,17 @@ import supabase from '@utils/supabase';
 
 type params = {
     params: {
-        productID: string;
+        productId: string;
     };
 };
 
-export default async function ProductPage({ params: { productID } }: params) {
+export default async function ProductPage({ params: { productId } }: params) {
     const { data: product } = (await supabase
         .from('products')
         .select('*')
-        .eq('id', productID)) as sb_fetchResponseObject<product[]>;
+        .eq('id', productId)) as sb_fetchResponseObject<product[]>;
+
+    console.log(productId);
 
     return product ? (
         <div className='min-h-screen lg:p-16 '>

@@ -9,10 +9,10 @@ import { CartContext, CartContextType } from '@globalState/CartContext';
 import ConfirmColor from './ConfirmColor';
 
 export default function CartButton({
-    product,
+    productId,
     small,
 }: {
-    product: product;
+    productId: UUID;
     small?: boolean;
 }) {
     const { addProductToCart } = useContext(CartContext) as CartContextType;
@@ -27,7 +27,7 @@ export default function CartButton({
     const [openConfirmColor, setOpenConfirmColor] = useState(false);
 
     const addThisItemToCart = () => {
-        addProductToCart(product);
+        addProductToCart(productId);
     };
 
     const closeConfirmColor = () => {
@@ -45,7 +45,8 @@ export default function CartButton({
     );
     return openConfirmColor ? (
         <ConfirmColor
-            color={product.imageURL_object[state.activeColorKey]}
+            productId={productId}
+            activeColorKey={state.activeColorKey}
             closeConfirmColor={closeConfirmColor}
             addThisProductToCart={addThisItemToCart}
         />

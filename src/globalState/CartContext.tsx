@@ -5,6 +5,7 @@ import {
     ActiveProductContext,
     ActiveProductContextType,
 } from './ActiveProductCardContext';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export type CartContextType = {
     cart: cart_item[];
@@ -16,7 +17,7 @@ export type CartContextType = {
     clearCart: () => void;
     getTotalQuantity: () => number;
     getSubTotal: () => number;
-    addProductToCart: (product: product) => void;
+    addProductToCart: (productId: UUID) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -36,23 +37,16 @@ export function CartContextProvider({
         setCart([...cart, cartItem]);
     };
 
-    const addProductToCart = (product: product) => {
-        const cartItem = cart.find(
-            (cartItemInCart) =>
-                cartItemInCart.product.id === product.id &&
-                cartItemInCart.color ===
-                    product.imageURL_object[state.activeColorKey]?.color_name
+    const addProductToCart = (newCartItem: cart_item) => {
+        const cartItemExists = cart.find(
+            (cartItem) =>
+                cartItem.productId === newCartItem.productId &&
+                cartItem.color === newCartItem.color
         );
-
-        const selectedColor =
-            product.imageURL_object[state.activeColorKey]?.color_name;
-
-        if (selectedColor) {
-            if (cartItem) {
-                incrementQuantity(cartItem);
-            } else {
-                addCartItem({ product, quantity: 1, color: selectedColor });
-            }
+        if (cartItemExists) {
+            incrementQuantity(newCartItem);
+        } else {
+            addCartItem(newCartItem);
         }
     };
 
@@ -60,7 +54,7 @@ export function CartContextProvider({
         setCart(
             cart.filter(
                 (cartItemInCart) =>
-                    cartItemInCart.product.id !== cartItem.product.id
+                    cartItemInCart.productId !== cartItem.productId
             )
         );
     };
@@ -76,7 +70,7 @@ export function CartContextProvider({
     const incrementQuantity = (cartItem: cart_item) => {
         setCart(
             cart.map((cartItemInCart) => {
-                if (cartItemInCart.product.id === cartItem.product.id) {
+                if (cartItemInCart.productId === cartItem.productId) {
                     return {
                         ...cartItemInCart,
                         quantity: cartItem.quantity + 1,
@@ -92,12 +86,12 @@ export function CartContextProvider({
             (cartItemInCart) =>
                 !(
                     cartItemInCart.quantity < 2 &&
-                    cartItemInCart.product.id === cartItem.product.id
+                    cartItemInCart.productId === cartItem.productId
                 )
         );
         setCart(
             non_zero_cart.map((cartItemInCart) => {
-                if (cartItemInCart.product.id === cartItem.product.id) {
+                if (cartItemInCart.productId === cartItem.productId) {
                     return {
                         ...cartItemInCart,
                         quantity: cartItem.quantity - 1,
@@ -114,10 +108,21 @@ export function CartContextProvider({
         }, 0);
     };
 
-    const getSubTotal = () => {
-        return cart.reduce((total, cartItem) => {
-            return total + cartItem.product.price * cartItem.quantity;
+    const getSubTotal = async () => {
+        const supabase = createClientComponentClient();
+        const productIdArray = cart.map((cartItem) => cartItem.productId);
+        if (productIdArray.length === 0) return 0;
+        const { data: products } = (await supabase
+            .from('products')
+            .select('price')
+            .in('id', productIdArray)) as sb_fetchResponseObject<
+            { price: number }[]
+        >;
+        if (!products) throw new Error('No prices found');
+        const subtotal = products.reduce((total, product) => {
+            return total + product.price * cartItem.quantity;
         }, 0);
+        return subtotal;
     };
 
     return (

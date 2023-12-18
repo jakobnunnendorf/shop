@@ -12,6 +12,7 @@ export default function Home() {
     ];
     const images = imageLinks.map((imageLink) => (
         <Image
+            priority
             src={imageLink}
             alt='Handyhüllebanner'
             fill={true}

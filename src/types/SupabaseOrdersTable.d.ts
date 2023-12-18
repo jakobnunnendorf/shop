@@ -19,8 +19,9 @@ interface customer_details {
 }
 
 interface cart_item {
-    product: product;
+    productId: UUID;
     quantity: number;
+    price: number;
     color: productColor;
 }
 

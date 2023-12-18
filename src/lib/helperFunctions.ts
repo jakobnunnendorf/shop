@@ -39,18 +39,19 @@ export const fetchProductsFromCategory = async (
     category?: string
 ) => {
     if (category) {
-        const { data } = await supabase
+        const { data } = (await supabase
             .from('products')
-            .select('*')
+            .select('id')
             .eq('category', category)
-            .limit(amount);
-        return data as product[];
+            .limit(amount)) as sb_fetchResponseObject<{ id: UUID }[]>;
+        console.log(data);
+        return data;
     } else {
         const { data } = await supabase
             .from('products')
-            .select('*')
-            .limit(amount);
-        return data as product[];
+            .select('id')
+            .limit(amount) as sb_fetchResponseObject<{ id: UUID }[]>;
+        return data;
     }
 };
 

@@ -21,7 +21,7 @@ export async function ProductCarousel({
     return (
         <div
             className={`flex-col items-center py-8 lg:py-16 ${
-                products.length > 0 ? 'flex' : 'hidden'
+                products && products.length > 0 ? 'flex' : 'hidden'
             }`}
         >
             <Link
@@ -39,7 +39,7 @@ export async function ProductCarousel({
                     return (
                         <li className=' snap-center' key={index}>
                             <div className='w-48 lg:w-64'>
-                                <Collapsed product={product} />
+                                <Collapsed productId={product.id} />
                             </div>
                         </li>
                     );

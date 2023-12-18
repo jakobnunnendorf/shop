@@ -1,11 +1,14 @@
 import React from 'react';
+import supabase from '@utils/supabase';
 
-export default function ConfirmColor({
-    color,
+export default async function ConfirmColor({
+    productId,
+    activeColorKey,
     closeConfirmColor,
     addThisProductToCart,
 }: {
-    color: ProductInColor | null;
+    productId: UUID;
+    activeColorKey: string;
     closeConfirmColor: () => void;
     addThisProductToCart: () => void;
 }) {
@@ -17,19 +20,29 @@ export default function ConfirmColor({
     const handleCancelColor = () => {
         closeConfirmColor();
     };
-
+    interface color {
+        name: string;
+        tailwind: string;
+    }
+    const { data: color } = (await supabase
+        .from('products')
+        .select(
+            'name: imageURL_object -> default_color -> color_name, tailwind: imageURL_object -> default_color -> tailwind_color'
+        )
+        .eq('id', productId)
+        .single()) as sb_fetchResponseObject<color>;
 
     const confirmColor = (
         <div className='fixed right-1/2 top-[50vh] z-40 h-fit w-64 -translate-y-1/2 translate-x-1/2 rounded-3xl bg-white shadow-2xl'>
             <h2 className='p-4 px-8 text-xl text-center'>
-                Möchtest du das Produkt in {color?.color_name}?
+                Möchtest du das Produkt in {color?.name}
             </h2>
             <div className='grid py-4 place-content-center'>
                 <div>
                     <div
-                        className={`mx-auto h-8 w-8 rounded-full ${color?.tailwind_color}`}
+                        className={`mx-auto h-8 w-8 rounded-full ${color?.tailwind}`}
                     ></div>
-                    <h3 className='pt-1'>{color?.color_name}</h3>
+                    <h3 className='pt-1'>{color?.name}</h3>
                 </div>
             </div>
             <div className='grid grid-cols-2 pb-4'>
