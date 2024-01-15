@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import FilterTags from './components/FilterTags';
-import { paramString } from '@lib/helperFunctions';
+import { paramString } from '@lib/URLProcessing';
 
 export default function FilterButtons({
     searchParams,

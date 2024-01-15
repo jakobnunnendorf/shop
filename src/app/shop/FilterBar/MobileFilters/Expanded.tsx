@@ -6,7 +6,8 @@ import DeviceTree from '../components/DeviceTree';
 import FilterSection from '../components/FilterSection';
 import { priceArray, categoryArray } from '../components/Filter';
 import FilterTags from '../components/FilterTags';
-import { toggleQueryParam } from '@lib/helperFunctions';
+import { toggleQueryParam } from '@lib/URLProcessing';
+import { uniqueId } from 'lodash';
 
 export default function Expanded({
     modelTree,
@@ -75,7 +76,7 @@ export default function Expanded({
                                 `color=${colorKey}`
                             );
                             return (
-                                <li key={colorKey}>
+                                <li key={uniqueId()}>
                                     <Link href={toggleThisColorParam()}>
                                         <div
                                             className={`mx-auto w-8 h-8 rounded-full ${

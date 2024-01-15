@@ -3,6 +3,7 @@ import React from 'react';
 
 import BgBanner from './BgBanner';
 import LogoGlass from './LogoGlass';
+import ImageComponent from '@components/ImageComponent';
 
 export default function Home() {
     const imageLinks = [
@@ -10,19 +11,20 @@ export default function Home() {
         '/hero_sea_shore.png',
         '/hero_extended_yellow.png',
     ];
-    const images = imageLinks.map((imageLink) => (
-        <Image
-            priority
-            src={imageLink}
-            alt='Handyhüllebanner'
-            fill={true}
-            className='object-cover'
-        />
-    ));
     return (
         <div className='relative h-[80vh] lg:h-[500px]'>
             <LogoGlass />
-            <BgBanner images={images} />
+            <BgBanner
+                images={imageLinks.map((src, index) => (
+                    <ImageComponent
+                        key={index}
+                        src={src}
+                        size='full'
+                        priority={index === 0}
+                        cover
+                    />
+                ))}
+            />
             <div className='absolute bottom-0 z-30 w-full h-1 sliding-gradient'></div>
         </div>
     );

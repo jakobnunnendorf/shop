@@ -5,6 +5,6 @@ export const metadata = {
     description: '',
 };
 
-export default function WishlistPage() {
+export default function WishListPage() {
     return <section>Hier kommt die Wunschliste</section>;
 }

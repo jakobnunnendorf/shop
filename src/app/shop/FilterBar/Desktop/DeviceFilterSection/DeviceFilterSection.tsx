@@ -1,12 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useContext } from 'react';
 import FilterHeading from '@app/shop/FilterBar/components/FilterHeading';
-import {
-    ActiveFiltersContext,
-    FilterContextType,
-} from '@globalState/ActiveFiltersContext';
 import DeviceTree from '../../components/DeviceTree';
 import { modelTree } from '../../helperFunctions';
 

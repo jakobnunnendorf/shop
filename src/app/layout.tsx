@@ -1,13 +1,10 @@
 import './globals.css';
 
-import { ActiveFiltersContextProvider } from '@globalState/ActiveFiltersContext';
-import { ActiveProductContextProvider } from '@globalState/ActiveProductCardContext';
 import { CartContextProvider } from '@globalState/CartContext';
 import { MobileMenuContextProvider } from '@globalState/MobileMenuContext';
-import { ProductCardContextProvider } from '@globalState/ProductCardContext';
 import { SearchContextProvider } from '@globalState/SearchContext';
 import { SessionContextProvider } from '@globalState/SessionContext';
-import { WishlistContextProvider } from '@globalState/WishlistContext';
+import { WishListContextProvider } from '@globalState/WishListContext';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import NextTopLoader from 'nextjs-toploader';
@@ -24,37 +21,31 @@ export default function RootLayout({
                 <link rel='icon' href='/favicon.ico' />
             </head>
             <body>
-                <ProductCardContextProvider>
-                    <ActiveFiltersContextProvider>
-                        <ActiveProductContextProvider>
-                            <WishlistContextProvider>
-                                <CartContextProvider>
-                                    <SessionContextProvider>
-                                        <MobileMenuContextProvider>
-                                            <SearchContextProvider>
-                                                <header>
-                                                    <Header />
-                                                </header>
-                                            </SearchContextProvider>
-                                        </MobileMenuContextProvider>
+                <WishListContextProvider>
+                    <CartContextProvider>
+                        <SessionContextProvider>
+                            <MobileMenuContextProvider>
+                                <SearchContextProvider>
+                                    <header>
+                                        <Header />
+                                    </header>
+                                </SearchContextProvider>
+                            </MobileMenuContextProvider>
 
-                                        <main className='relative w-full min-h-screen top-36 lg:top-24'>
-                                            <NextTopLoader
-                                                showSpinner={false}
-                                                color='#0388A6'
-                                            />
+                            <main className='relative w-full min-h-screen top-36 lg:top-24'>
+                                <NextTopLoader
+                                    showSpinner={false}
+                                    color='#0388A6'
+                                />
 
-                                            {children}
-                                        </main>
-                                        <footer className='relative w-full top-36 lg:top-24'>
-                                            <Footer />
-                                        </footer>
-                                    </SessionContextProvider>
-                                </CartContextProvider>
-                            </WishlistContextProvider>
-                        </ActiveProductContextProvider>
-                    </ActiveFiltersContextProvider>
-                </ProductCardContextProvider>
+                                {children}
+                            </main>
+                            <footer className='relative w-full top-36 lg:top-24'>
+                                <Footer />
+                            </footer>
+                        </SessionContextProvider>
+                    </CartContextProvider>
+                </WishListContextProvider>
             </body>
         </html>
     );

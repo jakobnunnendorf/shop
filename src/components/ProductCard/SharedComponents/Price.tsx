@@ -1,10 +1,10 @@
-import { eur } from '@lib/helperFunctions';
+import { eur } from '@lib/dataManipulation';
 
 export default function Price({ productPrice }: { productPrice: number }) {
     const skeleton = (
         <div className='flex text-lg font-bold'>
-            <div className='h-8 w-4 rounded-full bg-gray-100'></div>,
-            <div className='h-8 w-4 rounded-full bg-gray-100'></div>
+            <div className='w-4 h-8 bg-gray-100 rounded-full'></div>,
+            <div className='w-4 h-8 bg-gray-100 rounded-full'></div>
             &nbsp; €
         </div>
     );

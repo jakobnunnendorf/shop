@@ -1,39 +1,45 @@
 // 2023-07-01 15:46:01.298192+00
-type created_at =
+type CreatedAt =
     `${number}-${number}-${number}T${number}:${number}:${number}.${number}+${number}:${number}`;
 
 // 73a9a442-134c-4cd3-8b07-24528180689b
 type UUID = `${string}-${string}-${string}-${string}-${string}`;
 
-type email = `${string}@${string}.${string}`;
+type Email = `${string}@${string}.${string}`;
 
-type sb_fetchResponseObject<DataObject> = {
+type SbFetchResponseObject<DataObject> = {
     data: DataObject | null;
-    error: supabasefetchResponseError | null;
+    error: SupabaseFetchResponseError | null;
     count: number | null;
     status: number;
     statusText: string;
 };
 
-type supabasefetchResponseError = supabaseErrorObject | null;
+type SupabaseFetchResponseError = SupabaseErrorObject | null;
 
-interface supabaseErrorObject {
+interface SupabaseErrorObject {
     code: string;
     details: string;
     hint: null | string;
     message: string;
 }
 
-type bucketURL<bucketName> =
-    `https://oymlbhawkvsltawcjlrq.supabase.co/storage/v1/object/public/${bucketName}/${string}`;
+type BucketURL<BucketName> =
+    `https://oymlbhawkvsltawcjlrq.supabase.co/storage/v1/object/public/${BucketName}/${string}`;
 
-interface address {
-    city: string;
-    country: string;
-    line1: string;
-    line2: null;
-    postal_code: `${number}`;
-    state: null | string;
+type BucketName = 'profilePictures' | 'productImages';
+
+type ProductTitle = string;
+
+type ProductFilePath = `${ProductTitle}-${UUID}/${ColorKey}/${number}`;
+
+interface Address {
+    city: string | null;
+    country: string | null;
+    line1: string | null;
+    line2: string | null;
+    postalCode: string | null;
+    state: string | null;
 }
 /*
 interface session{
@@ -56,15 +62,15 @@ interface session{
         identities: [
         {
             id: UUID,
-            user_id: UUID
+            userId: UUID
             identity_data: { email: email, sub: UUID },
             provider: string
             last_sign_in_at: string
-            created_at: string
+            createdAt: string
             updated_at: string
         }
     ],
-    created_at: string
+    createdAt: string
     updated_at: string
     },
     expires_at: number
@@ -84,15 +90,15 @@ interface user {
     identities: [
         {
         id: UUID,
-        user_id: UUID
+        userId: UUID
         identity_data: { email: email, sub: UUID },
         provider: string,
         last_sign_in_at: string,
-        created_at: string,
+        createdAt: string,
         updated_at: string
         }
     ],
-    created_at: string,
+    createdAt: string,
     updated_at: string
 }
 
@@ -118,15 +124,15 @@ interface user {
       identities: [
         {
           id: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
-          user_id: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
+          userId: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
           identity_data: { email: 'jnunnendorf@icloud.com', sub: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d' },
           provider: 'email',
           last_sign_in_at: '2023-07-13T08:54:32.831228Z',
-          created_at: '2023-07-13T08:54:32.831266Z',
+          createdAt: '2023-07-13T08:54:32.831266Z',
           updated_at: '2023-07-13T08:54:32.831266Z'
         }
       ],
-      created_at: '2023-07-13T08:54:32.810585Z',
+      createdAt: '2023-07-13T08:54:32.810585Z',
       updated_at: '2023-07-18T18:53:46.165501Z'
     },
     expires_at: 1689710026
@@ -146,15 +152,15 @@ interface user {
     identities: [
       {
         id: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
-        user_id: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
+        userId: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d',
         identity_data: { email: 'jnunnendorf@icloud.com', sub: 'de8d2b0d-db3e-4884-b98a-3451e4137c8d' },
         provider: 'email',
         last_sign_in_at: '2023-07-13T08:54:32.831228Z',
-        created_at: '2023-07-13T08:54:32.831266Z',
+        createdAt: '2023-07-13T08:54:32.831266Z',
         updated_at: '2023-07-13T08:54:32.831266Z'
       }
     ],
-    created_at: '2023-07-13T08:54:32.810585Z',
+    createdAt: '2023-07-13T08:54:32.810585Z',
     updated_at: '2023-07-18T18:53:46.165501Z'
   }
 }*/

@@ -1,155 +1,167 @@
 'use client';
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { createContext, useState } from 'react';
 
-export type WishlistContextType = {
-    Wishlist: Wishlist_item[];
-    addWishlistItem: (WishlistItem: Wishlist_item) => void;
-    removeWishlistItem: (WishlistItem: Wishlist_item) => void;
-    removeWishlistItemWithProduct: (product: product) => void;
-    setWishlistItem: (WishlistItem: Wishlist_item) => void;
-    incrementQuantity: (WishlistItem: Wishlist_item) => void;
-    decrementQuantity: (WishlistItem: Wishlist_item) => void;
-    clearWishlist: () => void;
+export type WishListContextType = {
+    wishList: WishListItem[];
+    addWishListItem: (wishListItem: WishListItem) => void;
+    removeWishListItem: (wishListItem: WishListItem) => void;
+    removeWishListItemWithProduct: (productId: UUID) => void;
+    setWishListItem: (wishListItem: WishListItem) => void;
+    incrementQuantity: (wishListItem: WishListItem) => void;
+    decrementQuantity: (wishListItem: WishListItem) => void;
+    clearWishList: () => void;
     getTotalQuantity: () => number;
-    getSubTotal: () => number;
-    addProductToWishlist: (product: product) => void;
-    isInWishlist: (product: product) => boolean;
+    getSubTotal: () => Promise<number>;
+    addProductToWishList: (productId: UUID) => void;
+    isInWishList: (productId: UUID) => boolean;
 };
 
-export const WishlistContext = createContext<WishlistContextType | null>(null);
+export const wishListContext = createContext<WishListContextType | null>(null);
 
-export function WishlistContextProvider({
+export function WishListContextProvider({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const [Wishlist, setWishlist] = useState<Wishlist_item[]>([]);
+    const [wishList, setWishList] = useState<WishListItem[]>([]);
 
-    const addWishlistItem = (WishlistItem: Wishlist_item) => {
-        setWishlist([...Wishlist, WishlistItem]);
+    const addWishListItem = (wishListItem: WishListItem) => {
+        setWishList([...wishList, wishListItem]);
     };
 
-    const isInWishlist = (product: product) => {
+    const isInWishList = (productId: UUID) => {
         let check = false;
-        for (let i = 0; i < Wishlist.length; i++) {
-            if (Wishlist[i].product.id === product.id) {
+        for (let i = 0; i < wishList.length; i++) {
+            if (wishList[i].productId === productId) {
                 check = true;
             }
         }
         return check;
     };
 
-    const addProductToWishlist = (product: product) => {
-        const WishlistItem = Wishlist.find(
-            (WishlistItemInWishlist) =>
-                WishlistItemInWishlist.product.id === product.id
+    const addProductToWishList = (productId: UUID, color?: ColorKey) => {
+        const wishListItem = wishList.find(
+            (wishListItemInWishList) =>
+                wishListItemInWishList.productId === productId
         );
-        if (!WishlistItem) {
-            addWishlistItem({ product, quantity: 1 });
+        if (!wishListItem) {
+            addWishListItem({
+                productId,
+                quantity: 1,
+                color: color ? color : 'defaultColor',
+            });
         }
     };
 
-    const removeWishlistItem = (WishlistItem: Wishlist_item) => {
-        setWishlist(
-            Wishlist.filter(
-                (WishlistItemInWishlist) =>
-                    WishlistItemInWishlist.product.id !==
-                    WishlistItem.product.id
+    const removeWishListItem = (wishListItem: WishListItem) => {
+        setWishList(
+            wishList.filter(
+                (wishListItemInWishList) =>
+                    wishListItemInWishList.productId !== wishListItem.productId
             )
         );
     };
 
-    const removeWishlistItemWithProduct = (product: product) => {
-        setWishlist(
-            Wishlist.filter(
-                (WishlistItemInWishlist) =>
-                    WishlistItemInWishlist.product.id !== product.id
+    const removeWishListItemWithProduct = (productId: UUID) => {
+        setWishList(
+            wishList.filter(
+                (wishListItemInWishList) =>
+                    wishListItemInWishList.productId !== productId
             )
         );
     };
 
-    const setWishlistItem = (WishlistItem: Wishlist_item) => {
-        setWishlist([WishlistItem]);
+    const setWishListItem = (wishListItem: WishListItem) => {
+        setWishList([wishListItem]);
     };
 
-    const clearWishlist = () => {
-        setWishlist([]);
+    const clearWishList = () => {
+        setWishList([]);
     };
 
-    const incrementQuantity = (WishlistItem: Wishlist_item) => {
-        setWishlist(
-            Wishlist.map((WishlistItemInWishlist) => {
+    const incrementQuantity = (wishListItem: WishListItem) => {
+        setWishList(
+            wishList.map((wishListItemInWishList) => {
                 if (
-                    WishlistItemInWishlist.product.id ===
-                    WishlistItem.product.id
+                    wishListItemInWishList.productId === wishListItem.productId
                 ) {
                     return {
-                        ...WishlistItemInWishlist,
-                        quantity: WishlistItem.quantity + 1,
+                        ...wishListItemInWishList,
+                        quantity: wishListItem.quantity + 1,
                     };
                 }
-                return WishlistItemInWishlist;
+                return wishListItemInWishList;
             })
         );
     };
 
-    const decrementQuantity = (WishlistItem: Wishlist_item) => {
-        const non_zero_Wishlist = Wishlist.filter(
-            (WishlistItemInWishlist) =>
+    const decrementQuantity = (wishListItem: WishListItem) => {
+        const nonZeroWishList = wishList.filter(
+            (wishListItemInWishList) =>
                 !(
-                    WishlistItemInWishlist.quantity < 2 &&
-                    WishlistItemInWishlist.product.id ===
-                        WishlistItem.product.id
+                    wishListItemInWishList.quantity < 2 &&
+                    wishListItemInWishList.productId === wishListItem.productId
                 )
         );
-        setWishlist(
-            non_zero_Wishlist.map((WishlistItemInWishlist) => {
+        setWishList(
+            nonZeroWishList.map((wishListItemInWishList) => {
                 if (
-                    WishlistItemInWishlist.product.id ===
-                    WishlistItem.product.id
+                    wishListItemInWishList.productId === wishListItem.productId
                 ) {
                     return {
-                        ...WishlistItemInWishlist,
-                        quantity: WishlistItem.quantity - 1,
+                        ...wishListItemInWishList,
+                        quantity: wishListItem.quantity - 1,
                     };
                 }
-                return WishlistItemInWishlist;
+                return wishListItemInWishList;
             })
         );
     };
 
     const getTotalQuantity = () => {
-        return Wishlist.reduce((total, WishlistItem) => {
-            return total + WishlistItem.quantity;
+        return wishList.reduce((total, wishListItem) => {
+            return total + wishListItem.quantity;
         }, 0);
     };
 
-    const getSubTotal = () => {
-        return Wishlist.reduce((total, WishlistItem) => {
-            return total + WishlistItem.product.price * WishlistItem.quantity;
-        }, 0);
+    const supabase = createClientComponentClient();
+
+    const getSubTotal = async () => {
+        let index = 0;
+        let cumulativePrice = 0;
+        while (index < wishList.length) {
+            const itemId = wishList[index].productId;
+            const { data: itemPrice, error } = (await supabase
+                .from('products')
+                .select('price')
+                .eq('id', itemId)
+                .single()) as SbFetchResponseObject<number>;
+            cumulativePrice += itemPrice || 0;
+            index++;
+        }
+        return cumulativePrice;
     };
 
     return (
-        <WishlistContext.Provider
+        <wishListContext.Provider
             value={{
-                Wishlist,
-                addWishlistItem,
-                removeWishlistItem,
-                setWishlistItem,
+                wishList,
+                addWishListItem,
+                removeWishListItem,
+                setWishListItem,
                 incrementQuantity,
                 decrementQuantity,
-                clearWishlist,
+                clearWishList,
                 getTotalQuantity,
                 getSubTotal,
-                addProductToWishlist,
-                isInWishlist,
-                removeWishlistItemWithProduct,
+                addProductToWishList,
+                isInWishList,
+                removeWishListItemWithProduct,
             }}
         >
-            {' '}
-            {children}{' '}
-        </WishlistContext.Provider>
+            {children}
+        </wishListContext.Provider>
     );
 }

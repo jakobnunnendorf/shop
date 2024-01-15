@@ -1,23 +1,21 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
-import {
-    ActiveProductContext,
-    ActiveProductContextType,
-} from './ActiveProductCardContext';
+import { getSubTotal } from '@lib/fetchProductData';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createContext, useState } from 'react';
 
 export type CartContextType = {
-    cart: cart_item[];
-    addCartItem: (cartItem: cart_item) => void;
-    removeCartItem: (cartItem: cart_item) => void;
-    setCartItem: (cartItem: cart_item) => void;
-    incrementQuantity: (cartItem: cart_item) => void;
-    decrementQuantity: (cartItem: cart_item) => void;
+    cart: CartItem[];
+    addCartItem: (cartItem: CartItem) => void;
+    removeCartItem: (cartItem: CartItem) => void;
+    setCartItem: (cartItem: CartItem) => void;
+    incrementQuantity: (cartItem: CartItem) => void;
+    decrementQuantity: (cartItem: CartItem) => void;
     clearCart: () => void;
     getTotalQuantity: () => number;
-    getSubTotal: () => number;
-    addProductToCart: (productId: UUID) => void;
+    getCartTotal: () => Promise<number>;
+    addProductToCart: (productId: UUID, color?: ColorKey | null) => void;
+    updateItemColor: (cartItem: CartItem, color: ColorKey) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -27,22 +25,40 @@ export function CartContextProvider({
 }: {
     children: React.ReactNode;
 }) {
-    const { state } = useContext(
-        ActiveProductContext
-    ) as ActiveProductContextType;
+    const [cart, setCart] = useState<CartItem[]>([]);
 
-    const [cart, setCart] = useState<cart_item[]>([]);
-
-    const addCartItem = (cartItem: cart_item) => {
+    const addCartItem = (cartItem: CartItem) => {
         setCart([...cart, cartItem]);
     };
+    const updateItemColor = (cartItem: CartItem, color: ColorKey) => {
+        const updatedCartItem: CartItem = {
+            ...cartItem,
+            color: color,
+        };
+        const updatedCart = cart.map((item) => {
+            if (
+                cartItem.color === item.color &&
+                cartItem.productId === item.productId
+            ) {
+                return updatedCartItem;
+            } else {
+                return item;
+            }
+        });
+        setCart(updatedCart);
+    };
 
-    const addProductToCart = (newCartItem: cart_item) => {
-        const cartItemExists = cart.find(
-            (cartItem) =>
-                cartItem.productId === newCartItem.productId &&
-                cartItem.color === newCartItem.color
+    const addProductToCart = (productId: UUID, color?: ColorKey | null) => {
+        const cartItemExists = cart.find((cartItem) =>
+            color
+                ? cartItem.productId === productId && cartItem.color === color
+                : cartItem.productId === productId
         );
+        const newCartItem: CartItem = {
+            productId: productId,
+            color: color || null,
+            quantity: 1,
+        };
         if (cartItemExists) {
             incrementQuantity(newCartItem);
         } else {
@@ -50,7 +66,7 @@ export function CartContextProvider({
         }
     };
 
-    const removeCartItem = (cartItem: cart_item) => {
+    const removeCartItem = (cartItem: CartItem) => {
         setCart(
             cart.filter(
                 (cartItemInCart) =>
@@ -59,7 +75,7 @@ export function CartContextProvider({
         );
     };
 
-    const setCartItem = (cartItem: cart_item) => {
+    const setCartItem = (cartItem: CartItem) => {
         setCart([cartItem]);
     };
 
@@ -67,7 +83,7 @@ export function CartContextProvider({
         setCart([]);
     };
 
-    const incrementQuantity = (cartItem: cart_item) => {
+    const incrementQuantity = (cartItem: CartItem) => {
         setCart(
             cart.map((cartItemInCart) => {
                 if (cartItemInCart.productId === cartItem.productId) {
@@ -81,8 +97,8 @@ export function CartContextProvider({
         );
     };
 
-    const decrementQuantity = (cartItem: cart_item) => {
-        const non_zero_cart = cart.filter(
+    const decrementQuantity = (cartItem: CartItem) => {
+        const nonZeroCart = cart.filter(
             (cartItemInCart) =>
                 !(
                     cartItemInCart.quantity < 2 &&
@@ -90,7 +106,7 @@ export function CartContextProvider({
                 )
         );
         setCart(
-            non_zero_cart.map((cartItemInCart) => {
+            nonZeroCart.map((cartItemInCart) => {
                 if (cartItemInCart.productId === cartItem.productId) {
                     return {
                         ...cartItemInCart,
@@ -108,21 +124,11 @@ export function CartContextProvider({
         }, 0);
     };
 
-    const getSubTotal = async () => {
-        const supabase = createClientComponentClient();
-        const productIdArray = cart.map((cartItem) => cartItem.productId);
-        if (productIdArray.length === 0) return 0;
-        const { data: products } = (await supabase
-            .from('products')
-            .select('price')
-            .in('id', productIdArray)) as sb_fetchResponseObject<
-            { price: number }[]
-        >;
-        if (!products) throw new Error('No prices found');
-        const subtotal = products.reduce((total, product) => {
-            return total + product.price * cartItem.quantity;
-        }, 0);
-        return subtotal;
+    const supabase = createClientComponentClient();
+
+    const getCartTotal = async (): Promise<number> => {
+        const cartTotal = await getSubTotal(cart);
+        return cartTotal;
     };
 
     return (
@@ -136,8 +142,9 @@ export function CartContextProvider({
                 decrementQuantity,
                 clearCart,
                 getTotalQuantity,
-                getSubTotal,
+                getCartTotal,
                 addProductToCart,
+                updateItemColor,
             }}
         >
             {' '}

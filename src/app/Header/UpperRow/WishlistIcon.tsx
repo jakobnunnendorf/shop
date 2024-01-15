@@ -5,14 +5,14 @@ import React from 'react';
 import { useContext } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import {
-    WishlistContext,
-    WishlistContextType,
-} from '../../../globalState/WishlistContext';
+    wishListContext,
+    WishListContextType,
+} from '@globalState/WishListContext';
 
-export default function WishlistIcon() {
+export default function WishListIcon() {
     const { getTotalQuantity } = useContext(
-        WishlistContext
-    ) as WishlistContextType;
+        wishListContext
+    ) as WishListContextType;
 
     return (
         <Link

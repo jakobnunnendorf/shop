@@ -15,33 +15,33 @@ export async function POST(req: Request) {
 
     const sig = req.headers.get('stripe-signature') || '';
 
-    const body_info_text: string = await req.text();
-    const body_info: any = JSON.parse(body_info_text);
+    const bodyInfoText: string = await req.text();
+    const bodyInfo: any = JSON.parse(bodyInfoText);
 
     let event;
 
     try {
         event = stripe.webhooks.constructEvent(
-            body_info_text,
+            bodyInfoText,
             sig,
             process.env.STRIPE_WEBHOOK_SECRET || ''
         );
-        if (body_info.type === 'checkout.session.completed') {
+        if (bodyInfo.type === 'checkout.session.completed') {
             await supabase
                 .from('orders')
                 .update({
                     status: 'paid',
-                    customer_details: body_info.data.object.customer_details,
+                    customerDetails: bodyInfo.data.object.customerDetails,
                 })
-                .eq('order_id', body_info.data.object.metadata.order_id);
+                .eq('orderId', bodyInfo.data.object.metadata.orderId);
             if (
-                body_info.data.object.metadata.checkout_mode ===
-                'signup_and_checkout'
+                bodyInfo.data.object.metadata.checkoutMode ===
+                'signup and checkout'
             ) {
                 await supabase
                     .from('profiles')
-                    .update({ email: [body_info.data.object.metadata.email] })
-                    .eq('profile_id', body_info.data.object.metadata.user_id);
+                    .update({ email: [bodyInfo.data.object.metadata.email] })
+                    .eq('profileId', bodyInfo.data.object.metadata.userId);
             }
             // TODO: send email to customer
         }
@@ -55,6 +55,6 @@ export async function POST(req: Request) {
         );
     }
 
-    return NextResponse.json(body_info);
+    return NextResponse.json(bodyInfo);
 }
 //4242424242424242

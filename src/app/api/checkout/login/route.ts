@@ -6,9 +6,9 @@ import { returnTotalLineItems } from '../helperFunctions';
 
 export const POST = async (request: NextRequest) => {
     const supabase = createServerComponentClient({ cookies });
-    const body = (await request.json()) as checkoutBody;
+    const body = (await request.json()) as CheckoutBody;
 
-    const totalLineItems = returnTotalLineItems(body);
+    const totalLineItems = await returnTotalLineItems(body);
     const metadata = body.metadata || null;
 
     try {
@@ -27,19 +27,19 @@ export const POST = async (request: NextRequest) => {
                     .insert([
                         {
                             cart: body.cartItems,
-                            user_id: login?.user?.id,
+                            userId: login?.user?.id,
                         },
                     ])
                     .select()
-                    .single()) as sb_fetchResponseObject<order>;
+                    .single()) as SbFetchResponseObject<Order>;
 
                 if (login.user?.id) {
                     await supabase
                         .from('profiles')
-                        .update({ orders: [orderData?.order_id] })
-                        .eq('profile_id', login?.user?.id);
-                    metadata.user_id = login?.user?.id as UUID;
-                    metadata.order_id = orderData?.order_id || null;
+                        .update({ orders: [orderData?.orderId] })
+                        .eq('profileId', login?.user?.id);
+                    metadata.userId = login?.user?.id as UUID;
+                    metadata.orderId = orderData?.orderId || null;
                 }
 
                 if (!sbOrderError) {
@@ -51,7 +51,7 @@ export const POST = async (request: NextRequest) => {
                             success_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb/bestellung-erfolgreich`,
                             cancel_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb`,
                             locale: 'de',
-                            client_reference_id: orderData?.order_id,
+                            client_reference_id: orderData?.orderId,
                             shipping_address_collection: {
                                 allowed_countries: ['DE'],
                             },

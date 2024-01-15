@@ -1,35 +1,58 @@
-export const returnTotalLineItems = (body: checkoutBody): stripeLineItem[] => {
-        const { cartItems } = body;
-        const product_line_items = cartItems.map((item) => {
-            const product_line_item: stripeLineItem = {
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: `${item.product.title} - ${item.color}`,
-                        images: [
-                            item.product.imageURL_object.default_color
-                                .imageURL_array[0],
-                        ],
-                    },
-                    unit_amount: item.product.price * 100,
+import supabase from '@utils/supabase';
+
+export const returnTotalLineItems = async (
+    body: CheckoutBody
+): Promise<StripeLineItem[]> => {
+    const { cartItems } = body;
+
+    let index = 0;
+    const productLineItems: StripeLineItem[] = [];
+    while (index < cartItems.length) {
+        const cartItemId: UUID = cartItems[index].productId;
+        const cartItemColor: string | null = cartItems[index].color;
+        const cartItemQuantity: number = cartItems[index].quantity;
+
+        const { data: productData, error } = (await supabase
+            .from('products')
+            .select('')
+            .eq('id', cartItemId)
+            .single()) as SbFetchResponseObject<Product>;
+
+        if (!productData) {
+            throw new Error(
+                `Couldn't fetch productData: ${JSON.stringify(error)}`
+            );
+        }
+
+        const productLineItem: StripeLineItem = {
+            priceData: {
+                currency: 'eur',
+                productData: {
+                    name: `${productData.title} - ${cartItemColor}`,
+                    images: [
+                        productData.imageURLObject.defaultColor
+                            .imageURLArray[0] || '',
+                    ],
                 },
-                quantity: item.quantity,
-            };
-            return product_line_item;
-        });
-        const delivery_line_item: stripeLineItem[] = [
-            {
-                price_data: {
-                    currency: 'eur',
-                    product_data: {
-                        name: 'Versand',
-                    },
-                    unit_amount: 4.99 * 100,
-                },
-                quantity: 1,
+                unitAmount: productData.price * 100,
             },
-        ];
-        const total_line_items = [...product_line_items, ...delivery_line_item];
-        return total_line_items;
+            quantity: cartItemQuantity,
+        };
+        productLineItems.push(productLineItem);
+    }
+
+    const deliveryLineItem: StripeLineItem[] = [
+        {
+            priceData: {
+                currency: 'eur',
+                productData: {
+                    name: 'Versand',
+                },
+                unitAmount: 4.99 * 100,
+            },
+            quantity: 1,
+        },
+    ];
+    const totalLineItems = [...productLineItems, ...deliveryLineItem];
+    return totalLineItems;
 };
-    

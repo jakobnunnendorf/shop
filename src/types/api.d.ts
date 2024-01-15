@@ -1,21 +1,21 @@
-interface checkoutBody {
-    cartItems: cart_item[];
-    metadata?: checkoutMetadata;
+interface CheckoutBody {
+    cartItems: CartItem[];
+    metadata?: CheckoutMetadata;
 }
-interface checkoutMetadata {
-    email: email;
+interface CheckoutMetadata {
+    email: Email;
     password: string;
-    user_id?: UUID;
-    order_id?: UUID | null;
+    userId?: UUID;
+    orderId?: UUID | null;
 }
-interface stripeLineItem {
-    price_data: {
+interface StripeLineItem {
+    priceData: {
         currency: 'eur';
-        product_data: {
+        productData: {
             name: string;
             images?: string[];
         };
-        unit_amount: number;
+        unitAmount: number;
     };
     quantity: number;
 }

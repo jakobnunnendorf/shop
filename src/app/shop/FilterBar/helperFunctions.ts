@@ -4,7 +4,7 @@ export interface modelTree {
     [key: string]: string[];
 }
 interface resObject {
-    compatibleModels: compatibleModels;
+    compatibleModels: CompatibleModels;
 }
 type resType = { data: resObject[] | null };
 

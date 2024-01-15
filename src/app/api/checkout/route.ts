@@ -3,7 +3,6 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { stripe } from '@lib/stripe';
 
-// const supabase = createServerComponentClient({ cookies });
 
 export const POST = async (request: Request) => {
     const supabase = createServerComponentClient({ cookies });
@@ -11,7 +10,7 @@ export const POST = async (request: Request) => {
     const body: any = await request.json();
     const { cartItems, metadata } = body;
 
-    const product_line_items = cartItems.map((item: any) => ({
+    const productLineItems = cartItems.map((item: any) => ({
         price_data: {
             currency: 'eur',
             product_data: {
@@ -22,7 +21,7 @@ export const POST = async (request: Request) => {
         },
         quantity: item.quantity,
     }));
-    const delivery_line_item = [
+    const deliveryLineItems = [
         {
             price_data: {
                 currency: 'eur',
@@ -35,38 +34,38 @@ export const POST = async (request: Request) => {
         },
     ];
 
-    const customer_email_value = metadata.email ? metadata.email : null;
+    const customerEmailValue = metadata.email ? metadata.email : null;
 
-    const total_line_items = [...product_line_items, ...delivery_line_item];
+    const totalLineItems = [...productLineItems, ...deliveryLineItems];
 
     // if (!userSession) return NextResponse.json({ error: 'You must be logged in to checkout' }, { status: 401 })
 
     try {
         // const order = await supabase.from('orders').insert({...})
-        // const clearCart() = await supabase.from('cart').delete().match({ user_id: userSession.user.id })...
+        // const clearCart() = await supabase.from('cart').delete().match({ userId: userSession.user.id })...
         const { data: orderData }: { data: any } = await supabase //TODO: add checks if signup or login worked
             .from('orders')
             .insert([{ cart: cartItems }])
             .select()
             .single();
-        metadata.order_id = orderData?.order_id; // add order id to metadata
+        metadata.orderId = orderData?.orderId; // add order id to metadata
 
-        // for signup_and_checkout, create user and add order id to profile
-        if (metadata.checkout_mode === 'signup_and_checkout') {
-            const { data: signed_up_user } = await supabase.auth.signUp({
+        // for signup and checkout, create user and add order id to profile
+        if (metadata.checkoutMode === 'signup and checkout') {
+            const { data: signedUpUser } = await supabase.auth.signUp({
                 email: metadata.email,
                 password: metadata.password,
             });
             await supabase
                 .from('profiles')
-                .update({ orders: [orderData?.order_id] })
-                .eq('profile_id', signed_up_user?.user?.id);
-            metadata.user_id = signed_up_user?.user?.id; // add user id to metadata
+                .update({ orders: [orderData?.orderId] })
+                .eq('profileId', signedUpUser?.user?.id);
+            metadata.userId = signedUpUser?.user?.id; // add user id to metadata
         }
 
         // if user exists he may already have existing orders and we need to push the order id
-        else if (metadata.checkout_mode === 'login_and_checkout') {
-            const { data: logged_in_user } =
+        else if (metadata.checkoutMode === 'login and checkout') {
+            const { data: loggedInUser } =
                 await supabase.auth.signInWithPassword({
                     email: metadata.email,
                     password: metadata.password,
@@ -74,30 +73,30 @@ export const POST = async (request: Request) => {
             const { data: existingOrders } = await supabase
                 .from('profiles')
                 .select('orders')
-                .eq('profile_id', logged_in_user?.user?.id);
+                .eq('profileId', loggedInUser?.user?.id);
             // if user has existing orders, add the new order id to the array
-            const updated_Orders_Array = existingOrders
-                ? [...existingOrders, orderData?.order_id]
-                : orderData?.order_id;
+            const updatedOrdersArray = existingOrders
+                ? [...existingOrders, orderData?.orderId]
+                : orderData?.orderId;
             await supabase
                 .from('profiles')
-                .update({ orders: updated_Orders_Array })
-                .eq('profile_id', logged_in_user?.user?.id);
+                .update({ orders: updatedOrdersArray })
+                .eq('profileId', loggedInUser?.user?.id);
         }
 
         const checkOutSession = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
-            line_items: total_line_items,
+            line_items: totalLineItems,
             mode: 'payment',
             success_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb/bestellung-erfolgreich`,
             cancel_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb`,
             locale: 'de',
-            client_reference_id: orderData?.order_id,
+            client_reference_id: orderData?.orderId,
             shipping_address_collection: {
                 allowed_countries: ['DE'],
             },
             metadata: metadata,
-            customer_email: customer_email_value,
+            customer_email: customerEmailValue,
         });
 
         return NextResponse.json({ url: checkOutSession.url });

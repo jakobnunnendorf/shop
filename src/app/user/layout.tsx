@@ -11,10 +11,11 @@ import {
 import { ProfileInfoContextProvider } from '@globalState/ProfileInfoContext';
 import { UserContextProvider } from '@globalState/UserContext';
 export const dynamic = 'force-dynamic';
+import { uniqueId } from 'lodash';
 
 export const metadata = {
-    title: 'title_string',
-    description: 'description_string',
+    title: 'titleString',
+    description: 'descriptionString',
 };
 
 export default async function UserLayout({
@@ -30,7 +31,7 @@ export default async function UserLayout({
     const { data: profileData } = await supabase
         .from('profiles')
         .select()
-        .eq('profile_id', user?.id)
+        .eq('profileId', user?.id)
         .single();
     const userRole = profileData?.role;
     const linkedPages = [
@@ -47,7 +48,7 @@ export default async function UserLayout({
             icon: <FiPackage className='text-slate-500' size={30} />,
         },
         {
-            route: '/Wishlist',
+            route: '/WishList',
             title: 'Wunschliste',
             key: 'wishlist',
             icon: <FiHeart className='text-slate-500' size={30} />,
@@ -63,7 +64,10 @@ export default async function UserLayout({
         <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
             {userRole === 'admin' && (
                 <Link href='/admin'>
-                    <li className='flex items-center space-x-2 '>
+                    <li
+                        key={uniqueId()}
+                        className='flex items-center space-x-2 '
+                    >
                         <span className=''>
                             <FiCompass className='text-slate-500' size={30} />
                         </span>
@@ -73,7 +77,10 @@ export default async function UserLayout({
             )}
             {linkedPages.map((page) => (
                 <Link href={page.route} key={page.route}>
-                    <li className='flex items-center space-x-2 '>
+                    <li
+                        key={uniqueId()}
+                        className='flex items-center space-x-2 '
+                    >
                         <span className=''>{page.icon}</span>
                         <span className='hidden text-xl lg:inline'>
                             {page.title}
@@ -86,33 +93,48 @@ export default async function UserLayout({
     const mobileMenu = (
         <nav className='fixed bottom-0 grid w-full grid-flow-col py-4 text-xs font-bold text-white list-none h-28 rounded-t-3xl bg-slate-700 lg:hidden'>
             <Link href='/user'>
-                <li className='flex flex-col items-center space-y-2'>
+                <li
+                    key={uniqueId()}
+                    className='flex flex-col items-center space-y-2'
+                >
                     <FiUser className='text-slate-300' size={30} />
                     <div>Profil</div>
                 </li>
             </Link>
             <Link href='/user/bestellungen'>
-                <li className='flex flex-col items-center space-y-2'>
+                <li
+                    key={uniqueId()}
+                    className='flex flex-col items-center space-y-2'
+                >
                     <FiPackage className='text-slate-300' size={30} />
                     <div>Bestellungen</div>
                 </li>
             </Link>
             {userRole === 'admin' && (
                 <Link href='/admin'>
-                    <li className='flex flex-col items-center space-y-2'>
+                    <li
+                        key={uniqueId()}
+                        className='flex flex-col items-center space-y-2'
+                    >
                         <FiCompass className='text-slate-300' size={30} />
                         <div>Admin</div>
                     </li>
                 </Link>
             )}
             <Link href='/wunschliste'>
-                <li className='flex flex-col items-center space-y-2'>
+                <li
+                    key={uniqueId()}
+                    className='flex flex-col items-center space-y-2'
+                >
                     <FiHeart className='text-slate-300' size={30} />
                     <div>Wunschliste</div>
                 </li>
             </Link>
             <Link href='/user/einstellungen'>
-                <li className='flex flex-col items-center space-y-2'>
+                <li
+                    key={uniqueId()}
+                    className='flex flex-col items-center space-y-2'
+                >
                     <FiSettings className='text-slate-300' size={30} />
                     <div>Einstellungen</div>
                 </li>

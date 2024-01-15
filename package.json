@@ -39,16 +39,19 @@
         "emailjs": "^4.0.2",
         "lodash": "^4.17.21",
         "micro": "^10.0.1",
-        "next": "^13.4.10",
+        "next": "^14.0.4",
         "nextjs-toploader": "^1.4.2",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "node": "^21.2.0",
+        "reaact": "^0.0.1-security",
+        "react": "^18.3.0-canary-c5b937576-20231219",
+        "react-dom": "^18.3.0-canary-c5b937576-20231219",
         "react-icons": "^4.8.0",
         "react-toastify": "^9.1.3",
         "stripe": "^13.2.0",
         "tailwind-merge": "^1.10.0",
         "tailwind-scrollbar-hide": "^1.1.7",
-        "uuid": "^9.0.0"
+        "uuid": "^9.0.0",
+        "zod": "^3.22.4"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
@@ -67,8 +70,8 @@
         "@total-typescript/ts-reset": "^0.5.1",
         "@types/jest": "^29.5.1",
         "@types/node": "^20.5.1",
-        "@types/react": "^18.2.12",
-        "@types/react-dom": "^18.0.11",
+        "@types/react": "^18.2.45",
+        "@types/react-dom": "^18.2.18",
         "@types/uuid": "^9.0.2",
         "@typescript-eslint/eslint-plugin": "^6.4.1",
         "@typescript-eslint/parser": "^6.4.1",
@@ -76,7 +79,7 @@
         "autoprefixer": "^10.4.14",
         "cross-env": "^7.0.3",
         "eslint": "8.47.0",
-        "eslint-config-next": "^13.4.4",
+        "eslint-config-next": "^14.0.4",
         "eslint-config-prettier": "^9.0.0",
         "eslint-config-react-app": "^7.0.1",
         "eslint-plugin-import": "^2.27.5",
@@ -101,7 +104,7 @@
         "vitest": "^0.34.2"
     },
     "engines": {
-        "node": ">=18.15.0"
+        "node": "^21.2.0"
     },
     "packageManager": "yarn@1.22.19"
 }

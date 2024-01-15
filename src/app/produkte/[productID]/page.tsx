@@ -1,24 +1,48 @@
 import React from 'react';
-import Expanded from '@components/ProductCard/Expanded/Expanded';
-import supabase from '@utils/supabase';
+import NavigateBack from './NavigateBack';
+import ExpandedPicture from '@components/ProductCard/Expanded/Images/ExpandedPicture/ExpandedPicture';
+import ExpandedInfo from '@components/ProductCard/Expanded/ExpandedInfo';
+import Description from './Description';
 
-type params = {
-    params: {
-        productId: string;
-    };
+type Params = {
+    productId: string;
 };
 
-export default async function ProductPage({ params: { productId } }: params) {
-    const { data: product } = (await supabase
-        .from('products')
-        .select('*')
-        .eq('id', productId)) as sb_fetchResponseObject<product[]>;
-
-    console.log(productId);
-
-    return product ? (
+export default async function ProductPage({
+    params: { productId },
+    searchParams,
+}: {
+    params: Params;
+    searchParams?: { [key: string]: string | string[] | undefined };
+}) {
+    if (typeof searchParams?.colorKey === 'object') {
+        throw new Error('More than one color selected.');
+    }
+    if (typeof searchParams?.activeIndex === 'object') {
+        throw new Error('More than one index selected.');
+    }
+    const activeColorKey: ColorKey =
+        (searchParams?.colorKey as ColorKey) || 'defaultColor';
+    const activeIndex: number =
+        typeof searchParams?.activeIndex === 'string'
+            ? parseInt(searchParams.activeIndex)
+            : 0;
+    const page = (
         <div className='min-h-screen lg:p-16 '>
-            <Expanded product={product[0]} />
+            <div className='grid w-full grid-rows-2 h-4/5 lg:grid-cols-5 lg:grid-rows-none '>
+                <NavigateBack />
+                <ExpandedPicture
+                    productId={productId as UUID}
+                    activeColorKey={activeColorKey}
+                    activeIndex={activeIndex}
+                />
+                <ExpandedInfo
+                    productId={productId as UUID}
+                    activeColorKey={activeColorKey}
+                />
+                <Description productId={productId as UUID} />
+            </div>
         </div>
-    ) : null;
+    );
+    return page;
 }

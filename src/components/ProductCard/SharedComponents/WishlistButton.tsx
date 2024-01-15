@@ -2,62 +2,61 @@
 import React, { useContext } from 'react';
 import { FiHeart } from 'react-icons/fi';
 import {
-    WishlistContext,
-    WishlistContextType,
-} from '@globalState/WishlistContext';
+    wishListContext,
+    WishListContextType,
+} from '@globalState/WishListContext';
 
-export default function WishlistButton({
-    product,
+export default function WishListButton({
+    productId,
     small,
 }: {
-    product: product;
+    productId: UUID;
     small?: boolean;
 }) {
-    const addThisItemToWishlist = () => {
-        addProductToWishlist(product);
+    const addThisItemToWishList = () => {
+        addProductToWishList(productId);
     };
 
     const {
-        addProductToWishlist,
-        isInWishlist,
-        removeWishlistItemWithProduct,
-    } = useContext(WishlistContext) as WishlistContextType;
+        addProductToWishList,
+        isInWishList,
+        removeWishListItemWithProduct,
+    } = useContext(wishListContext) as WishListContextType;
 
-    const toggleToWishlist = () => {
-        isInWishlist(product)
-            ? removeWishlistItemWithProduct(product)
-            : addProductToWishlist(product);
+    const toggleToWishList = () => {
+        isInWishList(productId)
+            ? removeWishListItemWithProduct(productId)
+            : addProductToWishList(productId);
     };
 
     const wishlistButton = (
         <button
-            onClick={addThisItemToWishlist}
+            onClick={addThisItemToWishList}
             className='flex items-center row-span-1 px-4 py-2 space-x-2 font-bold rounded-full bg-seafoam-green-8 text-coastal-blue-10'
         >
-            <FiHeart className='font-bold' />
+            <FiHeart className='font-bold ' />
         </button>
     );
 
-    const smallWishlistButton = (
+    const smallWishListButton = (
         <button
             onClick={() => {
-                toggleToWishlist();
+                toggleToWishList();
             }}
-            className={`rounded-full border-2  p-2 shadow-xl text-slate-400 hover:text-pink-400 ${
-                isInWishlist(product)
+            className={`rounded-full border-2 p-2 shadow-xl text-slate-400 ${
+                isInWishList(productId)
                     ? ` border-pink-400`
                     : `bg-white border-white`
             } `}
         >
             <FiHeart
-                className={`${
-                    isInWishlist(product)
+                className={`hover:text-pink-400 ${
+                    isInWishList(productId)
                         ? `text-pink-400`
                         : `text-coastal-blue-10`
                 }`}
             />
         </button>
     );
-
-    return small ? smallWishlistButton : wishlistButton;
+    return small ? smallWishListButton : wishlistButton;
 }

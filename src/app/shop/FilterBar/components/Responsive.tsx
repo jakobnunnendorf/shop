@@ -9,7 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import ClearFilters from './ClearFilters';
 import { categoryArray, priceArray } from './Filter';
 import FilterTags from './FilterTags';
-import { valuesFromParamString } from '@lib/helperFunctions';
+import { valuesFromParamString } from '@lib/URLProcessing';
 
 export default function Responsive({ modelTree }: { modelTree: modelTree }) {
     const searchParams = useSearchParams();

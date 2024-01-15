@@ -1,50 +1,32 @@
-'use client'
-
-import React, { useState } from 'react';
+import React from 'react';
+import ChangeOrderStatus from './ChangeOrderStatus';
+import Items from './Items';
 import supabase from '@utils/supabase';
-import CartRow from '@app/warenkorb/CartRow';
+import OrderDetails from './OrderDetails';
+import { eur } from '@lib/dataManipulation';
+import { getSubTotal } from '@lib/fetchProductData';
+import SubTotal from './SubTotal';
 
 type params = {
     params: {
-        orderID: string;
+        orderId: UUID;
     };
 };
 
-export default async function OrderPage( {params: {orderID} } : params) {
-
-    const { data: order } = await supabase
-        .from('orders')
-        .select('*')
-        .eq('order_id', orderID)
+export default async function OrderPage({ params: { orderId } }: params) {
+    const { data: orderStatusObject } = await supabase
+        .from('products')
+        .select('status')
         .single();
-    
-    const handleStatusChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const { } = await supabase
-        .from('orders')
-        .update({ status: e.target.value })
-        .eq('order_id', orderID);
-    };
-
+    const { status } = orderStatusObject || { status: 'unbezahlt' };
     return (
         <section className='w-full h-full'>
-            <div className=''>
-                <CartRow cartItem={order.cart[0]}/>
-            </div>
-            <div className='flex items-center justify-end'>
-                <span className='font-bold text-1/2 text-coastal-blue-8'>Status</span>
-                
-                <select className='w-48 p-2 ml-4 font-bold border-2 rounded-full text-1/2 text-coastal-blue-5' onChange={handleStatusChange} defaultValue={order.status}>
-                    <option value="paid">paid</option>
-                    <option value="unpaid">unpaid</option>
-                    <option value="shipped">shipped</option>
-                    <option value="dispatched">dispatched</option>
-                    <option value="review-written">review written</option>
-                </select>
+            <OrderDetails orderId={orderId} />
+            <Items orderId={orderId} />
+            <div className='flex justify-end gap-8 px-8 items-center'>
+                <ChangeOrderStatus orderId={orderId} status={status} />
+                <SubTotal orderId={orderId} />
             </div>
         </section>
-    ) 
-    //     : 
-    // (
-    //     <span>Error, product couldn't be found!</span>
-    // ); 
+    );
 }

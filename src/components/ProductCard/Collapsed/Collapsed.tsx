@@ -1,8 +1,7 @@
 import React from 'react';
 import CollapsedInfo from './CollapsedInfo';
-import CollapsedPicture from './CollapsedPicture';
-import WishlistButton from '../SharedComponents/WishlistButton';
-import supabase from '@utils/supabase';
+import CollapsedPicture from './CollapsedPicture/CollapsedPicture';
+import WishListButton from '../SharedComponents/WishListButton';
 
 export default async function Collapsed({
     productId,
@@ -22,8 +21,8 @@ export default async function Collapsed({
         >
             <div className='grid w-full h-full grid-rows-5 lg:grid-rows-2'>
                 <CollapsedPicture productId={productId} />
-                <div className='absolute mt-1 ml-1'>
-                    <WishlistButton small productId={productId} />
+                <div className='absolute mt-1 ml-1 '>
+                    <WishListButton small productId={productId} />
                 </div>
                 <CollapsedInfo productId={productId} />
             </div>

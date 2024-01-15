@@ -1,11 +1,12 @@
 'use server';
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs';
+import supabase from '@utils/supabase';
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
-const supabase = createServerActionClient({ cookies });
 
-export const get_profile_id = async () => {
+export const getProfileId = async () => {
+    const supabase = createServerActionClient({ cookies });
     const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
@@ -13,62 +14,59 @@ export const get_profile_id = async () => {
     return currentSession?.user?.id;
 };
 
-export const check_if_adress_exists = async (
-    type: string,
-    profile_id: string
-) => {
+export const checkIfAdressExists = async (type: string, profileId: string) => {
     const { data: address } = await supabase
         .from('addresses')
         .select('*')
-        .eq('user_id', profile_id)
+        .eq('userId', profileId)
         .eq('type', type)
         .single();
     return address ? true : false;
 };
 
-async function update_or_insert_address(
+async function updateOrInsertAddress(
     type: string,
     newAdress: object,
-    profile_id: string
+    profileId: string
 ) {
-    const address_exists = await check_if_adress_exists(type, profile_id);
+    const addressExists = await checkIfAdressExists(type, profileId);
 
-    const newAdress_filtered = Object.fromEntries(
+    const newAdressFiltered = Object.fromEntries(
         Object.entries(newAdress).filter(([value]) =>
             value ? value.length > 0 : false
         )
     );
-    if (address_exists) {
+    if (addressExists) {
         await supabase
             .from('addresses')
-            .update(newAdress_filtered)
-            .eq('user_id', profile_id)
+            .update(newAdressFiltered)
+            .eq('userId', profileId)
             .eq('type', type);
     } else {
         await supabase.from('addresses').insert([
             {
-                user_id: profile_id,
+                userId: profileId,
                 type: type,
-                ...newAdress_filtered,
+                ...newAdressFiltered,
             },
         ]);
     }
 }
 
-async function updateContactInfo(newProfileData: object, profile_id: string) {
-    const newProfileData_filtered = Object.fromEntries(
+async function updateContactInfo(newProfileData: object, profileId: string) {
+    const newProfileDataFiltered = Object.fromEntries(
         Object.entries(newProfileData).filter(([value]) =>
             value ? value.length > 0 : false
         )
     );
     await supabase
         .from('profiles')
-        .update(newProfileData_filtered)
-        .eq('profile_id', profile_id);
+        .update(newProfileDataFiltered)
+        .eq('profileId', profileId);
 }
 
 export const UpdateProfileInfo = async (formData: FormData) => {
-    const profile_id = await get_profile_id();
+    const profileId = await getProfileId();
 
     const newProfile = {
         firstName: formData.get('newFirstName'),
@@ -78,41 +76,37 @@ export const UpdateProfileInfo = async (formData: FormData) => {
     };
 
     const newDeliveryAddress = {
-        street: formData.get('newDeliveryAddress_street'),
-        house_number: formData.get('newDeliveryAddress_house_number'),
-        zip_code: formData.get('newDeliveryAddress_zip_code'),
-        city: formData.get('newDeliveryAddress_city'),
+        street: formData.get('newDeliveryAddressStreet'),
+        houseNumber: formData.get('newDeliveryAddressHouseNumber'),
+        zipCode: formData.get('newDeliveryAddressZipCode'),
+        city: formData.get('newDeliveryAddressCity'),
     };
 
-    const billing_same_as_delivery =
-        formData.get('billing_same_as_delivery') === 'on';
+    const billingSameAsDelivery =
+        formData.get('billingSameAsDelivery') === 'on';
 
-    if (profile_id) {
-        if (billing_same_as_delivery) {
-            await update_or_insert_address(
+    if (profileId) {
+        if (billingSameAsDelivery) {
+            await updateOrInsertAddress(
                 'billing',
                 newDeliveryAddress,
-                profile_id
+                profileId
             );
         } else {
             const newBillingAddress = {
-                street: formData.get('newBillingAddress_street'),
-                house_number: formData.get('newBillingAddress_house_number'),
-                zip_code: formData.get('newBillingAddress_zip_code'),
-                city: formData.get('newBillingAddress_city'),
+                street: formData.get('newBillingAddressStreet'),
+                houseNumber: formData.get('newBillingAddressHouseNumber'),
+                zipCode: formData.get('newBillingAddressZipCode'),
+                city: formData.get('newBillingAddressCity'),
             };
-            await update_or_insert_address(
+            await updateOrInsertAddress(
                 'billing',
                 newBillingAddress,
-                profile_id
+                profileId
             );
         }
-        await updateContactInfo(newProfile, profile_id);
-        await update_or_insert_address(
-            'delivery',
-            newDeliveryAddress,
-            profile_id
-        );
+        await updateContactInfo(newProfile, profileId);
+        await updateOrInsertAddress('delivery', newDeliveryAddress, profileId);
     }
 
     revalidatePath('/user');

@@ -6,19 +6,19 @@ import { returnTotalLineItems } from '../helperFunctions';
 
 export const POST = async (request: NextRequest) => {
     const supabase = createServerComponentClient({ cookies });
-    const body = (await request.json()) as checkoutBody;
+    const body = (await request.json()) as CheckoutBody;
 
-    const totalLineItems = returnTotalLineItems(body);
+    const totalLineItems = await returnTotalLineItems(body);
 
     try {
         const { data: orderData, error: sbOrderError } = (await supabase
             .from('orders')
             .insert([{ cart: body.cartItems }])
             .select()
-            .single()) as sb_fetchResponseObject<order>;
+            .single()) as SbFetchResponseObject<Order>;
 
         if (!sbOrderError) {
-            const metadata = { order_id: orderData?.order_id || null };
+            const metadata = { orderId: orderData?.orderId || null };
             const checkOutSession = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
                 line_items: totalLineItems,
@@ -26,7 +26,7 @@ export const POST = async (request: NextRequest) => {
                 success_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb/bestellung-erfolgreich`,
                 cancel_url: `${process.env.NEXT_PUBLIC_URL}/warenkorb`,
                 locale: 'de',
-                client_reference_id: orderData?.order_id,
+                client_reference_id: orderData?.orderId,
                 shipping_address_collection: {
                     allowed_countries: ['DE'],
                 },

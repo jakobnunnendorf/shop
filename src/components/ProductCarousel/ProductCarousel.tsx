@@ -1,8 +1,9 @@
 // src/components/ProductCarousel/ProductCarousel.tsx
 import React from 'react';
-import { fetchProductsFromCategory } from '@lib/helperFunctions';
+import { fetchProductsFromCategory } from '@lib/fetchProductData';
 import Link from 'next/link';
 import Collapsed from '@components/ProductCard/Collapsed/Collapsed';
+import { uniqueId } from 'lodash';
 
 export async function ProductCarousel({
     heading,
@@ -37,7 +38,7 @@ export async function ProductCarousel({
             <ul className='flex px-8 pb-8 space-x-4 overflow-x-auto h-fit w-96 snap-x scrollbar-hide lg:w-2/3'>
                 {products?.map((product, index) => {
                     return (
-                        <li className=' snap-center' key={index}>
+                        <li key={uniqueId()} className=' snap-center'>
                             <div className='w-48 lg:w-64'>
                                 <Collapsed productId={product.id} />
                             </div>

@@ -1,30 +1,33 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { uniqueId } from 'lodash';
 
-export default function GuestCheckout({ cart }: { cart: cart_item[] }) {
-    console.log(process.env.NEXT_PUBLIC_URL);
+export default function GuestCheckout({ cart }: { cart: CartItem[] }) {
     const router = useRouter();
-  const handle_guest_checkout = async () => {
-      const data: any = await fetch('/api/checkout/guest', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              cartItems: [...cart],
-          }),
-      });
-      const { url, error } = await data.json();
-      if (!error) {
-          router.push(url);
-      } else {
-          console.log(error);
-      }
-  };
+    const handle_guest_checkout = async () => {
+        const data: any = await fetch('/api/checkout/guest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                cartItems: [...cart],
+            }),
+        });
+        const { url, error } = await data.json();
+        if (!error) {
+            router.push(url);
+        } else {
+            console.log(error);
+        }
+    };
 
     const guestCheckout = (
-        <li className='flex flex-col items-start justify-center space-x-4'>
+        <li
+            key={uniqueId()}
+            className='flex flex-col items-start justify-center space-x-4'
+        >
             {' '}
             <div className='flex items-center space-x-4'>
                 <div className='flex items-center justify-center w-8 h-8 p-2 font-bold border rounded-full aspect-square border-coastal-blue-10 text-coastal-blue-10'>

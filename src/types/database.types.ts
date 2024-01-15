@@ -14,42 +14,42 @@ export interface Database {
                     address_id: string;
                     city: string | null;
                     country: string | null;
-                    created_at: string | null;
+                    createdAt: string | null;
                     house_number: string | null;
                     street: string | null;
                     type: string | null;
-                    user_id: string;
+                    userId: string;
                     zip_code: string | null;
                 };
                 Insert: {
                     address_id?: string;
                     city?: string | null;
                     country?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     house_number?: string | null;
                     street?: string | null;
                     type?: string | null;
-                    user_id: string;
+                    userId: string;
                     zip_code?: string | null;
                 };
                 Update: {
                     address_id?: string;
                     city?: string | null;
                     country?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     house_number?: string | null;
                     street?: string | null;
                     type?: string | null;
-                    user_id?: string;
+                    userId?: string;
                     zip_code?: string | null;
                 };
                 Relationships: [
                     {
-                        foreignKeyName: 'addresses_user_id_fkey';
-                        columns: ['user_id'];
+                        foreignKeyName: 'addresses_userId_fkey';
+                        columns: ['userId'];
                         referencedRelation: 'users';
                         referencedColumns: ['id'];
-                    }
+                    },
                 ];
             };
             debugging: {
@@ -58,7 +58,7 @@ export interface Database {
                     content_2: string | null;
                     content_3: string | null;
                     content_4: string | null;
-                    created_at: string | null;
+                    createdAt: string | null;
                     id: string;
                     message: string | null;
                     successful: boolean | null;
@@ -69,7 +69,7 @@ export interface Database {
                     content_2?: string | null;
                     content_3?: string | null;
                     content_4?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     id?: string;
                     message?: string | null;
                     successful?: boolean | null;
@@ -80,7 +80,7 @@ export interface Database {
                     content_2?: string | null;
                     content_3?: string | null;
                     content_4?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     id?: string;
                     message?: string | null;
                     successful?: boolean | null;
@@ -91,27 +91,27 @@ export interface Database {
             orders: {
                 Row: {
                     cart: Json[] | null;
-                    created_at: string | null;
-                    customer_details: Json | null;
-                    order_id: string;
+                    createdAt: string | null;
+                    customerDetails: Json | null;
+                    orderId: string;
                     status: string | null;
-                    user_id: string | null;
+                    userId: string | null;
                 };
                 Insert: {
                     cart?: Json[] | null;
-                    created_at?: string | null;
-                    customer_details?: Json | null;
-                    order_id?: string;
+                    createdAt?: string | null;
+                    customerDetails?: Json | null;
+                    orderId?: string;
                     status?: string | null;
-                    user_id?: string | null;
+                    userId?: string | null;
                 };
                 Update: {
                     cart?: Json[] | null;
-                    created_at?: string | null;
-                    customer_details?: Json | null;
-                    order_id?: string;
+                    createdAt?: string | null;
+                    customerDetails?: Json | null;
+                    orderId?: string;
                     status?: string | null;
-                    user_id?: string | null;
+                    userId?: string | null;
                 };
                 Relationships: [];
             };
@@ -119,11 +119,11 @@ export interface Database {
                 Row: {
                     category: string;
                     compatibleModels: string[] | null;
-                    created_at: string;
+                    createdAt: string;
                     description: string | null;
                     dimensions: Json | null;
                     id: string;
-                    imageURL_array: string[];
+                    imageURLArray: string[];
                     price: number;
                     reviews: string[] | null;
                     stock: number;
@@ -132,11 +132,11 @@ export interface Database {
                 Insert: {
                     category: string;
                     compatibleModels?: string[] | null;
-                    created_at?: string;
+                    createdAt?: string;
                     description?: string | null;
                     dimensions?: Json | null;
                     id?: string;
-                    imageURL_array: string[];
+                    imageURLArray: string[];
                     price: number;
                     reviews?: string[] | null;
                     stock: number;
@@ -145,11 +145,11 @@ export interface Database {
                 Update: {
                     category?: string;
                     compatibleModels?: string[] | null;
-                    created_at?: string;
+                    createdAt?: string;
                     description?: string | null;
                     dimensions?: Json | null;
                     id?: string;
-                    imageURL_array?: string[];
+                    imageURLArray?: string[];
                     price?: number;
                     reviews?: string[] | null;
                     stock?: number;
@@ -161,40 +161,40 @@ export interface Database {
                 Row: {
                     avatar_url: string | null;
                     billing: string | null;
-                    created_at: string | null;
+                    createdAt: string | null;
                     delivery: string | null;
                     email: string | null;
                     firstName: string | null;
                     lastName: string | null;
                     orders: string[] | null;
                     phone: string | null;
-                    profile_id: string;
+                    profileId: string;
                     role: string | null;
                 };
                 Insert: {
                     avatar_url?: string | null;
                     billing?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     delivery?: string | null;
                     email?: string | null;
                     firstName?: string | null;
                     lastName?: string | null;
                     orders?: string[] | null;
                     phone?: string | null;
-                    profile_id: string;
+                    profileId: string;
                     role?: string | null;
                 };
                 Update: {
                     avatar_url?: string | null;
                     billing?: string | null;
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     delivery?: string | null;
                     email?: string | null;
                     firstName?: string | null;
                     lastName?: string | null;
                     orders?: string[] | null;
                     phone?: string | null;
-                    profile_id?: string;
+                    profileId?: string;
                     role?: string | null;
                 };
                 Relationships: [
@@ -211,39 +211,39 @@ export interface Database {
                         referencedColumns: ['address_id'];
                     },
                     {
-                        foreignKeyName: 'profiles_profile_id_fkey';
-                        columns: ['profile_id'];
+                        foreignKeyName: 'profiles_profileId_fkey';
+                        columns: ['profileId'];
                         referencedRelation: 'users';
                         referencedColumns: ['id'];
-                    }
+                    },
                 ];
             };
             todos: {
                 Row: {
-                    created_at: string | null;
+                    createdAt: string | null;
                     id: string | null;
                     todo: string | null;
-                    user_id: string | null;
+                    userId: string | null;
                 };
                 Insert: {
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     id?: string | null;
                     todo?: string | null;
-                    user_id?: string | null;
+                    userId?: string | null;
                 };
                 Update: {
-                    created_at?: string | null;
+                    createdAt?: string | null;
                     id?: string | null;
                     todo?: string | null;
-                    user_id?: string | null;
+                    userId?: string | null;
                 };
                 Relationships: [
                     {
-                        foreignKeyName: 'todos_user_id_fkey';
-                        columns: ['user_id'];
+                        foreignKeyName: 'todos_userId_fkey';
+                        columns: ['userId'];
                         referencedRelation: 'users';
                         referencedColumns: ['id'];
-                    }
+                    },
                 ];
             };
         };

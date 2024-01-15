@@ -1,31 +1,33 @@
-interface order {
-    order_id: UUID;
-    created_at: created_at;
-    status: order_status;
-    user_id: UUID | 'guest';
-    cart: cart_item[];
-    customer_details: customer_details | null;
+interface Order {
+    orderId: UUID;
+    createdAt: CreatedAt;
+    status: OrderStatus;
+    userId: UUID | 'guest';
+    cart: CartItem[];
+    customerDetails: CustomerDetails | null;
 }
 
-type order_status = 'unpaid' | 'paid' | 'shipped' | 'delivered' | 'canceled';
+type OrderStatus =
+    | 'unbezahlt'
+    | 'bezahlt'
+    | 'versandt'
+    | 'zugestellt'
+    | 'storniert';
 
-interface customer_details {
-    address: address;
-    email: email;
+interface CustomerDetails {
+    delivery: Address;
+    billing: Address;
+    email: Email;
     name: string;
     phone: string | null;
-    tax_exempt: string;
-    tax_ids: string[];
+    taxExempt: string;
+    taxIds: string[];
 }
 
-interface cart_item {
+type CartItem = {
     productId: UUID;
     quantity: number;
-    price: number;
-    color: productColor;
-}
+    color: ColorKey | null;
+};
 
-interface Wishlist_item {
-    product: product;
-    quantity: number;
-}
+type WishListItem = CartItem;

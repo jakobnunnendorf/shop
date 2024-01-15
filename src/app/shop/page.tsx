@@ -1,8 +1,8 @@
 import ShopGrid from './ShopGrid';
 import { Suspense } from 'react';
 import MobileFilters from './FilterBar/MobileFilters/MobileFilters';
-import { getProducts } from '@lib/helperFunctions';
-import { paramString } from '@lib/helperFunctions';
+import { getProducts } from '@lib/fetchProductData';
+import { paramString } from '@lib/URLProcessing';
 import SkeletonGrid from '@components/skeletons/SkeletonGrid';
 import FilterButtons from './FilterBar/FilterButtons';
 

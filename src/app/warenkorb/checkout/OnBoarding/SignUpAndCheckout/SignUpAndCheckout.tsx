@@ -4,9 +4,10 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useState } from 'react';
 import { FiUser } from 'react-icons/fi';
+import { uniqueId } from 'lodash';
 
-export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
-  const router = useRouter();
+export default function SignUpAndCheckout({ cart }: { cart: CartItem[] }) {
+    const router = useRouter();
     const [error_message, set_error_message] = useState('');
 
     const [first_password, set_first_password] = useState('');
@@ -27,7 +28,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
             return;
         }
 
-        const signup_email = formData.get('email') as email | null;
+        const signup_email = formData.get('email') as Email | null;
         const signup_password = formData.get('password') as string;
         const signup_password_repeat = formData.get(
             'password_repeat'
@@ -45,7 +46,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
                     metadata: {
                         email: signup_email,
                         password: signup_password,
-                        checkout_mode: 'signup_and_checkout',
+                        checkoutMode: 'signup and checkout',
                     },
                 }),
             });
@@ -60,7 +61,7 @@ export default function SignUpAndCheckout({ cart }: { cart: cart_item[] }) {
         }
     };
     const signUpAndCheckout = (
-        <li className='flex flex-col items-start space-y-4 '>
+        <li key={uniqueId()} className='flex flex-col items-start space-y-4 '>
             <div className='flex items-center space-x-4'>
                 <div className='flex items-center justify-center w-8 h-8 p-2 font-bold border rounded-full aspect-square border-coastal-blue-10 text-coastal-blue-10'>
                     1

@@ -2,7 +2,7 @@ import React from 'react';
 import GuestCheckout from './GuestCheckout/GuestCheckout';
 import SignUpAndCheckout from './SignUpAndCheckout/SignUpAndCheckout';
 
-export default function OnBoarding({ cart }: { cart: cart_item[] }) {
+export default function OnBoarding({ cart }: { cart: CartItem[] }) {
     const onBoarding = (
         <aside className='flex h-full w-full flex-col items-center justify-center border-r px-4 py-8 '>
             <div className='flex h-2/3 flex-col space-y-8'>

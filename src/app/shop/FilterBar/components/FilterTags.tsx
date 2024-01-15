@@ -1,9 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { FiX } from 'react-icons/fi';
-import { valuesFromParamString } from '@lib/helperFunctions';
-import { convertCategoryToGerman } from '@lib/helperFunctions';
-import { toggleQueryParam } from '@lib/helperFunctions';
+import { valuesFromParamString } from '@lib/URLProcessing';
+import { convertCategoryToGerman } from '@lib/dataManipulation';
+import { toggleQueryParam } from '@lib/URLProcessing';
+import { uniqueId } from 'lodash';
 
 export default function FilterTags({ paramString }: { paramString: string }) {
     const paramArray = valuesFromParamString(
@@ -46,7 +47,10 @@ export default function FilterTags({ paramString }: { paramString: string }) {
                           return prunedURL;
                       };
                       return (
-                          <li className='flex items-center px-2 py-1 lg:py-[1px] lg:px-1 border rounded-full'>
+                          <li
+                              key={uniqueId()}
+                              className='flex items-center px-2 py-1 lg:py-[1px] lg:px-1 border rounded-full'
+                          >
                               {filter}{' '}
                               <Link
                                   href={toggleThisQueryParam()}

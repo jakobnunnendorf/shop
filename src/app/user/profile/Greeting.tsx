@@ -1,57 +1,39 @@
+import ImageComponent from '@components/ImageComponent';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import Image from 'next/image';
 
-
-export default async function Greeting() {
+export default async function Greeting({ profileId }: { profileId?: UUID }) {
     const supabase = createServerComponentClient({ cookies });
-    async function fetch_first_name_and_avatar_url() {
-        const {
-            data: { session: currentSession },
-        } = await supabase.auth.getSession();
+    const {
+        data: { session: currentSession },
+    } = await supabase.auth.getSession();
 
-        const user_id = currentSession?.user?.id;
+    const userId = profileId || currentSession?.user?.id;
 
-        const { data: profile_info, error: profile_info_fetch_error } =
-            await supabase
-                .from('profiles')
-                .select()
-                .eq('profile_id', user_id)
-                .single();
-
-        const first_name = profile_info?.firstName;
-        const avatar_url = profile_info?.avatar_url;
-
-        return {
-            first_name,
-            avatar_url,
-            profile_info_fetch_error,
-        };
-    }
-
-    const { first_name, avatar_url } = await fetch_first_name_and_avatar_url();
-
+    const { data: profileInfo, error } = (await supabase
+        .from('profiles')
+        .select('*')
+        .eq('profileId', userId)
+        .single()) as SbFetchResponseObject<Profile>;
     return (
-        <>
+        <div className='flex flex-col items-center justify-center'>
             <h2 className='text-center'>
                 <span className='text-3xl '>
-                    Hallo{' '}
+                    Hallo &nbsp;
                     <span className='font-bold text-coastal-blue-10'>
-                        {first_name}
+                        {profileInfo?.firstName + ','}
                     </span>
-                    ,
-                </span>{' '}
+                </span>
                 <br />
                 <span className='text-2xl'>Willkommen in deinem Profil</span>
             </h2>
-
-            <Image
-                src={avatar_url}
-                alt='profile avatar'
-                width={128}
-                height={128}
-                className='col-span-3 h-32 w-32 rounded-full object-cover'
+            <ImageComponent
+                src={profileInfo?.avatarURL}
+                size={32}
+                cover
+                rounded='full'
+                name='profile_picture'
             />
-        </>
+        </div>
     );
 }

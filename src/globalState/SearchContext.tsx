@@ -10,8 +10,8 @@ import {
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export type SearchContextType = {
-    searchResults: product[];
-    setSearchResults: Dispatch<product[]>;
+    searchResults: Product[];
+    setSearchResults: Dispatch<Product[]>;
     searchFilter: string;
     setSearchFilter: Dispatch<string>;
 };
@@ -24,7 +24,7 @@ export function SearchContextProvider({
     children: React.ReactNode;
 }) {
     const [searchFilter, setSearchFilter] = useState<string>('');
-    const [searchResults, setSearchResults] = useState<product[]>([]);
+    const [searchResults, setSearchResults] = useState<Product[]>([]);
 
     const supabase = createClientComponentClient();
 
@@ -34,14 +34,14 @@ export function SearchContextProvider({
             query = query.ilike('title', `%${searchFilter}%`);
             query = query.ilike('description', `%${searchFilter}%`);
 
-            const { data, error } = (await query) as sb_fetchResponseObject<
-                product[]
+            const { data, error } = (await query) as SbFetchResponseObject<
+                Product[]
             >;
             if (error) console.log(error);
             if (data && data.length > searchResults.length) {
                 setSearchResults(data);
             }
-            console.log(data?.length, searchFilter, data);
+            // console.log(data?.length, searchFilter, data);
         };
         fetchSearchPreview();
     }, [searchFilter, setSearchResults, supabase]);

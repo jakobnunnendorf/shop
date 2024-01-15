@@ -4,7 +4,7 @@ import React from 'react';
 import CartIcon from './CartIcon';
 import MobileMenuBurger from './MobileMenuBurger';
 import UserHeaderLink from './UserHeaderLink';
-import WishlistIcon from './WishlistIcon';
+import WishListIcon from './WishListIcon';
 import SearchBar from '../SearchBar/SearchBar';
 
 export default function UpperRow() {
@@ -33,7 +33,7 @@ export default function UpperRow() {
                 </div>
 
                 <nav className='flex justify-around h-full col-span-6 col-start-7 lg:col-span-3 lg:justify-end lg:space-x-8 lg:pr-8'>
-                    <WishlistIcon />
+                    <WishListIcon />
                     <CartIcon />
                     <UserHeaderLink />
                 </nav>

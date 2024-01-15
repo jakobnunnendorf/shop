@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useContext, useEffect, useRef } from 'react';
-import { replaceSpecialCharacters } from '@lib/helperFunctions';
+import { replaceSpecialCharacters } from '@lib/dataManipulation';
 import { SearchContext, SearchContextType } from '@globalState/SearchContext';
 import { FiX } from 'react-icons/fi';
 

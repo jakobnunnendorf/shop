@@ -1,6 +1,7 @@
 import React from 'react';
 import CheckBox from './CheckBox';
-import { eur, productCategories } from '@lib/helperFunctions';
+import { productCategories } from '@lib/fetchProductData';
+import { eur } from '@lib/dataManipulation';
 export default function Filter({
     filterTitle,
     filterKey,

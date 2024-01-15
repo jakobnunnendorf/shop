@@ -1,46 +1,44 @@
-type productsFetchData = product[] | product | null;
+import { TailwindColorEnum } from 'src/enums';
 
-interface product {
+type ProductsFetchData = Product[] | Product | null;
+
+interface Product {
     id: UUID;
-    created_at: created_at;
+    createdAt: CreatedAt;
     title: string;
     description: string | null;
     price: number;
     stock: number;
-    category: productCategory;
-    compatibleModels: compatibleModels;
-    reviews: product_review_reference_array;
-    dimensions: dimensions | null;
-    imageURL_object: imageURL_object;
+    category: ProductCategory;
+    compatibleModels: CompatibleModels;
+    reviews: ProductReviewReferenceArray;
+    dimensions: Dimensions | null;
+    imageURLObject: ImageURLObject;
 }
 
-interface uploadProduct {
+interface UploadProduct {
     id: UUID | null;
     title: string;
     description: string | null;
     price: number;
     stock: number;
-    category: productCategory;
-    compatibleModels: compatibleModels | null;
-    reviews: product_review_reference_array | null;
-    dimensions: dimensions | null;
-    imageURL_object: imageURL_object | null;
+    category: ProductCategory;
+    compatibleModels: CompatibleModels | null;
+    imageURLObject: ImageURLObject;
 }
 
-interface uploadProductDraft {
-    id?: UUID | null;
-    title: string | null;
-    description: string | null;
-    price: number | null;
-    stock: number | null;
-    category: productCategory | null;
-    compatibleModels: compatibleModels | null;
-    reviews: product_review_reference_array | null;
-    dimensions: dimensions | null;
-    imageURL_object: imageURL_object;
+interface UploadProductDraft {
+    id?: UUID;
+    title?: string;
+    description?: string;
+    price?: number;
+    stock?: number;
+    category?: ProductCategory;
+    compatibleModels?: CompatibleModels;
+    imageURLObject?: ImageURLObject;
 }
 
-type productCategory =
+type ProductCategory =
     | 'phone case'
     | 'screen protector'
     | 'charging cable'
@@ -48,15 +46,15 @@ type productCategory =
     | 'tablet case'
     | 'phone holder';
 
-type compatibleModels = device[] | null;
+type CompatibleModels = Device[] | null;
 
-interface device {
+interface Device {
     name: string;
     brand: string;
-    deviceCategory: deviceCategory;
+    deviceCategory: DeviceCategory;
 }
 
-type deviceCategory =
+type DeviceCategory =
     | 'phone'
     | 'tablet'
     | 'laptop'
@@ -66,22 +64,9 @@ type deviceCategory =
     | 'speaker'
     | '';
 
-type productColor =
-    | 'schwarz'
-    | 'weiss'
-    | 'rot'
-    | 'blau'
-    | 'gruen'
-    | 'gelb'
-    | 'lila'
-    | 'rosa'
-    | 'orange'
-    | 'braun'
-    | 'grau'
-    | 'silber'
-    | 'transparent';
+type ProductColor = keyof typeof TailwindColorEnum;
 
-type tailwind_productColor =
+type TailwindColor =
     | 'bg-black'
     | 'bg-white'
     | 'bg-red-500'
@@ -97,29 +82,29 @@ type tailwind_productColor =
     | 'border';
 
 type ProductInColor = {
-    imageURL_array: bucketURL<'ProductImageBucket'>[] | string[]; //TODO: remove string array after testing
-    color_name: productColor | null;
-    tailwind_color: tailwind_productColor | null;
+    imageURLArray: BucketURL<'ProductImages'>[] | string[]; //TODO: remove string array after testing
+    colorName: ProductColor | null;
+    tailwindColor: TailwindColor | null;
 };
 
-interface imageURL_object extends Record<ColorKey, ProductInColor | null> {
-    default_color: ProductInColor;
-    color_2: ProductInColor | null;
-    color_3: ProductInColor | null;
-    color_4: ProductInColor | null;
-    color_5: ProductInColor | null;
-    color_6: ProductInColor | null;
+interface ImageURLObject extends Record<ColorKey, ProductInColor | null> {
+    defaultColor: ProductInColor;
+    color2: ProductInColor | null;
+    color3: ProductInColor | null;
+    color4: ProductInColor | null;
+    color5: ProductInColor | null;
+    color6: ProductInColor | null;
 }
 
-type product_review_reference_array = UUID[];
+type ProductReviewReferenceArray = UUID[];
 
-type dimensions = {
+type Dimensions = {
     width: number;
     height: number;
     depth: number;
 };
 
-type productStatus =
+type ProductStatus =
     | 'showcase'
     | 'preview'
     | 'edit'
@@ -128,10 +113,10 @@ type productStatus =
     | 'uploading'
     | 'error';
 
-type colorKey =
-    | 'default_color'
-    | 'color_2'
-    | 'color_3'
-    | 'color_4'
-    | 'color_5'
-    | 'color_6';
+type ColorKey =
+    | 'defaultColor'
+    | 'color2'
+    | 'color3'
+    | 'color4'
+    | 'color5'
+    | 'color6';

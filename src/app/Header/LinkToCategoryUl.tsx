@@ -1,4 +1,4 @@
-import { productCategories } from '@lib/helperFunctions';
+import { productCategories } from '@lib/fetchProductData';
 import React from 'react';
 import FilterLink from './LowerRow/FilterLink';
 

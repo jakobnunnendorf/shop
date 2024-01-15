@@ -1,7 +1,9 @@
-import { productCategories } from '@lib/helperFunctions';
+import { productCategories } from '@lib/fetchProductData';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { uniqueId } from 'lodash';
+import ImageComponent from '@components/ImageComponent';
 
 export default function Footer() {
     return (
@@ -45,14 +47,10 @@ export default function Footer() {
                     <div className='grid gap-8 grid-1 md:grid-cols-2 lg:grid-cols-4'>
                         <div className=''>
                             <h6 className='flex items-center justify-center mb-4 font-semibold uppercase md:justify-start'>
-                                <figure>
-                                    <Image
-                                        src='/p2d_logo3.png'
-                                        width={50}
-                                        height={50}
-                                        alt='Phone2Door.com'
-                                    />
-                                </figure>
+                                <ImageComponent
+                                    src='/p2d_logo3.png'
+                                    size={12}
+                                />
                                 Phone2Door.com
                             </h6>
                             <p>Alles, was dein Handy braucht.</p>
@@ -64,7 +62,7 @@ export default function Footer() {
                             <ul>
                                 {productCategories.map((category, index) => {
                                     return (
-                                        <li className='mb-4' key={index}>
+                                        <li key={uniqueId()} className='mb-4'>
                                             <Link
                                                 href={{
                                                     pathname: '/shop',
@@ -86,7 +84,7 @@ export default function Footer() {
                                 Nützliche Links
                             </h6>
                             <ul>
-                                <li className='mb-4'>
+                                <li key={uniqueId()} className='mb-4'>
                                     <Link
                                         href='/user'
                                         className='text-neutral-600 dark:text-neutral-200'
@@ -94,7 +92,7 @@ export default function Footer() {
                                         Account
                                     </Link>
                                 </li>
-                                <li className='mb-4'>
+                                <li key={uniqueId()} className='mb-4'>
                                     <Link
                                         href='/Hilfe'
                                         className='text-neutral-600 dark:text-neutral-200'
@@ -102,7 +100,7 @@ export default function Footer() {
                                         Hilfe
                                     </Link>
                                 </li>
-                                <li className='mb-4'>
+                                <li key={uniqueId()} className='mb-4'>
                                     <Link
                                         href='/Hilfe/AGB'
                                         className='text-neutral-600 dark:text-neutral-200'
@@ -110,7 +108,7 @@ export default function Footer() {
                                         AGB
                                     </Link>
                                 </li>
-                                <li className='mb-4'>
+                                <li key={uniqueId()} className='mb-4'>
                                     <Link
                                         href='/Hilfe/impressum'
                                         className='text-neutral-600 dark:text-neutral-200'
@@ -118,7 +116,7 @@ export default function Footer() {
                                         Impressum
                                     </Link>
                                 </li>
-                                <li className='mb-4'>
+                                <li key={uniqueId()} className='mb-4'>
                                     <Link
                                         href='/Hilfe/datenschutz'
                                         className='text-neutral-600 dark:text-neutral-200'

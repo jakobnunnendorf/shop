@@ -3,6 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import { uniqueId } from 'lodash';
 
 type params = {
     params: {
@@ -10,40 +11,46 @@ type params = {
     };
 };
 
-export default async function UseOrdersPage( {params: {orderID} } : params) {
+export default async function UseOrdersPage({ params: { orderID } }: params) {
     const supabase = createServerComponentClient({ cookies });
 
     const {
         data: { session: currenSession },
     } = await supabase.auth.getSession();
 
-    const user_id = currenSession?.user?.id;
+    const userId = currenSession?.user?.id;
 
     const getOrders = async () => {
         const { data: orders } = (await supabase
             .from('orders')
             .select('*')
-            .eq('user_id', user_id)) as sb_fetchResponseObject<order[]>;
+            .eq('userId', userId)) as SbFetchResponseObject<Order[]>;
         return orders;
     };
-    const orders = (await getOrders()) as order[];
+    const orders = (await getOrders()) as Order[];
 
     const ordersList = orders.map((order, index) => (
         <ul
             key={index}
             className='grid grid-cols-4 py-2 font-semibold text-center border-b shadow-sm text-1/2 lg:shadow-none'
         >
-            <Link href={`/user/bestellungen/${order.order_id}`}>
-                <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
+            <Link href={`/user/bestellungen/${order.orderId}`}>
+                <li
+                    key={uniqueId()}
+                    className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'
+                >
                     {order.cart[0].product.title}
                 </li>
             </Link>
 
-            <Link href={`/user/bestellungen/${order.order_id}`}>
-                <li className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'>
-                    {order.created_at.split('T')[0] +
+            <Link href={`/user/bestellungen/${order.orderId}`}>
+                <li
+                    key={uniqueId()}
+                    className='overflow-hidden truncate hover:text-multicolore-pink active:text-multicolore-pink'
+                >
+                    {order.createdAt.split('T')[0] +
                         ' ' +
-                        order.created_at.split('T')[1].split('.')[0]}
+                        order.createdAt.split('T')[1].split('.')[0]}
                 </li>
             </Link>
             <li

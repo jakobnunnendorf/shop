@@ -2,9 +2,9 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
+export default function LoginAndCheckout({ cart }: { cart: CartItem[] }) {
     const router = useRouter();
-    const handle_login_and_checkout = async (formData: FormData) => {
+    const handleLoginAndCheckout = async (formData: FormData) => {
         if (cart.length === 0) {
             alert('Warenkorb ist leer');
             return;
@@ -40,7 +40,7 @@ export default function LoginAndCheckout({ cart }: { cart: cart_item[] }) {
                     Ich war schonmal hier
                 </h2>
                 <form
-                    action={handle_login_and_checkout}
+                    action={handleLoginAndCheckout}
                     className='flex flex-col items-center p-4 space-y-4 border rounded-lg'
                 >
                     <div className='flex flex-col w-full'>

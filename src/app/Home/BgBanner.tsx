@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function BgBanner({ images }: { images: React.JSX.Element[] }) {
+    
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -15,9 +16,6 @@ export default function BgBanner({ images }: { images: React.JSX.Element[] }) {
         return () => clearInterval(interval);
     }, [currentImageIndex, images.length]);
 
-    return (
-        <figure className='relative w-full h-full'>
-            {images[currentImageIndex]}
-        </figure>
-    );
+    return images[currentImageIndex];
+    
 }

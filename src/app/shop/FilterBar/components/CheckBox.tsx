@@ -3,7 +3,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import React from 'react';
 import { FiCheck, FiSquare } from 'react-icons/fi';
-import { toggleQueryParam } from '@lib/helperFunctions';
+import { toggleQueryParam } from '@lib/URLProcessing';
 
 export default function CheckBox({
     filter,

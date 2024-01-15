@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { CategoryBlocks } from '@components/CategoryBlocks/CategoryBlocks';
 import { ProductCarousel } from '@components/ProductCarousel/ProductCarousel';
 import Home from './Home/Home';
-import { productCategories } from '@lib/helperFunctions';
+import { productCategories } from '@lib/fetchProductData';
 
 export const metadata: Metadata = {
     title: 'Phone2Door.com',

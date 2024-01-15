@@ -1,9 +1,9 @@
-interface iAuthResponse {
-    session: iAuthSessionResponse | null;
-    user: iAuthUserResponse | null;
+interface IAuthResponse {
+    session: IAuthSessionResponse | null;
+    user: IAuthUserResponse | null;
 }
 
-interface iAuthSessionResponse {
+interface IAuthSessionResponse {
     access_token: string;
     token_type: string;
     expires_in: number;
@@ -25,14 +25,14 @@ interface iAuthSessionResponse {
         user_metadata: Record<string, unknown>;
         identities: {
             id: string;
-            user_id: string;
+            userId: string;
             identity_data: {
                 email: string;
                 sub: string;
             };
             provider: string;
             last_sign_in_at: string;
-            created_at: string;
+            createdAt: string;
             updated_at: string;
         }[];
         created_at: string;
@@ -41,7 +41,7 @@ interface iAuthSessionResponse {
     expires_at: number;
 }
 
-interface iAuthUserResponse {
+interface IAuthUserResponse {
     id: string;
     aud: string;
     role: string;
@@ -58,16 +58,16 @@ interface iAuthUserResponse {
     user_metadata: Record<string, unknown>;
     identities: {
         id: string;
-        user_id: string;
+        userId: string;
         identity_data: {
             email: string;
             sub: string;
         };
         provider: string;
         last_sign_in_at: string;
-        created_at: string;
+        createdAt: string;
         updated_at: string;
     }[];
-    created_at: string;
+    createdAt: string;
     updated_at: string;
 }

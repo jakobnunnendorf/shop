@@ -1,4 +1,6 @@
 import React from 'react';
+import { uniqueId } from 'lodash';
+
 
 export default function FilterList({
     filters,
@@ -10,7 +12,7 @@ export default function FilterList({
             {Array.isArray(filters) ? (
                 filters.map((filter, index) => {
                     return (
-                        <li className='w-1/2 lg:w-full' key={index}>
+                        <li key={uniqueId()} className='w-1/2 lg:w-full'>
                             {filter}
                         </li>
                     );

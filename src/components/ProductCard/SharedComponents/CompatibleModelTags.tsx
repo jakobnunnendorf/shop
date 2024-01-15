@@ -1,18 +1,18 @@
 import React from 'react';
 
 export default function CompatibleModelTags({
-    compatibleModels_array,
+    compatibleModelsArray,
     expanded,
 }: {
-    compatibleModels_array: compatibleModels;
+    compatibleModelsArray: CompatibleModels;
     expanded?: boolean;
 }) {
-    const modelNames = compatibleModels_array?.map((model: device) => {
+    const modelNames = compatibleModelsArray?.map((model: Device) => {
         return model.name;
     });
 
     const brandSet: Set<string> = new Set();
-    compatibleModels_array?.map((model: device) => brandSet.add(model.brand));
+    compatibleModelsArray?.map((model: Device) => brandSet.add(model.brand));
     const brands = Array.from(brandSet);
 
     const tagArray = brands.concat(modelNames ? modelNames : []);

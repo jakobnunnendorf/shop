@@ -4,28 +4,16 @@ import Link from 'next/link';
 import React, { useContext, useState } from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import {
-    ActiveFiltersContext,
-    FilterContextType,
-} from '@globalState/ActiveFiltersContext';
-import {
     MobileMenuContext,
     MobileMenuContextType,
 } from '@globalState/MobileMenuContext';
-import { productCategories } from '@lib/helperFunctions';
+import { productCategories } from '@lib/fetchProductData';
+import { uniqueId } from 'lodash';
 
 export default function SideMenu() {
     const { isOpen, toggleOpen } = useContext(
         MobileMenuContext
     ) as MobileMenuContextType;
-
-    const { setCategoryFilter } = useContext(
-        ActiveFiltersContext
-    ) as FilterContextType;
-
-    const setFilterAndRouteToShop = (filter: productCategory) => {
-        setCategoryFilter(filter);
-        toggleOpen();
-    };
 
     const [showShopLinks, setShowShopLinks] = useState(false);
     return (
@@ -36,12 +24,15 @@ export default function SideMenu() {
         >
             <nav className=' h-[70vh]'>
                 <ul className='flex flex-col justify-around h-full pr-4 text-3xl font-bold'>
-                    <li className='py-4 '>
+                    <li key={uniqueId()} className='py-4 '>
                         <Link onClick={toggleOpen} href='/'>
                             Home
                         </Link>
                     </li>
-                    <li className='flex flex-col items-start justify-between py-4 '>
+                    <li
+                        key={uniqueId()}
+                        className='flex flex-col items-start justify-between py-4 '
+                    >
                         <div className='flex'>
                             <Link
                                 onClick={toggleOpen}
@@ -62,7 +53,7 @@ export default function SideMenu() {
                         >
                             {productCategories.map((category) => {
                                 return (
-                                    <li>
+                                    <li key={uniqueId()}>
                                         <Link
                                             href={{
                                                 pathname: '/shop',
@@ -78,22 +69,22 @@ export default function SideMenu() {
                             })}
                         </ul>
                     </li>
-                    <li className='py-4 '>
+                    <li key={uniqueId()} className='py-4 '>
                         <Link onClick={toggleOpen} href='/wunschliste'>
                             Wunschliste
                         </Link>
                     </li>{' '}
-                    <li className='py-4 '>
+                    <li key={uniqueId()} className='py-4 '>
                         <Link onClick={toggleOpen} href='/warenkorb'>
                             Warenkorb
                         </Link>
                     </li>{' '}
-                    <li className='py-4 '>
+                    <li key={uniqueId()} className='py-4 '>
                         <Link onClick={toggleOpen} href='/user'>
                             Account
                         </Link>
                     </li>{' '}
-                    <li className='py-4 '>
+                    <li key={uniqueId()} className='py-4 '>
                         <Link onClick={toggleOpen} href='/Hilfe'>
                             Hilfe
                         </Link>

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import ImageComponent from '@components/ImageComponent';
 import React from 'react';
 import { FiPlus } from 'react-icons/fi';
 
@@ -7,21 +7,17 @@ export default function Thumbnail({
     isSkeleton,
     isAddButton,
 }: {
-    imageURL?: string | bucketURL<'ProductImageBucket'>;
+    imageURL?: string | BucketURL<'ProductImages'>;
     isSkeleton?: boolean;
     isAddButton?: boolean;
 }) {
     const thumbnail = imageURL ? (
-        <div className='aspect-square w-full '>
-            <figure className='relative h-full w-full rounded-lg bg-gray-200 lg:h-24 lg:w-24'>
-                <Image
-                    alt='product thumbnail'
-                    src={imageURL}
-                    fill={true}
-                    className='object-cover'
-                />
-            </figure>
-        </div>
+        <ImageComponent
+            size='full'
+            rounded='lg'
+            desktopSize={24}
+            src={imageURL}
+        />
     ) : null;
     const skeleton = <div className='w-24 h-24 bg-gray-200 rounded-lg '></div>;
     const addButton = (

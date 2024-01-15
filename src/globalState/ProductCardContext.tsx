@@ -8,8 +8,8 @@ import {
 } from 'react';
 
 export interface ProductCardContextType {
-    activeColorKey: colorKey;
-    setActiveColorKey: Dispatch<SetStateAction<colorKey>>;
+    activeColorKey: ColorKey;
+    setActiveColorKey: Dispatch<SetStateAction<ColorKey>>;
     activeIndex: number;
     setActiveIndex: Dispatch<SetStateAction<number>>;
     extended: boolean;
@@ -26,7 +26,7 @@ export function ProductCardContextProvider({
     children: React.ReactNode;
 }) {
     const [activeColorKey, setActiveColorKey] =
-        useState<colorKey>('default_color');
+        useState<ColorKey>('defaultColor');
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [extended, setExtended] = useState<boolean>(false);
 

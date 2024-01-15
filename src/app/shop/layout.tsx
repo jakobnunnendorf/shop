@@ -2,8 +2,8 @@ import { FilterBarContextProvider } from '@app/shop/FilterBarContext';
 import FilterBar from './FilterBar/FilterBar';
 
 export const metadata = {
-    title: 'title_string',
-    description: 'description_string',
+    title: 'titleString',
+    description: 'descriptionString',
 };
 
 export default function ShopLayout({

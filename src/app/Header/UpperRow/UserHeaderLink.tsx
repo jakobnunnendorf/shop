@@ -9,17 +9,21 @@ export default async function UserHeaderLink() {
     const {
         data: { session: currentSession },
     } = await supabase.auth.getSession();
+    const { data } = (await supabase
+        .from('profiles')
+        .select('firstName')
+        .eq('profileId', currentSession?.user.id)
+        .single()) as SbFetchResponseObject<{ firstName: string }>;
+    const { firstName } = data || { firstName: '' };
     return (
         <Link
             href='/user'
             className='flex flex-col items-center justify-center h-full overflow-visible '
         >
             <FiUser size={32} className='text-coastal-blue-10' />
-            {!currentSession && (
                 <p className='text-xs text-center whitespace-nowrap text-coastal-blue-10 '>
-                    Login
+                    {currentSession ? firstName : 'Login'}
                 </p>
-            )}
         </Link>
     );
 }

@@ -1,3 +1,4 @@
+import ImageComponent from '@components/ImageComponent';
 import Image from 'next/image';
 import React from 'react';
 
@@ -15,15 +16,13 @@ export default function LogoGlass() {
             >
                 Willkommen bei
             </h1>
-            <figure className='relative w-full h-36'>
-                <Image
-                    priority
-                    src={'/p2d_logo3.png'}
-                    fill={true}
-                    alt='Phone 2 Door Logo'
-                    className='object-contain'
-                />
-            </figure>
+            <ImageComponent
+                src='/p2d_logo3.png'
+                size={36}
+                width='full'
+                priority
+                name='glass_logo'
+            />
         </div>
     );
 }

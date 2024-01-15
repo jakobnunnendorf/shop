@@ -1,18 +1,18 @@
-type profilesFetchData = profile[] | profile | null;
+type ProfilesFetchData = Profile[] | Profile | null;
 
-interface profile {
-    profile_id: UUID;
-    created_at: created_at;
-    role: role;
+interface Profile {
+    profileId: UUID;
+    createdAt: CreatedAt;
+    role: Role;
     firstName: string | null;
-    avatar_url: bucketURL<'profile_pictures'>;
+    avatarURL: BucketURL<'profilePictures'>;
     lastName: string | null;
-    email: email;
+    email: Email;
     phone: string | null;
-    delivery: UUID | null;
-    billing: UUID | null;
+    delivery: Address | null;
+    billing: Address | null;
     orders: UUID[];
-    customer_details: UUID | null;
+    customerDetails: UUID | null;
 }
 
-type role = 'admin' | 'customer';
+type Role = 'admin' | 'customer';

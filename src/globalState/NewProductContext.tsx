@@ -8,12 +8,12 @@ import {
     useState,
 } from 'react';
 export interface NewProductContextType {
-    newProduct: uploadProductDraft;
-    setNewProduct: Dispatch<SetStateAction<uploadProductDraft>>;
-    activeColorKey: colorKey;
-    setActiveColorKey: Dispatch<SetStateAction<colorKey>>;
-    status: productStatus;
-    setStatus: Dispatch<SetStateAction<productStatus>>;
+    newProduct: UploadProductDraft;
+    setNewProduct: Dispatch<SetStateAction<UploadProductDraft>>;
+    activeColorKey: ColorKey;
+    setActiveColorKey: Dispatch<SetStateAction<ColorKey>>;
+    status: ProductStatus;
+    setStatus: Dispatch<SetStateAction<ProductStatus>>;
     activeIndex: number;
     setActiveIndex: Dispatch<SetStateAction<number>>;
     fileStorage: Record<string, File>;
@@ -23,9 +23,9 @@ export interface NewProductContextType {
     selectedFile: File | null;
     setSelectedFile: Dispatch<SetStateAction<File | null>>;
 }
-type ImageURL = bucketURL<'ProductImageBucket'> | string | null;
+type ImageURL = BucketURL<'ProductImages'> | string | null;
 
-export const NewProductContext = createContext<NewProductContextType | null>(
+export const newProductContext = createContext<NewProductContextType | null>(
     null
 );
 
@@ -35,10 +35,10 @@ export function NewProductContextProvider({
     children: React.ReactNode;
 }) {
     const [newProduct, setNewProduct] =
-        useState<uploadProductDraft>(blankNewProduct);
+        useState<UploadProductDraft>(blankNewProduct);
     const [activeColorKey, setActiveColorKey] =
-        useState<colorKey>('default_color');
-    const [status, setStatus] = useState<productStatus>('explain');
+        useState<ColorKey>('defaultColor');
+    const [status, setStatus] = useState<ProductStatus>('explain');
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [fileStorage, setFileStorage] = useState<Record<string, File>>({});
     const [previewURL, setPreviewURL] = useState<string | null>(null);
@@ -53,15 +53,15 @@ export function NewProductContextProvider({
             newProduct.category &&
             newProduct.compatibleModels &&
             newProduct.compatibleModels.length > 0 &&
-            newProduct.imageURL_object.default_color.color_name &&
-            newProduct.imageURL_object.default_color.imageURL_array.length > 0;
+            newProduct.imageURLObject?.defaultColor.colorName &&
+            newProduct.imageURLObject.defaultColor.imageURLArray.length > 0;
         if (hasAllNecessaryData) {
             setStatus('ready');
         }
     }, [newProduct]);
 
     return (
-        <NewProductContext.Provider
+        <newProductContext.Provider
             value={{
                 newProduct,
                 setNewProduct,
@@ -80,29 +80,8 @@ export function NewProductContextProvider({
             }}
         >
             {children}
-        </NewProductContext.Provider>
+        </newProductContext.Provider>
     );
 }
 
-export const blankNewProduct: uploadProductDraft = {
-    title: null,
-    description: null,
-    price: null,
-    stock: null,
-    category: null,
-    compatibleModels: null,
-    reviews: null,
-    dimensions: null,
-    imageURL_object: {
-        default_color: {
-            color_name: null,
-            imageURL_array: [],
-            tailwind_color: null,
-        },
-        color_2: null,
-        color_3: null,
-        color_4: null,
-        color_5: null,
-        color_6: null,
-    },
-};
+export const blankNewProduct: UploadProductDraft = {};

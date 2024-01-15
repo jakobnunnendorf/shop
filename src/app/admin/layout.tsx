@@ -1,3 +1,4 @@
+import { uniqueId } from 'lodash';
 import Link from 'next/link';
 import {
     FiCompass,
@@ -10,8 +11,8 @@ import {
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
-    title: 'title_string',
-    description: 'description_string',
+    title: 'titleString',
+    description: 'descriptionString',
 };
 
 export default function AdminLayout({
@@ -51,32 +52,35 @@ export default function AdminLayout({
         //     icon: <FiSettings className='text-slate-500' size={30} />,
         // },
     ];
-    const navigationMenu = (
-        <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
-            {linkedPages.map((page) => (
-                <Link href={page.route} key={page.route}>
-                    <li className='flex items-center space-x-2 '>
-                        <span className=''>{page.icon}</span>
-                        <span className='hidden text-xl lg:inline'>
-                            {page.title}
-                        </span>
-                    </li>
-                </Link>
-            ))}
-        </ul>
-    );
-    const AdminLayout = (
+
+    const adminLayout = (
         <section className='flex w-full '>
             <aside className='w-12 h-screen space-y-2 bg-slate-100 lg:w-44 lg:p-4'>
                 <h2 className='hidden mb-8 text-xl font-bold text-center text-slate-400 lg:block'>
                     Admin Panel
                 </h2>
-                {navigationMenu}
+                <ul className='flex flex-col items-center justify-around w-full mt-8 space-y-8 h-fit lg:items-start'>
+                    {linkedPages.map((page) => (
+                        <li
+                            key={uniqueId()}
+                            className='flex items-center space-x-2 '
+                        >
+                            <Link href={page.route} key={page.route}>
+                                <div className='flex gap-2'>
+                                    {page.icon}
+                                    <p className='hidden text-xl lg:inline'>
+                                        {page.title}
+                                    </p>
+                                </div>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
             </aside>
-            <section className=' relative w-[calc(100vw-3rem)] lg:py-8  lg:w-[calc(100vw-11rem)] lg:px-16'>
+            <section className=' relative w-[calc(100vw-3rem)]  lg:w-[calc(100vw-11rem)]'>
                 {children}
             </section>
         </section>
     );
-    return AdminLayout;
+    return adminLayout;
 }

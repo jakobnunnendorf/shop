@@ -1,4 +1,4 @@
-export default function WishlistLayout({
+export default function WishListLayout({
     children,
 }: {
     children: React.ReactNode;

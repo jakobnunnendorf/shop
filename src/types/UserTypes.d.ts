@@ -1,35 +1,32 @@
-
-import { UUID } from 'crypto';
-
-interface iReview {
-    reviewID: UUID;
+interface IReview {
+    reviewId: UUID;
     rating: number;
     createdAt: Date;
     comment: string;
-    userID: UUID;
-    productID: UUID;
+    userId: UUID;
+    productId: UUID;
 }
 
-interface iUserDetails {
+interface IUserDetails {
     avatar: null | string;
-    orders: iOrder[] | null;
-    bewertungen: iReview | null;
+    orders: IOrder[] | null;
+    bewertungen: IReview | null;
     email: string;
     firstName: string;
     lastName: null | string;
     password: string;
-    defaultShippingAdress: null | iAdress;
-    defaultBillingAdress: null | iAdress;
+    defaultShippingAdress: null | IAdress;
+    defaultBillingAdress: null | IAdress;
     phoneNumber: null | string;
     userID: UUID;
-    wishList: iProduct[] | null;
-    settings: iSettings;
+    wishList: IProduct[] | null;
+    settings: ISettings;
 }
 
-interface iSettings {
+interface ISettings {
     darkMode: boolean;
 }
-interface iProductReview {
+interface IProductReview {
     reviewID: string
     rating: number
     createdAt: Date
