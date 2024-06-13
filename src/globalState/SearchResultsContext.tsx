@@ -52,7 +52,7 @@ export function SearchResultsContextProvider({
                     const { data: products } = await supabase
                         .from('products')
                         .select('*')
-                        .textSearch('title', searchFilter)
+                        .ilike('title', `%${searchFilter}%`)
                         .limit(30);
                     return products;
                 } else {
